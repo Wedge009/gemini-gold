@@ -18,6 +18,10 @@ was converted against.
     cd ..
     ./run.sh
 
+The engine binary ends up in `engine/build/<preset>/`, not `engine/bin/`:
+`script/build` copies it from the wrong place. `run.sh` uses the most recently
+built preset, so switching to a debug build needs no other change.
+
 Set `VEGASTRIKE_ENGINE` to use a different engine binary. Settings, saves and
 logs go in `~/.gemini-gold` (named by `Version.txt`). Music playlists live in
 `.gemini-gold/` here; the engine finds them by the same name, so rename both
