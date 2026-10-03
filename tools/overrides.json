@@ -1,0 +1,6 @@
+{
+    "game_start": {
+        "campaigns": "privateer_campaign rf_campaign rf_murphy_campaign rf_lynch_campaign rf_goodin_campaign rf_tayla_campaign",
+        "introduction": "Welcome to the Gemini Sector."
+    }
+}

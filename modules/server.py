@@ -3,6 +3,7 @@ import Director
 import unit
 import sys
 import traceback
+import importlib
 
 import custom
 
@@ -196,7 +197,7 @@ def processMessage(cp, localhost, command, arglist=None, id='', writer=None):
 				libname = libname.replace('\\','_')
 				libname = libname.replace('.','_')
 				mod = __import__(libname)
-			reload(mod)
+			importlib.reload(mod)
 			VS.IOmessage(0,"game","all","The "+mod.__name__+" script has been reloaded!")
 			print (mod.__name__+' has been reloaded!')
 		else:

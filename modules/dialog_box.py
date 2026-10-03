@@ -3,6 +3,7 @@ import GUI
 import custom
 import Base
 import debug
+from functools import reduce
 
 text_height=0.1
 

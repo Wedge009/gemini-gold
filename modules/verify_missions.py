@@ -103,7 +103,7 @@ class PositiveInt(Argument):
     NAME="PositiveInt"
 
     def checkValidity(self):
-        if isinstance(self.value,long) or isinstance(self.value,int):
+        if isinstance(self.value,int):
             if self.value < 0:
                 self.warn("Value %s is not a positive integer"%str(self.value))
                 return False
@@ -119,7 +119,7 @@ class PositiveIntList(Argument):
     def checkValidity(self):
         if isinstance(self.value,list):
             for val in self.value:
-                if isinstance(val,long) or isinstance(val,int):
+                if isinstance(val,int):
                     if self.value < 0:
                         self.warn("Value %s is not a positive integer"%str(val))
                         return False
@@ -168,7 +168,7 @@ class ZeroInt(Argument):
     NAME="ZeroInt"
 
     def checkValidity(self):
-        if isinstance(self.value,long) or isinstance(self.value,int):
+        if isinstance(self.value,int):
             if self.value != 0:
                 self.warn("Value %s is not 0"%str(self.value))
                 return False
@@ -181,7 +181,7 @@ class System(Argument):
     NAME="System"
 
     def checkValidity(self):
-        v = ( VS.universe.has_key(self.value) )
+        v = ( self.value in VS.universe )
         if not v:
             self.warn("System %s does not exist in universe"%self.value)
             return False
@@ -193,7 +193,7 @@ class SystemTuple(Argument):
 
     def checkValidity(self):
         for sys in self.value:
-            v = ( VS.universe.has_key(sys) )
+            v = ( sys in VS.universe )
             if not v:
                 self.warn("System %s does not exist in universe"%sys)
                 return False

@@ -1,5 +1,6 @@
 import Base
 import VS
+import functools
 import PlayerShip
 import GUI
 import methodtype
@@ -2419,7 +2420,7 @@ class RepairBayComputer(RepairBayComputerGeneric):
 # disable mount selection for missiles - too cumbersome
 #						elif len(slots) == 1:
 						else:
-							slots.sort(sort_missiles)
+							slots.sort(key=functools.cmp_to_key(sort_missiles))
 							mount_num = slots[0]
 							self.buy_selected_mount(item_name, type, mount_num)
 #						else:
