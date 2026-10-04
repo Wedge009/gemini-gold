@@ -166,3 +166,12 @@ JSON files.
   (then negate the z of the start position in `New_Game` too).
 - The original's hidden ambush points (those without asteroids) aren't
   placed; only the encounter system would use them.
+- Missiles differ from the original (to revisit, with the encounters): the
+  manual, the game data and the Playtesters' Guide all agree on Dumbfire /
+  Heat-seeker / Image-recognition / Friend-or-Foe damage of 13 / 16 / 17.5 /
+  17.5, a 2.5 s refire for all of them, and flight times of 8 / 9 / 9 / 8 s
+  (ranges of about 7200–8000 m). Gemini Gold has damage 9 / 10 / 11 / 11,
+  refires of 3.1–4.2 s and ranges of 30000–40000 m: weaker missiles that chase
+  their target for much longer, which looks deliberate. The proton torpedo's
+  damage matches; its refire is 0.2 s against 0.3 s, and its range is
+  unlimited where the original's looks like about 3600 m.
