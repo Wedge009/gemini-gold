@@ -87,6 +87,13 @@ Privateer's files:
   between q−qd and q+qd when the system loads, so the in-stock chance is
   (q+qd)/(2qd+1). The `__AWACS`, `.blank` and `.template` variants, which no
   Gemini system uses, are unchanged.
+- Like the original, every landing re-rolls each commodity's price and stock:
+  `bases/land_hooks.py` calls `trading.rerollBaseCargo`, which picks a price
+  across the whole range and rolls stock the same way the engine does. The
+  engine on its own only rolls when a system loads, and its price formula adds
+  the random part in credits rather than scaled by price, so prices sat at the
+  bottom of their range (Gemini Gold's old engine did the same). New Detroit
+  and Oxford now call `land_hooks.run()` like the other bases.
 
 **Map audit.** `tools/audit_map.py` compares `sectors/Gemini` and
 `universe/wcuniverse.xml` with CSVs decoded from the original game's map data
@@ -128,11 +135,6 @@ JSON files.
   `modules/dynamic_mission.py` (`addstr`), `modules/faceoff.py`,
   `modules/launch.py`, `modules/plunder.py`, `modules/rescue.py`,
   `modules/unit.py` and `modules/XGUI.py`.
-- Commodity prices always start at the bottom of their range: the engine adds
-  its random part in credits (2×d), not scaled by price, so only goods that
-  `trading.py` restocks reach the rest of the range. Gemini Gold's old engine
-  did the same. Whether the original game re-rolls prices on each landing (as
-  it does stock) is still to be checked.
 - Righteous Fire's commodity prices aren't represented yet; the data follows
   base Privateer, and RF's table is to be added once Privateer's is confirmed.
 - Talon mass is now 180 (was 18) and Broadsword mass 1000 (was 100), in line

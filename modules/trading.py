@@ -70,6 +70,43 @@ def getNoStarshipExports(name,faction,twice=10000):
     debug.debug("prodlist ="+str(prodlist))
 
     return prodlist
+def rerollBaseCargo(un):
+    """Re-roll every commodity's price and stock at a base, as the original game
+    does each time you land.
+
+    Each Cargo_Import entry {category;r;d;q;qd} gives a price uniform over
+    M*(r-d)..M*(r+d), where M is the master part list price, and a stock rolled
+    the way the engine rolls it when the system loads: a whole number between
+    q-qd and q+qd, out of stock if it's not positive. Goods out of stock are kept
+    at zero quantity so the base still buys them.
+    """
+    if un.isNull():
+        return
+    name = un.getName()
+    faction = un.getFactionName()
+    if un.isPlanet():
+        name = un.getFullname()
+        faction = "planets"
+    held = set()
+    for i in range(un.numCargo()):
+        held.add(un.GetCargoIndex(i).GetContent())
+    for prod in getImports(name,faction):
+        if len(prod)<5 or prod[1]<=0:
+            continue
+        category = prod[0]
+        if category.find('upgrades')==0 or category.find('starships')==0:
+            continue
+        cargo = VS.getRandCargo(1,category)
+        if cargo.GetCategory()!=category:
+            continue
+        content = cargo.GetContent()
+        if content in held:
+            # Adding to a held item keeps its old price, so take it out first.
+            un.removeCargo(content,un.GetCargo(content).GetQuantity()+1,True)
+        quant = int(prod[3]-prod[4])+int((2*prod[4]+1)*vsrandom.random())
+        cargo.SetQuantity(max(quant,0))
+        cargo.SetPrice(cargo.GetPrice()*(prod[1]+vsrandom.uniform(-1,1)*prod[2]))
+        un.forceAddCargo(cargo)
 class trading:
     def __init__(self):
         self.last_ship=0

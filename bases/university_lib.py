@@ -6,6 +6,8 @@ import campaign_lib
 import PlayerShip
 
 def MakeUniversity (time_of_day='_day'):
+	import land_hooks
+	land_hooks.run()
 
 	# this uses the original coordinate system of Privateer
 	import GUI
