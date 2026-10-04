@@ -1,12 +1,58 @@
-# Privateer Gold
-Privateer Gemini Gold - Updated for Modern releases of the Vegastrike engine.
-It is not intended to build/release engine binaries at this time, this repository exists so that the community can benefit from access to the Privateer Gemini Gold content updated to run on modern systems.
+# Privateer: Gemini Gold
 
-# Status
-Initial data has been imported - Game loads and runs. Run the game with either ./privateer.sh or ./bin/vegastrike -d.
-Work is focusing on porting the game scripts from Python 2.7 to Python 3. Some scripts are being replaced with Python 3 variants from the Vegastrike assets repository. The game can load and run but should be considered unstable at this point.
+[Privateer: Gemini Gold](https://sourceforge.net/projects/privateer/) remakes Origin
+Systems' *Wing Commander: Privateer* (1993) and its *Righteous Fire* expansion
+on the Vega Strike engine. This repository brings Gemini Gold's game data up to
+date so it runs on the current
+[Vega Strike engine](https://github.com/vegastrike/Vega-Strike-Engine-Source),
+which is included as a git sub-module.
 
-# Installation
-- Checkout the git repository with git clone https://github.com/DMJC/Privateer_Gold 
-- Checkout the code from:  https://github.com/vegastrike/Vega-Strike-Engine-Source build it and then place the binaries into Privateer_Gold/bin
-run the game from the Privateer_Gold folder with ./bin/vegastrike -d.
+## Status
+
+Work in progress. The game builds and runs on Linux, but it hasn't had much
+play-testing yet.
+
+- **Porting:** the config is converted to the engine's JSON files, and the
+  game scripts run under Python 3. Several bugs from earlier conversions are
+  fixed: ship stats in `units.json` sat under the wrong names, and random
+  encounters and cargo missions failed to run.
+- **Faithfulness:** the data is being checked against values decoded from the
+  original game's files, and brought back into line where Gemini Gold had
+  drifted. So far this covers commodity prices and stock numbers (randomised on every
+  landing, as in the original), in-system positions (now three-dimensional
+  again), hidden asteroid fields, place names, a story mission and some ship
+  stats. Random encounters still differ a lot from the original; they may be
+  reviewed later.
+
+[PORTING.md](PORTING.md) lists every change and the known gaps.
+
+## Running the game
+
+The engine's `script/bootstrap` installs its build dependencies on supported
+Linux distributions. It needs SDL3, so older releases (such as Ubuntu 24.04)
+won't build it without SDL3 from elsewhere.
+
+    git clone --recurse-submodules https://github.com/Wedge009/gemini-gold
+    cd gemini-gold/engine
+    sudo script/bootstrap
+    script/build --preset-name=linux-ninja-pie-enabled-glvnd-release
+    cd ..
+    ./run.sh
+
+Settings, saved games and logs go in `~/.gemini-gold`. See
+[PORTING.md](PORTING.md#setting-up) for using another engine build.
+
+## History
+
+Gemini Gold was developed on SourceForge, reaching version 1.03 in 2009.
+[DMJC/Privateer_Gold](https://github.com/DMJC/Privateer_Gold) imported its data
+in 2022 and began the move to the modern engine and Python 3. This repository
+is a fork of that work.
+
+## Licences
+
+*Wing Commander: Privateer*'s design and content are by Origin Systems.
+Gemini Gold's art (images, sound, music and animation) may be used only within
+the Gemini Gold project, with credit to the artists and the project, and never
+for profit; see [art-license.txt](art-license.txt). The code is under the GNU
+General Public License, version 2 ([vega-license.txt](vega-license.txt)).
