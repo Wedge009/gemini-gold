@@ -143,11 +143,11 @@ class random_encounters:
                 continue
             num=len(fglist)
 #            print 'Probability numbers: ',num, fg_util.MaxNumFlightgroupsInSystem(cursys)#,numsigs
-            print ('Probability numbers: ',num, fg_util.MaxNumFlightgroupsInSystem(cursys),numsigs)
+            print ('Probability numbers: ',num, fg_util.MaxNumFlightgroupsInSystem(cursys))
             avg=float(num)/float(fg_util.MaxNumFlightgroupsInSystem(cursys))#/float(numsigs)
             fortress_level=0
             if cursys in faction_ships.fortress_systems:
-                foretress_level=faction_ships.fortress_systems[cursys]
+                fortress_level=faction_ships.fortress_systems[cursys]
             avg*=(not (VS.GetRelation(VS.GetGalaxyFaction(cursys),faction)<0 and cursys in faction_ships.fortress_systems))*fortress_level+(1-fortress_level)
             print ('Chance for %s ship: %g'%(faction, avg))
             rndnum=vsrandom.random()
