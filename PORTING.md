@@ -74,6 +74,11 @@ Privateer's files:
   planet in Eden) and the Fariss quadrant. The internal `farris_map` item id is
   unchanged, so saved games still work.
 - S12MD: Menesch waits in Regallis, not Troy.
+- The Salthi had the Talon's stats. It now has the original's top speed
+  (600), armour (front/side/rear 150/120/135, at Gemini Gold's 1/20 scale) and
+  level 2 shields, and turns 8% faster than the Talon, as in the original
+  (turn rates scaled from the Talon's, since which original rate is yaw, pitch
+  or roll isn't known). Its weapons are unchanged. Not yet play-tested.
 - Commodities at the nine Gemini base types follow the original's table
   (`DATA/OPTIONS/COMODTYP.IFF`, base Privateer rule set): which goods are traded
   and sold, each price range, and each good's chance of being in stock. In each
@@ -125,10 +130,14 @@ JSON files.
   `modules/unit.py` and `modules/XGUI.py`.
 - Commodity prices always start at the bottom of their range: the engine adds
   its random part in credits (2×d), not scaled by price, so only goods that
-  `trading.py` restocks reach the rest of the range. The original rolls a new
-  price every time the base loads. Fixing this needs a script change.
-- Righteous Fire's commodity prices aren't represented; the data follows base
-  Privateer throughout.
+  `trading.py` restocks reach the rest of the range. Gemini Gold's old engine
+  did the same. Whether the original game re-rolls prices on each landing (as
+  it does stock) is still to be checked.
+- Righteous Fire's commodity prices aren't represented yet; the data follows
+  base Privateer, and RF's table is to be added once Privateer's is confirmed.
+- Talon mass is now 180 (was 18) and Broadsword mass 1000 (was 100), in line
+  with the other fighters' acceleration. There are no original mass figures, so
+  these are still to be play-tested.
 - Encounters still differ a lot from the original (to revisit): groups are
   1–20 ships against 1–4, most system `faction` values in
   `universe/wcuniverse.xml` don't match the original's main faction, the border
