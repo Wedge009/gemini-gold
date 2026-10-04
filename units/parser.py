@@ -1,137 +1,55 @@
-# Convert unit.csv to unit.json
+# Convert units.csv (plus units_description.csv) to units.json, the file the engine reads.
+#
+# units.csv's first row names the columns and its second row describes their types;
+# every row after that is a unit. Each unit becomes a JSON object keyed by the
+# column names, leaving out empty cells. The engine reads every value as a string.
 
-import random
+import csv
 import json
-import sys
+from pathlib import Path
 
-line_num = 0
-column_num = 0
-
-index = 0
-column = 0
-line_values = []
-units = []
-unit = {}
+HERE = Path(__file__).resolve().parent
 
 
-headers = ["Key", "Directory",	"Name",	"STATUS",	"Object_Type",
-                            "Combat_Role",	"Textual_Description",	"Hud_image",	"Unit_Scale",	"Cockpit",
-                            "CockpitX", "CockpitY",	"CockpitZ",	"Mesh",	"Shield_Mesh",	"Rapid_Mesh",	"BSP_Mesh",
-                            "Use_BSP", "Use_Rapid",	"NoDamageParticles", "Mass",	"Moment_Of_Inertia",
-                            "Fuel_Capacity",	"Hull", "Armor_Front_Top_Right",	"Armor_Front_Top_Left",
-                            "Armor_Front_Bottom_Right", "Armor_Front_Bottom_Left",	"Armor_Back_Top_Right",
-                            "Armor_Back_Top_Left", "Armor_Back_Bottom_Right",	"Armor_Back_Bottom_Left",	"Shield_Front_Top_Right",
-                            "Shield_Back_Top_Left",	"Shield_Front_Bottom_Right",	"Shield_Front_Bottom_Left",
-                            "Shield_Back_Top_Right",	"Shield_Front_Top_Left",	"Shield_Back_Bottom_Right",
-                            "Shield_Back_Bottom_Left",	"Shield_Recharge",	"Shield_Leak",	"Warp_Capacitor",
-                            "Primary_Capacitor",	"Reactor_Recharge",	"Jump_Drive_Present",	"Jump_Drive_Delay",
-                            "Wormhole",	"Outsystem_Jump_Cost",	"Warp_Usage_Cost",	"Afterburner_Type",
-                            "Afterburner_Usage_Cost",	"Maneuver_Yaw",	"Maneuver_Pitch",	"Maneuver_Roll",
-                            "Yaw_Governor",	"Pitch_Governor",	"Roll_Governor",	"Afterburner_Accel",
-                            "Forward_Accel",	"Retro_Accel",	"Left_Accel",	"Right_Accel",	"Top_Accel",
-                            "Bottom_Accel",	"Afterburner_Speed_Governor",	"Default_Speed_Governor",	"ITTS",
-                            "Radar_Color",	"Radar_Range",	"Tracking_Cone",	"Max_Cone", "Lock_Cone",	"Hold_Volume",
-                            "Can_Cloak",	"Cloak_Min",	"Cloak_Rate",	"Cloak_Energy",	"Cloak_Glass",	"Repair_Droid",
-                            "ECM_Rating",	"ECM_Resist",	"Ecm_Drain",	"Hud_Functionality",	"Max_Hud_Functionality",
-                            "Lifesupport_Functionality",	"Max_Lifesupport_Functionality",	"Comm_Functionality",
-                            "Max_Comm_Functionality",	"FireControl_Functionality",	"Max_FireControl_Functionality",
-                            "SPECDrive_Functionality",	"Max_SPECDrive_Functionality",	"Slide_Start",	"Slide_End",
-                            "Activation_Accel",	"Activation_Speed",	"Upgrades", "Prohibited_Upgrades",
-                            "Sub_Units", "Sound", "Light", "Mounts", "Net_Comm", "Dock", "Cargo_Import",	"Cargo",
-                            "Explosion", "Num_Animation_Stages", "Upgrade_Storage_Volume",	"Heat_Sink_Rating",
-                            "Shield_Efficiency", "Num_Chunks", "Chunk_0", "Collide_Subunits",	"Spec_Interdiction", "Tractorability"]
-max_columns = len(headers)
-print(headers)
-
-def next_in_line(text):
-    global index
-    global line_values
-    next_comma = line.find(",", index)
-    
-    # We found neither
-    if next_comma == -1:
-        return -1
-    
-    return next_comma + 1
-
-    
-def parseLine(text):
-    global index
-    global column_num
-    global unit
-    global units
-    
-    column_num = 0
-    index = 0
-    unit = {}
-    
-    values = text.split(',')
-    
-    i = 0
-    
-    while i < max_columns :
-        if len(values[i]) > 0:
-            values[i] = values[i].replace("|", ",")
-            unit[headers[i]] = values[i]
-        i += 1
-    
-    print(unit)
-    units.append(unit)
+def read_rows(path):
+    with open(path, newline='', encoding='utf-8') as f:
+        rows = list(csv.reader(f))
+    # Row 0 is the header, row 1 the type descriptions.
+    return rows[0], rows[2:]
 
 
-# Start of main
-with open("units.csv", "r") as units_file:
-    lines = units_file.readlines()
-    for line in lines:
-        line = line.replace('"', '')
-        if line_num == 0:
-            pass
-        elif line_num == 1:
-            pass
-        elif line_num == 2:
-            pass
-        elif line_num == len(lines) - 1:
-            pass
+def main():
+    headers, rows = read_rows(HERE / 'units.csv')
+    units = []
+    for row in rows:
+        if not any(row):
+            continue
+        if len(row) != len(headers):
+            raise SystemExit(f'{row[0]}: {len(row)} columns, expected {len(headers)}')
+        units.append({h: v for h, v in zip(headers, row) if v != ''})
+
+    # units_description.csv overrides Textual_Description, matching keys case-insensitively.
+    # Descriptions for keys not in units.csv become description-only entries, as before.
+    by_key = {}
+    for unit in units:
+        by_key.setdefault(unit['Key'].lower(), []).append(unit)
+    _, descriptions = read_rows(HERE / 'units_description.csv')
+    for row in descriptions:
+        if len(row) < 2 or not row[0]:
+            continue
+        key, text = row[0], row[1]
+        matches = by_key.get(key.lower())
+        if matches:
+            for unit in matches:
+                unit['Textual_Description'] = text
         else:
-            line = line.strip()
-            parseLine(line)
-        
-        line_num +=1
-     
-# Merge unit_description
-with open("units_description.csv") as description_file:
-    lines = description_file.readlines()
-    line_num = 0
-    for line in lines:
-        if line_num < 2:
-            line_num += 1
-            continue
-        
-        line_num += 1
-        
-        descriptions = line.split(',',1)
-        if len(descriptions)<2:
-            continue
-        
-        found = False
-        print(f"Desc Key: {descriptions[0]}")
-        for unit in units:
-            if unit['Key'].lower() == descriptions[0].lower():
-                unit['Textual_Description'] = descriptions[1]
-                found = True
-                print(f"Found {descriptions[0]}. Merged.")
-                break
-        
-        if not found:
-            unit = {'Key': descriptions[0], 'Textual_Description': descriptions[1]}
-            units.append(unit)
-            print(f"Not found {descriptions[0]}. Adding...")
-     
-     
-json_object = json.dumps(units, indent = 4)
-with open("units.json", "w") as json_file:
-    json_file.write(json_object)
-#print(json_object)
-              
-              
- 
+            units.append({'Key': key, 'Textual_Description': text})
+
+    with open(HERE / 'units.json', 'w', encoding='utf-8') as f:
+        json.dump(units, f, indent=4, ensure_ascii=False)
+        f.write('\n')
+    print(f'Wrote {len(units)} units to units.json')
+
+
+if __name__ == '__main__':
+    main()
