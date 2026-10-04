@@ -6481,6 +6481,9 @@
         "Shield_Efficiency": "0.67",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "10",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -6561,6 +6564,9 @@
         "Shield_Efficiency": "0.89",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "20",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -6641,6 +6647,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "30",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -6721,6 +6730,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "40",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -6801,6 +6813,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "50",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -6881,6 +6896,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "60",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -6961,6 +6979,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "70",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -7041,6 +7062,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "80",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -7121,6 +7145,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "90",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -7281,6 +7308,9 @@
         "Shield_Efficiency": "0.5",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "5",
+        "shield_facets": "2",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -7363,6 +7393,9 @@
         "Shield_Efficiency": "0.5",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "5",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8004,6 +8037,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8083,6 +8117,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8162,6 +8197,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8241,6 +8277,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8320,6 +8357,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8399,6 +8437,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8478,6 +8517,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8557,6 +8597,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8636,6 +8677,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8715,6 +8757,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8794,6 +8837,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8873,6 +8917,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -8952,6 +8997,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -9031,6 +9077,7 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Radar",
         "Textual_Description": "WRITEME"
     },
     {
@@ -10561,6 +10608,9 @@
         "Shield_Efficiency": "0.67",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "10",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -10643,6 +10693,9 @@
         "Shield_Efficiency": "0.89",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "20",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -10725,6 +10778,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "30",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -10807,6 +10863,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "40",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -10889,6 +10948,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "49",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -10971,6 +11033,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "50",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11053,6 +11118,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "60",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11135,6 +11203,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "70",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11217,6 +11288,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "80",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11299,6 +11373,9 @@
         "Shield_Efficiency": "1",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "shield": "90",
+        "shield_facets": "4",
+        "Upgrade_Type": "Shield",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11379,6 +11456,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11459,6 +11537,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11539,6 +11618,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11619,6 +11699,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11699,6 +11780,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11779,6 +11861,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11859,6 +11942,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -11939,6 +12023,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -12019,6 +12104,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -12099,6 +12185,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -12179,6 +12266,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Reactor",
         "Textual_Description": "WRITEME"
     },
     {
@@ -14201,6 +14289,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Armor",
+        "armor": "350",
         "Textual_Description": "WRITEME"
     },
     {
@@ -14847,6 +14937,7 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Jump_Drive",
         "Textual_Description": "WRITEME"
     },
     {
@@ -24642,6 +24733,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "repair": "1",
+        "Upgrade_Type": "Repair_Bot",
         "Textual_Description": "WRITEME"
     },
     {
@@ -24723,6 +24816,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "repair": "2",
+        "Upgrade_Type": "Repair_Bot",
         "Textual_Description": "WRITEME"
     },
     {
@@ -24804,6 +24899,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "repair": "3",
+        "Upgrade_Type": "Repair_Bot",
         "Textual_Description": "WRITEME"
     },
     {
@@ -24885,6 +24982,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "repair": "4",
+        "Upgrade_Type": "Repair_Bot",
         "Textual_Description": "WRITEME"
     },
     {
@@ -24966,6 +25065,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "repair": "5",
+        "Upgrade_Type": "Repair_Bot",
         "Textual_Description": "WRITEME"
     },
     {
@@ -25047,6 +25148,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "repair": "6",
+        "Upgrade_Type": "Repair_Bot",
         "Textual_Description": "WRITEME"
     },
     {
@@ -25856,7 +25959,9 @@
         "Heat_Sink_Rating": "0",
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
-        "Collide_Subunits": "0"
+        "Collide_Subunits": "0",
+        "Upgrade_Type": "Armor",
+        "armor": "10"
     },
     {
         "Key": "cargo",
@@ -26259,6 +26364,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Armor",
+        "armor": "20",
         "Textual_Description": "WRITEME"
     },
     {
@@ -26339,6 +26446,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Armor",
+        "armor": "20",
         "Textual_Description": "WRITEME"
     },
     {
@@ -26419,6 +26528,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Armor",
+        "armor": "40",
         "Textual_Description": "WRITEME"
     },
     {
@@ -26499,6 +26610,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "Upgrade_Type": "Armor",
+        "armor": "80",
         "Textual_Description": "WRITEME"
     },
     {
@@ -26579,6 +26692,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "ecm": "1",
+        "Upgrade_Type": "ECM",
         "Textual_Description": "WRITEME"
     },
     {
@@ -26659,6 +26774,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "ecm": "2",
+        "Upgrade_Type": "ECM",
         "Textual_Description": "WRITEME"
     },
     {
@@ -26739,6 +26856,8 @@
         "Shield_Efficiency": "0",
         "Num_Chunks": "1",
         "Collide_Subunits": "0",
+        "ecm": "3",
+        "Upgrade_Type": "ECM",
         "Textual_Description": "WRITEME"
     },
     {

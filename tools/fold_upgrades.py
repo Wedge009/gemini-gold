@@ -24,6 +24,18 @@ the unit's own row, in the fields the engine's components read:
 The unit's own Armor_* and other base values are left alone, so running this
 again gives the same result. .template rows (upgrade ceilings) and the upgrade
 rows themselves are skipped, as are add_/mult_ items and items with no stats.
+
+It also lets bought upgrades work. The engine applies an upgrade through the
+component its <item>__upgrades row names in Upgrade_Type, which replaces that
+component's values (the ship dealer only allows one item of each kind, so
+nothing ever stacks). Each upgrade row gets its Upgrade_Type, and the field
+that component reads where Gemini Gold's name differs: shield and
+shield_facets, armor (armour plating replaces the ship's armour, as in the
+original game, at twice the old per-facet value, the engine's own conversion),
+ecm and repair. Reactor, radar and jump drive rows already use the engine's
+names. Afterburners and add_/mult_ items are left alone: the engine's
+afterburner upgrade scales an existing afterburner rather than fitting one.
+
 Run units/parser.py afterwards to regenerate units.json.
 """
 import argparse
@@ -38,6 +50,7 @@ NEW_COLUMNS = {
     'shield_facets': 'int (2 or 4)',
     'armor_front': 'float', 'armor_back': 'float', 'armor_left': 'float', 'armor_right': 'float',
     'ecm': 'float', 'repair': 'float',
+    'Upgrade_Type': 'string (engine component an upgrade applies to)', 'armor': 'float',
 }
 OLD_SHIELDS = ['Shield_Front_Top_Right', 'Shield_Back_Top_Left', 'Shield_Front_Bottom_Right', 'Shield_Front_Bottom_Left',
                'Shield_Back_Top_Right', 'Shield_Front_Top_Left', 'Shield_Back_Bottom_Right', 'Shield_Back_Bottom_Left']
@@ -106,6 +119,32 @@ def fold(unit, item, changes):
     return applied
 
 
+def type_upgrade(item):
+    """The Upgrade_Type and component fields for one upgrade row (a dict)."""
+    name = item['Key'][:-len('__upgrades')]
+    if name.startswith(('add_', 'mult_')):
+        return {}
+    shields = [number(item.get(k)) for k in OLD_SHIELDS]
+    facets = [s for s in shields if s]
+    armor = [number(item.get(k)) for k in OLD_ARMOR]
+    if facets and number(item.get('Shield_Recharge')):
+        return {'Upgrade_Type': 'Shield', 'shield': fmt(max(facets)),
+                'shield_facets': '2' if len(facets) <= 2 else '4'}
+    if any(armor):
+        return {'Upgrade_Type': 'Armor', 'armor': fmt(2 * sum(armor) / len(armor))}
+    if number(item.get('Reactor_Recharge')):
+        return {'Upgrade_Type': 'Reactor'}
+    if number(item.get('Radar_Range')):
+        return {'Upgrade_Type': 'Radar'}
+    if number(item.get('ECM_Rating')):
+        return {'Upgrade_Type': 'ECM', 'ecm': item['ECM_Rating']}
+    if number(item.get('Repair_Droid')):
+        return {'Upgrade_Type': 'Repair_Bot', 'repair': item['Repair_Droid']}
+    if item.get('Jump_Drive_Present', '').upper() == 'TRUE':
+        return {'Upgrade_Type': 'Jump_Drive'}
+    return {}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     parser.add_argument('--write', action='store_true')
@@ -125,6 +164,15 @@ def main():
     upgrades = {row[0]: dict(zip(header, row)) for row in data if row[0].endswith('__upgrades')}
 
     changed = 0
+    for row in data:
+        if not row[0].endswith('__upgrades'):
+            continue
+        diff = {k: v for k, v in type_upgrade(dict(zip(header, row))).items() if row[col[k]] != v}
+        if diff:
+            changed += 1
+            print(f'{row[0]}: ' + ', '.join(f'{k} {row[col[k]] or "-"} -> {v}' for k, v in diff.items()))
+            for k, v in diff.items():
+                row[col[k]] = v
     for row in data:
         key = row[0]
         if key.endswith('__upgrades') or key.endswith('.template') or not row[col['Upgrades']]:

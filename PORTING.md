@@ -68,6 +68,15 @@ the unit's row, in the fields the components read (`shield`, `shield_facets`,
 run again after any edit. After editing `units.csv`, run it before
 `units/parser.py`.
 
+It also gives each upgrade row the `Upgrade_Type` the engine applies it
+through, plus the component's own field names where Gemini Gold's differ, so
+bought shields, armour plating, reactors (engines), radars, ECM, repair droids
+and the jump drive take effect. Installing an upgrade replaces that
+component's values; the ship dealer allows one item of each kind, as in the
+original. Armour plating is now the ship's whole armour, as in the original
+game (Gemini Gold added plating to each hull's own armour); the values keep
+Gemini Gold's totals: plasteel 20, tungsten 40 and isometal 80 per side.
+
 **Data fixes.** Pirate bases (`faction="pirate"`) look up `mining_base__pirate`,
 but the unit was keyed `mining_base__pirates`, so they traded as plain mining
 bases with no contraband for sale; the key is renamed back to Gemini Gold's.
@@ -149,13 +158,21 @@ JSON files.
 - Settings the engine no longer reads are listed at the end of
   `tools/config_report.txt`; some (fuel usage, shield power-down, jump costs)
   may change gameplay.
-- Buying upgrades probably has no effect yet: the engine applies an upgrade
-  through the component its `<item>__upgrades` row names in `Upgrade_Type`,
-  and none of Gemini Gold's upgrade rows has one (several also need the
-  components' field names, such as `armor`, `ecm` and `repair`). The `add_`
-  and `mult_` upgrades (cargo expansion, shield regenerator, speed and thrust
-  enhancers) may not be possible in data alone: the engine's cargo-hold
-  upgrade code, for one, is commented out.
+- Selling an upgrade doesn't remove its effect. The ship dealer
+  (`bases/weapons_lib.py`) removes the item from the hold, then calls
+  `RecomputeUnitUpgrades()` to rebuild the ship, but the engine declares that
+  function without defining it, and its Python interface has no way to remove
+  an upgrade. Only the engine's own upgrade computer can.
+- A bought afterburner doesn't fit one: the engine's afterburner upgrade
+  scales an afterburner the hull already has, while Gemini Gold's item gives a
+  hull one. The `add_` and `mult_` upgrades (cargo expansion, shield
+  regenerator, speed and thrust enhancers) may not be possible in data alone
+  either: the engine's cargo-hold upgrade code, for one, is commented out.
+- Systems are only damaged once the hull is hit, though Gemini Gold's
+  `config.json` sets `system_damage_on_armor` so that, as in the original,
+  hits on the armour can damage them too. The engine's `DamageRandomSystem`
+  (`libraries/cmd/damageable.cpp`) tests the hull layer for both checks, so
+  the setting has no effect; this is an engine bug to report upstream.
 - The old Gemini Gold engine had Privateer-specific HUD behaviour the current
   engine lacks (see vegastrike/Vega-Strike-Engine-Source#1173).
 - pyflakes still reports undefined names inherited from Gemini Gold (they are
