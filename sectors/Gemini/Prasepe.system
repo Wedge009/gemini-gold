@@ -26,14 +26,14 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_New_Caledonia" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="12500" day="240" destination="Gemini/New_Caledonia"/>
-        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="5200" y="7500" day="240" />
-        <unit name= "Saratov"  file="mining_base" faction="mining" x="-2500" y="-17500"/>
+        <planet name="Jump_To_New_Caledonia" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="8700" z="0" day="240" destination="Gemini/New_Caledonia"/>
+        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="5800" z="2900" day="240" />
+        <unit name= "Saratov"  file="mining_base" faction="mining" x="-2900" y="-14500" z="5800"/>
         
         <Condition expression="asteroid_detail &lt; 1">
-            <asteroid name="Saratov"  file="AFieldBasePriv" faction="neutral"   x="-2500" y="-17500" day="-14000"   ></asteroid>         
+            <asteroid name="Saratov"  file="AFieldBasePriv" faction="neutral"   x="-2900" y="-14500" z="5800" day="-14000"   ></asteroid>         
         </Condition>
         <Condition expression="asteroid_detail &gt;= 1">
-            <unit difficulty=".03" name= "Saratov"  file="Asteroid_Field" faction="neutral"   x="-2500" y="-17500" day="-14000"   ></unit>         
+            <unit difficulty=".03" name= "Saratov"  file="Asteroid_Field" faction="neutral"   x="-2900" y="-14500" z="5800" day="-14000"   ></unit>         
         </Condition>
 </system>

@@ -26,16 +26,16 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <unit name= "Valkyrie"  file="mining_base" faction="mining" x="-15000" y="-21000"/>
+        <unit name= "Valkyrie"  file="mining_base" faction="mining" x="-14500" y="-17400" z="2900"/>
         
-        <planet name="Nav 2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" day="240" />
-        <planet name="Jump_To_Telar" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="14000" y="22000" day="240" destination="Gemini/Telar"/>
-        <planet name="Jump_To_Eden" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="14000" y="-22000" day="240" destination="Gemini/Eden"/>
+        <planet name="Nav 2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" z="0" day="240" />
+        <planet name="Jump_To_Telar" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="14500" y="17400" z="-2900" day="240" destination="Gemini/Telar"/>
+        <planet name="Jump_To_Eden" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-11600" y="0" z="-2900" day="240" destination="Gemini/Eden"/>
         
         <Condition expression="asteroid_detail &lt; 1">
-            <asteroid name= "Valkyrie"  file="AFieldBasePriv" faction="neutral"   x="-15000" y="-21000"  ></asteroid>         
+            <asteroid name= "Valkyrie"  file="AFieldBasePriv" faction="neutral"   x="-14500" y="-17400" z="2900"  ></asteroid>         
         </Condition>
         <Condition expression="asteroid_detail &gt;= 1">
-            <unit difficulty=".03" name= "Valkyrie"  file="Asteroid_Field" faction="neutral"   x="-15000" y="-21000"  ></unit>         
+            <unit difficulty=".03" name= "Valkyrie"  file="Asteroid_Field" faction="neutral"   x="-14500" y="-17400" z="2900"  ></unit>         
         </Condition>
 </system>

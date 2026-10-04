@@ -26,15 +26,15 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Varnus" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="22000" day="240" destination="Gemini/Varnus"/>
-        <planet name="Jump_To_New_Detroit" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="5000" y="18000" day="240" destination="Gemini/New_Detroit"/>
-        <planet name="Jump_To_44-P-IM" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-5500" y="7500" day="240" destination="Gemini/44-p-im"/>
-        <planet name="Jump_To_Junction" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="16000" y="4000" day="240" destination="Gemini/Junction" />
-        <unit name= "New_Constantinople"  file="new_constantinople" faction="naval" x="16000" y="-17500"/>
-        <planet name="Edom" file="planets/agricultural.png" radius="1200" gravity="20" x="-8000"  y="-6500"  day="300">
+        <planet name="Jump_To_Varnus" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="17400" z="-10150" day="240" destination="Gemini/Varnus"/>
+        <planet name="Jump_To_New_Detroit" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="14500" z="13050" day="240" destination="Gemini/New_Detroit"/>
+        <planet name="Jump_To_44-P-IM" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-5800" y="5800" z="2900" day="240" destination="Gemini/44-p-im"/>
+        <planet name="Jump_To_Junction" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="17400" y="2900" z="-8700" day="240" destination="Gemini/Junction" />
+        <unit name= "New_Constantinople"  file="new_constantinople" faction="naval" x="17400" y="-14500" z="-2900"/>
+        <planet name="Edom" file="planets/agricultural.png" radius="1200" gravity="20" x="-8700"  y="-5800" z="14500"  day="300">
 		<Atmosphere file="clouds.png" alpha="SRCALPHA INVSRCALPHA" radius="1211"/>
         </planet>  
-        <planet name="Jump_To_Newcastle" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="-14000" day="240" destination="Gemini/Newcastle"/>
-        <planet name="Jump_To_Aldebran" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-11500" y="-21500" day="240" destination="Gemini/Aldebran"/>
-        <planet name="Jump_To_XXN-1927" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-17500" y="-6500" day="240" destination="Gemini/XXN-1927"/>
+        <planet name="Jump_To_Newcastle" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="-11600" z="0" day="240" destination="Gemini/Newcastle"/>
+        <planet name="Jump_To_Aldebran" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-11600" y="-17400" z="8700" day="240" destination="Gemini/Aldebran"/>
+        <planet name="Jump_To_XXN-1927" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-17400" y="-5800" z="-7250" day="240" destination="Gemini/XXN-1927"/>
 </system>

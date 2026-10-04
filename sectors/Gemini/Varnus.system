@@ -26,9 +26,9 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Rodin" file="planets/agricultural.png" radius="1200" gravity="20" x="-6000" y="-15500" day="300">
+        <planet name="Rodin" file="planets/agricultural.png" radius="1200" gravity="20" x="-5800" y="-13050" z="0" day="300">
                 <atmosphere alpha="SRCALPHA INVSRCALPHA" file="clouds.png"  radius="1009" />
         </planet>
-        <planet name="Jump_To_New_Constantinople" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-6000" y="11500" day="240" destination="Gemini/New_Constantinople" />
-        <unit name= "Rilke"  file="refinery" faction="refinery" x="13500" y="17500"/>
+        <planet name="Jump_To_New_Constantinople" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-5800" y="8700" z="-4350" day="240" destination="Gemini/New_Constantinople" />
+        <unit name= "Rilke"  file="refinery" faction="refinery" x="14500" y="14500" z="7250"/>
 </system>

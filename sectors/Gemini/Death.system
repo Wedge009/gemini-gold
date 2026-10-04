@@ -26,7 +26,7 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Pestilence" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-12500" y="15000" day="240" destination="Gemini/Pestilence"/>
-        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" day="240" />
-        <planet name="Jump_To_Famine" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="13000" y="-14000"  day="240" destination="Gemini/Famine"/>
+        <planet name="Jump_To_Pestilence" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-13050" y="11600" z="-2755" day="240" destination="Gemini/Pestilence"/>
+        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" z="0" day="240" />
+        <planet name="Jump_To_Famine" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="13920" y="-11600" z="2900"  day="240" destination="Gemini/Famine"/>
 </system>

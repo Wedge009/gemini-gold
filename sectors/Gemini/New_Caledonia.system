@@ -26,10 +26,10 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Prasepe" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-17500" y="7500" day="240" destination="Gemini/Prasepe"/>
-        <unit name= "Glasgow"  file="refinery" faction="refinery" x="8000" y="11500"/>
-        <planet name="Jump_To_17-AR" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="17000" y="-6500" day="240" destination="Gemini/17-ar"/>
-        <planet name="Jump_To_Crab-12" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="7500" y="-21500" day="240" destination="Gemini/Crab-12"/>
-        <planet name="Jump_To_Sherwood" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="-7000" day="240" destination="Gemini/Sherwood" />
-        <unit name= "Edinburgh"  file="refinery" faction="refinery" x="-5500" y="17500"/>
+        <planet name="Jump_To_Prasepe" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-17400" y="5800" z="15950" day="240" destination="Gemini/Prasepe"/>
+        <unit name= "Glasgow"  file="refinery" faction="refinery" x="8700" y="8700" z="0"/>
+        <planet name="Jump_To_17-AR" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="17400" y="-5800" z="-11600" day="240" destination="Gemini/17-ar"/>
+        <planet name="Jump_To_Crab-12" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="8700" y="-17400" z="8700" day="240" destination="Gemini/Crab-12"/>
+        <planet name="Jump_To_Sherwood" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="-5800" z="-2900" day="240" destination="Gemini/Sherwood" />
+        <unit name= "Edinburgh"  file="refinery" faction="refinery" x="-5800" y="14500" z="-5800"/>
 </system>

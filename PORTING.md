@@ -73,6 +73,15 @@ Privateer's files:
 - Names follow the original: Heimdel (Midgard), Mjolnar (Ragnarok), Gaea (the
   planet in Eden) and the Fariss quadrant. The internal `farris_map` item id is
   unchanged, so saved games still work.
+- In-system positions are the original's, in three dimensions. Gemini Gold
+  had laid every system flat, using the original's x and y at different
+  scales (0.276 and 0.356) and dropping z. Every jump point, base, nav point
+  and asteroid field is now 0.29 times its original (x, y, z), which keeps
+  typical distances about where they were. The asteroid fields the original
+  has at hidden points are all present (Eden's four and one in Rikel were
+  missing), and the Derelict spawns at its original position. Blockade Point
+  Alpha keeps base Privateer's layout. `tools/map_positions.py` makes these
+  changes from the decoded map data; running it again changes nothing.
 - S12MD: Menesch waits in Regallis, not Troy.
 - The Salthi had the Talon's stats. It now has the original's top speed
   (600), armour (front/side/rear 150/120/135, at Gemini Gold's 1/20 scale) and
@@ -95,9 +104,10 @@ Privateer's files:
   bottom of their range (Gemini Gold's old engine did the same). New Detroit
   and Oxford now call `land_hooks.run()` like the other bases.
 
-**Map audit.** `tools/audit_map.py` compares `sectors/Gemini` and
+**Map tools.** `tools/audit_map.py` compares `sectors/Gemini` and
 `universe/wcuniverse.xml` with CSVs decoded from the original game's map data
-(its docstring gives the format).
+(its docstring gives the format), and `tools/map_positions.py` writes the
+original's positions into the system files from the same CSVs.
 
 **Scripts.** Python 2 leftovers fixed so every script parses under Python 3.12
 and pyflakes finds no Python 2 built-ins: `print`/`exec` statements, `has_key`,
@@ -145,3 +155,8 @@ JSON files.
   `universe/wcuniverse.xml` don't match the original's main faction, the border
   lacks Kilrathi, core systems lack bounty hunters, and the Kilrathi and
   merchant ship mixes are off.
+- Whether +z in the system files points the same way as the original's z
+  hasn't been checked in game. If it doesn't, each system is mirrored top to
+  bottom, and `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it.
+- The original's hidden ambush points (those without asteroids) aren't
+  placed; only the encounter system would use them.

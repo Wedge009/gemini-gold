@@ -26,20 +26,20 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Freyja" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="17500" day="240" destination="Gemini/Freyja"/>
-        <planet name="Jump_To_Troy" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="7500" y="16000" day="240" destination="Gemini/Troy"/>
-        <planet name="New_Iberia" file="planets/agricultural.png" radius="1200" gravity="20" x="9500" y="0" day="300">
+        <planet name="Jump_To_Freyja" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="14500" z="-2900" day="240" destination="Gemini/Freyja"/>
+        <planet name="Jump_To_Troy" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="7250" y="13050" z="4350" day="240" destination="Gemini/Troy"/>
+        <planet name="New_Iberia" file="planets/agricultural.png" radius="1200" gravity="20" x="10150" y="0" z="-5800" day="300">
 <Atmosphere file="clouds.png" alpha="SRCALPHA INVSRCALPHA" radius="1211"/>
         </planet>
-        <planet name="Jump_To_CM-N1054" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="3000" y="-11500" day="240" destination="Gemini/CM-N1054"/>
-        <planet name="Nav_5" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" day="240" />
-        <unit name= "Basque"  file="mining_base" faction="mining" x="-12000" y="0"/>
-        <unit VarName="asteroid_detail" difficulty=".03" VarValue="0"  name= "Basque"  file="Asteroid_Field" faction="neutral"   x="-12000" day="-14000"   ></unit>         
+        <planet name="Jump_To_CM-N1054" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="2900" y="-10150" z="-580" day="240" destination="Gemini/CM-N1054"/>
+        <planet name="Nav_5" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" z="0" day="240" />
+        <unit name= "Basque"  file="mining_base" faction="mining" x="-11600" y="0" z="5220"/>
+        <unit VarName="asteroid_detail" difficulty=".03" VarValue="0"  name= "Basque"  file="Asteroid_Field" faction="neutral"   x="-11600" y="0" z="5220" day="-14000"   ></unit>         
         
         <Condition expression="asteroid_detail &lt; 1">
-            <asteroid VarName="asteroid_detail" VarValue="1"  name= "Basque"  file="AFieldBasePriv" faction="neutral"   x="-12000" day="-14000"   ></asteroid>         
+            <asteroid VarName="asteroid_detail" VarValue="1"  name= "Basque"  file="AFieldBasePriv" faction="neutral"   x="-11600" y="0" z="5220" day="-14000"   ></asteroid>         
         </Condition>
         <Condition expression="asteroid_detail &gt;= 1">
-            <asteroid VarName="asteroid_detail" VarValue="1"  name= "Basque"  file="AFieldBasePriv" faction="neutral"   x="-12000" day="-14000"   ></asteroid>         
+            <asteroid VarName="asteroid_detail" VarValue="1"  name= "Basque"  file="AFieldBasePriv" faction="neutral"   x="-11600" y="0" z="5220" day="-14000"   ></asteroid>         
         </Condition>
 </system>

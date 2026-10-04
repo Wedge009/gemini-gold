@@ -26,6 +26,6 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Regallis" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-7000" y="-15500" day="240" destination="Gemini/Regallis" />
-        <planet name="Jump_To_Pyrenees" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="12500" y="8500" day="240" destination="Gemini/Pyrenees"/>
+        <planet name="Jump_To_Regallis" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-6380" y="-13050" z="0" day="240" destination="Gemini/Regallis" />
+        <planet name="Jump_To_Pyrenees" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="13050" y="6380" z="10730" day="240" destination="Gemini/Pyrenees"/>
 </system>

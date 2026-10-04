@@ -26,13 +26,25 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Valhalla" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="11500" y="10500" day="240" destination="Gemini/Valhalla"/>
-        <planet name="Gaea" file="planets/church_of_man.png" radius="1200" gravity="20" x="0" y="-7500" si="-3000" day="300">
+        <planet name="Jump_To_Valhalla" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-2900" y="14500" z="0" day="240" destination="Gemini/Valhalla"/>
+        <planet name="Gaea" file="planets/church_of_man.png" radius="1200" gravity="20" x="-10150" y="-10150" z="0" si="-3000" day="300">
 		<Atmosphere file="clouds.png" alpha="SRCALPHA INVSRCALPHA" radius="1211"/>
         </planet>
-        <unit name="Sanctuary_Moon" file="moon" radius="1300" x="21500" y="-7500" si="-3000" day="300"/>
-        <unit name="Sanctuary_Moon" file="moon" radius="1330" x="21500" y="-7500" si="-3000" day="300"/>
-        <unit name="Sanctuary_Moon" file="moon" radius="1340" x="21500" y="-7500" si="-3000" day="300"/>
+        <unit name="Sanctuary_Moon" file="moon" radius="1300" x="12286" y="-10150" z="0" si="-3000" day="300"/>
+        <unit name="Sanctuary_Moon" file="moon" radius="1330" x="12286" y="-10150" z="0" si="-3000" day="300"/>
+        <unit name="Sanctuary_Moon" file="moon" radius="1340" x="12286" y="-10150" z="0" si="-3000" day="300"/>
         <jump name="Unknown" file="jump.ani" alpha="ONE ONE" radius="256"  x="21500" z="-1500" y="-7500" si="-3000" day="300" destination="Gemini/Rikel"/>
 
+        <Condition expression="asteroid_detail &lt; 5">
+            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="-8700" y="2175" z="2175" day="-14000"  ></asteroid>
+            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="-2900" y="2175" z="2175" day="-14000"  ></asteroid>
+            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="-14500" y="2175" z="2175" day="-14000"  ></asteroid>
+            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="10730" y="-3045" z="2320" day="-14000"  ></asteroid>
+        </Condition>
+        <Condition expression="asteroid_detail &gt;= 5">
+            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-8700" y="2175" z="2175" day="-14000"  ></unit>
+            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-2900" y="2175" z="2175" day="-14000"  ></unit>
+            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-14500" y="2175" z="2175" day="-14000"  ></unit>
+            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="10730" y="-3045" z="2320" day="-14000"  ></unit>
+        </Condition>
 </system>

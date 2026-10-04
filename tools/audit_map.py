@@ -13,7 +13,7 @@ per game, prefixed priv_ or rf_; the default is rf, Righteous Fire):
 For every system in sectors/Gemini this reports jumps, bases, nav points and
 asteroid fields that differ, jump lists in universe/wcuniverse.xml that disagree
 with the system file, and objects whose position doesn't fit the overall
-scale between the two maps (Gemini Gold drops the original's z axis).
+scale between the two maps.
 """
 import argparse
 import csv
@@ -160,8 +160,9 @@ def audit_system(name, original, objects, universe, report, positions):
         for k, a in found.items():
             if k in wanted:
                 r = wanted[k]
-                positions.append((name, a.get('name') or r['ref_name'], number(a.get('x')), number(a.get('y')),
-                                  int(r['x']), int(r['y'])))
+                positions.append((name, a.get('name') or r['ref_name'],
+                                  (number(a.get('x')), number(a.get('y')), number(a.get('z'))),
+                                  (int(r['x']), int(r['y']), int(r['z']))))
 
 
 def scale(pairs):
@@ -194,15 +195,16 @@ def main():
         if report:
             reports[name] = report
 
-    kx = scale([(p[2], p[4]) for p in positions])
-    ky = scale([(p[3], p[5]) for p in positions])
-    for system, obj, gx, gy, ox, oy in positions:
-        off = math.hypot(gx / kx - ox, gy / ky - oy)
+    k = [scale([(p[2][i], p[3][i]) for p in positions]) for i in range(3)]
+    for system, obj, g, o in positions:
+        # An axis with no scale (all zero here) is left out of the comparison.
+        off = math.sqrt(sum((g[i] / k[i] - o[i]) ** 2 for i in range(3) if k[i]))
         if off > POSITION_TOLERANCE:
             reports.setdefault(system, []).append(
-                f'{obj} at ({gx:g}, {gy:g}) is {off:.0f} from where the scale puts the original ({ox}, {oy})')
+                f'{obj} at ({g[0]:g}, {g[1]:g}, {g[2]:g}) is {off:.0f} from where the scale puts the original {o}')
 
-    print(f'Scale: x = {kx:.3f} * original x, y = {ky:.3f} * original y ({len(positions)} jumps and bases)\n')
+    print('Scale: ' + ', '.join(f'{a} = {k[i]:.3f} * original {a}' for i, a in enumerate('xyz')) +
+          f' ({len(positions)} jumps and bases)\n')
     for system in sorted(reports):
         print(system)
         for line in reports[system]:
