@@ -85,6 +85,8 @@ Privateer's files:
 - A new game starts at Achilles, as in the original. `New_Game` docks the
   player at the nearest `mining_base`, and its saved position was beside
   Hector, Troy's other mining base.
+- Tachyon cannon damage is 5.0, as in the game's data and manual. Gemini
+  Gold had 3.7, the figure in Origin's Playtesters' Guide.
 - S12MD: Menesch waits in Regallis, not Troy.
 - The Salthi had the Talon's stats. It now has the original's top speed
   (600), armour (front/side/rear 150/120/135, at Gemini Gold's 1/20 scale) and
