@@ -324,7 +324,7 @@ add_general_downgrade__upgrades,WRITEME
 mining_base,WRITEME
 mining_base.blank,WRITEME
 mining_base.template,WRITEME
-mining_base__pirates,WRITEME
+mining_base__pirate,WRITEME
 refinery,WRITEME
 refinery__AWACS,WRITEME
 refinery.blank,WRITEME
