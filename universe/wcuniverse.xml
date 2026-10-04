@@ -779,7 +779,7 @@
 		<sector name="Gemini">
 			<system name="New_Caledonia">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="4200"/>
 				<var name="xyz" value="1351 720 287"/>
 				<var name="jumps" value="Gemini/17-ar Gemini/Sherwood Gemini/Crab-12 Gemini/Prasepe"/>
@@ -795,7 +795,7 @@
 			</system>
 			<system name="Castor">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="13600"/>
 				<var name="xyz" value="1593 1140 338"/>
 				<var name="jumps" value="Gemini/Junction"/>
@@ -828,7 +828,7 @@
 			</system>
 			<system name="Sherwood">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="4200"/>
 				<var name="xyz" value="1313 873 372"/>
 				<var name="jumps" value="Gemini/New_Caledonia Gemini/Capella Gemini/Famine Gemini/Regallis Gemini/Pollux"/>
@@ -836,7 +836,7 @@
 			</system>
 			<system name="Beta">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="10000"/>
 				<var name="xyz" value="1624 642 159"/>
 				<var name="jumps" value="Gemini/Gamma Gemini/Delta"/>
@@ -844,7 +844,7 @@
 			</system>
 			<system name="Delta">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="50000"/>
 				<var name="xyz" value="1496 680 278"/>
 				<var name="jumps" value="Gemini/Beta Gemini/Rygannon"/>
@@ -852,7 +852,7 @@
 			</system>
 			<system name="Death">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="150000"/>
 				<var name="xyz" value="1453 955 426"/>
 				<var name="jumps" value="Gemini/Famine Gemini/Pestilence"/>
@@ -860,7 +860,7 @@
 			</system>
 			<system name="Rygannon">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="16600"/>
 				<var name="xyz" value="1558 731 362"/>
 				<var name="jumps" value="Gemini/Xytani"/>
@@ -868,7 +868,7 @@
 			</system>
 			<system name="Xytani">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="6000"/>
 				<var name="xyz" value="1663 760 320"/>
 				<var name="jumps" value="Gemini/Rygannon Gemini/Palan"/>
@@ -884,7 +884,7 @@
 			</system>
 			<system name="Palan">
 				<var name="planets" value="bd s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="37000"/>
 				<var name="xyz" value="1711 843 256"/>
 				<var name="jumps" value="Gemini/Tingerhoff Gemini/Xytani"/>
@@ -943,7 +943,7 @@
 			</system>
 			<system name="War">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="4200"/>
 				<var name="xyz" value="1494 1146 122"/>
 				<var name="jumps" value="Gemini/Pestilence Gemini/Troy"/>
@@ -1016,7 +1016,7 @@
 			</system>
 			<system name="J900">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="16600"/>
 				<var name="xyz" value="1227 1117 221"/>
 				<var name="jumps" value="Gemini/Junction Gemini/Telar"/>
@@ -1041,7 +1041,7 @@
 			</system>
 			<system name="KM-252">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="13600"/>
 				<var name="xyz" value="1782 1224 398"/>
 				<var name="jumps" value="Gemini/Nexus"/>
@@ -1057,7 +1057,7 @@
 			</system>
 			<system name="Pestilence">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="37000"/>
 				<var name="xyz" value="1575 1038 460"/>
 				<var name="jumps" value="Gemini/Death Gemini/War"/>
@@ -1073,7 +1073,7 @@
 			</system>
 			<system name="Eden">
 				<var name="planets" value="com"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="37000"/>
 				<var name="xyz" value="1669 956 439"/>
 				<var name="fulljumps" value="Gemini/Rikel"/>
@@ -1098,7 +1098,7 @@
 			</system>
 			<system name="Telar">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="16600"/>
 				<var name="xyz" value="1220 925 347"/>
 				<var name="jumps" value="Gemini/17-ar Gemini/J900 Gemini/Valhalla"/>
@@ -1106,7 +1106,7 @@
 			</system>
 			<system name="Delta_Prime">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="85000"/>
 				<var name="xyz" value="1296 650 261"/>
 				<var name="jumps" value="Gemini/Gamma"/>
@@ -1148,7 +1148,7 @@
 			</system>
 			<system name="Crab-12">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="4200"/>
 				<var name="xyz" value="1419 783 225"/>
 				<var name="jumps" value="Gemini/New_Caledonia Gemini/Capella"/>
@@ -1156,7 +1156,7 @@
 			</system>
 			<system name="17-ar">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="10000"/>
 				<var name="xyz" value="1249 802 395"/>
 				<var name="jumps" value="Gemini/New_Caledonia Gemini/Telar"/>
@@ -1198,7 +1198,7 @@
 			</system>
 			<system name="Gamma">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="50000"/>
 				<var name="xyz" value="1411 633 413"/>
 				<var name="jumps" value="Gemini/Delta_Prime Gemini/Beta"/>
@@ -1222,7 +1222,7 @@
 			</system>
 			<system name="Capella">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="4200"/>
 				<var name="xyz" value="1485 839 261"/>
 				<var name="jumps" value="Gemini/Sherwood Gemini/Crab-12 Gemini/Famine Gemini/Nexus"/>
@@ -1230,7 +1230,7 @@
 			</system>
 			<system name="Nexus">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="3125.0"/>
 				<var name="xyz" value="1731 1143 374"/>
 				<var name="jumps" value="Gemini/Tingerhoff Gemini/Capella Gemini/KM-252 Gemini/Junction"/>
@@ -1273,7 +1273,7 @@
 			</system>
 			<system name="Famine">
 				<var name="planets" value=""/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="2375.0"/>
 				<var name="xyz" value="1406 903 193"/>
 				<var name="jumps" value="Gemini/Sherwood Gemini/Capella Gemini/Death"/>
@@ -1298,7 +1298,7 @@
 			</system>
 			<system name="Regallis">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="2125.0"/>
 				<var name="xyz" value="1298 1026 244"/>
 				<var name="jumps" value="Gemini/Sherwood Gemini/Freyja Gemini/Troy"/>
@@ -1339,7 +1339,7 @@
 			</system>
 			<system name="Valhalla">
 				<var name="planets" value="s"/>
-				<var name="quadrant" value="Farris"/>
+				<var name="quadrant" value="Fariss"/>
 				<var name="sun_radius" value="16600"/>
 				<var name="xyz" value="1445 1054 284"/>
 				<var name="fulljumps" value="Gemini/Telar Gemini/Eden"/>

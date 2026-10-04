@@ -46,7 +46,7 @@ def CanRepair():
 		"Remus":1,#pollux
 		"Saratov":1,#prasepe
 		"New_Iberia":1,#pyrenees
-		"Mjolnir":1,#ragnarok
+		"Mjolnar":1,#ragnarok
 		"Trinsic":1,#raxis
 		"Kronecker":1,#regallis
 		"Siva":1,#rikel

@@ -134,12 +134,12 @@ syrai4speech={"intro": [("Burrows", "I thought you said it was clean, on the up 
 "reminder":[("Syrai", "Get OUT there. We've got a Paradigm closing in on the base. If you stick around here, you'll just wind up dead, or worse.")]}
 
 syrai5speech={"intro": [("Burrows", "Well, it certainly LOOKS as if you're not dead..."), ("Syrai", "Save the gloating. You really saved our asses. I mean it. You good, good enough to've earned the interest of one of my friends. I'll vouch for you, but I can't help you anymore."), ("Burrows", "Well, well...it almost sounds as if you're going to miss me, Syrai."), ("Syrai", "Don't be silly...well, I'm not much for farewells. I keep my promises, though. Will you go?")],
-"accept": [("Burrows", "Sure, I'm not going to turn down an opportunity like this."), ("Syrai", "Good. His name is Soren. I've taken the liberty of having a container with an encrypted data pod loaded onto your ship. Take it and go to the Midgard system. He's on the planet Heimdal and will arrange to meet you there."), ("Burrows", "How did you know I'd accept?"), ("Syrai", "Call it a hunch. You don't have to thank me, just don't waste any time. He doesn't like to be kept waiting. He's a hard person to get in association with. Don't make me look bad, you got it? Now shoo."), ("Burrows", "You're going to miss me, but I won't let you down."), ("Syrai", "Punk...")],
+"accept": [("Burrows", "Sure, I'm not going to turn down an opportunity like this."), ("Syrai", "Good. His name is Soren. I've taken the liberty of having a container with an encrypted data pod loaded onto your ship. Take it and go to the Midgard system. He's on the planet Heimdel and will arrange to meet you there."), ("Burrows", "How did you know I'd accept?"), ("Syrai", "Call it a hunch. You don't have to thank me, just don't waste any time. He doesn't like to be kept waiting. He's a hard person to get in association with. Don't make me look bad, you got it? Now shoo."), ("Burrows", "You're going to miss me, but I won't let you down."), ("Syrai", "Punk...")],
 "reject1": [("Burrows", "I'm sorry, I don't think I can..."), ("Syrai", "What? Are you a lot more stupid than I thought? This is a good opportunity, and a reward for your work, for getting the feds off of our backs.")],
 "reconsider": [("Burrows", "Why? Does it matter who I go and talk to?"), ("Syrai", "Yes, actually. We're going to try to lay low for a while, but if you care about your career, you'll go and work for my friend.")],
 "reject2": [("Burrows", "Sorry, I think after all of this, I can't go associate with the friend of a pirate like you."), ("Syrai", "That's beyond stupidity. I wonder how you managed to do all of that with the brain the size of a pea. I don't think I want to know. Just get out of my sight..."), ("Burrows", "You'll feel sorry once I'm gone."), ("Syrai", "Don't play that...I gave you a golden opportunity. One few get. You slammed the door shut.")],
 "failure": [("Burrows", "Things didn't go so smoothly."), ("Syrai", "No kidding. You royally screwed that one up. I won't entrust you to deliver that information securely if it's now in someone else's hands. This is outrageous! Goodbye!")],
-"reminder": [("Syrai", "Just take the data pod to Soren on the planet Heimdal in the Midgard system. He'll give you more information. This is goodbye, Hotshot.")]}
+"reminder": [("Syrai", "Just take the data pod to Soren on the planet Heimdel in the Midgard system. He'll give you more information. This is goodbye, Hotshot.")]}
 
 
 
@@ -288,7 +288,7 @@ def SorenCargoMission(priv,destsys,destbase,cargo,aggressor,lastreward=0,NextMis
 		sorenspeech=specialspeech
 	return MakeCargoMission(priv,
 		SOREN_SPRITE,
-		[InSystemCondition("Gemini/Midgard","Heimdal")],
+		[InSystemCondition("Gemini/Midgard","Heimdel")],
 		[InSystemCondition(destsys[-1],destbase)],
 		AddCredits(lastreward),
 		LoadMission('ambush','ambush',(priv.name+"_mission",(destsys[-2],),0,aggressor,sorenseed%7+1,'','',getDialog(aggressor,cargo),destsys,destbase,False)),
@@ -704,7 +704,7 @@ def LoadBonusCampaign():
 	MakeCargoMission(priv,
 			SYRAI_SPRITE,
 			[InSystemCondition("Gemini/Telar")],
-			[InSystemCondition("Gemini/Midgard","Heimdal")],
+			[InSystemCondition("Gemini/Midgard","Heimdel")],
 			None,
 			LoadMission("ambush","ambush",(priv.name+"_mission",("Gemini/New_Detroit","Gemini/44-p-im","Gemini/Newcastle"),0,('AWACS','AWACS'),[1,2],('stiletto','stiletto'),'',[("We Know you have information about and perhaps leading to one Soren Malakai.",False,"campaign/syrai5.wav"),"We've put a contract out for him and his contributors.","Unless you surrender yourself and cargo to us, we will be forced to destroy you","Eject and be spared"],['Gemini/J900','Gemini/Junction','Gemini/New_Constantinople','Gemini/New_Detroit','Gemini/Perry','Gemini/Midgard'],'Anapolis',False)),
 			("Information_Pod",1),
@@ -790,7 +790,7 @@ def LoadBonusCampaign():
 					CampaignEndNode(priv),
 					MakeMission(priv,
 		KAYDENCE_SPRITE,
-		[InSystemCondition("Gemini/Perry","Anapolis")],#[InSystemCondition("Gemini/Ragnarok","Mjolnir")],
+		[InSystemCondition("Gemini/Perry","Anapolis")],#[InSystemCondition("Gemini/Ragnarok","Mjolnar")],
 		[InSystemCondition("Gemini/Perry","Anapolis")],
 		AddCredits(15000),
 		None,
@@ -888,8 +888,8 @@ def LoadBonusCampaign():
 		DestineeMission6)
 	MakeMission(priv,
 		SOREN_SPRITE,
-		[InSystemCondition("Gemini/Midgard","Heimdal")],
-		[InSystemCondition("Gemini/Midgard","Heimdal")],
+		[InSystemCondition("Gemini/Midgard","Heimdel")],
+		[InSystemCondition("Gemini/Midgard","Heimdel")],
 		None,
 		None,
 		'bounty_leader',(0,0,0,1,3,'confed',('Gemini/Perry','Gemini/Ragnarok'),priv.name+"_mission",'','drayman',0,'',('stiletto','confed'),[("This is a civilian prisoner transport. We have women and children on-board. Discharge your weapons immediately!",False,"campaign/soren1.ogg"),("Your death is my gain, buddy",True),("Desist on order of the Gemini Confed High Command and the Gemini Senate",False),("Not a chance, pal. Prepare to go to hell.",True),("Mayday mayday we are under attack by a civilian ident 0xb4df00d. All Confederate craft please assist!",False)],["isometal_hull",("plasma_gun",0),("plasma_gun",1)]),
@@ -898,7 +898,7 @@ def LoadBonusCampaign():
 		None,
 		CampaignEndNode(priv),
 		SorenCargoMission(priv,("Gemini/Rikel","Gemini/New_Detroit","Gemini/XXN-1927","Gemini/Oxford"),"Oxford","Plastics","AWACS",25000,SorenCargoMission(priv,("Gemini/Rikel","Gemini/44-p-im","Gemini/New_Constantinople"),"New_Constantinople","Ultimate","confed",9000,SorenCargoMission(priv,("Gemini/Perry","Gemini/Tingerhoff","Gemini/Nexus","Gemini/KM-252"),"","Weapons","militia",16000,SorenCargoMission(priv,("Gemini/Perry","Gemini/Nitir","Gemini/Blockade_Point_Tango","Gemini/Lisacc"),"Lisacc","Weapons","pirates",16000,SorenCargoMission(priv,("Gemini/Rikel","Gemini/New_Detroit","Gemini/Perry","Gemini/Ragnarok","Gemini/Blockade_Point_Alpha","Gemini/Tr_Pakh"),"Large_Asteroid","Catnip","confed",12400,
-		CampaignNode().Init(priv,[],None,None,GoToSubnode(0,AddTechnology("kilrathi")),None,[CampaignClickNode().Init(priv,[InSystemCondition("Gemini/Midgard","Heimdal")],[("Soren","I think our Kilrathi allies were pleased at the small run.  Your success has meant a lot to the success of my corporation, and we will not forget your efforts.  Clearly our business interests have coincided until now, so while I will pay you now, this will be our last encounter for a while.  Hopefully our corporation will continue to assist its customers, within and outside of Gemini.  A wise man said that not only peace is good for business, but war is also good for business. And it is by this philosophy that I have worked with you to make so many credits together.  Good bye."),("Burrows","I never suspected you were such dirty operators. I can only guess as to the source of this grime you've had me do.  But as always money talks, and that 60,000 credits is sure to smooth my furrowed brow.  Remember I'll always do business with you for the right price."),("Soren","Something we...count on out here.  You can only trust a man--or being with a large enough pocketbook. We share more philosophy than you might care to know, Privateer. And it is with this thought that I leave you be.")],SOREN_SPRITE,GoToSubnode(0,AddCredits(60000)),None,[CampaignEndNode(priv)])]),soren2speech))))),
+		CampaignNode().Init(priv,[],None,None,GoToSubnode(0,AddTechnology("kilrathi")),None,[CampaignClickNode().Init(priv,[InSystemCondition("Gemini/Midgard","Heimdel")],[("Soren","I think our Kilrathi allies were pleased at the small run.  Your success has meant a lot to the success of my corporation, and we will not forget your efforts.  Clearly our business interests have coincided until now, so while I will pay you now, this will be our last encounter for a while.  Hopefully our corporation will continue to assist its customers, within and outside of Gemini.  A wise man said that not only peace is good for business, but war is also good for business. And it is by this philosophy that I have worked with you to make so many credits together.  Good bye."),("Burrows","I never suspected you were such dirty operators. I can only guess as to the source of this grime you've had me do.  But as always money talks, and that 60,000 credits is sure to smooth my furrowed brow.  Remember I'll always do business with you for the right price."),("Soren","Something we...count on out here.  You can only trust a man--or being with a large enough pocketbook. We share more philosophy than you might care to know, Privateer. And it is with this thought that I leave you be.")],SOREN_SPRITE,GoToSubnode(0,AddCredits(60000)),None,[CampaignEndNode(priv)])]),soren2speech))))),
 		SorenMission1)
 
 	MakeMission(priv,
