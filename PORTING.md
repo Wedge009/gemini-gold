@@ -62,8 +62,26 @@ but the unit was keyed `mining_base__pirates`, so they traded as plain mining
 bases with no contraband for sale; the key is renamed back to Gemini Gold's.
 `random_encounters.py` referred to an undefined `numsigs` (Python 3 port
 slip), which stopped ambient spawning; its `foretress_level` typo, which kept
-fortress systems from damping hostile spawns, is fixed too. Erewhon is a
-pleasure planet, as in the original game, not agricultural.
+fortress systems from damping hostile spawns, is fixed too. `trading.py`
+iterated over `list[range(...)]` (another port slip), which broke cargo
+mission generation. Erewhon is a pleasure planet, as in the original game, not
+agricultural.
+
+**Matching the original game.** Checked against data decoded from the original
+Privateer's files:
+
+- Names follow the original: Heimdel (Midgard), Mjolnar (Ragnarok), Gaea (the
+  planet in Eden) and the Fariss quadrant. The internal `farris_map` item id is
+  unchanged, so saved games still work.
+- S12MD: Menesch waits in Regallis, not Troy.
+- Commodities at the nine Gemini base types follow the original's table
+  (`DATA/OPTIONS/COMODTYP.IFF`, base Privateer rule set): which goods are traded
+  and sold, each price range, and each good's chance of being in stock. In each
+  `Cargo_Import` entry `{name;r;d;q;qd}`, M×(r−d) to M×(r+d) is the price range
+  (M is the master part list price), and the engine rolls a whole-number stock
+  between q−qd and q+qd when the system loads, so the in-stock chance is
+  (q+qd)/(2qd+1). The `__AWACS`, `.blank` and `.template` variants, which no
+  Gemini system uses, are unchanged.
 
 **Map audit.** `tools/audit_map.py` compares `sectors/Gemini` and
 `universe/wcuniverse.xml` with CSVs decoded from the original game's map data
@@ -105,3 +123,14 @@ JSON files.
   `modules/dynamic_mission.py` (`addstr`), `modules/faceoff.py`,
   `modules/launch.py`, `modules/plunder.py`, `modules/rescue.py`,
   `modules/unit.py` and `modules/XGUI.py`.
+- Commodity prices always start at the bottom of their range: the engine adds
+  its random part in credits (2×d), not scaled by price, so only goods that
+  `trading.py` restocks reach the rest of the range. The original rolls a new
+  price every time the base loads. Fixing this needs a script change.
+- Righteous Fire's commodity prices aren't represented; the data follows base
+  Privateer throughout.
+- Encounters still differ a lot from the original (to revisit): groups are
+  1–20 ships against 1–4, most system `faction` values in
+  `universe/wcuniverse.xml` don't match the original's main faction, the border
+  lacks Kilrathi, core systems lack bounty hunters, and the Kilrathi and
+  merchant ship mixes are off.
