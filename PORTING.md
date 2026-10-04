@@ -82,6 +82,9 @@ Privateer's files:
   missing), and the Derelict spawns at its original position. Blockade Point
   Alpha keeps base Privateer's layout. `tools/map_positions.py` makes these
   changes from the decoded map data; running it again changes nothing.
+- A new game starts at Achilles, as in the original. `New_Game` docks the
+  player at the nearest `mining_base`, and its saved position was beside
+  Hector, Troy's other mining base.
 - S12MD: Menesch waits in Regallis, not Troy.
 - The Salthi had the Talon's stats. It now has the original's top speed
   (600), armour (front/side/rear 150/120/135, at Gemini Gold's 1/20 scale) and
@@ -157,6 +160,7 @@ JSON files.
   merchant ship mixes are off.
 - Whether +z in the system files points the same way as the original's z
   hasn't been checked in game. If it doesn't, each system is mirrored top to
-  bottom, and `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it.
+  bottom, and `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it
+  (then negate the z of the start position in `New_Game` too).
 - The original's hidden ambush points (those without asteroids) aren't
   placed; only the encounter system would use them.
