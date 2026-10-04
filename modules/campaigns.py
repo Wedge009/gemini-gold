@@ -2497,7 +2497,7 @@ def LoadRFCampaign():
 			True,#run away
 			12,#num escorts
 			'unknown',#faction
-			('Gemini/New_Constantinople','Gemini/Junction','Gemini/Penders_Star','Gemini/Troy'),
+			('Gemini/New_Constantinople','Gemini/Junction','Gemini/Penders_Star','Gemini/Troy','Gemini/Regallis'),
 			"menesch_dead",#vartoset
 			'',#fgname
 			'centurion.blank',#Type of ship
