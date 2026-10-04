@@ -57,6 +57,17 @@ so from about `Radar_Range` on every value sat under the wrong name (cargo
 holds of 0 or 10, default equipment filed as `Prohibited_Upgrades`), and it
 dropped the NPC `tarsus` row. The converter now uses the CSV's own header.
 
+**Built-in equipment.** The engine builds ships from components (shield,
+reactor, radar and so on), each read from the unit's own row. Gemini Gold gave
+ships their shields, reactor, radar, armour plating, afterburner, ECM, repair
+droid and jump drive through the `Upgrades` column, which the engine never
+applies, so every ship flew without shields, and with no reactor recharge to
+power its guns. `tools/fold_upgrades.py` copies each listed item's stats into
+the unit's row, in the fields the components read (`shield`, `shield_facets`,
+`armor_front` and so on), leaving Gemini Gold's own values alone so it can be
+run again after any edit. After editing `units.csv`, run it before
+`units/parser.py`.
+
 **Data fixes.** Pirate bases (`faction="pirate"`) look up `mining_base__pirate`,
 but the unit was keyed `mining_base__pirates`, so they traded as plain mining
 bases with no contraband for sale; the key is renamed back to Gemini Gold's.
@@ -138,8 +149,13 @@ JSON files.
 - Settings the engine no longer reads are listed at the end of
   `tools/config_report.txt`; some (fuel usage, shield power-down, jump costs)
   may change gameplay.
-- Ship stats in `units.json` may need retuning for the engine's newer
-  component model.
+- Buying upgrades probably has no effect yet: the engine applies an upgrade
+  through the component its `<item>__upgrades` row names in `Upgrade_Type`,
+  and none of Gemini Gold's upgrade rows has one (several also need the
+  components' field names, such as `armor`, `ecm` and `repair`). The `add_`
+  and `mult_` upgrades (cargo expansion, shield regenerator, speed and thrust
+  enhancers) may not be possible in data alone: the engine's cargo-hold
+  upgrade code, for one, is commented out.
 - The old Gemini Gold engine had Privateer-specific HUD behaviour the current
   engine lacks (see vegastrike/Vega-Strike-Engine-Source#1173).
 - pyflakes still reports undefined names inherited from Gemini Gold (they are

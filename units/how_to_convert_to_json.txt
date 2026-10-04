@@ -3,7 +3,11 @@ A brief guide on how to convert to JSON
 units.csv (with descriptions from units_description.csv) is the file to edit.
 The engine reads units.json, so regenerate it after every edit:
 
+    ../tools/fold_upgrades.py --write
     python3 parser.py
+
+fold_upgrades.py copies each unit's built-in equipment (its Upgrades column)
+into the fields the engine reads; see its docstring.
 
 The JSON keys come from units.csv's header row, so a column renamed or added
 there is carried through. Values stay strings, as the engine expects.
