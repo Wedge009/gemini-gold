@@ -102,6 +102,8 @@ Privateer's files:
   missing), and the Derelict spawns at its original position. Blockade Point
   Alpha keeps base Privateer's layout. `tools/map_positions.py` makes these
   changes from the decoded map data; running it again changes nothing.
+- The starting Tarsus has a missile launcher with 5 Dumbfires, as in the
+  original game's new-game data (`initcfg.pak`).
 - A new game starts at Achilles, as in the original. `New_Game` docks the
   player at the nearest `mining_base`, and its saved position was beside
   Hector, Troy's other mining base.
