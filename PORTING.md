@@ -147,6 +147,13 @@ Privateer's files:
   between q−qd and q+qd when the system loads, so the in-stock chance is
   (q+qd)/(2qd+1). The `__AWACS`, `.blank` and `.template` variants, which no
   Gemini system uses, are unchanged.
+- Once Righteous Fire begins (the Steltek gun stolen at Jolson, which sets the
+  `removed_BoostedSteltek` save variable the ship dealer also uses), bases use
+  RF's commodity table: `trading.getImports` swaps in the entries from
+  `modules/rf_commodities.py`, generated from RF's `COMODTYP.IFF`. RF changes 136
+  price ranges (food roughly triples), two stock chances, and adds goods at New
+  Constantinople. The engine's own roll when a system loads still uses
+  `units.json`, but every landing re-rolls with the RF table.
 - Like the original, every landing re-rolls each commodity's price and stock:
   `bases/land_hooks.py` calls `trading.rerollBaseCargo`, which picks a price
   across the whole range and rolls stock the same way the engine does. The
@@ -220,8 +227,6 @@ JSON files.
   `modules/dynamic_mission.py` (`addstr`), `modules/faceoff.py`,
   `modules/launch.py`, `modules/plunder.py`, `modules/rescue.py`,
   `modules/unit.py` and `modules/XGUI.py`.
-- Righteous Fire's commodity prices aren't represented yet; the data follows
-  base Privateer, and RF's table is to be added once Privateer's is confirmed.
 - Talon mass is now 180 (was 18) and Broadsword mass 1000 (was 100), in line
   with the other fighters' acceleration. There are no original mass figures, so
   these are still to be play-tested.

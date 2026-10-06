@@ -4,6 +4,16 @@ import VS
 import debug
 
 production={}
+def inRighteousFire():
+    # Righteous Fire begins when the Steltek gun is stolen at Jolson (campaigns.StealGun)
+    import quest
+    return quest.checkSaveValue(VS.getCurrentPlayer(),"removed_BoostedSteltek",1)
+def rfImports(name,faction):
+    """Righteous Fire's commodity entries for a base, or None before RF or if it has none."""
+    if not inRighteousFire():
+        return None
+    import rf_commodities
+    return rf_commodities.commodities.get(name+"__"+faction) or rf_commodities.commodities.get(name)
 def getImports(name,faction):
     try:
         prodlist=[]
@@ -43,6 +53,17 @@ def getImports(name,faction):
                         prodlist[-1][4]=0.0
                 #debug.debug("rest "+s)
         #debug.debug("whole list: " +str(prodlist))
+        rf=rfImports(name,faction)
+        if rf:
+            # RF's prices and stock for its goods; RF only adds goods, never drops any
+            seen=set()
+            for prod in prodlist:
+                if prod[0] in rf:
+                    prod[1:5]=list(rf[prod[0]])
+                    seen.add(prod[0])
+            for category in rf:
+                if category not in seen:
+                    prodlist.append([category]+list(rf[category]))
         return prodlist
     except:
         import sys
@@ -137,10 +158,10 @@ class trading:
                     if un.isPlanet():
                         name = un.getFullname();
                         faction="planets"
-                    prad=production.get((name,faction))
+                    prad=production.get((name,faction,inRighteousFire()))
                     if None==prad:
                         prad= getImports(name,faction)
-                        production[(name,faction)]=prad
+                        production[(name,faction,inRighteousFire())]=prad
                     if len(prad):
                         prod=prad[vsrandom.randrange(0,len(prad))]
                         cargo=VS.getRandCargo(int(prod[3]+prod[4]),prod[0])
