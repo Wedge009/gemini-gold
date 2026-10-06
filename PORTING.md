@@ -104,6 +104,13 @@ Privateer's files:
   changes from the decoded map data; running it again changes nothing.
 - The starting Tarsus has a missile launcher with 5 Dumbfires, as in the
   original game's new-game data (`initcfg.pak`).
+- Upgrade limits follow the original's `LIMITS.IFF` in Righteous Fire too: the
+  Tarsus can take engine 4, and the Galaxy shields and engine 5 (Gemini Gold
+  stopped them at 3 and 4).
+- The Tarsus has a trade-in value: it had no entry in `master_part_list.json`,
+  so trading it in for another ship was worth nothing. Its entry (in a
+  category no base sells) is priced at 10,000, so the ship dealer's 50% for a
+  used hull gives the original's 5,000.
 - A new game starts at Achilles, as in the original. `New_Game` docks the
   player at the nearest `mining_base`, and its saved position was beside
   Hector, Troy's other mining base.

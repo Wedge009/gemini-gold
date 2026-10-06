@@ -1248,13 +1248,13 @@ def lookup_disallowed_upgrades():
 		disallowed['shield_4_Level6']        = 1
 		disallowed['shield_4_Level7']        = 1
 		# engines
-		disallowed['reactor_level_4']        = 1
 		disallowed['reactor_level_5']        = 1
 		disallowed['reactor_level_6']        = 1
 		disallowed['reactor_level_7']        = 1
 
 		if (not rf):
 			disallowed['shield_4_Level3']        = 1
+			disallowed['reactor_level_4']        = 1
 			disallowed['reactor_level_3']        = 1
 			disallowed['reactor_level_2']        = 1
 
@@ -1298,17 +1298,17 @@ def lookup_disallowed_upgrades():
 		disallowed['add_cargo_expansion']   = 1
 
 		# shields
-		disallowed['shield_4_Level5']        = 1
 		disallowed['shield_4_Level6']        = 1
 		disallowed['shield_4_Level7']        = 1
 		# engines
-		disallowed['reactor_level_5']        = 1
 		disallowed['reactor_level_6']        = 1
 		disallowed['reactor_level_7']        = 1
 
 		if (not rf):
 			disallowed['shield_4_Level4']        = 1
+			disallowed['shield_4_Level5']        = 1
 			disallowed['reactor_level_4']        = 1
+			disallowed['reactor_level_5']        = 1
 
 	else:
 		# this is a catch-all for other ships, in case of expansion (using demon, drayman, talon, etc)
@@ -2931,7 +2931,10 @@ def ShipPurchase(shipname):
 		Base.Message("I hate to break it to you, but we've checked your account, and you don't have enough credits to buy this ship. She sure is a fine ship though, isn't she? Listen, I want to make a sale, you want to make a purchase, lets look at the facts. You know the retail of this ship--we can use your ship for tradeins, plus extras--including your cash on hand, that still leaves you short.  Go get some more cash, and come back when you have more cash, and don't feel embarrassed: these things happen!")
 def ShipValue(shipname, used):
 	import VS
+	# hulls are listed as <ship>.begin; a ship's name may or may not include the suffix
 	carg=VS.GetMasterPartList().GetCargo(shipname)
+	if carg.GetPrice()==0 and not shipname.endswith('.begin'):
+		carg=VS.GetMasterPartList().GetCargo(shipname+'.begin')
 	price=carg.GetPrice()
 	if used:
 		try:

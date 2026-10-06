@@ -21,6 +21,13 @@
  "volume": "1000", "description": "The orion is perhaps the safest of all vehicles.  It can carry the most armor and shields of all ships in the Gemini sector (at the expense of its maneuverability). This is a sturdy ship, designed to last."
 },
 {
+"file": "tarsus.begin",
+ "categoryname": "starships/Starting",
+ "price": "10000",
+ "mass": "250",
+ "volume": "1000", "description": "The Tarsus is a basic light merchant ship, the one every new privateer starts with."
+},
+{
 "file": "shield_4_Level1",
  "categoryname": "upgrades/Shield_Systems/Light",
  "price": "10000",
