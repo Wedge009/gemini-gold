@@ -4,12 +4,14 @@
 Usage: tools/map_positions.py EXTRACT_DIR [--scale K] [--flip-z] [--write]
 
 EXTRACT_DIR holds the decoded map CSVs described in tools/audit_map.py. Righteous
-Fire's positions are used (they match base Privateer's everywhere both have an
-object), except in Blockade Point Alpha, which keeps base Privateer's layout.
+Fire's layout is used: it matches base Privateer's everywhere both have an
+object, adds Eden, and redesigns Blockade Point Alpha, whose Righteous Fire
+story mission needs the new nav points. Gemini Gold is one continuous game
+covering both, so the map is Righteous Fire's throughout.
 
 Every jump point, base, nav marker and asteroid field is moved to K times its
-original (x, y, z). Asteroid fields the original has at hidden points, which
-Gemini Gold left out, are added. Objects with no original counterpart (Eden's
+original (x, y, z). Nav points and asteroid fields (including those at hidden
+points) that the original has and Gemini Gold left out are added. Objects with no original counterpart (Eden's
 moon, the Tr'Pakh weapon dump) keep their offset from the nearest base or
 asteroid field. Gemini Gold's current scale is fitted from the jumps and bases, so
 running this again changes nothing. Without --write it only reports.
@@ -22,7 +24,6 @@ from collections import defaultdict
 from pathlib import Path
 
 GAME_ROOT = Path(__file__).resolve().parent.parent
-PRIV_LAYOUT = {'blockadepointalpha'}
 
 TAG = re.compile(r'<(planet|unit|asteroid)\b([^>]*)>', re.I)
 ATTR = re.compile(r'(\w+)(\s*=\s*)"([^"]*)"')
@@ -30,6 +31,8 @@ LOW_FIELD = ('            <asteroid name=""  file="{file}" faction="neutral"   '
              'x="{x}" y="{y}" z="{z}" day="-14000"  ></asteroid>\n')
 HIGH_FIELD = ('            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   '
               'x="{x}" y="{y}" z="{z}" day="-14000"  ></unit>\n')
+NAV_MARKER = ('        <planet name="Nav_{n}" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" '
+              'x="{x}" y="{y}" z="{z}" day="240" />\n')
 
 
 def key(name):
@@ -116,8 +119,13 @@ def parse(text):
 
 
 def fit(pairs):
-    den = sum(o * o for _, o in pairs)
-    return sum(g * o for g, o in pairs) / den if den else 1.0
+    """Gemini Gold's current scale on one axis: the median of gg / original.
+
+    The median rather than a least-squares fit, so a few objects still at other
+    positions (such as a system being changed to another layout) don't shift it.
+    """
+    ratios = sorted(g / o for g, o in pairs if abs(o) >= 1000)
+    return ratios[len(ratios) // 2] if ratios else 1.0
 
 
 def plan_system(name, text, original, scale, report):
@@ -210,14 +218,35 @@ def add_fields(text, tags, missing, scale):
     lo = next((c for c in conds if '&lt;' in c.group(1)), None)
     hi = next((c for c in conds if '&gt;' in c.group(1)), None)
     if lo and hi:
-        # Insert into the later block first so the earlier offsets stay valid.
+        # Insert at the start of each </Condition> line, the later block first so
+        # the earlier offsets stay valid.
         for c, body in sorted(((lo, low), (hi, high)), key=lambda p: -p[0].end(2)):
-            text = text[:c.end(2)] + body + text[c.end(2):]
+            at = text.rindex('\n', 0, c.end(2)) + 1
+            text = text[:at] + body + text[at:]
         return text
     block = ('        <Condition expression="asteroid_detail &lt; 5">\n' + low + '        </Condition>\n'
              '        <Condition expression="asteroid_detail &gt;= 5">\n' + high + '        </Condition>\n')
     end = text.rindex('</system>')
     return text[:end] + block + text[end:]
+
+
+def add_navs(text, tags, original, scale):
+    """Add a marker for each regular nav point the original has and the file lacks.
+
+    Markers are named Nav_<n>, n being the point's place in the original's list,
+    as Gemini Gold names its existing ones. Returns the text and the points added.
+    """
+    have = {int(m.group(1)) for t in tags if t.role == 'nav'
+            for m in [re.fullmatch(r'Nav[_ ](\d+)', t.attrs.get('name', ''))] if m}
+    added = [(i + 1, r) for i, r in enumerate(original) if r['kind'] == 'nav' and i + 1 not in have]
+    if not added:
+        return text, []
+    markers = ''.join(NAV_MARKER.format(n=n, **dict(zip('xyz', (fmt(scale * v) for v in r['pos']))))
+                      for n, r in added)
+    # After the last nav marker or jump point, so the objects stay grouped.
+    anchors = [t for t in tags if t.role in ('nav', 'jump') and not t.branch]
+    at = text.index('\n', anchors[-1].end) + 1 if anchors else text.rindex('</system>')
+    return text[:at] + markers + text[at:], added
 
 
 def newline_of(text):
@@ -240,7 +269,7 @@ def main():
     all_pairs = []
     for path in files:
         k = key(path.stem)
-        original = (priv if k in PRIV_LAYOUT else rf).get(k) or priv.get(k)
+        original = rf.get(k) or priv.get(k)
         if not original:
             print(f'{path.stem}: not in the original; skipped')
             continue
@@ -261,14 +290,19 @@ def main():
         new = text
         for t in sorted((t for t in tags if t.target is not None), key=lambda t: -t.start):
             new = new[:t.start] + t.rewrite() + new[t.end:]
+        plain = new.replace('\r\n', '\n')
+        plain, navs = add_navs(plain, parse(plain), original, args.scale)
+        if navs:
+            report.append('added ' + ', '.join(f'Nav_{n} at {r["pos"]}' for n, r in navs))
         if missing:
-            added = add_fields(new.replace('\r\n', '\n'), parse(new.replace('\r\n', '\n')), missing, args.scale)
-            new = added.replace('\n', newline_of(text))
+            plain = add_fields(plain, parse(plain), missing, args.scale)
             report.append(f'added {len(missing)} asteroid field(s) at ' +
                           ', '.join(f'{r["kind"]} {r["pos"]}' for r in missing))
+        if navs or missing:
+            new = plain.replace('\n', newline_of(text))
         for t in unplaced:
             report.append(f'{t.role} {t.attrs.get("name")!r} not matched; left as is')
-        if moved or missing or report:
+        if moved or missing or navs or report:
             print(f'{path.stem}: {len(moved)} moved')
             for line in report:
                 print('  -', line)

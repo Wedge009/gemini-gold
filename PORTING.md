@@ -99,8 +99,12 @@ Privateer's files:
   and asteroid field is now 0.29 times its original (x, y, z), which keeps
   typical distances about where they were. The asteroid fields the original
   has at hidden points are all present (Eden's four and one in Rikel were
-  missing), and the Derelict spawns at its original position. Blockade Point
-  Alpha keeps base Privateer's layout. `tools/map_positions.py` makes these
+  missing), and the Derelict spawns at its original position. Gemini Gold is
+  one continuous game covering Privateer and Righteous Fire, so the map is
+  Righteous Fire's throughout, Eden included: Blockade Point Alpha has RF's
+  redesigned layout (adding Nav 3 and Nav 4), which RF's story mission there
+  (S13MA, "seal off the jump tunnel" at Nav 5) needs and no Privateer mission
+  depends on. `tools/map_positions.py` makes these
   changes from the decoded map data; running it again changes nothing.
 - The starting Tarsus has a missile launcher with 5 Dumbfires, as in the
   original game's new-game data (`initcfg.pak`).
