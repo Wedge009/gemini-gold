@@ -35,16 +35,8 @@
         <unit name="Sanctuary_Moon" file="moon" radius="1340" x="12286" y="-10150" z="0" si="-3000" day="300"/>
         <jump name="Unknown" file="jump.ani" alpha="ONE ONE" radius="256"  x="21500" z="-1500" y="-7500" si="-3000" day="300" destination="Gemini/Rikel"/>
 
-        <Condition expression="asteroid_detail &lt; 5">
-            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="-8700" y="2175" z="2175" day="-14000"  ></asteroid>
-            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="-2900" y="2175" z="2175" day="-14000"  ></asteroid>
-            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="-14500" y="2175" z="2175" day="-14000"  ></asteroid>
-            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="10730" y="-3045" z="2320" day="-14000"  ></asteroid>
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 5">
-            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-8700" y="2175" z="2175" day="-14000"  ></unit>
-            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-2900" y="2175" z="2175" day="-14000"  ></unit>
-            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-14500" y="2175" z="2175" day="-14000"  ></unit>
-            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="10730" y="-3045" z="2320" day="-14000"  ></unit>
-        </Condition>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-8700" y="2175" z="2175" day="-14000"  ></unit>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-2900" y="2175" z="2175" day="-14000"  ></unit>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-14500" y="2175" z="2175" day="-14000"  ></unit>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="10730" y="-3045" z="2320" day="-14000"  ></unit>
 </system>

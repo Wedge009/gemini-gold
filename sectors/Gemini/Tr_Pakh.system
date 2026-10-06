@@ -30,12 +30,7 @@
         
         <unit  name="Large_Asteroid"  file="large_asteroid" faction="kilrathi"   x="-2900" y="-1450" z="1450" day="-14000"></unit>         
         
-        <Condition expression="asteroid_detail &lt; 1">
-            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="-2900" y="-1450" z="1450" day="-14000"   ></asteroid>         
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 1">
-            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-2900" y="-1450" z="1450" day="-14000"   ></unit>         
-        </Condition>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-2900" y="-1450" z="1450" day="-14000"   ></unit>
         
 <!--        <unit  name="Sivar's_Claw"  file="kamekh" faction="kilrathi"   x="-6000" y="-3000" z="1200" day="-14000"></unit>          -->
         <planet name="Jump_To_Blockade_Point_Alpha" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="-11600" z="-2900"  day="240" destination="Gemini/Blockade_Point_Alpha"/>

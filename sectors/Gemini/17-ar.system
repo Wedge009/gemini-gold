@@ -30,10 +30,5 @@
         <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="11600" z="0" day="240" />
         <planet name="Jump_To_Telar" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="8700" y="-8700" z="11600"  day="240" destination="Gemini/Telar"/>
 
-        <Condition expression="asteroid_detail &lt; 1">
-            <asteroid name= "Nav_2"  file="AFieldBasePriv" faction="neutral"   x="0" y="11600" z="0" day="-14000"   ></asteroid>         
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 1">
-            <unit difficulty=".03" name= "Nav_2"  file="Asteroid_Field" faction="neutral"   x="0" y="11600" z="0" day="-14000"   ></unit>         
-        </Condition>
+        <unit difficulty=".03" name= "Nav_2"  file="Asteroid_Field" faction="neutral"   x="0" y="11600" z="0" day="-14000"   ></unit>
 </system>

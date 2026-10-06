@@ -34,12 +34,6 @@
         <planet name="Jump_To_CM-N1054" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="2900" y="-10150" z="-580" day="240" destination="Gemini/CM-N1054"/>
         <planet name="Nav_5" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" z="0" day="240" />
         <unit name= "Basque"  file="mining_base" faction="mining" x="-11600" y="0" z="5220"/>
-        <unit VarName="asteroid_detail" difficulty=".03" VarValue="0"  name= "Basque"  file="Asteroid_Field" faction="neutral"   x="-11600" y="0" z="5220" day="-14000"   ></unit>         
+        <unit difficulty=".03"  name= "Basque"  file="Asteroid_Field" faction="neutral"   x="-11600" y="0" z="5220" day="-14000"   ></unit>
         
-        <Condition expression="asteroid_detail &lt; 1">
-            <asteroid VarName="asteroid_detail" VarValue="1"  name= "Basque"  file="AFieldBasePriv" faction="neutral"   x="-11600" y="0" z="5220" day="-14000"   ></asteroid>         
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 1">
-            <asteroid VarName="asteroid_detail" VarValue="1"  name= "Basque"  file="AFieldBasePriv" faction="neutral"   x="-11600" y="0" z="5220" day="-14000"   ></asteroid>         
-        </Condition>
 </system>

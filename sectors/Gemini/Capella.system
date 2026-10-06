@@ -32,10 +32,5 @@
         <planet name="Jump_To_Famine" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="-17400" z="-5800" day="240" destination="Gemini/Famine" />
         <planet name="Jump_To_Nexus" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="-11600" z="8700" day="240" destination="Gemini/Nexus"/>
 
-        <Condition expression="asteroid_detail &lt; 1">
-            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="0" y="0" z="0" day="-14000" ></asteroid>         
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 1">
-            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="0" y="0" z="0" day="-14000" ></unit>         
-        </Condition>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="0" y="0" z="0" day="-14000" ></unit>
 </system>

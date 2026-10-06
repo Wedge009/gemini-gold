@@ -27,10 +27,8 @@ GAME_ROOT = Path(__file__).resolve().parent.parent
 
 TAG = re.compile(r'<(planet|unit|asteroid)\b([^>]*)>', re.I)
 ATTR = re.compile(r'(\w+)(\s*=\s*)"([^"]*)"')
-LOW_FIELD = ('            <asteroid name=""  file="{file}" faction="neutral"   '
-             'x="{x}" y="{y}" z="{z}" day="-14000"  ></asteroid>\n')
-HIGH_FIELD = ('            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   '
-              'x="{x}" y="{y}" z="{z}" day="-14000"  ></unit>\n')
+FIELD = ('        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   '
+         'x="{x}" y="{y}" z="{z}" day="-14000"  ></unit>\n')
 NAV_MARKER = ('        <planet name="Nav_{n}" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" '
               'x="{x}" y="{y}" z="{z}" day="240" />\n')
 
@@ -210,24 +208,16 @@ def place_rest(name, tags, original, scale, kx, ky, report):
 
 
 def add_fields(text, tags, missing, scale):
-    lows = [t for t in tags if t.role == 'field' and t.branch and '&lt;' in t.branch]
-    field_file = lows[0].attrs.get('file', 'AFieldBasePriv') if lows else 'AFieldBasePriv'
-    low = ''.join(LOW_FIELD.format(file=field_file, **dict(zip('xyz', (fmt(scale * v) for v in r['pos'])))) for r in missing)
-    high = ''.join(HIGH_FIELD.format(**dict(zip('xyz', (fmt(scale * v) for v in r['pos'])))) for r in missing)
-    conds = list(re.finditer(r'<Condition\s+expression="([^"]*)"[^>]*>(.*?)</Condition>', text, re.S))
-    lo = next((c for c in conds if '&lt;' in c.group(1)), None)
-    hi = next((c for c in conds if '&gt;' in c.group(1)), None)
-    if lo and hi:
-        # Insert at the start of each </Condition> line, the later block first so
-        # the earlier offsets stay valid.
-        for c, body in sorted(((lo, low), (hi, high)), key=lambda p: -p[0].end(2)):
-            at = text.rindex('\n', 0, c.end(2)) + 1
-            text = text[:at] + body + text[at:]
-        return text
-    block = ('        <Condition expression="asteroid_detail &lt; 5">\n' + low + '        </Condition>\n'
-             '        <Condition expression="asteroid_detail &gt;= 5">\n' + high + '        </Condition>\n')
-    end = text.rindex('</system>')
-    return text[:end] + block + text[end:]
+    """Add an asteroid field for each original field the file lacks.
+
+    One Asteroid_Field unit per field, after the existing ones: the engine
+    ignores <Condition> blocks, so the system files no longer have detail
+    variants of each field.
+    """
+    fields = ''.join(FIELD.format(**dict(zip('xyz', (fmt(scale * v) for v in r['pos'])))) for r in missing)
+    existing = [t for t in tags if t.role == 'field']
+    at = text.index('\n', existing[-1].end) + 1 if existing else text.rindex('</system>')
+    return text[:at] + fields + text[at:]
 
 
 def add_navs(text, tags, original, scale):

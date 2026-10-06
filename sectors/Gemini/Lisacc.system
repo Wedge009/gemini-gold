@@ -29,14 +29,8 @@
         <unit name= "Lisacc"  file="mining_base" faction="confed" x="-8700" y="-2900" z="-5800"/>
         <planet name="Jump_To_Blockade_Point_Tango" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="11600" y="5800" z="5800" day="240" destination="Gemini/Blockade_Point_Tango" />
 
-        <Condition expression="asteroid_detail &lt; 2">
-            <asteroid name= "Lisacc"  file="AFieldBasePriv" faction="neutral"   x="-8700" y="-2900" z="-5800" day="-14000"   ></asteroid>   
-            <asteroid name= "Jump_To_Blockade_Point_Tango"  file="AFieldBasePriv" faction="neutral"   x="11600" y="5800" z="5800" day="-14000"   ></asteroid>    
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 2">
-            <unit difficulty=".03" name= "Lisacc"  file="Asteroid_Field" faction="neutral"   x="-8700" y="-2900" z="-5800" day="-14000"   ></unit>   
-            <unit difficulty=".03" name= "Jump_To_Blockade_Point_Tango"  file="Asteroid_Field" faction="neutral"   x="11600" y="5800" z="5800" day="-14000"   ></unit>    
-        </Condition>
+        <unit difficulty=".03" name= "Lisacc"  file="Asteroid_Field" faction="neutral"   x="-8700" y="-2900" z="-5800" day="-14000"   ></unit>
+        <unit difficulty=".03" name= "Jump_To_Blockade_Point_Tango"  file="Asteroid_Field" faction="neutral"   x="11600" y="5800" z="5800" day="-14000"   ></unit>
 
 <!--priv_009        <planet name="Jump_To_Tk'Tarak" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="1000" y="-1500" z="7400" day="240" destination="TrkPahn/TKTarak" /> priv_009-->
 <!--priv_009        <planet name="Jump_To_N'Der_Pak" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-2000" y="-5500" z="9400" day="240" destination="TrkPahn/NDerPak" /> priv_009-->

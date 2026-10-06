@@ -34,10 +34,5 @@
 		<Atmosphere file="clouds.png" alpha="SRCALPHA INVSRCALPHA" radius="1211"/>
         </planet>
 
-        <Condition expression="asteroid_detail &lt; 1">
-            <asteroid name= "Nav_3"  file="AFieldBasePriv" faction="neutral"   x="8700" y="-2900" z="2900" day="-14000"   ></asteroid>         
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 1">
-            <unit difficulty=".03" name= "Nav_3"  file="Asteroid_Field" faction="neutral"   x="8700" y="-2900" z="2900" day="-14000"   ></unit>         
-        </Condition>
+        <unit difficulty=".03" name= "Nav_3"  file="Asteroid_Field" faction="neutral"   x="8700" y="-2900" z="2900" day="-14000"   ></unit>
 </system>

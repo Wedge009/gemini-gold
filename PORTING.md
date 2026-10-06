@@ -82,7 +82,14 @@ but the unit was keyed `mining_base__pirates`, so they traded as plain mining
 bases with no contraband for sale; the key is renamed back to Gemini Gold's.
 `random_encounters.py` referred to an undefined `numsigs` (Python 3 port
 slip), which stopped ambient spawning; its `foretress_level` typo, which kept
-fortress systems from damping hostile spawns, is fixed too. `trading.py`
+fortress systems from damping hostile spawns, is fixed too. Asteroid fields
+loaded twice: each system file gave every field a low- and a high-detail
+variant in `<Condition expression="asteroid_detail ...">` blocks (some also
+used `VarName`/`VarValue` attributes), and the current engine ignores both
+(`system_factory.cpp` has the check commented out), so both variants were
+created on top of each other. Each field is now a single `Asteroid_Field` unit,
+the variant Gemini Gold's default graphics setting chose (`asteroid_detail` 5);
+CM-N1054 keeps its thinner `AFieldBaseThin` field. `trading.py`
 iterated over `list[range(...)]` (another port slip), which broke cargo
 mission generation. Erewhon is a pleasure planet, as in the original game, not
 agricultural.

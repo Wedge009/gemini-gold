@@ -34,10 +34,5 @@
         </planet>
         <unit name= "Basra"  file="refinery" faction="refinery" x="14500" y="2900" z="5800"/>
 
-        <Condition expression="asteroid_detail &lt; 1">
-            <asteroid name= "Nav_2" file="AFieldBasePriv" faction="neutral"   x="-2175" y="3480" z="2900" day="-14000"   ></asteroid>         
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 1">
-            <unit difficulty=".03" name= "Nav_2"  file="Asteroid_Field" faction="neutral"   x="-2175" y="3480" z="2900" day="-14000"   ></unit>         
-        </Condition>
+        <unit difficulty=".03" name= "Nav_2"  file="Asteroid_Field" faction="neutral"   x="-2175" y="3480" z="2900" day="-14000"   ></unit>
 </system>

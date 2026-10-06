@@ -34,20 +34,10 @@
         <unit name= "Vishnu"  file="mining_base" faction="mining" x="5800" y="8700" z="0"/>
         <planet name="Jump_To_44-P-IM" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="8700" y="-8700" z="8700" day="240" destination="Gemini/44-p-im"/>
         
-        <Condition expression="asteroid_detail &lt; 5">
-            <asteroid name= "Jump_To_New_Detroit"  file="AFieldBasePriv" faction="neutral"   x="-11600" y="17400" z="5800"  day="-14000"  ></asteroid>         
-            <asteroid name= "Jump_To_Midgard"  file="AFieldBasePriv" faction="neutral"   x="-17400" y="5800" z="-5800"  day="-14000"  ></asteroid>         
-            <asteroid name= "Vishnu"  file="AFieldBasePriv" faction="neutral"   x="5800" y="8700" z="0" day="-14000"  ></asteroid>         
-            <asteroid name= "Jump_To_44-P-IM"  file="AFieldBasePriv" faction="neutral"   x="8700" y="-8700" z="8700" day="-14000"  ></asteroid>         
-            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="-2900" y="-10150" z="4350" day="-14000"  ></asteroid>         
-            <asteroid name=""  file="AFieldBasePriv" faction="neutral"   x="7250" y="0" z="4350" day="-14000"  ></asteroid>
-        </Condition>
-        <Condition expression="asteroid_detail &gt;= 5">
-            <unit difficulty=".03" name= "Jump_To_New_Detroit"  file="Asteroid_Field" faction="neutral"   x="-11600" y="17400" z="5800"  day="-14000"  ></unit>         
-            <unit difficulty=".03" name= "Jump_To_Midgard"  file="Asteroid_Field" faction="neutral"   x="-17400" y="5800" z="-5800"  day="-14000"  ></unit>         
-            <unit difficulty=".03" name= "Vishnu"  file="Asteroid_Field" faction="neutral"   x="5800" y="8700" z="0" day="-14000"  ></unit>         
-            <unit difficulty=".03"   name= "Jump_To_44-P-IM"  file="Asteroid_Field" faction="neutral"   x="8700" y="-8700" z="8700" day="-14000"  ></unit>         
-            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-2900" y="-10150" z="4350" day="-14000"  ></unit>         
-            <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="7250" y="0" z="4350" day="-14000"  ></unit>
-        </Condition>
+        <unit difficulty=".03" name= "Jump_To_New_Detroit"  file="Asteroid_Field" faction="neutral"   x="-11600" y="17400" z="5800"  day="-14000"  ></unit>
+        <unit difficulty=".03" name= "Jump_To_Midgard"  file="Asteroid_Field" faction="neutral"   x="-17400" y="5800" z="-5800"  day="-14000"  ></unit>
+        <unit difficulty=".03" name= "Vishnu"  file="Asteroid_Field" faction="neutral"   x="5800" y="8700" z="0" day="-14000"  ></unit>
+        <unit difficulty=".03"   name= "Jump_To_44-P-IM"  file="Asteroid_Field" faction="neutral"   x="8700" y="-8700" z="8700" day="-14000"  ></unit>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-2900" y="-10150" z="4350" day="-14000"  ></unit>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="7250" y="0" z="4350" day="-14000"  ></unit>
 </system>
