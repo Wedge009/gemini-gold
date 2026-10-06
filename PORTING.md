@@ -160,11 +160,22 @@ JSON files.
 - Settings the engine no longer reads are listed at the end of
   `tools/config_report.txt`; some (fuel usage, shield power-down, jump costs)
   may change gameplay.
-- Selling an upgrade doesn't remove its effect. The ship dealer
-  (`bases/weapons_lib.py`) removes the item from the hold, then calls
-  `RecomputeUnitUpgrades()` to rebuild the ship, but the engine declares that
-  function without defining it, and its Python interface has no way to remove
-  an upgrade. Only the engine's own upgrade computer can.
+- Upgrades fitted in a slot (shields, armour, reactors, radar, ECM, repair
+  droid, jump drive and so on) can't be sold yet; guns and missiles can. The
+  ship dealer (`bases/weapons_lib.py`) used to remove the item from the hold
+  and then call `RecomputeUnitUpgrades()`, which the engine no longer has, so
+  the sale failed part-way with the item gone and nothing paid. It now uses
+  `Unit.downgrade()` when the engine has it, and otherwise refuses the sale.
+  `downgrade` is proposed upstream; once the sub-module includes it, selling
+  works.
+- Missile and torpedo launchers can't be sold ("CANNOT SELL LAUNCHERS"), as in
+  Gemini Gold as released; the original game allows it. Buying a launcher
+  widens a mount with `upgrade()`, and the engine's Python interface has no
+  way to narrow it again (`downgrade()` only reverses component upgrades).
+- Bought upgrades use cargo space: the ship dealer adds them with `addCargo`,
+  which on the current engine always uses the cargo hold. Gemini Gold's old
+  engine counted `upgrades/...` items against the ship's upgrade space
+  instead, so each fitted item now takes 1 unit of cargo room.
 - A bought afterburner doesn't fit one: the engine's afterburner upgrade
   scales an afterburner the hull already has, while Gemini Gold's item gives a
   hull one. The `add_` and `mult_` upgrades (cargo expansion, shield

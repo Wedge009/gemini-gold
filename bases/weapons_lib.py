@@ -431,6 +431,9 @@ class SoftwareBoothComputerGeneric:
 				player.addCredits(price)
 				remove_map(item_name)
 				self.sell.pop(sell_index)
+			elif not can_remove_upgrades(player):
+				self.setstatus(False, "CAN'T SELL ITEM "+str(item_name_sent))
+				return self.status
 			else:
 				# selling a radar
 				player.addCredits(price)
@@ -1886,7 +1889,9 @@ class RepairBayComputerGeneric:
 			except:
 				price = 0
 			player = VS.getPlayer()
-			if type == "cargo":
+			if type == "cargo" and not can_remove_upgrades(player):
+				self.setstatus(False, "CAN'T SELL ITEM "+str(item_name_sent))
+			elif type == "cargo":
 				# selling a cargo-type upgrade (afterburner, repair droid, ecm, jump drive, etc)
 				if remove_item(player, item_name, 1):
 					player.addCredits(price)
@@ -2640,14 +2645,15 @@ def remove_item_cargo(player, item_name, count=1):
 		if rc: return True
 	return False
 
+def can_remove_upgrades(player):
+	# Selling an upgrade has to undo its effect on the ship, which needs Unit.downgrade
+	# (engines from vegastrike/Vega-Strike-Engine-Source#1817 on)
+	return hasattr(player, 'downgrade')
+
 def remove_item(player, item_name, count=1, recompute=True):
 	rc = remove_item_cargo(player, item_name, count)
-	# note: this takes the place of a player.downgrade(item_name) function
-	# rather than remove only the item, it starts from the ship blank, and 
-	# re-adds all the upgrades
-	# because of the way this works, player should do the basic upgrade first
-	if recompute:
-		player.RecomputeUnitUpgrades()
+	if recompute and rc and can_remove_upgrades(player):
+		player.downgrade(item_name)
 	return rc
 
 
