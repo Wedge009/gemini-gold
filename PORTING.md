@@ -107,6 +107,12 @@ Privateer's files:
 - Upgrade limits follow the original's `LIMITS.IFF` in Righteous Fire too: the
   Tarsus can take engine 4, and the Galaxy shields and engine 5 (Gemini Gold
   stopped them at 3 and 4).
+- Equipment sells back at the original game's price for each item (from
+  `OPTIONS/SHIPSTUF.IFF`; for example a Laser bought for 1,000 sells for 750,
+  a Tachyon Cannon bought for 20,000 for 16,000, plasteel bought for 1,000 for
+  500). Gemini Gold paid a flat 50% (75% for radars). Its own items with no
+  original counterpart keep the flat rate. Repair prices are unchanged: the
+  original's file stores a damaged resale price, not a repair price.
 - The Tarsus has a trade-in value: it had no entry in `master_part_list.json`,
   so trading it in for another ship was worth nothing. Its entry (in a
   category no base sells) is priced at 10,000, so the ship dealer's 50% for a

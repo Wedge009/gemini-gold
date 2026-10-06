@@ -9,6 +9,78 @@ import quest
 
 import custom
 
+# Sell-back prices from the original game's OPTIONS/SHIPSTUF.IFF (the same in Privateer
+# and Righteous Fire, which only adds items). The original set each item's price; it
+# wasn't a fixed share of the purchase price. A meson turret is sold with its guns, so
+# it's worth the turret (7500), two Meson Blasters (1600 each) and a Tractor Beam (5000).
+original_sell_prices = {
+	'laser':                     750,
+	'mass_driver':               1000,
+	'meson_blaster':             1600,
+	'neutron_gun':               3500,
+	'particle_cannon':           7500,
+	'tachyon_cannon':            16000,
+	'ion':                       27000,
+	'plasma_gun':                55000,
+	'fusion_gun':                60000,
+	'dumbfire_ammo':             10,
+	'heatseeker_ammo':           20,
+	'image_recognition_ammo':    50,
+	'friend_or_foe_ammo':        75,
+	'proton_torpedo_ammo':       10,
+	'afterburner':               1750,
+	'repair_droid':              20000,
+	'tractor_beam':              5000,
+	'missile_launcher':          7500,
+	'torpedo_launcher':          1400,
+	'plasteel':                  500,
+	'tungsten':                  700,
+	'isometal':                  3000,
+	'add_cargo_expansion':       3500,
+	'add_cargo_volume':          3500,
+	'add_cargo_volume_galaxy':   3500,
+	'iris_mk1':                  7500,
+	'iris_mk2':                  20000,
+	'iris_mk3':                  40000,
+	'hunter_aw_6':               20000,
+	'hunter_aw_6i':              37500,
+	'hunter_aw_infinity':        57500,
+	'B_and_S_Tripwire':          27500,
+	'B_and_S_EYE':               50000,
+	'B_and_S_Omni':              65000,
+	'ecm_package_1':             3500,
+	'ecm_package_2':             10000,
+	'ecm_package_3':             20000,
+	'jump_drive':                7500,
+	'gun_cooler':                100000,
+	'mult_shield_regenerator':   80000,
+	'mult_speed_enhancer':       100000,
+	'mult_thrust_enhancer':      30000,
+	'repair_droid_advanced':     40000,
+	'gemini_map':                4000,
+	'shield_4_Level1':           7500,
+	'reactor_level_1':           6500,
+	'shield_4_Level2':           20000,
+	'reactor_level_2':           20000,
+	'shield_4_Level3':           35000,
+	'reactor_level_3':           40000,
+	'shield_4_Level4':           75000,
+	'reactor_level_4':           65000,
+	'shield_4_Level5':           100000,
+	'reactor_level_5':           100000,
+	'shield_4_Level6':           110000,
+	'reactor_level_6':           100000,
+	'shield_4_Level7':           140000,
+	'reactor_level_7':           200000,
+	'medium_turret_meson':       15700,
+	'medium_turret_rear_meson':  15700,
+	'medium_turret_bottom_meson': 15700,
+	'humboldt_map':              1000,
+	'farris_map':                1000,
+	'potter_map':                1000,
+	'clarke_map':                1000,
+}
+
 #
 # This first section contains the two functions used by individual bases
 #	CanRepair
@@ -378,7 +450,7 @@ class SoftwareBoothComputerGeneric:
 
 		# set up buy, sell and repair prices
 		self.buy_prices    = {'humboldt_map': 2000, 'farris_map': 2000, 'potter_map': 2000, 'clarke_map': 2000, 'gemini_map': 5000}
-		self.sell_prices   = {'humboldt_map': 1000, 'farris_map': 1000, 'potter_map': 1000, 'clarke_map': 1000}
+		self.sell_prices   = {'humboldt_map': 1000, 'farris_map': 1000, 'potter_map': 1000, 'clarke_map': 1000, 'gemini_map': 4000}
 		# maps can't be damaged
 		self.repair_prices = {}
 		# get list of radar units
@@ -388,8 +460,7 @@ class SoftwareBoothComputerGeneric:
 			name     = cargo.GetContent()
 			try:
 				buy_price    = int( cargo.GetPrice() )
-				# in the original, the sell price wasn't a set ratio of the buy price, like we're doing here
-				sell_price   = int( buy_price * 0.75 )
+				sell_price   = original_sell_prices.get(name, int( buy_price * 0.75 ))
 				repair_price = int( buy_price * 0.45 ) # if the item is 100% damaged, player only has to pay this percent of the purchase price
 				self.buy_prices[name]    = buy_price
 				self.sell_prices[name]   = sell_price
@@ -1652,7 +1723,7 @@ class RepairBayComputerGeneric:
 			name = cargo.GetContent()
 			try:
 				buy_price    = int( cargo.GetPrice() )
-				sell_price   = int( buy_price * 0.5 )
+				sell_price   = original_sell_prices.get(name, int( buy_price * 0.5 ))
 				repair_price = int( buy_price * 0.35 )
 				self.buy_prices[name]    = buy_price
 				self.sell_prices[name]   = sell_price
