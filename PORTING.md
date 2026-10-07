@@ -137,6 +137,12 @@ Privateer's files:
 - Tachyon cannon damage is 5.0, as in the game's data and manual. Gemini
   Gold had 3.7, the figure in Origin's Playtesters' Guide.
 - S12MD: Menesch waits in Regallis, not Troy.
+- Righteous Fire's mission ships have the original's speed and thrust boosts
+  (from their stats files in `TYPES/`): Jones (×1.33) and his escort of elite
+  Salthi (×1.25) in the final mission, Menesch (×1.17, speed only) and
+  Masterson's transport (×1.64). Each is a variant of the unit Gemini Gold used
+  (`centurion.jones`, `salthi.elite`, `centurion.menesch`, `drayman.masterson`),
+  so base Privateer's escort mission keeps the plain transport.
 - The Salthi had the Talon's stats. It now has the original's top speed
   (600), armour (front/side/rear 150/120/135, at Gemini Gold's 1/20 scale) and
   level 2 shields, and turns 8% faster than the Talon, as in the original

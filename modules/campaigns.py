@@ -1577,7 +1577,7 @@ def MakeDrakePirateNode(rf,creds,contingency=None):
 						IDIOT_SPRITE,				
 						TrueSubnode(
 							LoadMission("bounty_leader","bounty_leader",
-								(0,0,0,0,13,"retro",(),"jones_dead",'',"centurion.blank",0,"","salthi",
+								(0,0,0,0,13,"retro",(),"jones_dead",'',"centurion.jones",0,"","salthi.elite",
 									[("#ff4400Trespasser! You fly in sacred space!",False,"campaign/Jones.wav"),
 									  "The Church of Man is mighty!",
 									  "We will not tolerate the transgressions, of those serving a false god!",
@@ -2391,7 +2391,7 @@ def LoadRFCampaign():
 		[InSystemCondition("Gemini/Oxford","Oxford")],
 		AddCredits(10000),
 		None,
-		'escort_local',('retro',0,3,1,3000,0,False,'merchant',(),rf.name+"_mission",'','talon.blank','','drayman.transport',[('Drayman: Welcome volunteer. You will escort us to nav1. Do not abandon us until we have jumped.',False,'campaign/Oxford.wav'),"Drayman: I won't feel safe until we've jumped.",'Drayman: Hey, keep the freaks away, all right?','Drayman: I just want to make it alive.']),
+		'escort_local',('retro',0,3,1,3000,0,False,'merchant',(),rf.name+"_mission",'','talon.blank','','drayman.masterson',[('Drayman: Welcome volunteer. You will escort us to nav1. Do not abandon us until we have jumped.',False,'campaign/Oxford.wav'),"Drayman: I won't feel safe until we've jumped.",'Drayman: Hey, keep the freaks away, all right?','Drayman: I just want to make it alive.']),
 		rf.name+"_mission",
 		masterson4,
 		None,
@@ -2500,7 +2500,7 @@ def LoadRFCampaign():
 			('Gemini/New_Constantinople','Gemini/Junction','Gemini/Penders_Star','Gemini/Troy','Gemini/Regallis'),
 			"menesch_dead",#vartoset
 			'',#fgname
-			'centurion.blank',#Type of ship
+			'centurion.menesch',#Type of ship
 			0,#displayLocation
 			'',
 			'salthi.particle',
