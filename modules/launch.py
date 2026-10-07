@@ -195,4 +195,3 @@ class Launch:
             else:
                 debug.debug(' error viz ze luch')
                 return launch_wave_around_unit (self.fg+self.fgappend,self.faction,self.type,self.ai,1,self.minradius,self.maxradius,myunit,self.logo,self.useani,skipdj)
-        return un

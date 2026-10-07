@@ -328,10 +328,9 @@ grouped by what's holding it up.
   may change gameplay.
 - The old Gemini Gold engine had Privateer-specific HUD behaviour the current
   engine lacks (see vegastrike/Vega-Strike-Engine-Source#1173).
-- pyflakes reports two undefined names left from Gemini Gold, both in code
-  that can't run: Gemini Gold's disabled random bar fixers
-  (`fixers.CreateMissionFixers`, `rndnum`) and an unreachable `return un` in
-  `launch.py`. The rest are star imports it can't see through.
+- pyflakes reports one undefined name left from Gemini Gold, in code that
+  can't run: its disabled random bar fixers (`fixers.CreateMissionFixers`,
+  `rndnum`). The rest are star imports it can't see through.
 - No random encounters have been seen around Achilles despite the
   `random_encounters.py` fix (on hold). Encounters are rolled on entering
   range of a base, planet, nav or jump point; at the start the player is
