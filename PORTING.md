@@ -177,6 +177,16 @@ Privateer's files:
   row. Saved faction relations are stored by position, so `New_Game`'s table
   loses the same rows and columns, and saves from before this change load
   with mismatched reputations.
+- Leftovers from Vega Strike's own game are gone: the fixer table in
+  `bases/fixers.py`, which only covered Vega Strike systems and pointed at
+  scripts that aren't here; the aera, rlaan, ISO and homeland-security factions
+  in the scripts, the nav map's colours and `units.csv`'s `rlaan_missions`
+  row; and music lists that don't exist. The personal computer's kill and
+  standing summary now lists Privateer's factions instead of confed, aera and
+  rlaan (so only confed showed), and a bounty target with no player defaults
+  to pirates. Also removed: `modules/stubloader.py` (an offline test harness
+  for stubs that aren't here), `modules/GUI.savegamenamechanger.py` (unused,
+  still Python 2) and Privateer_Gold's stale installer manifest.
 - S12MD: Menesch waits in Regallis, not Troy.
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle

@@ -891,7 +891,7 @@ def contractMissionsFor(fac,baseship,minsysaway,maxsysaway):
                     #ignore hold contents
 
                     category=''
-                    if (rnd>.87 and fac!='confed' and fac != "ISO" and fac!="militia" and fac!="homeland-security" and fac!="kilrathi" and fac!="merchant"):
+                    if (rnd>.87 and fac!='confed' and fac!="militia" and fac!="kilrathi" and fac!="merchant"):
                         category='Contraband'
                     else:
                         for myiter in range (100):

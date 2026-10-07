@@ -96,50 +96,7 @@ def getCampaignFixers (room):
 	import campaign_lib
 	return campaign_lib.getFixersToDisplay(room)
 
-fixers={"enigma_sector/niven":[
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",0)],"bases/fixers/militia.spr","bases/fixers/explore_enigma.py"),
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",3),("gemini_sector/delta_navpoint",0),("gemini_sector/beta_navpoint",0)],"bases/fixers/militia.spr","bases/fixers/explore_notready.py"),
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",3),("gemini_sector/delta_navpoint",1),("gemini_sector/beta_navpoint",0)],"bases/fixers/militia.spr","bases/fixers/explore_beta.py"),
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",3),("gemini_sector/delta_navpoint",2),("gemini_sector/beta_navpoint",0)],"bases/fixers/militia.spr","bases/fixers/explore_beta.py"),
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",3),("gemini_sector/delta_navpoint",2),("gemini_sector/beta_navpoint",1),("gemini_sector/gamma_navpoint",0)],"bases/fixers/militia.spr","bases/fixers/explore_gamma.py"),
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",3),("gemini_sector/delta_navpoint",2),("gemini_sector/beta_navpoint",2),("gemini_sector/gamma_navpoint",0)],"bases/fixers/militia.spr","bases/fixers/explore_gamma.py"),
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",3),("gemini_sector/delta_navpoint",2),("gemini_sector/beta_navpoint",2),("gemini_sector/gamma_navpoint",1),("gemini_sector/delta_prime_navpoint",0)],"bases/fixers/militia.spr","bases/fixers/explore_delta_prime.py"),
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",3),("gemini_sector/delta_navpoint",2),("gemini_sector/beta_navpoint",2),("gemini_sector/gamma_navpoint",2),("gemini_sector/delta_prime_navpoint",0)],"bases/fixers/militia.spr","bases/fixers/explore_delta_prime.py"),
-	Fixer("explore","Talk to the Explorer",[("enigma_sector/enigma_nav",3),("gemini_sector/delta_navpoint",2),("gemini_sector/beta_navpoint",2),("gemini_sector/gamma_navpoint",2),("gemini_sector/delta_prime_navpoint",1)],"bases/fixers/militia.spr","bases/fixers/attack_drone0.py"),
-	],"enigma_sector/enigma":[
-	Fixer("confed_drone","Talk to the Confed Officer",[("quest_drone",1)],"bases/fixers/confed.spr","bases/fixers/attack_drone1.py"),
-	Fixer("confed_drone","Talk to the Confed Officer",[("quest_drone",-1)],"bases/fixers/confed.spr","bases/fixers/attack_drone1.py")
-	],"enigma_sector/heinlein":[
-	Fixer ("cloaked_man","Speak with hooded figure",[("decided_iso_good",0)],"bases/fixers/cloak.spr","bases/fixers/iso_antagonist.py"),
-	Fixer ("rowenna","Speak with Rowenna",[("decided_iso_evil",0),("iso_mission2",0)],"bases/fixers/iso.spr","bases/fixers/iso.py"),
-	Fixer ("rowenna","Speak with Rowenna",[("decided_iso_evil",0),("iso_mission2",-1)],"bases/fixers/iso.spr","bases/fixers/iso.py")
-	],"enigma_sector/adams":[
-	Fixer ("rowenna","Speak with Rowenna",[("decided_iso_evil",0),("iso_mission3",0),("iso_mission2",1)],"bases/fixers/iso.spr","bases/fixers/iso.py"),
-	Fixer ("rowenna","Speak with Rowenna",[("decided_iso_evil",0),("iso_mission3",0),("iso_mission2",-1)],"bases/fixers/iso.spr","bases/fixers/iso.py"),
-	Fixer ("cloaked_man","Speak with hooded figure",[("decided_iso_good",0),("iso_evil2",1)],"bases/fixers/cloak.spr","bases/fixers/iso_antagonist.py")
-	],"enigma_sector/defiance":[
-	Fixer ("rowenna","Speak with Rowenna",[("decided_iso_evil",0),("iso_mission3",1)],"bases/fixers/iso.spr","bases/fixers/iso.py"),
-	Fixer ("rowenna","Speak with Rowenna",[("decided_iso_evil",0),("iso_mission3",-1)],"bases/fixers/iso.spr","bases/fixers/iso.py")
-	],"enigma_sector/blake":[
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",-1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",0)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	],"enigma_sector/rigel":[
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",-1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission2",-1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission3",-1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission4",-1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",0)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",1),("pirate_mission2",0)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",1),("pirate_mission2",1),("pirate_mission3",2),("pirate_mission4",0)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",1),("pirate_mission2",1),("pirate_mission3",2),("pirate_mission4",1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	],"sol_sector/tingvallir":[
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",-1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission2",-1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission3",-1)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",1),("pirate_mission2",0)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",1),("pirate_mission2",1),("pirate_mission3",0)],"bases/fixers/pirate.spr","bases/fixers/pirates.py"),
-	Fixer ("pirate","Talk with the Pirate",[("pirate_mission1",1),("pirate_mission2",1),("pirate_mission3",1),("pirate_mission4",0)],"bases/fixers/pirate.spr","bases/fixers/pirates.py")
-	]}
+fixers={}
 
 def eraseCFixer(playernum, name):
     """Removes the Campaign Fixer from the queue."""

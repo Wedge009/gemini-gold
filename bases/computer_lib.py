@@ -450,7 +450,7 @@ def get_relations_text(player):
     for i in range(Director.getSaveDataLength( VS.getCurrentPlayer(), 'kills' )):
         faction_kills.append( Director.getSaveData( VS.getCurrentPlayer(), 'kills', i ) )
 
-    displayed_factions = ['confed', 'aera', 'rlaan']
+    displayed_factions = ['confed', 'kilrathi', 'merchant', 'retro', 'pirates', 'hunter', 'militia']
 
     for i in range(VS.GetNumFactions()):
         # VS.GetFactionIndex(s) expects a string

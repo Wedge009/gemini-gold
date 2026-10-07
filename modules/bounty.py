@@ -165,7 +165,7 @@ class bounty (Director.Mission):
 
 def initrandom (minns, maxns, credsmin, credsmax, run_away, minshipdifficulty, maxshipdifficulty,jumps=(),var_to_set=''):
     you=VS.getPlayer()
-    tempfaction='aera'
+    tempfaction='pirates'
     if (you):
         name = you.getFactionName ()
         factionname=vsrandom.randrange(0,faction_ships.getMaxFactions())

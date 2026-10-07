@@ -8,16 +8,10 @@ VICTORYLIST=3
 LOSSLIST=4
 HOSTILE_AUTODIST=1600
 HOSTILE_NEWLAUNCH_DISTANCE=6000
-peacelist={"aera":VS.musicAddList('aera.m3u'),
-            "confed":VS.musicAddList('terran.m3u'),
-            "iso":VS.musicAddList('iso.m3u'),
-            "AWACS":VS.musicAddList('AWACS_peace.m3u'),
+peacelist={"AWACS":VS.musicAddList('AWACS_peace.m3u'),
             None:PEACELIST
             }
-battlelist={"aera":VS.musicAddList('aerabattle.m3u'),
-            "confed":VS.musicAddList('terranbattle.m3u'),
-            "iso":VS.musicAddList('isobattle.m3u'),
-            "AWACS":VS.musicAddList('AWACS.m3u'),
+battlelist={"AWACS":VS.musicAddList('AWACS.m3u'),
             None:BATTLELIST
             }
 paniclist={None:PANICLIST,
