@@ -312,6 +312,9 @@ grouped by what's holding it up.
   `modules/unit.py` and `modules/XGUI.py`.
 - No random encounters have been seen around Achilles despite the
   `random_encounters.py` fix; why is still to be investigated.
+- A new game doesn't ask for the player's name and callsign, as the original
+  does (it keeps them in the save). Gemini Gold doesn't use them: its dialogue
+  calls the player Burrows.
 
 ### Waiting on engine work
 
@@ -402,6 +405,12 @@ See Upstream engine work above.
 - Capital ships keep Gemini Gold's stronger armour, so they feel like capital
   ships; the Steltek drone keeps its lower speeds, and the Steltek scout its
   stronger gun (it doesn't attack).
+- The galaxy map remembers systems. In the original only the quadrant maps
+  you own show anything, so selling them leaves you with no map; here the
+  engine also records each system you jump to and its neighbours, missions
+  mark their routes, and a sold map's systems stay known (the pilot keeps their
+  own navigational record). A new game starts with the Humboldt map, as the
+  original's (`NAVQ` in `InitCfg.pak`).
 
 ### To do
 
