@@ -3719,7 +3719,7 @@
         "CockpitX": "0",
         "CockpitY": "0.26",
         "CockpitZ": "3.06",
-        "Mesh": "{stiletto.blank.bfxm;;}",
+        "Mesh": "{stiletto.bfxm;;}",
         "Mass": "120",
         "Moment_Of_Inertia": "120",
         "Fuel_Capacity": "1",

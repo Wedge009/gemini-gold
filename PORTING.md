@@ -218,6 +218,8 @@ Privateer's files:
   name stay even when nothing names them: `.cargo`, `.blank`, `.template`,
   `__planets` and faction variants, and the upgrades those rows list. So do
   the medium turrets, for the turret question.
+  `stiletto.blank` named a mesh that has never existed and now uses the
+  Stiletto's.
 - Undefined names inherited from Gemini Gold are fixed. Reachable in play:
   dynamic battles couldn't launch reinforcements beside a ship already in
   space (`dynamic_battle.LaunchMoreShips`), `unit.getUnitByFgID` failed
