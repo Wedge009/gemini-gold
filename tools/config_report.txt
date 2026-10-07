@@ -1,4 +1,19 @@
-Applied 274 settings
+Applied 289 settings
+  cockpitaudio/missle_switch -> cockpit_audio.missile_switch = 'interface_computer' (renamed)
+  audio/threadtime -> audio.thread_time = 1 (renamed)
+  graphics/base_alpha_test_cutoff -> graphics.bases.alpha_test_cutoff = 0.0 (renamed)
+  graphics/base_print_cargo_volume -> graphics.bases.print_cargo_volume = False (renamed)
+  graphics/hud/MaxMissileDiamondSize -> graphics.hud.max_missile_bracket_size = 1.0 (renamed)
+  graphics/hud/MinMissileDiamondSize -> graphics.hud.min_missile_bracket_size = 0.4 (renamed)
+  graphics/hud/basename:basename -> graphics.hud.basename_colon_basename = False (renamed)
+  graphics/insys_jump_animation -> graphics.in_system_jump_animation = 'invisible.ani' (renamed)
+  graphics/insys_jump_animation_size -> graphics.in_system_jump_animation_size = 0.0 (renamed)
+  graphics/jumpgate -> graphics.jump_gate = 'warp.ani' (renamed)
+  graphics/jumpgatesize -> graphics.jump_gate_size = 10.0001 (renamed)
+  graphics/star_alpha_test_cutoff -> graphics.stars_alpha_test_cutoff = 0.6 (renamed)
+  graphics/tractor.scoop -> physics.tractor.scoop = False (renamed)
+  unitaudio/jumparrive -> audio.unit_audio.jump_arrive = 'empty.wav' (renamed)
+  unitaudio/jumpleave -> audio.unit_audio.jump_leave = 'sfx43.wav' (renamed)
   AI/Firing/MaximumFiringAngle.maxagg -> ai.firing.maximum_firing_angle.maxagg = 18 (renamed)
   AI/Firing/MaximumFiringAngle.minagg -> ai.firing.maximum_firing_angle.minagg = 5 (renamed)
   physics/autotime -> physics.auto_time_in_seconds = 4.0 (renamed)
@@ -278,26 +293,15 @@ Ambiguous (0): more than one engine key with this name
 
 Bad values (0)
 
-Not read by the engine any more (54)
+Not read by the engine any more (39)
   audio/DooplerScale = '.1'
-  audio/threadtime = '1'
-  cockpitaudio/missle_switch = 'interface_computer'
   data/UnitCSV = 'units.csv'
   data/datadir = '/home/james/Project/Privateer_Gold'
   general/numoldsystems = '15'
   graphics/absolute_relation_color = 'true'
   graphics/asteroid_detail = '5'
-  graphics/base_alpha_test_cutoff = '0'
-  graphics/base_print_cargo_volume = 'false'
   graphics/com_static.ani = 'true'
-  graphics/hud/MaxMissileDiamondSize = '1'
-  graphics/hud/MinMissileDiamondSize = '0.4'
-  graphics/hud/basename:basename = 'false'
   graphics/hud/radarRange = '15000'
-  graphics/insys_jump_animation = 'invisible.ani'
-  graphics/insys_jump_animation_size = '0'
-  graphics/jumpgate = 'warp.ani'
-  graphics/jumpgatesize = '10.0001'
   graphics/mesh/testvar = '-4'
   graphics/precache = 'true'
   graphics/sparkegrowrate = '0.5'
@@ -307,9 +311,7 @@ Not read by the engine any more (54)
   graphics/sparklescale = '0.5'
   graphics/sparklespeed = '.1'
   graphics/sparklespread = '.01'
-  graphics/star_alpha_test_cutoff = '.6'
   graphics/talking_heads = 'true'
-  graphics/tractor.scoop = 'FALSE'
   graphics/vdu_static = 'static_vdu.ani'
   graphics/wormhole = ''
   physics/FuelUsage = '0'
@@ -331,5 +333,3 @@ Not read by the engine any more (54)
   physics/warp_energy_player_multiplier = '0'
   physics/warpenergy_damage_prob = '0'
   server/useaccountserver = 'true'
-  unitaudio/jumparrive = 'empty.wav'
-  unitaudio/jumpleave = 'sfx43.wav'

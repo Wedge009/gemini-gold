@@ -88,7 +88,7 @@
             "fov": 60.0,
             "max_width": 1440,
             "max_height": 1080,
-            "print_cargo_volume": true,
+            "print_cargo_volume": false,
             "text_background_alpha": 0.0625,
             "blur_bases": false
         },
@@ -144,8 +144,8 @@
             "diamond_rotation_speed": 0.0001,
             "enemy_near_message": "#010101Enemy Near#010101",
             "lock_center_crosshair": true,
-            "max_missile_bracket_size": 2.05,
-            "min_missile_bracket_size": 1.05,
+            "max_missile_bracket_size": 1.0,
+            "min_missile_bracket_size": 0.4,
             "nav_cross_line_thickness": 2.0,
             "planet_near_message": "#010101Planetary Hazard Near#010101",
             "rotating_bracket_size": 0.2,
@@ -172,7 +172,8 @@
             "shield_vdu_fade": false,
             "simple_manifest": true,
             "switch_to_target_mode_on_key": true,
-            "top_view": true
+            "top_view": true,
+            "basename_colon_basename": false
         },
         "lock_significant_target_box": false,
         "near_stars_alpha": true,
@@ -202,7 +203,12 @@
         "vbo": false,
         "vdu_builtin_shields": true,
         "velocity_star_streak_scale": 0.001,
-        "vista_draw_stars": true
+        "vista_draw_stars": true,
+        "in_system_jump_animation": "invisible.ani",
+        "in_system_jump_animation_size": 0.0,
+        "jump_gate": "warp.ani",
+        "jump_gate_size": 10.0001,
+        "stars_alpha_test_cutoff": 0.6
     },
     "audio": {
         "volume": 40.0,
@@ -233,8 +239,11 @@
             "player_armor_hit": "bigarmor.wav",
             "player_hull_hit": "bigarmor.wav",
             "player_tractor_cargo": "tractor_onboard.wav",
-            "shield": "shieldhit.wav"
-        }
+            "shield": "shieldhit.wav",
+            "jump_arrive": "empty.wav",
+            "jump_leave": "sfx43.wav"
+        },
+        "thread_time": 1
     },
     "general": {
         "audio_atom": 0.05555555556,
@@ -338,7 +347,8 @@
         "neutral_auto_radius": -16000.0,
         "tractor": {
             "percent_to_tractor": 0.8,
-            "scoop_angle": 0.4
+            "scoop_angle": 0.4,
+            "scoop": false
         },
         "persistent_on_load": false,
         "planet_ejection_stophack": 200.0,

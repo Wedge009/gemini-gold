@@ -231,6 +231,12 @@ Privateer's files:
   (`components.afterburner.energy_source`, kept in `tools/overrides.json`).
   The engine's default draws it from fuel: about 15 seconds of afterburner
   emptied the tank, and an empty tank stops the reactor too.
+- Gemini Gold's look-and-sound settings the engine renamed carry over too:
+  the jump-gate animation and its size, no in-system jump animation, no
+  sound on arrival from a jump, the HUD's missile brackets, the target
+  display's base names, no cargo volume in the base computer, and the stars'
+  alpha cut-off. Its engine-sparkle settings don't map on to the engine's halo
+  sparkles, and talking heads have no equivalent.
 - Undefined names inherited from Gemini Gold are fixed. Reachable in play:
   dynamic battles couldn't launch reinforcements beside a ship already in
   space (`dynamic_battle.LaunchMoreShips`), `unit.getUnitByFgID` failed

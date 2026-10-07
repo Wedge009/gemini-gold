@@ -47,6 +47,21 @@ KEY_MAP = {
     'physics/player_autoeject': 'physics.ejection.player_auto_eject',
     'physics/refire_difficutly_scaling': 'physics.refire_difficulty_scaling',
     'physics/special_and_normal_gun_combo': 'physics.allow_special_and_normal_gun_combo',
+    'audio/threadtime': 'audio.thread_time',
+    'graphics/base_alpha_test_cutoff': 'graphics.bases.alpha_test_cutoff',
+    'graphics/base_print_cargo_volume': 'graphics.bases.print_cargo_volume',
+    'graphics/hud/MaxMissileDiamondSize': 'graphics.hud.max_missile_bracket_size',
+    'graphics/hud/MinMissileDiamondSize': 'graphics.hud.min_missile_bracket_size',
+    'graphics/hud/basename:basename': 'graphics.hud.basename_colon_basename',
+    'graphics/insys_jump_animation': 'graphics.in_system_jump_animation',
+    'graphics/insys_jump_animation_size': 'graphics.in_system_jump_animation_size',
+    'graphics/jumpgate': 'graphics.jump_gate',
+    'graphics/jumpgatesize': 'graphics.jump_gate_size',
+    'graphics/star_alpha_test_cutoff': 'graphics.stars_alpha_test_cutoff',
+    'graphics/tractor.scoop': 'physics.tractor.scoop',
+    'unitaudio/jumparrive': 'audio.unit_audio.jump_arrive',
+    'unitaudio/jumpleave': 'audio.unit_audio.jump_leave',
+    'cockpitaudio/missle_switch': 'cockpit_audio.missile_switch',
 }
 
 
