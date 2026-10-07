@@ -358,7 +358,15 @@
         "use_max_shield_energy_usage": false,
         "use_unit_autodock_radius": true,
         "velocity_max": 10000000.0,
-        "weapon_damage_efficiency": 0.625
+        "weapon_damage_efficiency": 0.625,
+        "auto_time_in_seconds": 4.0,
+        "indestructible_cargo_items": "tungsten,plasteel,isometal,Artifact",
+        "in_system_jump_or_timeless_auto_pilot": true,
+        "ejection": {
+            "player_auto_eject": false
+        },
+        "refire_difficulty_scaling": 3.0,
+        "allow_special_and_normal_gun_combo": false
     },
     "settings_app": {
         "details": "High",
@@ -376,7 +384,11 @@
         "firing": {
             "aggressivity": 1.3,
             "reaction_time": 0.08,
-            "in_weapon_range": 1.0
+            "in_weapon_range": 1.0,
+            "maximum_firing_angle": {
+                "minagg": 5,
+                "maxagg": 18
+            }
         },
         "only_upgrade_speed_reference": true,
         "slow_diplomacy_for_enemies": 0.08,
@@ -459,6 +471,9 @@
         "fuel": {
             "afterburner_fuel_usage": 0.0,
             "no_fuel_afterburn": 0.001
+        },
+        "afterburner": {
+            "energy_source": "energy"
         }
     },
     "economics": {
@@ -466,5 +481,9 @@
     },
     "warp": {
         "warp_energy_multiplier": 0.0
+    },
+    "dock": {
+        "planet_dock_port_min_size": 350.0,
+        "planet_dock_port_size": 1.6
     }
 }

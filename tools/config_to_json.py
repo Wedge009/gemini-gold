@@ -37,6 +37,16 @@ KEY_MAP = {
     'graphics/x_resolution': 'graphics.resolution_x',
     'graphics/y_resolution': 'graphics.resolution_y',
     'graphics/vdu_static': None,
+    'AI/Firing/MaximumFiringAngle.minagg': 'ai.firing.maximum_firing_angle.minagg',
+    'AI/Firing/MaximumFiringAngle.maxagg': 'ai.firing.maximum_firing_angle.maxagg',
+    'physics/autotime': 'physics.auto_time_in_seconds',
+    'physics/indestructable_cargo_items': 'physics.indestructible_cargo_items',
+    'physics/insystem_jump_or_timeless_auto-pilot': 'physics.in_system_jump_or_timeless_auto_pilot',
+    'physics/planet_port_min_size': 'dock.planet_dock_port_min_size',
+    'physics/planet_port_size': 'dock.planet_dock_port_size',
+    'physics/player_autoeject': 'physics.ejection.player_auto_eject',
+    'physics/refire_difficutly_scaling': 'physics.refire_difficulty_scaling',
+    'physics/special_and_normal_gun_combo': 'physics.allow_special_and_normal_gun_combo',
 }
 
 

@@ -1,4 +1,14 @@
-Applied 264 settings
+Applied 274 settings
+  AI/Firing/MaximumFiringAngle.maxagg -> ai.firing.maximum_firing_angle.maxagg = 18 (renamed)
+  AI/Firing/MaximumFiringAngle.minagg -> ai.firing.maximum_firing_angle.minagg = 5 (renamed)
+  physics/autotime -> physics.auto_time_in_seconds = 4.0 (renamed)
+  physics/indestructable_cargo_items -> physics.indestructible_cargo_items = 'tungsten,plasteel,isometal,Artifact' (renamed)
+  physics/insystem_jump_or_timeless_auto-pilot -> physics.in_system_jump_or_timeless_auto_pilot = True (renamed)
+  physics/planet_port_min_size -> dock.planet_dock_port_min_size = 350.0 (renamed)
+  physics/planet_port_size -> dock.planet_dock_port_size = 1.6 (renamed)
+  physics/player_autoeject -> physics.ejection.player_auto_eject = False (renamed)
+  physics/refire_difficutly_scaling -> physics.refire_difficulty_scaling = 3.0 (renamed)
+  physics/special_and_normal_gun_combo -> physics.allow_special_and_normal_gun_combo = False (renamed)
   AI/AllowCivilWar -> ai.allow_civil_war = False (snake_case)
   AI/AllowNonplayerFactionChange -> ai.allow_nonplayer_faction_change = False (snake_case)
   AI/CappedFactionRating -> ai.capped_faction_rating = True (snake_case)
@@ -268,9 +278,7 @@ Ambiguous (0): more than one engine key with this name
 
 Bad values (0)
 
-Not read by the engine any more (64)
-  AI/Firing/MaximumFiringAngle.maxagg = '18'
-  AI/Firing/MaximumFiringAngle.minagg = '5'
+Not read by the engine any more (54)
   audio/DooplerScale = '.1'
   audio/threadtime = '1'
   cockpitaudio/missle_switch = 'interface_computer'
@@ -306,26 +314,18 @@ Not read by the engine any more (64)
   graphics/wormhole = ''
   physics/FuelUsage = '0'
   physics/ab_damage_prob = '.5'
-  physics/autotime = '4'
   physics/bounding_box_collision = 'false'
   physics/cargo_damage_prob = '0'
   physics/cargovolume_damage_prob = '0'
   physics/collision_damage_scale = '4'
   physics/combat_speed_boost = '100'
   physics/fuel_damage_prob = '0'
-  physics/indestructable_cargo_items = 'tungsten,plasteel,isometal,Artifact'
   physics/insystem_jump_cost = '0'
-  physics/insystem_jump_or_timeless_auto-pilot = '1'
   physics/max_shield_recharge_drain = '9.259'
-  physics/planet_port_min_size = '350'
-  physics/planet_port_size = '1.6'
-  physics/player_autoeject = 'false'
-  physics/refire_difficutly_scaling = '3'
   physics/shield_energy_downpower = '.125'
   physics/shield_energy_downpower_percent = '.5'
   physics/shield_energy_downpower_time = '24'
   physics/shields_require_passive_recharge_maintenance = 'false'
-  physics/special_and_normal_gun_combo = 'false'
   physics/unit_collision_docks = 'true'
   physics/upgradevolume_damage_prob = '0'
   physics/warp_energy_player_multiplier = '0'

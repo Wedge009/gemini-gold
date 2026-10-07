@@ -220,6 +220,17 @@ Privateer's files:
   the medium turrets, for the turret question.
   `stiletto.blank` named a mesh that has never existed and now uses the
   Stiletto's.
+- Eight settings the engine renamed now carry over (`tools/config_to_json.py`
+  maps them): autopilot is the instant jump Gemini Gold set
+  (`in_system_jump_or_timeless_auto_pilot`; without it, autopilot needs the
+  FTL drive) and engages after 4 seconds, not 10; the player doesn't eject
+  automatically; armour plating and the artefact in the hold can't be
+  damaged; planets' docking range is Gemini Gold's; special guns don't fire
+  with normal ones; and the AI's firing-angle minimum is Gemini Gold's.
+- The afterburner draws on energy, as in the original
+  (`components.afterburner.energy_source`, kept in `tools/overrides.json`).
+  The engine's default draws it from fuel: about 15 seconds of afterburner
+  emptied the tank, and an empty tank stops the reactor too.
 - Undefined names inherited from Gemini Gold are fixed. Reachable in play:
   dynamic battles couldn't launch reinforcements beside a ship already in
   space (`dynamic_battle.LaunchMoreShips`), `unit.getUnitByFgID` failed
@@ -326,8 +337,12 @@ grouped by what's holding it up.
 ### Porting gaps
 
 - Settings the engine no longer reads are listed at the end of
-  `tools/config_report.txt`; some (fuel usage, shield power-down, jump costs)
-  may change gameplay.
+  `tools/config_report.txt`. None has an equivalent the engine uses: the
+  collision damage scale, the chance of a hit damaging the afterburner (Gemini
+  Gold set 0.5), and Gemini Gold's automatic shield power-down (shields lost
+  charge when energy stayed near empty). The rest don't apply to Privateer,
+  such as Vega Strike's cruise mode (`combat_speed_boost`) and in-system jump
+  costs. Radar range now comes from each ship's own radar.
 - The old Gemini Gold engine had Privateer-specific HUD behaviour the current
   engine lacks (see vegastrike/Vega-Strike-Engine-Source#1173).
 - pyflakes reports one undefined name left from Gemini Gold, in code that
@@ -380,6 +395,12 @@ See Upstream engine work above.
   (cargo expansion, shield regenerator, speed and thrust enhancers) may not be
   possible in data alone either; the engine's cargo-hold upgrade code is
   commented out.
+
+- **Shields can't be switched off.** The original lets the player turn
+  shields off to save energy for the guns and afterburner; the engine has no
+  such control.
+- **Jumps are unlimited.** The original's fuel allows six jumps per flight;
+  the engine's jump drive spends nothing (`JumpDrive::Consume` returns 0).
 
 ### On hold, to revisit
 
@@ -478,5 +499,9 @@ and their landing re-roll (RF's too), the Salthi's stats, the Talon's and
 Broadsword's masses (no original figures), the starting missiles, built-in
 equipment and bought upgrades, the Tachyon, the RF upgrade limits and Tarsus
 trade-in, the sell-back prices, the RF mission ships' speeds, the RF Kilrathi
-weapons, the de-duplicated asteroid fields, the starting reputations, and the
-corrected ship statistics.
+weapons, the de-duplicated asteroid fields, the starting reputations, the
+corrected ship statistics, the NPC load-outs (the Orion's restored turret
+especially), the galaxy map's positions, a new game's universe now that it's
+generated afresh for Gemini alone (start-up time, traffic, the faction table
+`New_Game` now loads), the dynamic battles' reinforcements, and the
+autopilot and other settings carried over from Gemini Gold's config.
