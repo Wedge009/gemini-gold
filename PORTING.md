@@ -403,7 +403,10 @@ See Upstream engine work above.
   encounters. Gemini Gold has no hidden hold, and the engine doesn't yet keep
   a hidden hold's contents across a saved game.
 - **Buying an afterburner** doesn't fit one: the engine's afterburner upgrade
-  scales an afterburner the hull already has. The `add_` and `mult_` upgrades
+  scales an afterburner the hull already has. The engine also doesn't save an
+  afterburner's energy cost (`Afterburner_Usage_Cost`), so after loading a
+  saved game it probably falls back to a cost of 1, whether or not one was
+  bought (found by reading the code, not yet tested). The `add_` and `mult_` upgrades
   (cargo expansion, shield regenerator, speed and thrust enhancers) may not be
   possible in data alone either; the engine's cargo-hold upgrade code is
   commented out.
@@ -519,4 +522,5 @@ corrected ship statistics, the NPC load-outs (the Orion's restored turret
 especially), the galaxy map's positions, a new game's universe now that it's
 generated afresh for Gemini alone (start-up time, traffic, the faction table
 `New_Game` now loads), the dynamic battles' reinforcements, and the
-autopilot and other settings carried over from Gemini Gold's config.
+settings carried over from Gemini Gold's config other than the autopilot
+(confirmed working).

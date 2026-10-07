@@ -649,7 +649,6 @@ def transfer_cargo(from_unit, to_unit, name, price, count, max_capacity=-1, curr
     #    create a new Cargo object and add it to unit
     #    VS.Cargo __init__ appears to use: Content, Category, Price, Quantity, Mass, Volume
     cargo_obj = VS.Cargo(name, name, price, count, 0.01, 1.0)
-    cargo_obj.SetMaxFunctionality(1.0)
     cargo_obj.SetFunctionality(1.0)
     to_unit.addCargo(cargo_obj)
 

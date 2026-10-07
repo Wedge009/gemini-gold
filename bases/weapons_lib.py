@@ -2659,7 +2659,8 @@ def repair_item_cargo(player, item_name, count=1):
 		cargo_obj = player.GetCargo(item_name)
 		# addCargo appears to append [count] items to current quantity, so we have to remove them first
 		player.removeCargo(item_name,count,True)
-		cargo_obj.SetFunctionality( cargo_obj.GetMaxFunctionality() )
+		# the engine's Cargo has only SetFunctionality; 1.0 is full functionality
+		cargo_obj.SetFunctionality(1.0)
 		rc = player.addCargo(cargo_obj)
 		if rc: return True
 	return False
@@ -2685,16 +2686,14 @@ def add_item_cargo(player, item_name, price, count=1):
 		category = mpl.GetCategory()
 		mass     = mpl.GetMass()
 		volume   = mpl.GetVolume()
-		func     = mpl.GetMaxFunctionality()
 	except:
 		category = "upgrades/Miscellaneous"
 		mass     = 0.01
 		volume   = 1.0
-		func     = 1.0
 	#    VS.Cargo __init__ appears to use: Content, Category, Price, Quantity, Mass, Volume
 	cargo_obj = VS.Cargo(item_name, category, price, count, mass, volume)
-	cargo_obj.SetMaxFunctionality(func)
-	cargo_obj.SetFunctionality(func)
+	# the engine's Cargo has only SetFunctionality; 1.0 is full functionality
+	cargo_obj.SetFunctionality(1.0)
 	rc = player.addCargo(cargo_obj)
 	if rc: return True
 	return False
