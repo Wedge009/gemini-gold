@@ -3,8 +3,7 @@
 Privateer: Gemini Gold data for the current Vega Strike engine. This repository
 is a fork of [DMJC/Privateer_Gold](https://github.com/DMJC/Privateer_Gold)
 (last updated 2024-05-01, `d1b38dd`), which already had the full assets,
-`units.json` and most game scripts ported to Python 3. Neither it nor
-[pwcu/privateer_wcu](https://github.com/pwcu/privateer_wcu) is maintained.
+`units.json` and most game scripts ported to Python 3.
 
 ## Setting up
 
