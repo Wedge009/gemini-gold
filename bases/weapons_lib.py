@@ -2873,7 +2873,7 @@ def add_map(map_id):
 		quest.removeQuest(cp,"visited_Gemini/Telar",1.0)
 		quest.removeQuest(cp,"visited_Gemini/Valhalla",1.0)
 		quest.removeQuest(cp,"visited_Gemini/War",1.0)
-		quest.removeQuest(cp,"visited_Gemini/Xyanti",1.0)
+		quest.removeQuest(cp,"visited_Gemini/Xytani",1.0)
 		# Fariss has several hidden systems, including Delta_Prime and Eden
 	elif map_id=='clarke_map':
 		quest.removeQuest(cp,map_id,1.0)
