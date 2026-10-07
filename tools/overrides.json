@@ -13,5 +13,10 @@
     },
     "dock": {
         "dock_planet_radius_percent": 2.5
+    },
+    "graphics": {
+        "hud": {
+            "message_prefix": "COMMUNICATION\n"
+        }
     }
 }

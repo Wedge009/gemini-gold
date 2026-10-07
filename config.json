@@ -162,7 +162,7 @@
             "invert_target_shields": true,
             "invert_target_sprite": true,
             "manifest_heading": "MANIFEST\\n",
-            "message_prefix": "COMMUNICATION\\n",
+            "message_prefix": "COMMUNICATION\n",
             "out_of_cone_distance": true,
             "print_damage_percent": false,
             "print_faction": false,
