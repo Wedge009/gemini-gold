@@ -197,7 +197,7 @@
         "system_map_ortho_view": false,
         "target_null_if_no_unit": true,
         "texture_compression": 1,
-        "unprintable_factions": "privateer nephilim unknown landreich border_worlds firekkan AWACS steltek upgrades riordian seelig kroiz miggs toth garrovick reismann planets neutral ",
+        "unprintable_factions": "privateer unknown AWACS steltek upgrades riordian seelig kroiz miggs toth garrovick reismann planets neutral ",
         "use_star_coords": false,
         "vbo": false,
         "vdu_builtin_shields": true,

@@ -1,17 +1,13 @@
 
 confed=0
 kilrathi=1
-nephilim=2
-merchant=3
-retro=4
-pirates=5
-hunter=6
-militia=7
-unknown=8
-landreich=9
-border_worlds=10
-firekkan=11
-AWACS=12
+merchant=2
+retro=3
+pirates=4
+hunter=5
+militia=6
+unknown=7
+AWACS=8
 at_least_one_producer={"AWACS":1,"retro":1}
 fortress_systems={"Gemini/Perry":1-.0625, "Gemini/New_Constantinople":1-.0625, "Gemini/New_Detroit":1-.0625, "Gemini/Troy":.3125,"Gemini/Eden":1.0,"Gemini/Beta":1.0,"Gemini/Delta":1.0,"Gemini/Gamma":1.0,"Gemini/Palan":1.0,"Gemini/Delta_Prime":1.0,"Gemini/Sherwood":1.0,"Gemini/Pentonville":1.0,"Gemini/Tr_Pakh":0.5}
 
@@ -109,21 +105,17 @@ invincible_systems={"Gemini/Perry":1,
 unescortable = {"paradigm":"drayman",
 	"kamekh":"gothri"}
 
-factions = ("confed","kilrathi","nephilim","merchant","retro","pirates","hunter","militia","unknown","landreich","border_worlds","firekkan","AWACS")
+factions = ("confed","kilrathi","merchant","retro","pirates","hunter","militia","unknown","AWACS")
 factiondict={}
 for i in range(len(factions)):
     factiondict[factions[i]]=i
 
 siegingfactions={"confed":500
-                ,"landreich":10000
-                ,"border_worlds":4000
                 ,"kilrathi":1600
                 ,"retro":1000
                 ,"AWACS":30
                 }
 fightersPerFG=  {"confed":10
-                ,"landreich":3
-                ,"border_worlds":6
                 ,"kilrathi":8
                 ,"retro":4
                 ,"merchant":3
@@ -131,13 +123,10 @@ fightersPerFG=  {"confed":10
                 ,"hunter":1
                 ,"militia":6
                 ,"default":10
-                ,"firekkan":4
                 ,"AWACS":6
                 }
 staticFighterProduction={"retro":3, "pirates":1}
 fighterProductionRate=  {"confed":.002
-                        ,"landreich":.12
-                        ,"border_worlds":.06
                         ,"kilrathi":.008
                         ,"retro":.5
                         ,"merchant":.6
@@ -145,13 +134,10 @@ fighterProductionRate=  {"confed":.002
                         ,"hunter":1
                         ,"militia":.1
                         ,"default":.1
-                        ,"firekkan":.1
                         ,"AWACS":2
                         }
 
 capitalProductionRate=  {"confed":.0001
-                        ,"landreich":.015
-                        ,"border_worlds":.011
                         ,"kilrathi":.0001
                         ,"retro":0.0
                         ,"merchant":.2
@@ -159,35 +145,26 @@ capitalProductionRate=  {"confed":.0001
                         ,"hunter":0.0
                         ,"militia":0.00
                         ,"default":.02
-                        ,"firekkan":.02
                         ,"AWACS":.025
                         }
 
 homeworlds={"confed":"Sol/Sol"
                 ,"kilrathi":"Kilrah/Kilrah"
-                ,"nephilim":"Enigma/Shanha"
                 ,"pirates":"Gemini/Pentonville"
                 ,"merchant":"Gemini/New_Constantinople"
                 ,"militia":"Gemini/Pyrenees"
                 ,"retro":"Gemini/Eden"
                 ,"hunter":"Sol/AlphaCentauri"
-                ,"firekkan":"Epsilon/Firekka"
-                ,"border_worlds":"Epsilon/Deneb"
-                ,"landreich":"Landreich/Landreich"
 		,"AWACS":"Gemini/Auriga"
 
                 }
 production_centers={"confed":["Gemini/Perry","Gemini/New_Detroit"]
                 ,"kilrathi":["Gemini/Gamma","Gemini/Tr_Pakh","Gemini/Sumn_Kpta"]
-                ,"nephilim":["Enigma/Shanha"]
                 ,"pirates":["Gemini/Pentonville","Gemini/Sherwood","Gemini/Penders_Star","Gemini/Capella"]
                 ,"merchant":["Gemini/New_Constantinople","Gemini/Troy","Gemini/Oxford"]
                 ,"militia":["Gemini/Pyrenees","Gemini/Rygannon","Gemini/Prasepe"]
                 ,"retro":["Gemini/Eden","Gemini/Oxford"]
                 ,"hunter":["Gemini/Palan","Gemini/New_Detroit"]
-                ,"firekkan":["Epsilon/Firekka"]
-                ,"border_worlds":["Epsilon/Deneb"]
-                ,"landreich":["Landreich/Landreich"]
 		,"AWACS":["Gemini/Auriga","Gemini/XXN-1927"]
                 }
 
@@ -241,37 +218,29 @@ earnable_upgrades= {
 		["shield_2_Level7","upgrades/Shield_Systems/Heavy",200000,0.01,1,"@upgrades/shields.png@A combination of magnetic and gravitic protective shields. 2 emitter model."]]}
 
 
-useBlank = (   0    ,  0   ,   0   ,     0    ,   0   ,       0     ,    0   ,         0    ,      0  ,    0,         0    ,    0   ,   0)
+useBlank = (0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 
 enemies =  ((kilrathi,kilrathi,retro,pirates), #confed
             (confed,confed,confed,confed,confed,confed,militia,pirates,hunter,merchant,), #kilrathi
-            (kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,pirates,retro,retro,retro,retro,retro,hunter),#nephilim
             (kilrathi,kilrathi,retro,pirates,pirates,pirates,pirates,pirates,pirates,pirates,pirates,pirates,), #merchant
             (pirates,hunter,hunter,hunter,hunter,hunter), #retro
             (confed,militia,retro,merchant,merchant,merchant,merchant,merchant,merchant,retro,merchant,merchant,merchant,merchant,merchant,merchant), #pirates
             (kilrathi,kilrathi,retro,retro,retro,pirates,pirates), #hunter
             (kilrathi,kilrathi,retro,pirates,), #militia
             (confed,kilrathi,merchant,retro,pirates,hunter,militia,), #unknown
-            (kilrathi,kilrathi,retro,militia), #landreich
-            (kilrathi,kilrathi,retro), #border_worlds
-            (kilrathi,kilrathi,retro,retro,pirates), #firekkan
-            (kilrathi,kilrathi,kilrathi,kilrathi,confed,militia,retro,retro,hunter,hunter,hunter,), #firekkan
+            (kilrathi,kilrathi,kilrathi,kilrathi,confed,militia,retro,retro,hunter,hunter,hunter,), #AWACS
            )
 
 
 rabble  =  ((retro,retro,retro,retro,pirates,pirates,pirates,pirates,pirates,pirates,pirates,pirates,pirates,retro,retro,retro,retro,pirates,pirates,pirates,pirates,pirates,pirates,pirates,pirates,pirates,retro,retro,retro,retro,pirates,pirates,pirates,pirates,pirates,pirates,pirates,pirates,pirates), #confed
             (pirates,pirates,pirates,hunter,hunter,pirates,pirates,pirates,hunter,hunter), #kilrathi
-            (pirates,pirates,pirates,pirates,kilrathi,confed,hunter,hunter,hunter),#nephilim
             (pirates,retro,pirates,retro,pirates,hunter,merchant), #merchant
             (unknown,unknown,unknown,pirates,hunter), #retro
             (hunter,retro,retro,pirates,pirates,pirates,merchant), #pirates
             (pirates,retro,hunter,hunter,hunter), #hunter
             (retro,retro,pirates,pirates,pirates), #militia
             (pirates,pirates,pirates,pirates,retro,kilrathi,), #unknown
-            (retro,militia), #landreich
-            (retro,retro,retro,kilrathi), #border_worlds
-            (retro,retro,pirates), #firekkan
             (confed,militia,retro,retro,hunter,hunter,hunter,), #AWACS
            )
 
@@ -285,17 +254,12 @@ insysenemies  =  enemies
 
 friendlies=((confed,confed,confed,confed,confed,confed,confed,confed,confed,confed,militia,militia,militia,militia,merchant,merchant,merchant,merchant,merchant,), #confed
             (kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi,kilrathi), #kilrathi
-            (merchant,nephilim,nephilim,nephilim,nephilim,merchant,nephilim,nephilim,nephilim,nephilim), #nephilim
             (confed,militia,militia,militia,militia,merchant,merchant,merchant,merchant,merchant,hunter,hunter,), #merchant
             (retro,retro,retro,unknown), #retro
             (pirates,pirates,pirates,pirates,pirates), #pirates
             (confed,confed,militia,militia,merchant,hunter,hunter,hunter,hunter,hunter,merchant), #hunter
             (confed,confed,confed,militia,militia,militia,militia,merchant,merchant,merchant,merchant,merchant,), #militia
-            (merchant,merchant,merchant,merchant,merchant,merchant), #ISO
             (pirates,retro,retro,retro,retro,retro,retro,retro,retro,unknown,), #unknown
-            (landreich,landreich,pirates,merchant,merchant,merchant,border_worlds,border_worlds,border_worlds,border_worlds), #landreich
-            (landreich,landreich,militia,merchant,merchant,border_worlds,border_worlds,border_worlds,border_worlds), #border_worlds
-            (confed,confed,confed,militia,militia,militia,militia,merchant,merchant,merchant,merchant,merchant,landreich,border_worlds,firekkan,firekkan),  #firekkan
             (AWACS,AWACS,merchant)#AWACS
            )
 def Precache():
@@ -371,32 +335,24 @@ def Precache():
   
 fighters = (("stiletto","stiletto","stiletto","stiletto","broadsword","broadsword",), #confed
             ("dralthi","dralthi","gothri",), #kilrathi
-            ("steltek_fighter",), #nephilim
             ("tarsus","tarsus","tarsus","tarsus","galaxy","galaxy","galaxy","orion",), #merchant
             ("talon",), #retro
             ("talon","talon","talon","talon","talon",), #pirates
             ("demon","demon","demon","orion","orion","centurion",), #hunter
             ("talon","gladius",), #militia
             ("salthi","salthi.particle"), #unknown
-                        ("tarsus","gladius","talon","talon","talon","drayman",),#landreich
-                        ("tarsus","gladius","talon","talon","talon","drayman",),#border_worlds
-                        ("stiletto",), #firekkan
                         ("stiletto",), #AWACS
            )
 isBomber = {"broadsword":2,"gladius":4,"gothri":6}
 
 capitals = (("paradigm",), #confed
             ("kamekh",), #kilrathi
-            ("done",), #nephilim
             ("drayman",), #merchant
             ("drayman",), #retro
             ("drayman",), #pirates
             ("drayman",), #hunter
             ("drayman",), #militia
             ("kamekh",), #unknown
-                        ("drayman",),#landreich
-                        ("paradigm",),#border_worlds
-                        ("drayman",), #firekkan
                         ("paradigm","drayman","drayman","drayman",), #AWACS
            )
 
@@ -463,16 +419,13 @@ generic_bases = ("perry","perry",
                                  "refinery","refinery","refinery","refinery","refinery","refinery",)
 bases = (generic_bases,
                  generic_bases, #kilrathi
-                 generic_bases, #nephilim
                  generic_bases, #merchant
                  generic_bases, #retro
                  generic_bases, #pirates
                  generic_bases, #hunter
                  generic_bases, #militia
                  generic_bases, #unknown
-                 generic_bases,#landreich
-                 generic_bases,#border_worlds
-                 generic_bases, #firekkan
+                 generic_bases, #AWACS
                  )
 basedict={}
 for i in bases:

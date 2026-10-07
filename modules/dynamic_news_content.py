@@ -21,14 +21,6 @@ all_faction_name_global = {
                 ,"mstandname" : ["John Sasson"]
                 ,"fstandname" : ["Michelle Petridge"]
                 }
-,"border_worlds":        {"full" : ["League Of Independent Human Worlds"]
-                ,"nicks":["Border Worlder"]
-                ,"nickp":["Border Worlds"]
-                ,"dnicks":["Patchworker"]
-                ,"dnickp":["Patchworkers"]
-                ,"government":["Border Worlds  Council"]
-                ,"possessive":["Border World's"]
-                }
 ,"AWACS" : {"full" : ["Armed Workers Against Corporate Slavery"]
                 ,"nicks" : ["AWACS"]
                 ,"nickp" : ["AWACS"]
@@ -81,15 +73,6 @@ all_faction_name_global = {
                 ,"mstandname" : ["Brother Maynard"]
                 ,"fstandname" : ["Sister Keyes"]
                 }
-,"nephilim" :      {"full" : ["Nephilim"]
-                ,"nicks" : ["Nephilim"]
-                ,"nickp" : ["Nephilims"]
-                ,"dnicks" : ["Bug"]
-                ,"dnickp" : ["Bugs"]
-                ,"government" : ["Nephilim Hive"]
-                ,"possessive" : ["Nephilim's"]
-                ,"homeworld" : ["Aantlbzz"]
-                }
 
 ,"pirates" :    {"full" : ["Various Pirate Factions"]
                 ,"nicks" : ["Pirate"]
@@ -123,24 +106,6 @@ all_faction_name_global = {
                 ,"homeworld" : ["Plural"]
                 ,"mstandname" : ["John Smith"]
                 ,"fstandname" : ["Jane Doe"]
-                }
-,"landreich":         {"full":["Landreich"]
-                ,"nicks":["Landreich"]
-                ,"nickp":["Landreich"]
-                ,"dnicks":["Lork"]
-                ,"dnickp":["Lorker"]
-                ,"government":["Central Moon"]
-                ,"possessive":["Landreich's"]
-                ,"homeworld": ["Hellhole"]
-                }
-,"firekkan" :       {"full" : ["Firekkan Ascendency"]
-                ,"nicks" : ["Firekkan"]
-                ,"nickp" : ["Firekkan"]
-                ,"dnicks" : ["Birdie"]
-                ,"dnickp" : ["Birdies"]
-                ,"government" : ["High Flock"]
-                ,"possessive" : ["Firekkan's"]
-                ,"homeworld" : ["Firekka"]
                 }
 }
 
@@ -482,12 +447,6 @@ _all_news_global = {
                 ,"end" : {}
                 }
 
-,"nephilim" :      {"start" : {}
-
-                ,"middle" : {}
-
-                ,"end" : {}
-                }
 
 ,"pirates" :    {"start" : {}
 
@@ -640,7 +599,3 @@ _all_news_global = {
 
 #\/The last close bracket for the whole dictionary\/
 }
-_all_news_global["mechanist"]=_all_news_global["confed"]
-_all_news_global["landreich"]=_all_news_global["confed"]
-_all_news_global["firekkan"]=_all_news_global["confed"]
-_all_news_global["border_worlds"]=_all_news_global["confed"]#for now we want same stories for these guys

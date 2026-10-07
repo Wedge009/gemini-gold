@@ -168,6 +168,15 @@ Privateer's files:
   of multi-line entries), so the engine misread it and the sections after it.
   The scripts regenerate the dynamic universe at the start of every game
   anyway (`generate_dyn_universe.ReloadUniverse`), so the section is now empty.
+- The Nephilim, Landreich, Border Worlds and Firekkan factions, from the wider
+  Wing Commander lore and not in Privateer, are gone from `factions.xml`,
+  `faction_ships.py`, the news content and their flight-group name lists. With
+  them, `faction_ships.friendlies` loses a stray "ISO" row that had shifted
+  every later faction's friends by one (the unknown faction's escorts were
+  merchants, and AWACS's were Firekkan's), and `bases` gains its missing AWACS
+  row. Saved faction relations are stored by position, so `New_Game`'s table
+  loses the same rows and columns, and saves from before this change load
+  with mismatched reputations.
 - S12MD: Menesch waits in Regallis, not Troy.
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle
