@@ -407,6 +407,12 @@ this work is deferred for now:
   writes thrust and speed but not `Afterburner_Usage_Cost`, so after loading a
   saved game the afterburner costs 1, bought or not. Buying one also needs an
   engine-side way to fit an afterburner (see Known gaps).
+- **No backdrop behind the cockpit or nav screen** (to check): both draw
+  without their background art. Gemini Gold includes the nav screen's
+  `cockpits/nav/navdata.xml` and `meshes/nav/default/` as Vega Strike's assets
+  do, so the engine is the likely cause; it may already be reported upstream.
+  Without the art, the nav screen's buttons (Galaxy is button 4, "Up") are
+  invisible, as `draw_nav_button_labels` is off.
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
