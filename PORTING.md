@@ -206,7 +206,8 @@ JSON files.
 
 Engine changes some fixes here wait on, offered to
 [vegastrike/Vega-Strike-Engine-Source](https://github.com/vegastrike/Vega-Strike-Engine-Source)
-so the sub-module can stay unpatched:
+so the sub-module can stay unpatched. Apart from the two already submitted,
+this work is deferred for now:
 
 - **Python `Unit.downgrade()`** (#1817, submitted): lets the ship dealer undo a
   sold upgrade; `bases/weapons_lib.py` already uses it when present.
@@ -224,7 +225,7 @@ so the sub-module can stay unpatched:
   reload items into a hold by their "installed" flag, and base inventories.
 - **Narrowing a mount** (to do): Python can widen a mount for a launcher but not
   narrow it again, so launchers can't be sold.
-- **Hidden hold after loading a save** (to report): a saved game's items go
+- **Hidden hold after loading a save** (to do): a saved game's items go
   back into the upgrade space if flagged installed and into the cargo hold
   otherwise, and nothing flags hidden-hold items, so a smuggling compartment's
   contents would reappear as ordinary cargo (from reading the code; Gemini Gold
@@ -305,7 +306,16 @@ See Upstream engine work above.
   route ambushes are a single fighter; S14MA's elite Salthi waves are missing;
   Kahl isn't a distinct ship at Blockade Point Alpha's Nav 4.
 - **Gemini Gold's own additions**: the Kilrathi weapon dump in Tr'Pakh, the
-  bonus campaign and the "Pilot" cargo item.
+  bonus campaign and the "Pilot" cargo item. Like the encounters, these need a
+  gameplay review, deferred until the engine is in better shape.
+- **Turrets** are sold armed with two Meson guns and a Tractor Beam (22,500),
+  where the original sells an empty turret (10,000) to arm as you like. This
+  may have been a deliberate balancing choice, by Gemini Gold or the Privateer
+  Remake it built on; to review with the buying and selling mechanism once the
+  engine side is settled. Units for turrets with other guns already exist
+  (`medium_turret_laser`, `…_tachyon` and so on); arming an empty turret
+  depends on whether `upgrade()` can reach a turret's mounts, which is
+  untested.
 
 ### Deliberate
 
@@ -333,11 +343,6 @@ See Upstream engine work above.
 - **Starting reputations**: `New_Game`'s relations table starts Confed friendly
   and Retros level with pirates; the original starts every faction neutral
   except the Kilrathi and pirates (−50) and the Retros (−128).
-- **Turrets** are sold armed with two Meson guns and a Tractor Beam (22,500),
-  where the original sells an empty turret (10,000) to arm as you like. Units
-  for turrets with other guns already exist (`medium_turret_laser`,
-  `…_tachyon` and so on); arming an empty turret depends on whether
-  `upgrade()` can reach a turret's mounts, which is untested.
 - **Galaxy-map positions** of systems in `universe/wcuniverse.xml` are
   approximate.
 - **Engine levels**: the reactor values haven't been compared with the
