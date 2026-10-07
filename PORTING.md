@@ -224,38 +224,24 @@ so the sub-module can stay unpatched:
   reload items into a hold by their "installed" flag, and base inventories.
 - **Narrowing a mount** (to do): Python can widen a mount for a launcher but not
   narrow it again, so launchers can't be sold.
+- **Hidden hold after loading a save** (to report): a saved game's items go
+  back into the upgrade space if flagged installed and into the cargo hold
+  otherwise, and nothing flags hidden-hold items, so a smuggling compartment's
+  contents would reappear as ordinary cargo (from reading the code; Gemini Gold
+  has no hidden holds).
+- **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
+  defined nowhere.
 
 ## Known gaps
+
+Everything that still differs from the original games, or from a working port,
+grouped by what's holding it up.
+
+### Porting gaps
 
 - Settings the engine no longer reads are listed at the end of
   `tools/config_report.txt`; some (fuel usage, shield power-down, jump costs)
   may change gameplay.
-- Upgrades fitted in a slot (shields, armour, reactors, radar, ECM, repair
-  droid, jump drive and so on) can't be sold yet; guns and missiles can. The
-  ship dealer (`bases/weapons_lib.py`) used to remove the item from the hold
-  and then call `RecomputeUnitUpgrades()`, which the engine no longer has, so
-  the sale failed part-way with the item gone and nothing paid. It now uses
-  `Unit.downgrade()` when the engine has it, and otherwise refuses the sale.
-  `downgrade` is proposed upstream; once the sub-module includes it, selling
-  works.
-- Missile and torpedo launchers can't be sold ("CANNOT SELL LAUNCHERS"), as in
-  Gemini Gold as released; the original game allows it. Buying a launcher
-  widens a mount with `upgrade()`, and the engine's Python interface has no
-  way to narrow it again (`downgrade()` only reverses component upgrades).
-- Bought upgrades use cargo space: the ship dealer adds them with `addCargo`,
-  which on the current engine always uses the cargo hold. Gemini Gold's old
-  engine counted `upgrades/...` items against the ship's upgrade space
-  instead, so each fitted item now takes 1 unit of cargo room.
-- A bought afterburner doesn't fit one: the engine's afterburner upgrade
-  scales an afterburner the hull already has, while Gemini Gold's item gives a
-  hull one. The `add_` and `mult_` upgrades (cargo expansion, shield
-  regenerator, speed and thrust enhancers) may not be possible in data alone
-  either: the engine's cargo-hold upgrade code, for one, is commented out.
-- Systems are only damaged once the hull is hit, though Gemini Gold's
-  `config.json` sets `system_damage_on_armor` so that, as in the original,
-  hits on the armour can damage them too. The engine's `DamageRandomSystem`
-  (`libraries/cmd/damageable.cpp`) tests the hull layer for both checks, so
-  the setting has no effect; this is an engine bug to report upstream.
 - The old Gemini Gold engine had Privateer-specific HUD behaviour the current
   engine lacks (see vegastrike/Vega-Strike-Engine-Source#1173).
 - pyflakes still reports undefined names inherited from Gemini Gold (they are
@@ -266,33 +252,115 @@ so the sub-module can stay unpatched:
   `modules/dynamic_mission.py` (`addstr`), `modules/faceoff.py`,
   `modules/launch.py`, `modules/plunder.py`, `modules/rescue.py`,
   `modules/unit.py` and `modules/XGUI.py`.
-- Talon mass is now 180 (was 18) and Broadsword mass 1000 (was 100), in line
-  with the other fighters' acceleration. There are no original mass figures, so
-  these are still to be play-tested.
-- Encounters still differ a lot from the original (to revisit): groups are
-  1–20 ships against 1–4, most system `faction` values in
-  `universe/wcuniverse.xml` don't match the original's main faction, the border
-  lacks Kilrathi, core systems lack bounty hunters, and the Kilrathi and
-  merchant ship mixes are off.
-- Whether +z in the system files points the same way as the original's z
-  hasn't been checked in game. If it doesn't, each system is mirrored top to
-  bottom, and `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it
-  (then negate the z of the start position in `New_Game` too).
-- The original's hidden ambush points (those without asteroids) aren't
-  placed; only the encounter system would use them.
-- Missiles differ from the original (to revisit, with the encounters): the
-  manual, the game data and the Playtesters' Guide all agree on Dumbfire /
-  Heat-seeker / Image-recognition / Friend-or-Foe damage of 13 / 16 / 17.5 /
-  17.5, a 2.5 s refire for all of them, and flight times of 8 / 9 / 9 / 8 s
-  (ranges of about 7200–8000 m). Gemini Gold has damage 9 / 10 / 11 / 11,
-  refires of 3.1–4.2 s and ranges of 30000–40000 m: weaker missiles that chase
-  their target for much longer, which looks deliberate. The proton torpedo's
-  damage matches; its refire is 0.2 s against 0.3 s, and its range is
-  unlimited where the original's looks like about 3600 m.
-- The Plasma Gun has Righteous Fire's stats in both parts of the game (faster
-  refire, more damage, lower energy use than base Privateer's): `weapons.json`
-  holds one version of each weapon.
-- There is no separate Righteous Fire new game. The original could start RF
-  afresh at Jolson with its own starting ship (`initrf.pak`); Gemini Gold plays
-  Privateer and RF as one continuous game, RF beginning when the Steltek gun is
-  stolen at Jolson.
+
+### Waiting on engine work
+
+See Upstream engine work above.
+
+- **Selling slot upgrades** (shields, armour, engines, radar, ECM, repair
+  droid, jump drive and so on). The ship dealer (`bases/weapons_lib.py`) used
+  to remove the item from the hold, then call `RecomputeUnitUpgrades()`, which
+  the engine no longer has, so the sale failed part-way. It now uses
+  `Unit.downgrade()` (#1817) when the engine has it and otherwise refuses the
+  sale. Guns and missiles sell as before.
+- **Armour hits damaging systems.** `config.json` sets `system_damage_on_armor`
+  so that, as in the original, hits on the armour can damage ship systems; the
+  engine ignores it until #1816.
+- **Story-locked jumps.** The original keeps five one-way jumps closed until a
+  story mission opens them (recorded in the save's `SSSS` section): Rygannon →
+  Delta, Delta → Beta, Beta → Gamma and Gamma → Delta Prime with Cross's
+  missions S5MA–S5MD, and Valhalla → Eden with S14MA. The return jumps and
+  Rikel ↔ Eden are always open. Gemini Gold has all five open from the start.
+  Removing them until their mission needs `launchJumppoint` fixed; meanwhile a
+  script could instead switch off the jump drive near a locked jump.
+- **Selling launchers** ("CANNOT SELL LAUNCHERS", as in Gemini Gold as
+  released): buying one widens a mount with `upgrade()`, and Python can't
+  narrow it again.
+- **Upgrades use cargo space**: the dealer adds them with `addCargo`, which
+  always uses the cargo hold, so each fitted item takes 1 unit of cargo room.
+  Gemini Gold's old engine charged `upgrades/...` items to the upgrade space.
+- **Buying an afterburner** doesn't fit one: the engine's afterburner upgrade
+  scales an afterburner the hull already has. The `add_` and `mult_` upgrades
+  (cargo expansion, shield regenerator, speed and thrust enhancers) may not be
+  possible in data alone either; the engine's cargo-hold upgrade code is
+  commented out.
+
+### On hold, to revisit
+
+- **Random encounters**: groups of 1–20 ships against the original's 1–4; the
+  system `faction` values in `universe/wcuniverse.xml` match the original's
+  main faction in only about a third of systems; the border lacks Kilrathi and
+  the core lacks bounty hunters; ship mixes are off; Eden has Salthi; the
+  original's hidden ambush points (those without asteroids) aren't placed; and
+  RF's changed encounter tables for eight systems aren't used.
+- **Missiles**: the manual, the game data and the Playtesters' Guide agree on
+  Dumbfire / Heat-seeker / Image-recognition / Friend-or-Foe damage of 13 / 16
+  / 17.5 / 17.5, a 2.5 s refire for all of them and flight times of 8 / 9 / 9
+  / 8 s (ranges of about 7,200–8,000 m). Gemini Gold has damage 9 / 10 / 11 /
+  11, refires of 3.1–4.2 s and ranges of 30,000–40,000 m. The proton torpedo's
+  damage matches; its refire is 0.2 s against 0.3 s, and its range unlimited
+  where the original's looks like about 3,600 m.
+- **Story-mission encounters**: Gemini Gold's generic mission scripts launch
+  smaller groups than the original's in many missions; the S7MA and S1MC
+  route ambushes are a single fighter; S14MA's elite Salthi waves are missing;
+  Kahl isn't a distinct ship at Blockade Point Alpha's Nav 4.
+- **Gemini Gold's own additions**: the Kilrathi weapon dump in Tr'Pakh, the
+  bonus campaign and the "Pilot" cargo item.
+
+### Deliberate
+
+- Privateer and Righteous Fire are one continuous game, with no separate RF
+  new game (the original could start RF afresh at Jolson, `initrf.pak`). The
+  map is RF's throughout, Blockade Point Alpha included.
+- The Plasma Gun has RF's stats in both parts of the game (faster refire, more
+  damage, lower energy use than base Privateer's): `weapons.json` holds one
+  version of each weapon.
+- Rikel ↔ Eden shows on the nav map: the engine's map shows every object in a
+  system, where the original hid that jump.
+- Capital ships keep Gemini Gold's stronger armour, so they feel like capital
+  ships; the Steltek drone keeps its lower speeds, and the Steltek scout its
+  stronger gun (it doesn't attack).
+
+### Not yet decided
+
+- **Repair prices**: 35% of the price in the upgrade bay and 45% in the
+  software booth. The original's rule is unknown; WCPedia's Tachyon figures
+  (repairs of 16–1,584 credits) suggest about 8% at full damage.
+- **Damaged items' resale**: Gemini Gold scales the sell price with damage; the
+  original stores a damaged resale price for each item.
+- **Hull trade-in**: Gemini Gold pays 50% of the hull's price; the original
+  pays its index value less wear and tear.
+- **Starting reputations**: `New_Game`'s relations table starts Confed friendly
+  and Retros level with pirates; the original starts every faction neutral
+  except the Kilrathi and pirates (−50) and the Retros (−128).
+- **Turrets** are sold armed with two Meson guns and a Tractor Beam (22,500),
+  where the original sells an empty turret (10,000) to arm as you like. Units
+  for turrets with other guns already exist (`medium_turret_laser`,
+  `…_tachyon` and so on); arming an empty turret depends on whether
+  `upgrade()` can reach a turret's mounts, which is untested.
+- **Galaxy-map positions** of systems in `universe/wcuniverse.xml` are
+  approximate.
+- **Engine levels**: the reactor values haven't been compared with the
+  original's engine tables, and buying an engine doesn't change the capacitor
+  size Gemini Gold pairs with each level.
+- **Ship stats**: several turn rates differ (the Dralthi and Stiletto turn too
+  fast, the Broadsword too slow); the player's ships out-accelerate fighters,
+  the reverse of the original; the Drayman's top speed is 150 against 200; the
+  Stiletto's and Demon's afterburners are slower; the Gladius, Demon and
+  Drayman have different shield levels; and the Orion, the Centurion's rear
+  guns and the Tarsus's missiles differ.
+- **Shield levels 6 and 7** use one value for every facet; the original gives
+  one facet a higher value.
+- **Menesch** flees to whichever object he's near rather than the Freyja jump,
+  and isn't followed.
+
+### Still to play-test
+
+The 3D positions (including whether +z points the same way as the original's z;
+if not, `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it, then
+negate the z of the start position in `New_Game`), commodity prices and stock
+and their landing re-roll (RF's too), the Salthi's stats, the Talon's and
+Broadsword's masses (no original figures), the starting missiles, built-in
+equipment and bought upgrades, the Tachyon, the RF upgrade limits and Tarsus
+trade-in, the sell-back prices, the RF mission ships' speeds, the RF Kilrathi
+weapons, and the de-duplicated asteroid fields.

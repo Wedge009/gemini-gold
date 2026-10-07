@@ -14,17 +14,24 @@ play-testing yet.
 
 - **Porting:** the config is converted to the engine's JSON files, and the
   game scripts run under Python 3. Several bugs from earlier conversions are
-  fixed: ship stats in `units.json` sat under the wrong names, and random
-  encounters and cargo missions failed to run.
+  fixed: ship stats in `units.json` sat under the wrong names, ships flew
+  without shields or reactors, random encounters and cargo missions failed to
+  run, and every asteroid field loaded twice.
 - **Faithfulness:** the data is being checked against values decoded from the
-  original game's files, and brought back into line where Gemini Gold had
-  drifted. So far this covers commodity prices and stock numbers (randomised on every
-  landing, as in the original), in-system positions (now three-dimensional
-  again), hidden asteroid fields, place names, a story mission and some ship
-  stats. Random encounters still differ a lot from the original; they may be
-  reviewed later.
+  original games' files, and brought back into line where Gemini Gold had
+  drifted. So far this covers commodity prices and stock (randomised on every
+  landing, as in the original, with Righteous Fire's prices once it begins),
+  equipment sell-back prices, upgrade limits, in-system positions (now
+  three-dimensional again), hidden asteroid fields and jumps, place names, the
+  starting ship, some story missions, ship stats and weapons, and Righteous
+  Fire's changes to the Kilrathi and its mission ships. Privateer and
+  Righteous Fire remain one continuous game, as in Gemini Gold.
+- **Still to come:** random encounters and missiles differ a lot from the
+  original and are to be reviewed. Some fixes wait on changes offered to the
+  Vega Strike engine, among them selling upgrades and the story-locked jumps.
 
-[PORTING.md](PORTING.md) lists every change and the known gaps.
+[PORTING.md](PORTING.md) lists every change, the engine work it waits on, and
+every remaining difference from the original games.
 
 ## Running the game
 
