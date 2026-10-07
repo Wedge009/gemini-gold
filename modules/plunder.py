@@ -1,5 +1,4 @@
 from go_somewhere_significant import go_somewhere_significant
-import vsrandom
 import universe
 import launch
 import faction_ships
@@ -25,7 +24,6 @@ class plunder (Director.Mission):
         self.cred=creds
         self.category=category
         self.donevar=var_when_done
-        sysfile = VS.getSystemFile()
         self.newship=faction_ships.getRandomFighter('merchant')
         self.you=VS.getPlayer()
         self.pos=self.you.Position()
@@ -61,7 +59,6 @@ class plunder (Director.Mission):
             VS.terminateMission(0)
 
     def Execute (self):
-        isSig=0
         if (self.you.isNull()):
             self.Lose (1)
             return

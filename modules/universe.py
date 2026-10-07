@@ -247,8 +247,6 @@ def addTechLevel(level, addToBase=True):
             debug.debug("Upgrade list not big enough to add to tech")
             print(upgrade)
             continue
-        import Director
-        import VS
         cp = VS.getCurrentPlayer()
         siz = Director.getSaveStringLength(cp,"master_part_list_content")
         doIt=True

@@ -2,9 +2,6 @@ import vsrandom
 import launch
 import faction_ships
 import VS
-import Briefing
-import universe
-import unit
 import Director
 class faceoff (Director.Mission):
     def __init__(self):
@@ -32,7 +29,7 @@ class faceoff (Director.Mission):
             faction=faction_ships.get_enemy_of("confed")
         else:
             faction=faction_ships.get_friend_of("confed")
-        launched = self.launchShip(faction_ships.getRandomFighter(faction),faction);
+        self.launchShip(faction_ships.getRandomFighter(faction),faction);
 
     def Execute (self):
         time = VS.GetGameTime()

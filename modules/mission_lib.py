@@ -1,13 +1,8 @@
 import Director
-import patrol
 import cargo_mission
-import bounty
 import plunder
-import defend
-import escort_mission
 import vsrandom
 import universe
-import faction_ships
 import VS
 import PickleTools
 

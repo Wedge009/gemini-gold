@@ -85,7 +85,6 @@ def LaunchNext (fg, fac, type, ai, pos, logo,newshp=[None],fgappend='',FarApart=
     newship = launch.launch (combofg,fac,type,ai,1,1,pos,logo,1,1)
     import dynamic_universe
     dynamic_universe.TrackLaunchedShip(fg,fac,type,newship)
-    rad=newship.rSize ()
 #VS.playAnimation ("warp.ani",pos,(3.0*rad))
     newshp[0]=newship
     return NextPos (newship,pos,FarApart)
@@ -114,7 +113,6 @@ def launch_types_around ( fg, faction, typenumbers, ai, radius, myunit, garbage_
         (nr_ships,pos) = look_for (fg,faction,nr_ships-1,myunit,pos,garbage_collection_distance,retcontainer)
         nr_ships+=1
     debug.debug("after "+str(nr_ships)+ str(retcontainer))
-    count=0
     ret=retcontainer[0]
     found=0
     for tn in typenumbers:

@@ -45,7 +45,6 @@ class escort_local (Director.Mission):
 		self.younum=VS.getCurrentPlayer()
 		self.you=VS.getPlayer()
 		self.respawn=0
-		name = self.you.getName ()
 		self.successdelay=0
 		self.objectivezero=0
 		self.mplay=universe.getMessagePlayer(self.you)

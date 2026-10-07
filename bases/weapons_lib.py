@@ -4,7 +4,6 @@ import functools
 import PlayerShip
 import GUI
 import methodtype
-import string
 import quest
 
 import custom
@@ -149,7 +148,7 @@ def MakeWeapon(concourse,timeofdayignored='_day', dealername="bases/repair_upgra
 	Base.Python (room_ship_dealer, 'my_comp_id', 0.2925, -0.96, 0.68, 0.733333, 'Purchase Galaxy', '#\nimport weapons_lib\nweapons_lib.ShipPurchase(\'galaxy\')\n',True)
 
 	# create the repair bay and add a link
-	room_repair_bay = MakeRepairBay(room_ship_dealer, upgradename, use_ship_320_240_upgrade)
+	MakeRepairBay(room_ship_dealer, upgradename, use_ship_320_240_upgrade)
 
 	# add exits to the concourse
 	Base.Link (room_ship_dealer, 'exit1_to_concourse',  -0.27, 0.466667, 0.1725, 0.293333, 'Main_Concourse',concourse)
@@ -181,7 +180,7 @@ def MakeRepairBay(room_ship_dealer, upgradename, use_ship_320_240_upgrade):
 	# create the repair bay animation screen
 	room_animation = Base.Room ('XXXRepair/Upgrade_Loading')	# create an interstitial screen
 	RepairBayComputer.singleton = None
-	animation = RepairBayComputerAnimation(room_animation, room_repair_bay, upgradename, use_ship_320_240_upgrade)
+	RepairBayComputerAnimation(room_animation, room_repair_bay, upgradename, use_ship_320_240_upgrade)
 
 	# create link from ship dealer to animation screen
 	# this also resets the repair bay and software booth computers
@@ -211,7 +210,7 @@ GUI.GUIRootSingleton.rooms[%s].owner.reset()
 	(x, y, w, h) = GUI.GUIRect(132, 35, 53, 43).getHotRect()
 	Base.Link (room_repair_bay, 'my_comp_id', x, y, w, h, 'Software_Booth', room_software_booth)
 
-	comp = RepairBayComputer(room_repair_bay)
+	RepairBayComputer(room_repair_bay)
 
 	return room_repair_bay
 
@@ -221,7 +220,7 @@ def MakeSoftwareBooth(room_repair_bay):
 	room_software_booth = Base.Room('Software_Booth')
 
 	# create the software booth computer
-	comp = SoftwareBoothComputer(room_software_booth)
+	SoftwareBoothComputer(room_software_booth)
 
 	# create link back to repair bay
 	Base.Link (room_software_booth, 'link_exit_1', -1, -1, 2, 0.02, 'Exit', room_repair_bay)
@@ -827,7 +826,6 @@ class SoftwareBoothComputer (SoftwareBoothComputerGeneric):
 			item_name = self.items[self.current_item]
 			price = self.buy_prices[item_name]
 			player = VS.getPlayer()
-			maps = {'humboldt_map': 1, 'farris_map': 1, 'potter_map': 1, 'clarke_map': 1}
 			if player.getCredits() < price:
 				self.draw("INSUFFICIENT CREDIT")
 			else:

@@ -1,7 +1,3 @@
-import Base
-import VS
-import GUI
-import XGUITypes
 import XGUIDebug
 
 
@@ -66,5 +62,6 @@ class XGUIPythonScriptAPI:
 """----------------------------------------------------------------"""
 
 def XGUIInit():
+	global XGUIRootSingleton
 	XGUIRootSingleton = XGUIRoot()
 

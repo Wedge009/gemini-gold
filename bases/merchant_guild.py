@@ -1,5 +1,4 @@
 import Base
-import VS
 import guilds
 def Can():
 	return guilds.CanMerchantGuild()

@@ -1,13 +1,10 @@
 import vsrandom
 import faction_ships
 import launch_recycle
-import launch
 import VS
 import unit
-import sys
 import adventure
 import news
-import universe
 import fg_util
 import dynamic_battle
 import debug
@@ -102,7 +99,6 @@ class random_encounters:
 
     def AsteroidNear (self,uni, how):
         i = VS.getUnitList()
-        dd = self.cur.detection_distance
         while not i.isDone():
             un = i.current()
             if (uni.getSignificantDistance(un)<how):
@@ -224,7 +220,6 @@ class random_encounters:
             return VS.Unit()
         else:
             #significant_unit is something.... lets see what it is
-            cursys = VS.getSystemFile()
             if (self.DifferentSystemP()):
                 debug.debug("different")
                 self.SetModeZero()

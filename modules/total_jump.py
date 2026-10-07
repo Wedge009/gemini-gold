@@ -1,11 +1,7 @@
 import vsrandom
-import launch
-import faction_ships
 import VS
 import Briefing
 import universe
-import unit
-import Director
 class total_jump:
     def __init__(self):
         VS.SetDifficulty(.1)

@@ -11,7 +11,7 @@ PURCHASE_MAX = 10
 def MakeCommodity(room_from,time_of_day='_day'):
     # create the commodity exchange
     room_id = Base.Room ('Commodity_Exchange')
-    comp = CommodityComputer(room_id)
+    CommodityComputer(room_id)
 
     Base.Link (room_id, 'exit', -1, -1, 2, 0.2513, 'Exit', room_from)
     return room_id
@@ -24,7 +24,7 @@ def MakeCommodityLink(room_from, x, y, w, h, label=None):
 
     # create an interstitial screen
     room_start = Base.Room ('XXXCommodity_Exchange_Loading')
-    animation = CommodityComputerAnimation(room_start, room_commodity)
+    CommodityComputerAnimation(room_start, room_commodity)
 
     # add the link which calls Python code, restarting the animation
     #Base.Link (room_commodity, 'commodities', x, y, w, h, label, room_from)
@@ -126,9 +126,9 @@ class CommodityComputer:
         guiroom.owner = self
 
         # draw the background images
-        background = GUI.GUIStaticImage(guiroom, 'background', ( 'interfaces/commodity/Commodity.spr', GUI.GUINPOTRect(0, 0, 320, 200, 320, 200, "pixel") ))
+        GUI.GUIStaticImage(guiroom, 'background', ( 'interfaces/commodity/Commodity.spr', GUI.GUINPOTRect(0, 0, 320, 200, 320, 200, "pixel") ))
 #        computer   = GUI.GUIStaticImage(guiroom, 'computer', ( 'interfaces/commodity/Commodity_Computer.spr', GUI.GUINPOTRect(0, 0, 320, 200, 320, 200, "pixel") ))
-        computer   = GUI.GUIStaticImage(guiroom, 'computer', ( 'interfaces/commodity/Commodity_Computer_hi.spr', GUI.GUIRect(0, 0, 132, 100, "pixel") ))
+        GUI.GUIStaticImage(guiroom, 'computer', ( 'interfaces/commodity/Commodity_Computer_hi.spr', GUI.GUIRect(0, 0, 132, 100, "pixel") ))
 
         self.buttons = {}
 
@@ -593,7 +593,7 @@ def get_player_manifest(prices):
         not_ok_to_sell = 0
         try:
             # only add item if it is on the price list for this planet/station/outpost
-            price = prices[name]
+            prices[name]
             imports.append([name, quantity])
         except:
             not_ok_to_sell = 1

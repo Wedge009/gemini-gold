@@ -1,5 +1,3 @@
-import Base
-import Director
 #import code #Doesn't seem to be needed...
 import VS
 from quest import checkSaveValue

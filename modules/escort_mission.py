@@ -6,7 +6,6 @@ import faction_ships
 import VS
 import Briefing
 import universe
-import unit
 import Director
 import quest
 escort_num=0

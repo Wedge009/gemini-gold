@@ -149,8 +149,6 @@ class Guild(GenericGuild):
 			else:
 				Base.Message('We have checked your account and it appears that you do not have enough credits to join this guild. Please come back and reconsider our offer when you have received more credits.')
 				VS.playSound("guilds/"+str(self.name).lower()+"notenoughmoney.wav",(0,0,0),(0,0,0))
-		plr=VS.getPlayer()
-		plrnum=plr.isPlayerStarship()
 		VS.StopAllSounds()
 		if self.CanPay():
 			custom.run('guilds',[self.name,'join'], JoinStatus)
@@ -160,7 +158,6 @@ class Guild(GenericGuild):
 
 def handle_guilds_message(local, cmd, args, id):
 	un = VS.getPlayer()
-	plr = un.isPlayerStarship()
 	if VS.isserver():
 		import server
 		if not server.getDocked(un):

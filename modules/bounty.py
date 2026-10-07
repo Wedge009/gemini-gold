@@ -30,8 +30,6 @@ class bounty (Director.Mission):
         self.runaway=run_away
         self.greetingText=greetingText
         self.cred=creds
-        mysys=VS.getSystemFile()
-        sysfile = VS.getSystemFile()
         self.you=VS.getPlayer()
         self.enemy=VS.Unit()
         self.adjsys=go_to_adjacent_systems (self.you,vsrandom.randrange(minnumsystemsaway,maxnumsystemsaway+1),jumps)
@@ -66,7 +64,6 @@ class bounty (Director.Mission):
     def LaunchedEnemies(self,significant):
         pass
     def Execute (self):
-        isSig=0
         if (self.you.isNull()):
             self.Lose (1)
             return

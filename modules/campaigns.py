@@ -19,7 +19,6 @@ def getCampaigns():
 		loadAll(VS.getCurrentPlayer())
 	return campaigns
 
-import campaign_lib
 from campaign_lib import *
 
 def OptionalTalkingHead(sprite):
@@ -812,8 +811,6 @@ terrellsuccess=[("Terrell","Congratulations. That was some amazing flying. You t
                 ("Burrows","I'll have my head examined. Take care, Admiral.")]
 def LoadTest():
 	CROSS_SPRITE     = ("taryn.spr", "Talk_To_Taryn_Cross")#,"bases/heads/cross.spr")
-	GOODIN_SPRITE    = ("goodin.spr", "Talk_To_Goodin","bases/heads/goodin.spr")
-	SANDOVAL_SPRITE  = ("sandoval.spr","Talk_To_Sandoval","bases/heads/sandoval.spr") #sprite file for the fixer
 	priv=Campaign("kiddie")
 	priv.Init(MakeMission(priv,	
 				CROSS_SPRITE,
@@ -879,7 +876,6 @@ def LoadMainCampaign():
 
 	GOODIN_SPRITE    = ("goodin.spr", "Talk_To_Goodin","bases/heads/goodin.spr")
 	GoodinMission    = CampaignClickNode() # Initialize each node
-	TERRELL_SPRITE   = ("terrell.spr", "Talk_To_Admiral_Terrell")
 	TerrellMission   = CampaignClickNode() # Initialize each node
 	TerrellFinish    = CampaignNode() # Initialize each node
 	
@@ -1944,7 +1940,6 @@ def LoadRFTaylaCampaign():
 	TaylaMission2=CampaignClickNode()
 	TaylaMission3=CampaignClickNode()
 	TaylaMission4=CampaignClickNode()
-	TaylaMissionFinal=CampaignClickNode()
 	tayla1 = {
 		'failure': taylafailure, 
 		'intro': [
@@ -2023,9 +2018,6 @@ def LoadRFTaylaCampaign():
 			('Burrows', 'Sorry. Are you still offering?'), 
 			('Tayla', 'Yes, but only because of your past success. You are to take the Brilliance to Basque in Pyrenees for 40000. Decide carefully. Do you want the job?')], 
 		'accept': [('Tayla', "Good.", "barspeech/campaign/rf/tayla4accept1.ogg")]}
-	taylafinal=[
-		("Tayla","Great job. You've made my friends on Basque very happy. Well, that's all the work I have for you. Be advised, though, I've got several contacts who are interested in your exploits. I'll make sure to put in a good word for you.", "barspeech/campaign/rf/taylafinal.ogg"),
-		("Burrows","Great. Thanks.")]
 	rf.Init(TaylaMission1)
 	MakeCargoMission(rf,
 			TAYLA_SPRITE,
@@ -2099,12 +2091,9 @@ def LoadRFTaylaCampaign():
 	return rf
 
 def LoadRFCampaign():
-	TAYLA_SPRITE     = ("tayla.spr","Talk_To_Tayla","bases/heads/taylapirate.spr") #sprite file for the fixer
 	MONTE_NEWDET_SPRITE     = ("monte0.spr","Talk_To_Monte","bases/heads/montenewdetroit.spr") #sprite file for the fixer
 	MONTE_MINING_SPRITE     = ("monte1.spr","Talk_To_Monte","bases/heads/monte.spr") #sprite file for the fixer
 	INFORMANT_SPRITE = ("informant.spr","Talk_To_Informant","bases/heads/informant.spr")
-	LYNCH_SPRITE     = ("lynch.spr","Talk_To_Lynch","bases/heads/lynch.spr") #sprite file for the fixer
-	MURPHY_SPRITE    = ("murphy.spr", "Talk_To_Murphy","bases/heads/murphy.spr")
 	rf=Campaign("rf_campaign")
 	Theft=CampaignNode()
 	MastersonMission1= CampaignClickNode()
@@ -2114,7 +2103,6 @@ def LoadRFCampaign():
 	MastersonMission5= CampaignClickNode()
 	MastersonIntro=CampaignClickNode()
 	MonteMission1 = CampaignClickNode()
-	MonteMission2 = CampaignClickNode()
 	MonteMission3 = CampaignClickNode()
 	MonteMission4 = CampaignClickNode()
 	montefailure=[("Monte","You could have done Gemini a great service. Too bad.")]
@@ -2204,7 +2192,6 @@ def LoadRFCampaign():
 		'reminder': [('Monte', "Menesch lives. Did you forget his location... I will repeat it. He is currently in operation somewhere near the Troy system. If you don't find him in Troy, he's bound to be hiding out in one of the neighbouring systems. Your mission is to destroy him.", "barspeech/campaign/rf/monte4reminder.ogg")], 
 		'accept': [('Monte', "Unfortunately, I don't know his exact location, but I can tell you he is currently in operation somewhere near the Troy system. If you don't find him in Troy, he's bound to be hiding out in one of the neighbouring systems. I believe that if you patrol all those systems, you will be able to find him. I do not know how well he defends himself. Good luck, this may be our last meeting.", "barspeech/campaign/rf/monte4accept1.ogg")]}
 	
-	Monte=CampaignClickNode()
 	masterson1 = {
 		'failure': mastersonfailure, 
 		'intro': [

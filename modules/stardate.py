@@ -1,4 +1,3 @@
-import string
 
 # Independent of the date system used, this will scale how fast time progresses
 # in VS.

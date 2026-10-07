@@ -207,7 +207,6 @@ def SimulateBattles():
                 deadbattlesiter-=1
                 return 1
         else:
-            persystemattacklist=cpsal
             cpsal = {}
             simulateiter= attacklist.items()
 
@@ -249,11 +248,10 @@ def LookForSystemWideTrouble(faction,sys):
 def randomMovement(fg,fac):
     import universe
     import fg_util
-    citizen=VS.isCitizen(fac)
     sys=fg_util.FGSystem(fg,fac)
     convoywhere=fg.find("->")
     if (convoywhere!=-1):
-        endpoints=[fg[0:convoywhere],fg[convoywhere+2:]]
+        pass
         
     if fg.find("Insys")!=-1:
         return#can't go about moving insys fgs away
@@ -354,11 +352,9 @@ def LookForTrouble (faction):
     if (sys!='nil'):
         if not citizen:
             enfac = faction_ships.get_enemy_of(faction)
-            foundanyone=0
             l=fg_util.AllFGsInSystem(enfac,sys)
             j=vsrandom.randrange(0,len(l)+3)
             if (j<len(l)):
-                foundanyone=1 #FIXME include some sort of measure "can I win"
                 if (vsrandom.randrange(0,5)==0):
                     initiateAttack(i,faction,sys,l[j],enfac)
             elif (vsrandom.randrange(0,3)==0):

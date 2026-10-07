@@ -7,7 +7,6 @@ import VS
 import ShowProgress
 import methodtype
 import mission_lib
-import Director
 
 pirate_bases = {
 }
@@ -138,7 +137,6 @@ class QuineComputer:
 #                       self.add_button( GUI.GUIButton(guiroom,'XXXRight','btn_right', sprites[3], hot_loc[3]), scroll_click )
 
         current_base = universe.getDockedBase()
-        player = VS.getPlayer()
 
         # this doesn't change while docked, so only call it once
         self.str_start = get_location_text(current_base)

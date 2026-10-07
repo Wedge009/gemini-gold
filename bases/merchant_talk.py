@@ -1,4 +1,3 @@
-import Base
 import guilds
 import VS
 VS.playSound("guilds/merchantreadyforamission.wav",(0,0,0),(0,0,0))

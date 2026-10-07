@@ -1,7 +1,5 @@
 from go_to_adjacent_systems import *
 import vsrandom
-import launch
-import faction_ships
 import VS
 import Briefing
 import universe
@@ -19,7 +17,6 @@ class patrol (Director.Mission):
         self.distance = distance_from_base
         self.you = VS.getPlayer()
         self.quantity=num_significants_to_patrol
-        name = self.you.getName ()
         self.mplay=universe.getMessagePlayer(self.you)
         VS.IOmessage (0,"patrol",self.mplay,"You must patrol a system for us :")
         self.adjsys = go_to_adjacent_systems(self.you,numsystemsaway,jumps)
@@ -42,8 +39,6 @@ class patrol (Director.Mission):
 
     def GeneratePatrolList (self):
         VS.IOmessage (0,"patrol",self.mplay,"You must get within %f klicks of" % self.distance)
-        count=self.quantity*6
-        str=""
         import universe
         self.patrolpoints=universe.significantUnits()
         while (len(self.patrolpoints)>self.quantity and len(self.patrolpoints)):

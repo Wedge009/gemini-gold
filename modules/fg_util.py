@@ -7,7 +7,6 @@ import VS
 import vsrandom
 import Vector
 import faction_ships
-import universe
 from universe import AllSystems
 
 import ShowProgress
@@ -116,7 +115,6 @@ def GetRandomBaseName (n,faction):
     retval=[]
     global basenamelist
     try:
-        import seedrandom
         if (not (faction in basenamelist)):
             basenamelist[faction]=ReadBaseNameList(faction+'_base')
         retval = basenamelist[faction][basecounter:basecounter+n]
@@ -194,7 +192,6 @@ def ListToPipe (tup):
 
 def _MakeFGString (starsystem,typenumlist):
     totalships = 0
-    ret = []
     damage=0
     strlist=[]
     for tt in typenumlist:
@@ -387,7 +384,6 @@ def DeleteLegacyFGs(sys):
 def DeleteLegacyFGLeftovers():
     # Legacy cleanup
     allsys = AllSystems()
-    numsys = len(allsys)
     count = 0
     oldpct = 0
     for sys in allsys:
@@ -549,7 +545,6 @@ def ShipsInFG(fgname,faction,offset=1):
 def CapshipInFG(fg,fac):
     key = MakeFGKey(fg,fac)
     for num in range(ShipListOffset(),Director.getSaveStringLength(ccp,key),PerShipDataSize()):
-        import faction_ships
         shipinquestion=Director.getSaveString(ccp,key,num)
         if (faction_ships.isCapital(shipinquestion)):
             return shipinquestion
@@ -726,18 +721,7 @@ def launchUnits(sys):
         faction=faction_ships.intToFaction(factionnum)
         fglist=filterLaunchedFGs(FGsInSystem(faction,sys))
         isHostile=VS.GetRelation(ownerfac,faction)<0
-        isForeign=faction.find(ownerfac)==-1
 
-        if isForeign:
-            if basecount+jumpcount:
-                frac=len(fglist)/float(basecount+jumpcount)
-            else:
-                frac=0.0
-        else:
-            if basecount+planetcount+jumpcount:
-                frac=len(fglist)/float(planetcount+basecount+jumpcount)
-            else:
-                frac=0.0
         if isHostile:
             for flightgroup in fglist:
                 X=incr_by_abs(vsrandom.uniform(-1.0,1.0),1)*farlen

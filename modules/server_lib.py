@@ -4,12 +4,10 @@ import importlib
 import server
 import launch
 import dynamic_mission
-import mission_lib
+import mission_lib #adds to procedures list
 import guilds
 import vsrandom
-import universe
 import faction_ships
-import custom
 import campaign_lib
 
 def serverDirector():

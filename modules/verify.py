@@ -172,7 +172,6 @@ def IsFinished():
 
 	return len(traverser)>0
 for iter in campaigns.campaigns:
-	import verify_missions
 	verify_missions.campaign_name[iter.name]=1
 	traverser.append(Traverser(iter))
 print (len(traverser))

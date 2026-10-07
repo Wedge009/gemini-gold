@@ -226,7 +226,6 @@ class DialogBox:
 			button.owner.handleButton(self.id)
 		def create(self,owner,room,x,y,wid,hei):
 			screen_loc=makeRect(x+text_height/4.,y-text_height/2.,wid-text_height/2.,self.hei)
-			text=self.text or ''
 			self.gui_element=GUI.GUIButton(room,''+self.text,self.idname,{'*':self.sprite},screen_loc,
 				clickHandler=self.handleButton, owner=owner, 
 				textfontsize=font_size,textbgcolor=GUI.GUIColor(0.3,0.,0.,.5))
@@ -241,7 +240,6 @@ class DialogBox:
 			self.arg=arg
 		def create(self,owner,room,x,y,wid,hei):
 			screen_loc=makeRect(x+text_height/4.,y-text_height/2.,wid-text_height/2.,self.hei)
-			text=self.text or ''
 			toroom = GUI.GUIRootSingleton.getRoomById(self.arg)
 			if not toroom:
 				toroom = GUI.GUIRoom(self.arg)
@@ -259,7 +257,6 @@ class DialogBox:
 			self.arg=arg
 		def create(self,owner,room,x,y,wid,hei):
 			screen_loc=makeRect(x+text_height/4.,y-text_height/2.,wid-text_height/2.,self.hei)
-			text=self.text or ''
 			self.gui_element=self.cons(room,self.arg,''+self.text,self.idname,{'*':self.sprite},screen_loc,
 				clickHandler=self.handleButton, owner=owner, 
 				textfontsize=font_size,textbgcolor=GUI.GUIColor(0.3,0.,0.,.5))
@@ -304,7 +301,6 @@ class DialogBox:
 		def height(self):
 			return reduce(max,map(lambda x:x.height(),self.items))
 		def create(self,owner,room,x,y,wid,hei):
-			screen_loc=makeRect(x,y,wid,hei)
 			self.gui_element=GUI.GUIGroup(room)
 			if self.items:
 				totalwid=0.

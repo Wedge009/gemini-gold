@@ -1,14 +1,8 @@
 from go_to_adjacent_systems import *
 from go_somewhere_significant import *
-import vsrandom
-import launch
-import faction_ships
 import VS
-import Briefing
 import universe
-import unit
 import Director
-import quest
 class go_none:
     def Execute(self):
         return 1
@@ -53,7 +47,6 @@ class directions_mission (Director.Mission):
         self.dir_privateSetupPlayer(self.cp)
         self.mplay=universe.getMessagePlayer(self.you)
         self.obj=0
-        name = self.you.getName ()
 
     def takeCargoAndTerminate (self,you, remove=1):
         global isambushrunning

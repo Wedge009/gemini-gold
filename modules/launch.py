@@ -73,7 +73,7 @@ def launch_waves_in_area(fgname,faction,type,ai,nr_ships,nr_waves,radius,pos,log
     pos=(pos[0]+vsrandom.uniform((-radius)/2,radius/2.0),
          pos[1]+vsrandom.uniform((-radius)/2,radius/2.0),
          pos[2]+vsrandom.uniform((-radius)/2,radius/2.0))
-    un = launch(fgname,faction,type,ai,nr_ships,nr_waves,pos,logo,useani,skipdj)
+    launch(fgname,faction,type,ai,nr_ships,nr_waves,pos,logo,useani,skipdj)
   
 def launch_wave_in_area(fgname,faction,type,ai,nr_ships,radius,pos,logo='',useani=1,skipdj=0):
     launch_waves_in_area(fgname,faction,type,ai,nr_ships,1,radius,pos,logo,useani,skipdj)

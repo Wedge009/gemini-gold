@@ -1,4 +1,3 @@
-import sys
 import VS
 import Director
 

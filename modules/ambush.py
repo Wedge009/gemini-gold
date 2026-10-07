@@ -1,5 +1,4 @@
 import VS
-import Director
 import directions_mission
 
 class ambush(directions_mission.directions_mission):

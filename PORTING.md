@@ -245,6 +245,9 @@ Privateer's files:
   errors. Also fixed: typos in rarely used paths (`XGUI`, `faceoff`,
   `launch`, `campaign_lib`, `plunder`, `rescue`), two unused `obsolete_`
   functions in `unit.py` removed, and `dynamic_news.py`'s invalid escape.
+  Unused imports and variables are gone too, apart from imports kept for
+  what importing does (modules that register their handlers with `custom`,
+  now commented as such). Unused variables that held a call keep the call.
 - Righteous Fire's mission ships have the original's speed and thrust boosts
   (from their stats files in `TYPES/`): Jones (×1.33) and his escort of elite
   Salthi (×1.25) in the final mission, Menesch (×1.17, speed only) and

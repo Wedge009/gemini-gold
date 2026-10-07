@@ -1,5 +1,4 @@
 import Base
-import VS
 import guilds
 
 def MakeMissionComputer(concourse,timeofdayignored="_day",bkg=[('background1', 'bases/mission_computer/background.spr', 0.582, -0.2716),('yellowblink', 'bases/mission_computer/yellow_blink.spr', -0.582, 0.8924)],logon_bkg=None):

@@ -94,13 +94,13 @@ def getRandomRadar ():
 
 def UpgradeRadar (un):
     cat = getRandomRadar ()
-    temp=un.upgrade (cat,0,0,1,0)
+    un.upgrade (cat,0,0,1,0)
 
 def UpgradeAfterburner (un,diff):
     i=0
     while (i<diff*3.0):
         cat = GetRandomAfterburner(diff)
-        temp=un.upgrade (cat.GetContent(),0,0,1,0)
+        un.upgrade (cat.GetContent(),0,0,1,0)
         i=i+1
 
 def getRandomEngine (diff): #get random engine from master part list
@@ -155,16 +155,16 @@ def GetRandomRepairSys ():
 def basicUnit (un, diff):
     i=0
     while (i<2):#two lasers
-        percent=un.upgrade("laser",i,i,0,1)
+        un.upgrade("laser",i,i,0,1)
         i=i+1
     UpgradeEngine (un,diff)
     UpgradeRadar (un)
     if ((vsrandom.random()<0.9) and (vsrandom.random()<(diff*5.0))):
         UpgradeAfterburner(un,diff)
         if ((vsrandom.random()<0.9) and (vsrandom.random()<(diff*5.0))):
-            percent=un.upgrade("jump_drive",i,i,0,1)
+            un.upgrade("jump_drive",i,i,0,1)
     else:
-        percent=un.upgrade("jump_drive",i,i,0,1)
+        un.upgrade("jump_drive",i,i,0,1)
     #and after some careful review of the code in question, it appears upgrades below are already offered by default on blank ships...only need to give 'em a pair of guns
     #some engines
     #    percent=un.upgrade("engine_level_0",0,0,0,0)
@@ -193,13 +193,11 @@ def upgradeUnit (un, diff):
     creds=0.0
     curmount=0
     mycargo=VS.Cargo("","",0,0,0,0)
-    str=""
     basicUnit(un,diff)
     mycargo = GetRandomHull()#ok now we get some hull upgrades
     creds =upgradeHelper (un,mycargo,0,creds,1,0)
     mycargo = GetRandomArmor()#and some random armor
     creds =upgradeHelper (un,mycargo,0,creds,1,0)
-    inc=0
     rndnum=vsrandom.random()*2
     if (rndnum<diff):
         mycargo = GetRandomRepairSys()#here there is a small chance that you will get a repair system.

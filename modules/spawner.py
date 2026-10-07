@@ -1,15 +1,9 @@
-from go_to_adjacent_systems import *
-from go_somewhere_significant import *
 import vsrandom
 import launch
 import faction_ships
 import VS
-import Briefing
-import universe
-import unit
 import Vector
 import Director
-import quest
 class spawner (Director.Mission):
     def __init__ (self):
         Director.Mission.__init__(self)
@@ -36,7 +30,7 @@ class spawner (Director.Mission):
                         type=faction_ships.getRandomFighter(facname)
                         if (iter>=len(self.facnames)/2):
                             type=faction_ships.getRandomCapitol(facname)
-                        tmp=launch.launch_wave_around_unit("Shadow_"+facname,facname,type,"default",1,200,250,VS.getPlayer(),'',0)
+                        launch.launch_wave_around_unit("Shadow_"+facname,facname,type,"default",1,200,250,VS.getPlayer(),'',0)
 #                        tmp.upgrade("basic_armor",0,0,1,0)
 #                        tmp.upgrade("shield_4_Level1",0,0,1,0)
 #                        tmp.upgrade("reactor_level_2",0,0,1,0)

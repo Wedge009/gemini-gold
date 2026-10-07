@@ -1,13 +1,8 @@
-from go_to_adjacent_systems import *
 import vsrandom
-import launch
-import faction_ships
 import VS
-import Briefing
 import universe
 import unit
 import quest
-import Director
 import ambush
 class patrol_ambush (ambush.ambush):
 	def __init__ (self, num_significants_to_patrol, distance_from_base, creds, savevar,systems,delay,faction,numenemies,dyntype='',dynfg='',greetingText=["Hello there, smuggler. Prepare to die!", "The price on your head is big enough that I missed my lunch"],directions=[],destination=''):
@@ -19,7 +14,6 @@ class patrol_ambush (ambush.ambush):
 		self.distance = distance_from_base
 		you = VS.getPlayer()
 		self.quantity=num_significants_to_patrol
-		name = you.getName ()
 		self.mplay=universe.getMessagePlayer(you)
 		self.AdjustFaction=False
 
@@ -34,7 +28,6 @@ class patrol_ambush (ambush.ambush):
 	def GeneratePatrolList (self):
 		VS.IOmessage (0,"patrol",self.mplay,"You must get within %f klicks of" % self.distance)
 		count=self.quantity*2
-		str=""
 		while (self.quantity>0 and count > 0):
 			count -= 1
 			sig = unit.getSignificant (vsrandom.randrange (0,128),0,0)

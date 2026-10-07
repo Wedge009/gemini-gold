@@ -4,7 +4,6 @@ import fg_util
 import vsrandom
 import faction_ships
 import universe
-import dynamic_universe
 import dynamic_news
 import debug
 import generate_dyn_universe
@@ -204,7 +203,6 @@ def getPriceModifier(isUncapped):
     return VS.GetDifficulty()/.5+.9
 
 def howMuchHarder(makeharder):
-    import difficulty
     if  (makeharder==0):
         return 0
     udiff = getMissionDifficulty()
@@ -379,7 +377,6 @@ def generatePatrolMission (path,numplanets,enemy):
     creds = numplanets*100+3*800+syscreds*len(path)
     creds = (capshipprob*4+.5*forceattack+fighterprob+1)*200*numplanets*maxships+.5*syscreds*len(path)
     additional=()
-    additionalinstructions=""
     creds*=getPriceModifier(False)
     addstr=""
     isFixer=vsrandom.random()
@@ -655,9 +652,6 @@ def generateBountyMission (path,fg,fac):
         module='bounty',
         constructor='bounty',
         args=(0,0,finalprice,runaway,diff,fac,path,'',fg,typ)))
-    diffstr = ""
-    if (diff>0):
-        diffstr="  The ship in question is thought to have %d starships for protection."%diff
     randCompany = GetRandomCompanyName()
     bountyb = GetRandomBountyBrief()
     composedBrief = bountyb.replace('$CL',randCompany)
@@ -767,8 +761,7 @@ def contractMissionsFor(fac,baseship,minsysaway,maxsysaway):
     totalMissionNumber=0
     insysMissionNumber=0
     facnum=faction_ships.factionToInt(fac)
-    enemies = list(faction_ships.enemies[facnum])
-    script=''
+    list(faction_ships.enemies[facnum])
     cursystem = VS.getSystemFile()
     thisfaction = VS.GetGalaxyFaction (cursystem)
     preferredfaction=None

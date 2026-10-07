@@ -43,7 +43,6 @@ class defend (Director.Mission):
         self.defendee=VS.Unit()
         self.difficulty=1
         self.you=VS.getPlayer()
-        name = self.you.getName ()
         self.mplay=universe.getMessagePlayer(self.you)
         self.adjsys = go_to_adjacent_systems(self.you,numsystemsaway,jumps)
         self.adjsys.Print("You are in the %s system,","Proceed swiftly to %s.","Your arrival point is %s.","defend",1)

@@ -1,12 +1,9 @@
 from go_to_adjacent_systems import *
 from go_somewhere_significant import *
-import vsrandom
 import launch
 import faction_ships
 import VS
 import Briefing
-import universe
-import unit
 import Director
 class wingman (Director.Mission):
     def __init__ (self,price,factionname,numships,difficulty):
@@ -18,7 +15,6 @@ class wingman (Director.Mission):
         self.diff=difficulty
         self.adjsys=go_somewhere_significant (self.you,0,5000,0)
         self.wingship = faction_ships.getRandomFighter(factionname)
-        nam = "[%s]" % self.wingship
         self.adjsys.Print("Hello I'm waiting for your arrival at %s" ,self.wingship)
         VS.IOmessage(1,self.wingship,"all","Once you meet me")
         VS.IOmessage(2,self.wingship,"all","I will obey your commands until our contracts expire.")

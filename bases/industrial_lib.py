@@ -1,6 +1,4 @@
 import Base
-import dynamic_mission
-import VS
 import PlayerShip
 
 def MakeIndustrial(sunny,time_of_day='',AWACS=False):
@@ -57,7 +55,7 @@ def MakeIndustrial(sunny,time_of_day='',AWACS=False):
 
 	# Create the Quine 4000 screens
 	import computer_lib
-	room_personal_computer = computer_lib.MakePersonalComputer(room_landing_pad, room_concourse)
+	computer_lib.MakePersonalComputer(room_landing_pad, room_concourse)
 
 	# add bar
 	import bar_lib

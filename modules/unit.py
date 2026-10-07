@@ -163,7 +163,6 @@ def getMinDistFrom(sig1,siglist=None):
 
 def minimumSigDistApart():
     siglist=getPlanetList(0)
-    i=0
     mindist=100000000000000000000000000000000000000000000.0
     ave=0.0
     for sig1 in siglist:

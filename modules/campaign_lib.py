@@ -107,7 +107,6 @@ class HasUndocked(Condition):
         
         global fixerloaded
 
-        import fixers
         debug.debug('*** HasUndocked check false')
         if self.count==-1:
             self.count=fixerloaded
@@ -934,7 +933,6 @@ class Campaign:
         return ["success"]
     
     def sendGotoMessage(self, newnodenum):
-        plr = VS.getCurrentPlayer()
         #if VS.isserver():
         #    if not self.isDocked():
         #        debug.debug("Not notifying client of setCurrentNode(%d) because not fully docked yet"%(newnodenum))
@@ -1419,7 +1417,7 @@ def MakeNoFailureMission(campaign,sprite,conditiontobegin,conditiontoend,scripto
         node=CampaignClickNode()
     getthemission=CampaignNode()
     reject2node=CampaignClickNode()
-    ret=AskToAcceptMission(campaign,
+    AskToAcceptMission(campaign,
         sprite,
         conditiontobegin,
         conditiontobegin,
@@ -1586,7 +1584,6 @@ def clickChoice(room,choicenum):
 default_room = -1
 def handle_campaign_message(local, cmd, args, id):
     global queued_cmds, default_room
-    plr = VS.getCurrentPlayer()
     if VS.isserver():
         import server
         if not server.getDocked(VS.getPlayer()):

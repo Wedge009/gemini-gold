@@ -1,10 +1,7 @@
-from go_somewhere_significant import go_somewhere_significant
-import vsrandom
 import universe
 import launch
 import faction_ships
 import Director
-import unit
 import quest
 import VS
 import Briefing

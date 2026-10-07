@@ -1,13 +1,10 @@
 import universe
 from go_to_adjacent_systems import go_to_adjacent_systems
-from go_somewhere_significant import go_somewhere_significant
-import vsrandom
 import Vector
 import launch
 import faction_ships
 import Director
 import Briefing
-import unit
 import VS
 import quest
 import quest_drone
@@ -40,8 +37,6 @@ class defend_drone (Director.Mission):
         self.runaway=False
         self.greetingText=helptext
         self.cred=0
-        mysys=VS.getSystemFile()
-        sysfile = VS.getSystemFile()
         self.you=VS.getPlayer()
         self.enemy=VS.Unit()
         self.helperpos=(0,0,0)
@@ -77,7 +72,6 @@ class defend_drone (Director.Mission):
             VS.terminateMission(0)
           
     def Execute (self):
-        isSig=0
         if (self.you.isNull()):
             self.Lose (1)
             return
@@ -170,7 +164,6 @@ class defend_drone (Director.Mission):
                     self.newshipattack=faction_ships.getRandomFighter(self.attackfaction)
                 #self.adjsys=go_somewhere_significant(self.you,0,10000.0,0,'','',self.displayLocation)
                 #localdestination=self.adjsys.SignificantUnit().getName()
-                tmpfg="shadow"
                 #VS.IOmessage (3,"defend mission",self.mplay,"Hunt the %s unit in the %s flightgroup in this system." % (self.newshipattack,tmpfg))
                 #if (self.runaway):        #ADD OTHER JUMPING IF STATEMENT CODE HERE
                 #    VS.IOmessage (4,"defend mission",self.mplay,"Target is fleeing to the jump point!")

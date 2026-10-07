@@ -1,6 +1,5 @@
 import VS
 import Director
-import vsrandom
 import generate_dyn_universe
 import dynamic_news
 import debug

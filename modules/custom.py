@@ -11,9 +11,9 @@ def add(name, proc):
 
 import weapons_lib #adds to procedures list
 import guilds #adds to procedures list
-import campaign_lib
-import dialog_box
-import net_computer
+import campaign_lib #adds to procedures list
+import dialog_box #adds to procedures list
+import net_computer #adds to procedures list
 
 running_cmds = {}
 

@@ -1,5 +1,4 @@
 import Base
-import VS
 import vsrandom
 
 bartenders=['refinery','mining_base','perry','new_detroit','new_constantinople','agricultural']
@@ -9,7 +8,6 @@ def MakeBar(concourse, time_of_day, bartext, BaseTexture, createCampaignFixers=T
 		
 	if vsrandom.random()<.875:
 		forcedefbtr=True # remove me if you want random bartenders at random bars
-		chbtr=True
 	import bartender
 	bartender.speaktimes=0
 	room0 = Base.Room ('Bar')

@@ -1,12 +1,9 @@
 from go_to_adjacent_systems import *
 from go_somewhere_significant import *
 import vsrandom
-import launch
-import faction_ships
 import VS
 import Briefing
 import universe
-import unit
 import Director
 import quest
 class cargo_mission (Director.Mission):
@@ -59,7 +56,6 @@ class cargo_mission (Director.Mission):
                 i+=1
         tempquantity=self.quantity
         self.cargoname=carg.GetContent()
-        name = self.you.getName ()
         carg.SetMissionFlag(1)
         if (not self.you.isNull()):
             tmpcarg=self.you.GetCargo(self.cargoname)

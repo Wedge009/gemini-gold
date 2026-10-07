@@ -6,7 +6,6 @@ import Director
 import mission_lib
 import fixer_lib
 import custom
-import code
 import debug
 activelinks=[]
 activeobjs=[]

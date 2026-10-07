@@ -1,7 +1,5 @@
 import quest
-import Vector
 import VS
-import unit
 import vsrandom
 import universe
 class quest_surplus (quest.quest):
@@ -36,7 +34,6 @@ class quest_surplus_factory (quest.quest_factory):
 def makeSurplusShortage():
     (sys,mylist)=universe.getAdjacentSystems(VS.getSystemFile(),vsrandom.randrange(1,3))
     adj=vsrandom.uniform (-.5,.5)
-    myquest=0
     cats = (VS.getRandCargo(1,"").GetCategory(), VS.getRandCargo(1,"").GetCategory())
     news=""
     if (adj<0):

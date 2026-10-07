@@ -155,11 +155,9 @@ class XGUITypesTupleFactory(XGUITypesFactory):
 			XGUIDebug.trace(-1,"XGUITypes: ERROR! TupleFactory initialized with invalid form: \"%s\""%(form))
 			return
 
-		cform = form[s+1:e]
 		self.cform = form[s+1:e].split(",")
 
 	def parse(self,type,value):
-		_type = type
 		(type,arraysize) = XGUITypesRootSingleton._parseArrayTypeDef(type)
 		if type in self.types:
 			factoryList = []

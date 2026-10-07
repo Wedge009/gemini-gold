@@ -1,5 +1,3 @@
-from types import *
-import GUI
 
 
 # '\\' is always forbidden

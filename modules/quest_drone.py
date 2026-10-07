@@ -1,7 +1,6 @@
 import quest
 import Vector
 import VS
-import unit
 import vsrandom
 
 drone=VS.Unit()

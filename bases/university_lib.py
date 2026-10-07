@@ -47,7 +47,7 @@ def MakeUniversity (time_of_day='_day'):
 
 	# Create the Quine 4000 screens
 	import computer_lib
-	room_personal_computer = computer_lib.MakePersonalComputer(room0, room1)
+	computer_lib.MakePersonalComputer(room0, room1)
 
 	# add library
 	room2 = Base.Room ('Library_Stacks')

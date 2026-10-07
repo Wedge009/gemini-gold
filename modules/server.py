@@ -8,7 +8,6 @@ import importlib
 import custom
 
 import server_lib
-import privateer
 
 baseunits={}
 

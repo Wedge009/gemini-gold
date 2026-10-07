@@ -1,5 +1,4 @@
 import VS
-import Director
 import vsrandom
 import fg_util
 import dj_lib # Needs to be enabled when loading.
@@ -41,7 +40,6 @@ def GenerateCivilianFgShips (faction,factionnr,docapships):
         numcapitals=faction_ships.PerFG[faction]
       except:
         pass
-    fighters_per=len(fighters)
     ht={}
     for i in fighters:
        numtogen=floatToRand(numfighters/float(len(fighters)))
@@ -61,7 +59,6 @@ def GenerateCivilianFgShips (faction,factionnr,docapships):
         lst.append([hv,ht[hv]])
     return lst
 def GenerateFgShips (shipinfg,factionnr,friendly):
-    lst=[]
     capship=()
     fac = faction_ships.intToFaction(factionnr)
     fpr=XProductionRate(fac,faction_ships.fighterProductionRate)
@@ -160,7 +157,6 @@ def AddSysDict (cursys):
     for i in range(len(faction_ships.factions)):
        thisfac=faction_ships.factions[i]
        thisfactionnr=faction_ships.factionToInt(thisfac)
-       rel=VS.GetRelation(sysfaction,thisfac)
        iscit=VS.isCitizen(thisfac)
        if iscit and thisfac.find(sysfaction)!=-1:
           #debug.debug("generating spc civilian for "+cursys+" faction "+thisfac)
