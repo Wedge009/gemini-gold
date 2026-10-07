@@ -604,5 +604,11 @@ corrected ship statistics, the NPC load-outs (the Orion's restored turret
 especially), the galaxy map's positions, a new game's universe now that it's
 generated afresh for Gemini alone (start-up time, traffic, the faction table
 `New_Game` now loads), the dynamic battles' reinforcements, and the
-settings carried over from Gemini Gold's config other than the autopilot
-(confirmed working).
+settings carried over from Gemini Gold's config.
+
+Buying and repairing slot upgrades now that the dealer no longer fails on
+`Cargo.SetMaxFunctionality`, the software booth's Next Item button, scrolling
+long lists. Launched ships (a Retro leaving Achilles, three Broadswords at Helen)
+sit still for a long time before moving erratically, and there are no collisions;
+a log is needed. The afterburner's energy drain (`energy_source`) can't be tested
+until a bought afterburner works (see Known gaps).
