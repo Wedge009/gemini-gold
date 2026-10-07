@@ -77,8 +77,9 @@ def main(game_cfg, reference_json, out_json):
             actions[cmd] = kept
             used |= used_inputs({cmd: kept})
             added.append(cmd)
-    for name, axis in reference.get('axes', {}).items():
-        axes.setdefault(name, axis)
+    # Axes aren't filled in from the reference: Gemini Gold binds only x and y,
+    # and an unwanted throttle axis pins the set speed (the engine reads an
+    # absent joystick's axes as centred, so the throttle holds half speed).
 
     with open(out_json, 'w') as f:
         json.dump({'actions': actions, 'axes': axes}, f, indent=2)

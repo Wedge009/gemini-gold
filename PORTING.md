@@ -243,6 +243,10 @@ Privateer's files:
   Valhalla's "Nav 2" is now `Nav_2` like the rest, but the engine only honours
   the list's first and last names, so automatic landing still loops at most
   nav points.
+- `bindings.json` has only the x and y axes Gemini Gold's config bound.
+  `tools/bindings_to_json.py` had also copied Vega Strike's throttle and z
+  axes, and the throttle pinned the set speed at half maximum (see Upstream
+  engine work).
 - Python 3 truth tests on units work: `modules/engine_compat.py` (imported first
   by `privateer.py`) gives `VS.Unit` the `__bool__` the engine lacks. Without it
   random encounters never launched a ship.
@@ -359,6 +363,12 @@ this work is deferred for now:
   planet. Nav points (`alpha="ONE ONE"`) should be atmospheric and so have no
   docking port; instead automatic landing tries to land on them, fails, pushes
   the ship back out, and the ship drifts in again.
+- **Absent joysticks count as present** (to report): to support hot-plugging,
+  `InitJoystick` fills every slot with a placeholder that reports itself
+  available and reads all axes as centred, so a bound throttle axis holds the
+  set speed at half maximum and the speed keys only flicker. Vega Strike's own
+  bindings bind a throttle axis, so its players without a joystick should see
+  this too. Gemini Gold binds no throttle axis, as its old config didn't.
 - **`auto_landing_exclude_list` parsing** (to do): `GameCockpit::DoAutoLanding`
   passes each name's end position to `substr` as its length, so only the first
   and last names in the list match.

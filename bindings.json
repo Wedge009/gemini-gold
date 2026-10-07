@@ -1193,18 +1193,6 @@
       "joystick": 0,
       "axis": 1,
       "inverse": false
-    },
-    "throttle": {
-      "source": "joystick",
-      "joystick": 0,
-      "axis": 3,
-      "inverse": false
-    },
-    "z": {
-      "source": "joystick",
-      "joystick": 0,
-      "axis": 2,
-      "inverse": false
     }
   }
 }
