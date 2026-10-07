@@ -147,6 +147,11 @@ Privateer's files:
   1,200, the Drayman flies at 200 (its afterburner too, as the engine can't
   make it slower than top speed), and the Gladius, Demon and NPC Tarsus have
   the original's shield levels (1, 2 and 2).
+- The galaxy map places each system where the original's sector map does
+  (`universe/wcuniverse.xml`'s `xyz`, set by `tools/galaxy_positions.py`), at
+  one scale for both axes; Gemini Gold's positions were approximate. Each
+  system keeps the depth (z) Gemini Gold gave it, which only shows in the
+  galaxy view's 3D mode; the original's map is flat.
 - S12MD: Menesch waits in Regallis, not Troy.
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle
@@ -193,7 +198,8 @@ Privateer's files:
 **Map tools.** `tools/audit_map.py` compares `sectors/Gemini` and
 `universe/wcuniverse.xml` with CSVs decoded from the original game's map data
 (its docstring gives the format), and `tools/map_positions.py` writes the
-original's positions into the system files from the same CSVs.
+original's positions into the system files from the same CSVs, and
+`tools/galaxy_positions.py` its sector-map positions into the universe file.
 
 **Scripts.** Python 2 leftovers fixed so every script parses under Python 3.12
 and pyflakes finds no Python 2 built-ins: `print`/`exec` statements, `has_key`,
@@ -311,7 +317,12 @@ See Upstream engine work above.
   main faction in only about a third of systems; the border lacks Kilrathi and
   the core lacks bounty hunters; ship mixes are off; Eden has Salthi; the
   original's hidden ambush points (those without asteroids) aren't placed; and
-  RF's changed encounter tables for eight systems aren't used.
+  RF's changed encounter tables for eight systems aren't used. The universe
+  file describes a whole Wing Commander galaxy (Sol, Kilrah, TrkPahn and more),
+  and the dynamic universe moves flight groups along every system's `jumps`
+  list, so traffic can enter Gemini over one-way links: Kilrathi from TrkPahn,
+  and possibly ships from the unreachable "Gemini" hub system, which links Troy
+  and Junction to Sol.
 - **Missiles**: the manual, the game data and the Playtesters' Guide agree on
   Dumbfire / Heat-seeker / Image-recognition / Friend-or-Foe damage of 13 / 16
   / 17.5 / 17.5, a 2.5 s refire for all of them and flight times of 8 / 9 / 9
@@ -360,8 +371,6 @@ See Upstream engine work above.
 
 ### To do
 
-- **Galaxy-map positions** of systems in `universe/wcuniverse.xml` are
-  approximate; the original's quadrant and system coordinates are decoded.
 - **Ship handling**: the player's ships out-accelerate fighters, the reverse of
   the original. The engine divides thrust by mass, so acceleration, along with
   the other handling figures (turn acceleration, lateral thrust), needs
