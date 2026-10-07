@@ -251,8 +251,20 @@ Privateer's files:
   (`random_encounters.LaunchAtTakeOff`), as in the original, where a base's
   encounters are waiting at launch. Vega Strike's script only launches on
   arriving near a base or nav point, and never in a game's first 10 seconds,
-  so taking off brought nothing. A gameplay change on trial: revert it if it
+  so taking off brought nothing. Game time barely moves while docked, so the
+  10 seconds also swallowed a quick hop after take-off; the check is now
+  simply that the player isn't docked. A gameplay change on trial: revert it if it
   doesn't play well.
+- The player's communications menu offers Gemini Gold's lines again: the comm
+  trees in `communications/` are renamed from `privto<faction>.xml` to the
+  `privateerto<faction>.xml` the engine looks for, with copies for factions that
+  share one (Riordian, Kroiz and Garrovick use the hunters', Seelig, Miggs and
+  `pirate` the pirates', Toth the merchants', Reismann Confed's). The engine
+  had fallen back to `neutral.xml`, whose every option is "Nevermind".
+  `privtoagric`, `privtodetroit`, `privtopirate` and `privtosteltekderelict`
+  were unused before and still are.
+- `ai/events/default.suicide.xml` (the Retros' AI) closes its last element;
+  the engine had rejected the whole file.
 - Python 3 truth tests on units work: `modules/engine_compat.py` (imported first
   by `privateer.py`) gives `VS.Unit` the `__bool__` the engine lacks. Without it
   random encounters never launched a ship.
@@ -369,6 +381,19 @@ this work is deferred for now:
   planet. Nav points (`alpha="ONE ONE"`) should be atmospheric and so have no
   docking port; instead automatic landing tries to land on them, fails, pushes
   the ship back out, and the ship drifts in again.
+- **Autopilot ignores enemies** (to do): in `JumpCapable::AutoPilotToErrorMessage`
+  the check for enemies near the route runs only `if (... unit->cloak.Cloaked())`.
+  It was `CloakVisible() > .5` (the ship is visible) until the component
+  refactor in `adc62840b` (2023, #796) inverted it, so an uncloaked ship can
+  always autopilot. A one-character fix (`!unit->cloak.Cloaked()`).
+- **Faction `conversation` attribute dropped** (to report): the factions.xml
+  parser removed in `e47169c1f` (2021) read each relation's `conversation`
+  file; its replacement only looks for `<faction>to<faction>.xml`. Gemini
+  Gold's comm trees are now named that way (see What changed).
+- **AI script check ignores `roll `** (cosmetic): `validateHardCodedScript`
+  doesn't strip the `roll ` prefix that `AIScript::LoadXML` accepts, so
+  `default.agg.xml`'s `roll turn towards` and similar log a "SERIOUS WARNING"
+  when the first ships launch, though they run correctly.
 - **Absent joysticks count as present** (to report): to support hot-plugging,
   `InitJoystick` fills every slot with a placeholder that reports itself
   available and reads all axes as centred, so a bound throttle axis holds the

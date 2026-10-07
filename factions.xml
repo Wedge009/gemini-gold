@@ -350,29 +350,29 @@
 		</CommAnimation>  -->
 	</Faction>
 	<Faction name="privateer" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband" sparkred=".4" sparkgreen=".4" sparkblue="1">
-		<stats name="privateer" relation="0" conversation="privtopriv.xml"/>
-		<stats name="confed" relation=".2" conversation="privtoconfed.xml"/>
-		<stats name="kilrathi" relation="-.5" conversation="privtokilrathi.xml"/>
-		<stats name="merchant" relation="0.05" conversation="privtomerchant.xml"/>
-		<stats name="retro" relation="-.5" conversation="privtoretro.xml"/>
-		<stats name="pirates" relation="-.6" conversation="privtopirates.xml"/>
-		<stats name="pirate" relation="0" conversation="privtopirates.xml"/>
-		<stats name="hunter" relation="0.05" conversation="privtohunter.xml"/>
-		<stats name="militia" relation=".05" conversation="privtomilitia.xml"/>
+		<stats name="privateer" relation="0" conversation="privateertoprivateer.xml"/>
+		<stats name="confed" relation=".2" conversation="privateertoconfed.xml"/>
+		<stats name="kilrathi" relation="-.5" conversation="privateertokilrathi.xml"/>
+		<stats name="merchant" relation="0.05" conversation="privateertomerchant.xml"/>
+		<stats name="retro" relation="-.5" conversation="privateertoretro.xml"/>
+		<stats name="pirates" relation="-.6" conversation="privateertopirates.xml"/>
+		<stats name="pirate" relation="0" conversation="privateertopirate.xml"/>
+		<stats name="hunter" relation="0.05" conversation="privateertohunter.xml"/>
+		<stats name="militia" relation=".05" conversation="privateertomilitia.xml"/>
 		<stats name="unknown" relation="-1"/>
 		<stats name="steltek" relation="0.01"/>
-		<stats name="riordian" relation="-0.05" conversation="privtohunter.xml"/>
-		<stats name="seelig" relation="-0.05" conversation="privtopirates.xml"/>
-		<stats name="kroiz" relation="-0.05" conversation="privtohunter.xml"/>
-		<stats name="miggs" relation="-0.05" conversation="privtopirates.xml"/>
-		<stats name="toth" relation="0.50" conversation="privtomerchant.xml"/>
-		<stats name="garrovick" relation="-0.05" conversation="privtohunter.xml"/>
-		<stats name="reismann" relation="0.50" conversation="privtoconfed.xml"/>
-		<stats name="AWACS" relation="0" conversation="privtoAWACS.xml"/>
-		<stats name="mining" relation="0" conversation="privtomining.xml"/>
-		<stats name="refinery" relation="0" conversation="privtorefinery.xml"/>
-		<stats name="naval" relation="0" conversation="privtonaval.xml"/>
-		<stats name="commerce" relation="0" conversation="privtocommerce.xml"/>
+		<stats name="riordian" relation="-0.05" conversation="privateertoriordian.xml"/>
+		<stats name="seelig" relation="-0.05" conversation="privateertoseelig.xml"/>
+		<stats name="kroiz" relation="-0.05" conversation="privateertokroiz.xml"/>
+		<stats name="miggs" relation="-0.05" conversation="privateertomiggs.xml"/>
+		<stats name="toth" relation="0.50" conversation="privateertototh.xml"/>
+		<stats name="garrovick" relation="-0.05" conversation="privateertogarrovick.xml"/>
+		<stats name="reismann" relation="0.50" conversation="privateertoreismann.xml"/>
+		<stats name="AWACS" relation="0" conversation="privateertoAWACS.xml"/>
+		<stats name="mining" relation="0" conversation="privateertomining.xml"/>
+		<stats name="refinery" relation="0" conversation="privateertorefinery.xml"/>
+		<stats name="naval" relation="0" conversation="privateertonaval.xml"/>
+		<stats name="commerce" relation="0" conversation="privateertocommerce.xml"/>
 		<Explosion name="explosion_orange.ani"/>
 <!--		<CommAnimation>  
 			<MoodAnimation name="explosion_orange.ani" sex="0"/>  

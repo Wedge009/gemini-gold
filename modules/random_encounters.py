@@ -128,13 +128,17 @@ class random_encounters:
     def LaunchAtTakeOff(self, player):
         # The original has a base's encounters waiting when the player launches.
         # Taking off never counts as arriving near the base (the player was near
-        # it all along), so launch here, skipping launch_near's start-up delay.
+        # it all along), so launch here.
         if not self.atLeastNInsignificantUnitsNear(player, self.min_num_ships):
             debug.debug("launch at take-off")
-            self.launch_near(player, True)
+            self.launch_near(player)
 
     def launch_near(self,un, forceLaunch=False):
-        if (VS.GetGameTime()<10 and not forceLaunch):
+        # Vega Strike skipped a game's first 10 seconds, but game time hardly
+        # moves while docked, so a quick hop after take-off fell inside them too.
+        # What it guarded against, launching while the player sits in the base,
+        # is checked directly; take-off launches separately (LaunchAtTakeOff).
+        if (un and (un.DockedOrDocking() & 3) and not forceLaunch):
             debug.debug("hola!")
             return
         self.fixupFactionRelations();
