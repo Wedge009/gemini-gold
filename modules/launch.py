@@ -7,7 +7,18 @@ import sys
 import dj_lib
 import debug
 
+# Righteous Fire re-armed the Kilrathi (TYPES/DRALTYPE.IFF and GOTHTYPE.IFF): once it
+# begins, their ships launch with RF's weapons.
+rf_variants = {'dralthi':'dralthi.rf', 'gothri':'gothri.rf'}
+def shipForGame(type):
+    if type in rf_variants:
+        import trading
+        if trading.inRighteousFire():
+            return rf_variants[type]
+    return type
+
 def launch (fgname, faction, type,ai, nr_ships, nr_waves, vec, logo='',useani=1,skipdj=0):
+    type=shipForGame(type)
 #  print ('log'+ str( logo) + ' useani '+ str(useani))
     diff=usingDifficulty()
 #    if useani:

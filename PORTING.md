@@ -137,6 +137,14 @@ Privateer's files:
 - Tachyon cannon damage is 5.0, as in the game's data and manual. Gemini
   Gold had 3.7, the figure in Origin's Playtesters' Guide.
 - S12MD: Menesch waits in Regallis, not Troy.
+- Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
+  original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle
+  Cannons, a Fusion Cannon and Image-recognition missiles instead of Lasers and
+  Heat-seekers; the Gothri Mesons instead of Mass Drivers, and Tachyons instead
+  of Mesons in its rear turret. `launch.launch` swaps `dralthi` and `gothri` for
+  their `.rf` variants when the RF flag is set, so every spawn, story missions
+  included, follows it. The Gothri's and Broadsword's mis-spelt
+  `ImageRecongition` launchers now name the real missile.
 - Righteous Fire's mission ships have the original's speed and thrust boosts
   (from their stats files in `TYPES/`): Jones (×1.33) and his escort of elite
   Salthi (×1.25) in the final mission, Menesch (×1.17, speed only) and
@@ -282,3 +290,10 @@ so the sub-module can stay unpatched:
   their target for much longer, which looks deliberate. The proton torpedo's
   damage matches; its refire is 0.2 s against 0.3 s, and its range is
   unlimited where the original's looks like about 3600 m.
+- The Plasma Gun has Righteous Fire's stats in both parts of the game (faster
+  refire, more damage, lower energy use than base Privateer's): `weapons.json`
+  holds one version of each weapon.
+- There is no separate Righteous Fire new game. The original could start RF
+  afresh at Jolson with its own starting ship (`initrf.pak`); Gemini Gold plays
+  Privateer and RF as one continuous game, RF beginning when the Steltek gun is
+  stolen at Jolson.
