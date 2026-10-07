@@ -238,9 +238,11 @@ Privateer's files:
   (`star_system_scale`), so a planet's radius is about 340, and the engine only
   docks within half a radius of the surface (`dock.dock_planet_radius_percent`
   1.5), nearer than automatic landing ever puts the ship. It's now 2.5 (in
-  `tools/overrides.json`). Nav points are left out of automatic landing
-  (`auto_landing_exclude_list`; see Upstream engine work for why they count as
-  eligible for docking), and Valhalla's "Nav 2" is now `Nav_2` like the rest.
+  `tools/overrides.json`). Nav points are listed in `auto_landing_exclude_list`
+  (see Upstream engine work for why they count as eligible for docking), and
+  Valhalla's "Nav 2" is now `Nav_2` like the rest, but the engine only honours
+  the list's first and last names, so automatic landing still loops at most
+  nav points.
 - Python 3 truth tests on units work: `modules/engine_compat.py` (imported first
   by `privateer.py`) gives `VS.Unit` the `__bool__` the engine lacks. Without it
   random encounters never launched a ship.
@@ -355,8 +357,11 @@ this work is deferred for now:
 - **Planets' `alpha` ignored** (to do): `SystemFactory::initializeAlpha` takes
   the blend modes by value, so a system file's `alpha` never reaches the
   planet. Nav points (`alpha="ONE ONE"`) should be atmospheric and so have no
-  docking port; instead automatic landing tries to land on them, which
-  `auto_landing_exclude_list` works around.
+  docking port; instead automatic landing tries to land on them, fails, pushes
+  the ship back out, and the ship drifts in again.
+- **`auto_landing_exclude_list` parsing** (to do): `GameCockpit::DoAutoLanding`
+  passes each name's end position to `substr` as its length, so only the first
+  and last names in the list match.
 - **Afterburner energy cost not saved** (to do): `Afterburner::SaveToCSV`
   writes thrust and speed but not `Afterburner_Usage_Cost`, so after loading a
   saved game the afterburner costs 1, bought or not. Buying one also needs an
@@ -514,6 +519,10 @@ See Upstream engine work above.
 - **NPC load-outs**: the Gothri carries two Friend-or-Foe where the original
   has one and a Dumb Fire (it has no spare launcher). Capital ships keep
   Gemini Gold's load-outs.
+- **Music**: the right music doesn't play for the situation. After landing on
+  Helen, the landing jingle gave way to battle music. The engine's music may
+  be working as designed; Gemini Gold's playlists and the scripts that pick
+  them need checking.
 
 ### Awaiting research
 

@@ -1375,7 +1375,7 @@ class GUISimpleListPicker(GUIElement):
 		self._recheck()
 	
 	def viewMove(self,lines):
-		self.firstVisible = max(0,min(len(self.items)-1-len(self._listitems)/2,self.firstVisible + lines))
+		self.firstVisible = max(0,min(len(self.items)-1-len(self._listitems)//2,self.firstVisible + lines))
 		self.notifyNeedRedraw()
 		self._needTextUpdate = True
 		self._recheck()
