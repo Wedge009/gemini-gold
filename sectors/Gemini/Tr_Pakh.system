@@ -27,12 +27,10 @@
 </Light>	
 
         <planet name="Jump_To_Sumn-Kp'ta" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-11600" y="8700" z="5800" day="240" destination="Gemini/Sumn_Kpta" />
-        
+
         <unit  name="Large_Asteroid"  file="large_asteroid" faction="kilrathi"   x="-2900" y="-1450" z="1450" day="-14000"></unit>         
-        
+
         <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-2900" y="-1450" z="1450" day="-14000"   ></unit>
-        
-<!--        <unit  name="Sivar's_Claw"  file="kamekh" faction="kilrathi"   x="-6000" y="-3000" z="1200" day="-14000"></unit>          -->
+
         <planet name="Jump_To_Blockade_Point_Alpha" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="-11600" z="-2900"  day="240" destination="Gemini/Blockade_Point_Alpha"/>
-<!--priv_009        <planet name="Jump_To_Sum'Tlor" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="2500" y="-5800" z="8000"  day="240" destination="TrkPahn/SumTlor"/> priv_009-->
 </system>

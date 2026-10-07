@@ -11,8 +11,6 @@ persistent_adventures = list()
 
 adventures = {
 	"Gemini/Delta_Prime":quest_drone.quest_drone_factory(),
-#	"Enigma/callimanchius":quest_surplus.quest_surplus_factory(('Supplies/Medical','Research/Environmental',),1.5,.5,0,1,('callimanchius_disaster',),),
-#	"Sol/alpha_centauri":quest_surplus.quest_surplus_factory(('Supplies/Construction_Supplies','Manufactured_Goods',),1.5,.5,0,1,('holman_population',),),
 	}
 persistent_adventures = [
 	quest_drone.quest_drone_factory(),

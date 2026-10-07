@@ -152,6 +152,22 @@ Privateer's files:
   one scale for both axes; Gemini Gold's positions were approximate. Each
   system keeps the depth (z) Gemini Gold gave it, which only shows in the
   galaxy view's 3D mode; the original's map is flat.
+- The universe holds only the Gemini sector (and `Special`, for the menu and
+  model viewer). `universe/wcuniverse.xml` still described the Privateer
+  Remake galaxy: sixteen more sectors with no system files and no jumps from
+  Gemini, plus a stray "Gemini" system linking Troy and Junction to Sol. The
+  player couldn't reach any of it, but the dynamic universe started from
+  `Sol/Sol` and generated traffic across all of it; `universe.AllSystems` now
+  starts from Troy. Leftover references to those sectors are gone too
+  (`faction_ships.invincible_systems`, commented-out jumps and quests, and the
+  universe file's unused `fulljumps`, `kiljumps` and `alljumps` lists).
+- `New_Game` no longer carries a saved dynamic universe. Gemini Gold's was
+  made from a saved game and held the whole galaxy's flight groups and
+  missions; Privateer_Gold cut it down to Gemini by hand without fixing the
+  entry count or string lengths (and its CRLF line endings broke the lengths
+  of multi-line entries), so the engine misread it and the sections after it.
+  The scripts regenerate the dynamic universe at the start of every game
+  anyway (`generate_dyn_universe.ReloadUniverse`), so the section is now empty.
 - S12MD: Menesch waits in Regallis, not Troy.
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle
@@ -317,12 +333,7 @@ See Upstream engine work above.
   main faction in only about a third of systems; the border lacks Kilrathi and
   the core lacks bounty hunters; ship mixes are off; Eden has Salthi; the
   original's hidden ambush points (those without asteroids) aren't placed; and
-  RF's changed encounter tables for eight systems aren't used. The universe
-  file describes a whole Wing Commander galaxy (Sol, Kilrah, TrkPahn and more),
-  and the dynamic universe moves flight groups along every system's `jumps`
-  list, so traffic can enter Gemini over one-way links: Kilrathi from TrkPahn,
-  and possibly ships from the unreachable "Gemini" hub system, which links Troy
-  and Junction to Sol.
+  RF's changed encounter tables for eight systems aren't used.
 - **Missiles**: the manual, the game data and the Playtesters' Guide agree on
   Dumbfire / Heat-seeker / Image-recognition / Friend-or-Foe damage of 13 / 16
   / 17.5 / 17.5, a 2.5 s refire for all of them and flight times of 8 / 9 / 9

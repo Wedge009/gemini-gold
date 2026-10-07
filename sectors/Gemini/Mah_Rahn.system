@@ -30,5 +30,4 @@
 
         <unit difficulty=".03" name= "Jump_To_Blockade_Point_Tango"  file="Asteroid_Field" faction="neutral"   x="0" y="8700" z="0" day="-14000"   ></unit>
 
-<!--priv_009        <planet name="Jump_To_Sum'Tlor" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="12000" y="12000" day="240" destination="TrkPahn/SumTlor" /> priv_009-->
 </system>

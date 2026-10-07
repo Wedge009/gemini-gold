@@ -219,8 +219,8 @@ def ReachableSystems(startingsys):
 
 def AllSystems():
     sys=VS.getSystemFile()
-    if (VS.GetGalaxyProperty("Sol/Sol","jumps")!="" and VS.GetGalaxyProperty("Sol/Sol","faction")!=""):
-        sys="Sol/Sol"
+    if (VS.GetGalaxyProperty("Gemini/Troy","jumps")!="" and VS.GetGalaxyProperty("Gemini/Troy","faction")!=""):
+        sys="Gemini/Troy"
     return ReachableSystems(sys)
 
 def addTechLevel(level, addToBase=True):

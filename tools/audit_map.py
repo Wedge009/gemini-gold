@@ -153,7 +153,7 @@ def audit_system(name, original, objects, universe, hidden_jumps, report, positi
         report.append('missing from universe/wcuniverse.xml')
     else:
         jumps = {key(j.split('/')[-1]) for j in universe.get('jumps', '').split()}
-        full = {key(j.split('/')[-1]) for j in universe.get('fulljumps', '').split()} - {'gemini'}
+        full = {key(j.split('/')[-1]) for j in universe.get('fulljumps', '').split()}
         if set(g_jumps) not in (jumps, full):
             report.append(f'wcuniverse.xml jumps {sorted(jumps)} differ from the system file {sorted(g_jumps)}')
 
