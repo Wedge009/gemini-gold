@@ -115,7 +115,7 @@ Privateer's files:
   are hidden points, missing from the nav map but there in space.
   `tools/map_positions.py` makes these
   changes from the decoded map data; running it again changes nothing.
-- The starting Tarsus has a missile launcher with 5 Dumbfires, as in the
+- The starting Tarsus has a missile launcher with 5 Dumb Fires, as in the
   original game's new-game data (`initcfg.pak`).
 - Upgrade limits follow the original's `LIMITS.IFF` in Righteous Fire too: the
   Tarsus can take engine 4, and the Galaxy shields and engine 5 (Gemini Gold
@@ -195,11 +195,22 @@ Privateer's files:
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle
   Cannons, a Fusion Cannon and Image-recognition missiles instead of Lasers and
-  Heat-seekers; the Gothri Mesons instead of Mass Drivers, and Tachyons instead
+  Dumb Fires; the Gothri Mesons instead of Mass Drivers, and Tachyons instead
   of Mesons in its rear turret. `launch.launch` swaps `dralthi` and `gothri` for
   their `.rf` variants when the RF flag is set, so every spawn, story missions
   included, follows it. The Gothri's and Broadsword's mis-spelt
   `ImageRecongition` launchers now name the real missile.
+- NPC fighters carry the original's guns and missiles (`TYPES/*TYPE.IFF`):
+  the Orion two Plasma Guns and three Heat-seekers, and its Laser turret back
+  (it named a turret unit that doesn't exist, so it flew without one); the
+  Centurion an Ionic rear turret and two Image-recognition and two
+  Friend-or-Foe missiles; the Tarsus three Dumb Fires; the Stiletto two
+  Image-recognition; the Dralthi three Dumb Fires; the Galaxy a Meson turret
+  beside its Mass Driver one, and two Heat-seekers and three Dumb Fires (which
+  turret carries the Mesons is a guess); the Broadsword Heat-seekers and no
+  torpedoes. The retros' Talon (`talon__retro`) follows the original's light
+  Talon (`TALNWIMP.IFF`: two Lasers and a Mass Driver), and its Dumb Fire and
+  the Kamekh's Image-recognition launchers now name real missiles.
 - Righteous Fire's mission ships have the original's speed and thrust boosts
   (from their stats files in `TYPES/`): Jones (×1.33) and his escort of elite
   Salthi (×1.25) in the final mission, Menesch (×1.17, speed only) and
@@ -361,7 +372,7 @@ See Upstream engine work above.
   original's hidden ambush points (those without asteroids) aren't placed; and
   RF's changed encounter tables for eight systems aren't used.
 - **Missiles**: the manual, the game data and the Playtesters' Guide agree on
-  Dumbfire / Heat-seeker / Image-recognition / Friend-or-Foe damage of 13 / 16
+  Dumb Fire / Heat-Seeker / Image-Recognition / Friend-or-Foe damage of 13 / 16
   / 17.5 / 17.5, a 2.5 s refire for all of them and flight times of 8 / 9 / 9
   / 8 s (ranges of about 7,200–8,000 m). Gemini Gold has damage 9 / 10 / 11 /
   11, refires of 3.1–4.2 s and ranges of 30,000–40,000 m. The proton torpedo's
@@ -419,8 +430,11 @@ See Upstream engine work above.
   the other handling figures (turn acceleration, lateral thrust), needs
   calibrating rather than copying. The player's hulls also keep Privateer_Gold's
   retuned turn rates (roll fastest), unlike the original's.
-- **NPC loadouts**: the Orion's guns, the Centurion's rear guns and the Tarsus's
-  missiles differ from the original's.
+- **NPC load-outs**: the Gothri carries two Friend-or-Foe where the original
+  has one and a Dumb Fire (it has no spare launcher), and the Broadsword three
+  turrets of Lasers and Particle Cannons where the original has two of
+  Particle Cannons (see the turret question above). Capital ships keep
+  Gemini Gold's load-outs.
 
 ### Awaiting research
 
