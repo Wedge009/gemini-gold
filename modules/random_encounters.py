@@ -252,6 +252,7 @@ class random_encounters:
         if (self.cur_player>=len(self.players)):
             self.AddPlayer()
         self.cur=self.players[self.cur_player]
+        un = VS.Unit()
         if (self.cur.curquest<len(self.cur.quests)):
             if (self.cur.quests[self.cur.curquest].Execute()):
                 self.cur.curquest+=1

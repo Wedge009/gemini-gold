@@ -322,7 +322,13 @@ grouped by what's holding it up.
   `modules/launch.py`, `modules/plunder.py`, `modules/rescue.py`,
   `modules/unit.py` and `modules/XGUI.py`.
 - No random encounters have been seen around Achilles despite the
-  `random_encounters.py` fix; why is still to be investigated.
+  `random_encounters.py` fix (on hold). Encounters are rolled on entering
+  range of a base, planet, nav or jump point; at the start the player is
+  already beside Achilles, the first 10 seconds launch nothing, and the
+  in-range state latches, so Achilles gets no roll until the player leaves
+  and returns. Untested beyond Achilles. Next step: a logged run
+  (`curmodechange`, `no flight group`, `Chance for`, `generating ships`) to see
+  whether rolls happen and the dynamic universe has flight groups.
 - A new game doesn't ask for the player's name and callsign, as the original
   does (it keeps them in the save). Gemini Gold doesn't use them: its dialogue
   calls the player Burrows.
