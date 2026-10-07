@@ -194,23 +194,26 @@ Privateer's files:
 - S12MD: Menesch waits in Regallis, not Troy.
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle
-  Cannons, a Fusion Cannon and Image-recognition missiles instead of Lasers and
+  Cannons, a Fusion Cannon and Image-Recognition missiles instead of Lasers and
   Dumb Fires; the Gothri Mesons instead of Mass Drivers, and Tachyons instead
   of Mesons in its rear turret. `launch.launch` swaps `dralthi` and `gothri` for
   their `.rf` variants when the RF flag is set, so every spawn, story missions
   included, follows it. The Gothri's and Broadsword's mis-spelt
   `ImageRecongition` launchers now name the real missile.
 - NPC fighters carry the original's guns and missiles (`TYPES/*TYPE.IFF`):
-  the Orion two Plasma Guns and three Heat-seekers, and its Laser turret back
+  the Orion two Plasma Guns and three Heat-Seekers, and its Laser turret back
   (it named a turret unit that doesn't exist, so it flew without one); the
-  Centurion an Ionic rear turret and two Image-recognition and two
+  Centurion an Ionic rear turret and two Image-Recognition and two
   Friend-or-Foe missiles; the Tarsus three Dumb Fires; the Stiletto two
-  Image-recognition; the Dralthi three Dumb Fires; the Galaxy a Meson turret
-  beside its Mass Driver one, and two Heat-seekers and three Dumb Fires (which
-  turret carries the Mesons is a guess); the Broadsword Heat-seekers and no
-  torpedoes. The retros' Talon (`talon__retro`) follows the original's light
-  Talon (`TALNWIMP.IFF`: two Lasers and a Mass Driver), and its Dumb Fire and
-  the Kamekh's Image-recognition launchers now name real missiles.
+  Image-Recognition; the Dralthi three Dumb Fires; the Galaxy a Meson turret
+  beside its Mass Driver one, and two Heat-Seekers and three Dumb Fires (which
+  turret carries the Mesons is a guess); the Broadsword Heat-Seekers and no
+  torpedoes, and two turrets of two Particle Cannons, not three of Lasers
+  and Particle Cannons (the original's data doesn't place them; they're
+  Gemini Gold's side turrets, and its rear one is gone). The retros' Talon
+  (`talon__retro`) follows the original's light Talon (`TALNWIMP.IFF`: two
+  Lasers and a Mass Driver), and its Dumb Fire and the Kamekh's Image-Recognition
+  launchers now name real missiles.
 - `units.csv` loses 58 rows nothing uses, mostly Vega Strike upgrades (beam
   weapons, cloaking device, mines, repair systems, shield levels 8 and 9,
   capacity boosts) and its generic turrets, plus three old asteroid-field
@@ -484,9 +487,7 @@ See Upstream engine work above.
   calibrating rather than copying. The player's hulls also keep Privateer_Gold's
   retuned turn rates (roll fastest), unlike the original's.
 - **NPC load-outs**: the Gothri carries two Friend-or-Foe where the original
-  has one and a Dumb Fire (it has no spare launcher), and the Broadsword three
-  turrets of Lasers and Particle Cannons where the original has two of
-  Particle Cannons (see the turret question above). Capital ships keep
+  has one and a Dumb Fire (it has no spare launcher). Capital ships keep
   Gemini Gold's load-outs.
 
 ### Awaiting research

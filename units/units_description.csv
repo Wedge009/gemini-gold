@@ -244,8 +244,6 @@ turret_mediumrear_blank,WRITEME
 turret_mediumrear_blank_gun,WRITEME
 turret_invisible_medium,WRITEME
 turret_invisible_medium_gun,WRITEME
-turret_mediumrear_invisible,WRITEME
-turret_mediumrear_invisible_gun,WRITEME
 repair_droid__upgrades,WRITEME
 repair_droid_advanced__upgrades,WRITEME
 add_shield_4_capacitance.4__upgrades,WRITEME
