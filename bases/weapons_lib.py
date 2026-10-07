@@ -726,8 +726,7 @@ class SoftwareBoothComputer (SoftwareBoothComputerGeneric):
 		self.draw()
 		self.guiroom.redrawIfNeeded()
 
-#	def next(self):
-	def __next__(self):
+	def next(self):
 		if self.state=="buy":
 			max = len(self.items)
 			if max > 0:

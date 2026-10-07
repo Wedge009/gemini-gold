@@ -11,25 +11,25 @@ def saveVal(str):
 class NotZero:
     def __init__ (self,str):
         self.str = str
-    def __nonzero__ (self):
+    def __bool__ (self):
         print ('nonzeroing')
         return saveVal(self.str)!=0
 class IsZero:
     def __init__ (self,str):
         self.str = str
-    def __nonzero__ (self):
+    def __bool__ (self):
         print ('nonzeroing')
         return saveVal(self.str)==0
 class GreaterZero:
     def __init__ (self,str):
         self.str = str
-    def __nonzero__ (self):
+    def __bool__ (self):
         print ('nonzeroing')
         return saveVal(self.str)>0
 class LessZero:
     def __init__ (self,str):
         self.str = str
-    def __nonzero__ (self):
+    def __bool__ (self):
         print ('nonzeroing')
         return saveVal(self.str)<0
 

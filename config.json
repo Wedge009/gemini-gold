@@ -315,7 +315,7 @@
         "auto_landing_displace_distance": 440.0,
         "auto_landing_dock_distance": 340.0,
         "auto_landing_enable": true,
-        "auto_landing_exclude_list": "Sanctuary_Moon planets/rock.png",
+        "auto_landing_exclude_list": "Sanctuary_Moon planets/rock.png Nav_1 Nav_2 Nav_3 Nav_4 Nav_5 Nav_6 Nav_7 Nav_8 Nav_9",
         "auto_landing_exclude_warning_list": "derelict",
         "auto_landing_move_distance": 340.0,
         "auto_landing_warning_distance": 420.0,
@@ -493,6 +493,7 @@
         "warp_energy_multiplier": 0.0
     },
     "dock": {
+        "dock_planet_radius_percent": 2.5,
         "planet_dock_port_min_size": 350.0,
         "planet_dock_port_size": 1.6
     }

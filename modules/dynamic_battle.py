@@ -208,11 +208,11 @@ def SimulateBattles():
                 return 1
         else:
             cpsal = {}
-            simulateiter= attacklist.items()
+            simulateiter= iter(list(attacklist.items()))  # a snapshot: battles change attacklist
 
     try:
     #if (1):
-        ally = simulateiter.next()
+        ally = next(simulateiter)
         godoit=1
     except:
         simulateiter = None

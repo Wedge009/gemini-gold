@@ -1,3 +1,4 @@
+import engine_compat  # first: fixes VS.Unit truth tests the other modules rely on
 from trading import trading
 from random_encounters import random_encounters
 from difficulty import difficulty

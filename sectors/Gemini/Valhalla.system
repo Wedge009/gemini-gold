@@ -28,7 +28,7 @@
 
         <unit name= "Valkyrie"  file="mining_base" faction="mining" x="-14500" y="-17400" z="2900"/>
         
-        <planet name="Nav 2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" z="0" day="240" />
+        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" z="0" day="240" />
         <planet name="Jump_To_Telar" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="14500" y="17400" z="-2900" day="240" destination="Gemini/Telar"/>
         <planet name="Jump_To_Eden" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-11600" y="0" z="-2900" day="240" destination="Gemini/Eden"/>
         

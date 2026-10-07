@@ -234,6 +234,16 @@ Privateer's files:
   (`components.afterburner.energy_source`, kept in `tools/overrides.json`).
   The engine's default draws it from fuel: about 15 seconds of afterburner
   emptied the tank, and an empty tank stops the reactor too.
+- Planets can be landed on again. Gemini Gold scales its systems to 0.285
+  (`star_system_scale`), so a planet's radius is about 340, and the engine only
+  docks within half a radius of the surface (`dock.dock_planet_radius_percent`
+  1.5), nearer than automatic landing ever puts the ship. It's now 2.5 (in
+  `tools/overrides.json`). Nav points are left out of automatic landing
+  (`auto_landing_exclude_list`; see Upstream engine work for why they count as
+  eligible for docking), and Valhalla's "Nav 2" is now `Nav_2` like the rest.
+- Python 3 truth tests on units work: `modules/engine_compat.py` (imported first
+  by `privateer.py`) gives `VS.Unit` the `__bool__` the engine lacks. Without it
+  random encounters never launched a ship.
 - Gemini Gold's look-and-sound settings the engine renamed carry over too:
   the jump-gate animation and its size, no in-system jump animation, no
   sound on arrival from a jump, the HUD's missile brackets, the target
@@ -338,6 +348,19 @@ this work is deferred for now:
   otherwise, and nothing flags hidden-hold items, so a smuggling compartment's
   contents would reappear as ordinary cargo (from reading the code). Needed
   before Gemini Gold can add the smuggling compartment from Tayla's missions.
+- **`VS.Unit` truth value** (to do): the Python wrapper defines `__nonzero__`,
+  which Python 3 ignores, so a null unit is true. `modules/engine_compat.py`
+  adds `__bool__` until the engine does (one line in
+  `define_odd_unit_functions.h`).
+- **Planets' `alpha` ignored** (to do): `SystemFactory::initializeAlpha` takes
+  the blend modes by value, so a system file's `alpha` never reaches the
+  planet. Nav points (`alpha="ONE ONE"`) should be atmospheric and so have no
+  docking port; instead automatic landing tries to land on them, which
+  `auto_landing_exclude_list` works around.
+- **Afterburner energy cost not saved** (to do): `Afterburner::SaveToCSV`
+  writes thrust and speed but not `Afterburner_Usage_Cost`, so after loading a
+  saved game the afterburner costs 1, bought or not. Buying one also needs an
+  engine-side way to fit an afterburner (see Known gaps).
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
@@ -403,10 +426,9 @@ See Upstream engine work above.
   encounters. Gemini Gold has no hidden hold, and the engine doesn't yet keep
   a hidden hold's contents across a saved game.
 - **Buying an afterburner** doesn't fit one: the engine's afterburner upgrade
-  scales an afterburner the hull already has. The engine also doesn't save an
-  afterburner's energy cost (`Afterburner_Usage_Cost`), so after loading a
-  saved game it probably falls back to a cost of 1, whether or not one was
-  bought (found by reading the code, not yet tested). The `add_` and `mult_` upgrades
+  scales an afterburner the hull already has. And because the engine doesn't
+  save an afterburner's energy cost, after loading a saved game every ship's
+  afterburner works at almost no cost (confirmed in play). The `add_` and `mult_` upgrades
   (cargo expansion, shield regenerator, speed and thrust enhancers) may not be
   possible in data alone either; the engine's cargo-hold upgrade code is
   commented out.
