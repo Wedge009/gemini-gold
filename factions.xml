@@ -3,7 +3,7 @@
 		<Explosion name="explosion_wave.ani"/>
 	</Faction>
 	<Faction name="confed" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband" sparkred="0" sparkgreen="0" sparkblue="1">
-		<stats name="privateer" relation=".2"/>
+		<stats name="privateer" relation="0"/>
 		<stats name="confed" relation="1"/>
 		<stats name="kilrathi" relation="-1"/>
 		<stats name="nephilim" relation=".2"/>
@@ -64,7 +64,7 @@
 		<ShipModifier name="talon" relation="-.5"/>
 	</Faction>
 	<Faction name="kilrathi" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband" sparkred="1" sparkgreen="0" sparkblue="0">
-		<stats name="privateer" relation="-.5"/>
+		<stats name="privateer" relation="-0.390625"/>
 		<stats name="confed" relation="-1"/>
 		<stats name="kilrathi" relation="1"/>
 		<stats name="nephilim" relation="-.8"/>
@@ -133,7 +133,7 @@
 
 	</Faction>
 	<Faction name="merchant" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband" sparkred=".5" sparkgreen="0" sparkblue="1">
-		<stats name="privateer" relation="0.05"/>
+		<stats name="privateer" relation="0"/>
 		<stats name="confed" relation=".1"/>
 		<stats name="kilrathi" relation="-1"/>
 		<stats name="nephilim" relation=".2"/>
@@ -192,7 +192,7 @@
 		<ShipModifier name="galaxy" relation=".3"/>
 	</Faction>
 	<Faction name="retro" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband" sparkred="1" sparkgreen=".3" sparkblue="0">
-		<stats name="privateer" relation="-.5"/>
+		<stats name="privateer" relation="-1"/>
 		<stats name="confed" relation="-1"/>
 		<stats name="kilrathi" relation="0.01"/>
 		<stats name="nephilim" relation="-1"/>
@@ -238,7 +238,7 @@
 		<ShipModifier name="talon" relation=".2"/>
 	</Faction>
 	<Faction name="pirates" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband" sparkred=".4" sparkgreen=".2" sparkblue=".7">
-		<stats name="privateer" relation="-.6"/>
+		<stats name="privateer" relation="-0.390625"/>
 		<stats name="confed" relation="-1"/>
 		<stats name="kilrathi" relation="-1"/>
 		<stats name="nephilim" relation="-1"/>
@@ -285,7 +285,7 @@
 		<ShipModifier name="talon" relation=".95"/>
 	</Faction>
 	<Faction name="hunter" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband" sparkred=".6" sparkgreen=".6" sparkblue=".6">
-		<stats name="privateer" relation="0.05"/>
+		<stats name="privateer" relation="0"/>
 		<stats name="confed" relation=".6"/>
 		<stats name="kilrathi" relation="-1"/>
 		<stats name="nephilim" relation="0"/>
@@ -334,7 +334,7 @@
 		<ShipModifier name="talon" relation="-.8"/>
 	</Faction>
 	<Faction name="militia" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband" sparkred="0" sparkgreen=".5" sparkblue="1">
-		<stats name="privateer" relation="0.05"/>
+		<stats name="privateer" relation="0"/>
 		<stats name="confed" relation="1"/>
 		<stats name="kilrathi" relation="-1"/>
 		<stats name="nephilim" relation="0.05"/>
@@ -381,7 +381,7 @@
 		<ShipModifier name="talon" relation="-.8"/>
 	</Faction>
 	<Faction name="unknown" logoRGB="invisible.png" secLogoRGB="invisible.png" contraband="contraband">
-		<stats name="privateer" relation="0"/>
+		<stats name="privateer" relation="-1"/>
 		<stats name="confed" relation="-1"/>
 		<stats name="kilrathi" relation="-.001"/>
 		<stats name="nephilim" relation="-1"/>
@@ -489,7 +489,7 @@
 		<stats name="pirate" relation="0" conversation="privtopirates.xml"/>
 		<stats name="hunter" relation="0.05" conversation="privtohunter.xml"/>
 		<stats name="militia" relation=".05" conversation="privtomilitia.xml"/>
-		<stats name="unknown" relation="0"/>
+		<stats name="unknown" relation="-1"/>
 		<stats name="steltek" relation="0.01"/>
 		<stats name="landreich" relation="0" conversation="privtomilitia.xml"/>
 		<stats name="border_worlds" relation="0.05" conversation="privtoconfed.xml"/>

@@ -135,6 +135,18 @@ Privateer's files:
   Hector, Troy's other mining base.
 - Tachyon cannon damage is 5.0, as in the game's data and manual. Gemini
   Gold had 3.7, the figure in Origin's Playtesters' Guide.
+- Starting reputations follow the original's (`InitCfg.pak`, on its −128 to
+  127 scale): neutral with merchants, hunters, Confed and militia, −0.39 with
+  the Kilrathi and pirates, and −1 with the Retros and the Steltek drone's
+  `unknown` faction. `New_Game`'s relations table overrides `factions.xml` for
+  a new game, so both are set. Still to be play-tested.
+- Ship statistics corrected from the original's (`APPEARNC/SKELETON.IFF` and
+  the ships' types): the Dralthi, Stiletto and Broadsword turn at the
+  original's rate (Gemini Gold had 280, 280 and 50; their manoeuvring torque
+  scales with it), the Stiletto's and Demon's afterburners reach 1,400 and
+  1,200, the Drayman flies at 200 (its afterburner too, as the engine can't
+  make it slower than top speed), and the Gladius, Demon and NPC Tarsus have
+  the original's shield levels (1, 2 and 2).
 - S12MD: Menesch waits in Regallis, not Troy.
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle
@@ -228,8 +240,8 @@ this work is deferred for now:
 - **Hidden hold after loading a save** (to do): a saved game's items go
   back into the upgrade space if flagged installed and into the cargo hold
   otherwise, and nothing flags hidden-hold items, so a smuggling compartment's
-  contents would reappear as ordinary cargo (from reading the code; Gemini Gold
-  has no hidden holds).
+  contents would reappear as ordinary cargo (from reading the code). Needed
+  before Gemini Gold can add the smuggling compartment from Tayla's missions.
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
@@ -253,6 +265,8 @@ grouped by what's holding it up.
   `modules/dynamic_mission.py` (`addstr`), `modules/faceoff.py`,
   `modules/launch.py`, `modules/plunder.py`, `modules/rescue.py`,
   `modules/unit.py` and `modules/XGUI.py`.
+- No random encounters have been seen around Achilles despite the
+  `random_encounters.py` fix; why is still to be investigated.
 
 ### Waiting on engine work
 
@@ -280,6 +294,10 @@ See Upstream engine work above.
 - **Upgrades use cargo space**: the dealer adds them with `addCargo`, which
   always uses the cargo hold, so each fitted item takes 1 unit of cargo room.
   Gemini Gold's old engine charged `upgrades/...` items to the upgrade space.
+- **Tayla's smuggling compartment**: in the original, Tayla D (S1MD) fits your
+  ship with a hidden hold whose contraband passes the scans in ordinary
+  encounters. Gemini Gold has no hidden hold, and the engine doesn't yet keep
+  a hidden hold's contents across a saved game.
 - **Buying an afterburner** doesn't fit one: the engine's afterburner upgrade
   scales an afterburner the hull already has. The `add_` and `mult_` upgrades
   (cargo expansion, shield regenerator, speed and thrust enhancers) may not be
@@ -305,6 +323,9 @@ See Upstream engine work above.
   smaller groups than the original's in many missions; the S7MA and S1MC
   route ambushes are a single fighter; S14MA's elite Salthi waves are missing;
   Kahl isn't a distinct ship at Blockade Point Alpha's Nav 4.
+- **Menesch** flees to whichever object he spawned beside rather than the
+  Freyja jump, and the mission doesn't follow him there as the original does:
+  Gemini Gold's bounty script doesn't support a fleeing target. To follow up.
 - **Gemini Gold's own additions**: the Kilrathi weapon dump in Tr'Pakh, the
   bonus campaign and the "Pilot" cargo item. Like the encounters, these need a
   gameplay review, deferred until the engine is in better shape.
@@ -327,11 +348,31 @@ See Upstream engine work above.
   version of each weapon.
 - Rikel ↔ Eden shows on the nav map: the engine's map shows every object in a
   system, where the original hid that jump.
+- Shield levels 6 and 7 use their stronger value on every facet (60 and 70).
+  The original gives three facets 57.5 and 65 and the fourth 60 and 70 (the
+  fourth value in `SHIELDS.IFF`; by the armour's left, right, front, back
+  order that would be the rear, though that's unconfirmed for shields). The
+  engine's shield upgrade takes a single value anyway, and erring in the
+  player's favour matches the Plasma Gun.
 - Capital ships keep Gemini Gold's stronger armour, so they feel like capital
   ships; the Steltek drone keeps its lower speeds, and the Steltek scout its
   stronger gun (it doesn't attack).
 
-### Not yet decided
+### To do
+
+- **Galaxy-map positions** of systems in `universe/wcuniverse.xml` are
+  approximate; the original's quadrant and system coordinates are decoded.
+- **Ship handling**: the player's ships out-accelerate fighters, the reverse of
+  the original. The engine divides thrust by mass, so acceleration, along with
+  the other handling figures (turn acceleration, lateral thrust), needs
+  calibrating rather than copying. The player's hulls also keep Privateer_Gold's
+  retuned turn rates (roll fastest), unlike the original's.
+- **NPC loadouts**: the Orion's guns, the Centurion's rear guns and the Tarsus's
+  missiles differ from the original's.
+
+### Awaiting research
+
+These may come from independent work recreating the original engine.
 
 - **Repair prices**: 35% of the price in the upgrade bay and 45% in the
   software booth. The original's rule is unknown; WCPedia's Tachyon figures
@@ -340,24 +381,9 @@ See Upstream engine work above.
   original stores a damaged resale price for each item.
 - **Hull trade-in**: Gemini Gold pays 50% of the hull's price; the original
   pays its index value less wear and tear.
-- **Starting reputations**: `New_Game`'s relations table starts Confed friendly
-  and Retros level with pirates; the original starts every faction neutral
-  except the Kilrathi and pirates (−50) and the Retros (−128).
-- **Galaxy-map positions** of systems in `universe/wcuniverse.xml` are
-  approximate.
-- **Engine levels**: the reactor values haven't been compared with the
-  original's engine tables, and buying an engine doesn't change the capacitor
-  size Gemini Gold pairs with each level.
-- **Ship stats**: several turn rates differ (the Dralthi and Stiletto turn too
-  fast, the Broadsword too slow); the player's ships out-accelerate fighters,
-  the reverse of the original; the Drayman's top speed is 150 against 200; the
-  Stiletto's and Demon's afterburners are slower; the Gladius, Demon and
-  Drayman have different shield levels; and the Orion, the Centurion's rear
-  guns and the Tarsus's missiles differ.
-- **Shield levels 6 and 7** use one value for every facet; the original gives
-  one facet a higher value.
-- **Menesch** flees to whichever object he's near rather than the Freyja jump,
-  and isn't followed.
+- **Engine levels**: what each level does in the original isn't in its data
+  files, and buying an engine doesn't change the capacitor size Gemini Gold
+  pairs with each level.
 
 ### Still to play-test
 
@@ -368,4 +394,5 @@ and their landing re-roll (RF's too), the Salthi's stats, the Talon's and
 Broadsword's masses (no original figures), the starting missiles, built-in
 equipment and bought upgrades, the Tachyon, the RF upgrade limits and Tarsus
 trade-in, the sell-back prices, the RF mission ships' speeds, the RF Kilrathi
-weapons, and the de-duplicated asteroid fields.
+weapons, the de-duplicated asteroid fields, the starting reputations, and the
+corrected ship statistics.
