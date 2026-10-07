@@ -32,6 +32,7 @@ class random_encounters:
             self.curmode=0
             self.lastmode=0
             self.lastsys=""
+            self.was_docked=False
             self.sig_container=VS.Unit()
             self.significant_distance=sig_distance
             self.detection_distance=det_distance
@@ -123,6 +124,14 @@ class random_encounters:
             reldel=VS.GetRelation(fac,"privateer")
             VS.AdjustRelation(fac,"privateer",-reldel,1);
             print ("adjusting by "+str(reldel))
+
+    def LaunchAtTakeOff(self, player):
+        # The original has a base's encounters waiting when the player launches.
+        # Taking off never counts as arriving near the base (the player was near
+        # it all along), so launch here, skipping launch_near's start-up delay.
+        if not self.atLeastNInsignificantUnitsNear(player, self.min_num_ships):
+            debug.debug("launch at take-off")
+            self.launch_near(player, True)
 
     def launch_near(self,un, forceLaunch=False):
         if (VS.GetGameTime()<10 and not forceLaunch):
@@ -247,6 +256,11 @@ class random_encounters:
         if (self.cur_player>=len(self.players)):
             self.AddPlayer()
         self.cur=self.players[self.cur_player]
+        player = VS.getPlayerX(self.cur_player)
+        docked = bool(player) and (player.DockedOrDocking() & 3) != 0  # DOCKED_INSIDE | DOCKED
+        if self.cur.was_docked and not docked and player:
+            self.LaunchAtTakeOff(player)
+        self.cur.was_docked = docked
         un = VS.Unit()
         if (self.cur.curquest<len(self.cur.quests)):
             if (self.cur.quests[self.cur.curquest].Execute()):

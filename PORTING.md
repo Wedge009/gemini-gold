@@ -247,6 +247,12 @@ Privateer's files:
   `tools/bindings_to_json.py` had also copied Vega Strike's throttle and z
   axes, and the throttle pinned the set speed at half maximum (see Upstream
   engine work).
+- Random encounters also launch when the player takes off
+  (`random_encounters.LaunchAtTakeOff`), as in the original, where a base's
+  encounters are waiting at launch. Vega Strike's script only launches on
+  arriving near a base or nav point, and never in a game's first 10 seconds,
+  so taking off brought nothing. A gameplay change on trial: revert it if it
+  doesn't play well.
 - Python 3 truth tests on units work: `modules/engine_compat.py` (imported first
   by `privateer.py`) gives `VS.Unit` the `__bool__` the engine lacks. Without it
   random encounters never launched a ship.
@@ -532,7 +538,11 @@ See Upstream engine work above.
 - **Music**: the right music doesn't play for the situation. After landing on
   Helen, the landing jingle gave way to battle music. The engine's music may
   be working as designed; Gemini Gold's playlists and the scripts that pick
-  them need checking.
+  them need checking. The log shows `dj_lib` choosing the peace list at the
+  time. Every in-flight track is named `combat1` to `combat13`, and each list
+  in `.gemini-gold/` (peace 5 and 8, battle 6, 9 and 13, panic 7, victory 9,
+  loss 11) is a selection of them, so the lists need comparing with the
+  original's moods by ear.
 
 ### Awaiting research
 
