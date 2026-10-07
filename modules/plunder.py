@@ -7,6 +7,7 @@ import Director
 import unit
 import quest
 import VS
+import Briefing
 
 class plunder (Director.Mission):
 

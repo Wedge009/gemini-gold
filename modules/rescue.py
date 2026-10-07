@@ -7,6 +7,7 @@ import Director
 import unit
 import quest
 import VS
+import Briefing
 import go_to_adjacent_systems
 import go_somewhere_significant
 class rescue (Director.Mission):

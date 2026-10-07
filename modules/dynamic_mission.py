@@ -738,6 +738,7 @@ def generateWingmanMission(fg, faction):
         s=str(numships)+" pilots"
         EorA="e"
         are="are"
+    addstr=""
     isFixer=vsrandom.random()
     if isFixer<fixerpct and fixer_has_wingman:
         creds*=2

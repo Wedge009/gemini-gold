@@ -155,7 +155,7 @@ class Guild(GenericGuild):
 		if self.CanPay():
 			custom.run('guilds',[self.name,'join'], JoinStatus)
 		else:
-			joinStatus(["failure"])
+			JoinStatus(["failure"])
 
 
 def handle_guilds_message(local, cmd, args, id):
@@ -474,6 +474,6 @@ def CreateGuild(guildroom):
 			CreateJoinedGuild(guildname,guildroom)
 
 def Clear():
-	del guildrooms
+	global guildrooms
 	guildrooms={}
 

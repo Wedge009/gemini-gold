@@ -6,6 +6,7 @@ import faction_ships
 import dynamic_news
 import debug
 import generate_dyn_universe
+import launch_recycle
 
 global dnewsman_
 dnewsman_ = dynamic_news.NewsManager()
@@ -240,7 +241,7 @@ def LookForSystemWideTrouble(faction,sys):
     fg = fg_util.FGsInSystem(faction,sys)
     for i in fg:
         enemyfac = faction_ships.get_enemy_of (faction)
-        efg = fg_util.AllFGsInSystem(enemy,sys)
+        efg = fg_util.AllFGsInSystem(enemyfac,sys)
         if (len(efg)):
             index=vsrandom.randrange(0,len(efg))#FIXME include some sort of measure "can I win"
             initiateAttack(fg,faction,sys,efg[index],enemyfac)
@@ -479,7 +480,7 @@ def LaunchMoreShips(fgname,faction,landedtn,nums):
             pos=k.GetPosition()
     if (pos):
         for i in shiplaunchlist:
-            while j in range (i[1]):
+            for j in range (i[1]):
                 pos=launch_recycle.LaunchNext(fgname,faction,"default",pos)
 
 

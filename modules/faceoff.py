@@ -32,7 +32,7 @@ class faceoff (Director.Mission):
             faction=faction_ships.get_enemy_of("confed")
         else:
             faction=faction_ships.get_friend_of("confed")
-        launched = launchShip(faction_ships.getRandomFighter(faction),faction);
+        launched = self.launchShip(faction_ships.getRandomFighter(faction),faction);
 
     def Execute (self):
         time = VS.GetGameTime()

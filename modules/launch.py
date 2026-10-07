@@ -80,7 +80,7 @@ def launch_wave_in_area(fgname,faction,type,ai,nr_ships,radius,pos,logo='',usean
   
 def launchShipsAtWaypoints(waypoints,faction,type,ainame,nr,logo='',useani=1,skipdj=0):
     i=0
-    c=length(waypoints)-1
+    c=len(waypoints)-1
     for wp in waypoints:
         outstr="wp%d" % (i)
         launch(outstr,faction,type,ainame,nr,1,wp,logo,useani,(skipdj or (i==c)))

@@ -211,6 +211,21 @@ Privateer's files:
   torpedoes. The retros' Talon (`talon__retro`) follows the original's light
   Talon (`TALNWIMP.IFF`: two Lasers and a Mass Driver), and its Dumb Fire and
   the Kamekh's Image-recognition launchers now name real missiles.
+- `units.csv` loses 58 rows nothing uses, mostly Vega Strike upgrades (beam
+  weapons, cloaking device, mines, repair systems, shield levels 8 and 9,
+  capacity boosts) and its generic turrets, plus three old asteroid-field
+  variants and three duplicated rows. Rows the engine looks up by a built
+  name stay even when nothing names them: `.cargo`, `.blank`, `.template`,
+  `__planets` and faction variants, and the upgrades those rows list. So do
+  the medium turrets, for the turret question.
+- Undefined names inherited from Gemini Gold are fixed. Reachable in play:
+  dynamic battles couldn't launch reinforcements beside a ship already in
+  space (`dynamic_battle.LaunchMoreShips`), `unit.getUnitByFgID` failed
+  outright, accepting a bar fixer's job while on a mission failed, and the
+  guilds' join failure and the ship dealer's failed-turret message raised
+  errors. Also fixed: typos in rarely used paths (`XGUI`, `faceoff`,
+  `launch`, `campaign_lib`, `plunder`, `rescue`), two unused `obsolete_`
+  functions in `unit.py` removed, and `dynamic_news.py`'s invalid escape.
 - Righteous Fire's mission ships have the original's speed and thrust boosts
   (from their stats files in `TYPES/`): Jones (×1.33) and his escort of elite
   Salthi (×1.25) in the final mission, Menesch (×1.17, speed only) and
@@ -313,14 +328,10 @@ grouped by what's holding it up.
   may change gameplay.
 - The old Gemini Gold engine had Privateer-specific HUD behaviour the current
   engine lacks (see vegastrike/Vega-Strike-Engine-Source#1173).
-- pyflakes still reports undefined names inherited from Gemini Gold (they are
-  in the SVN original too), mostly in error paths: `bases/fixers.py`
-  (`rndnum`), `bases/guilds.py` (`joinStatus`, `guildrooms`),
-  `bases/weapons_lib.py` (`mount_num`), `modules/campaign_lib.py`
-  (`isdocked`), `modules/dynamic_battle.py` (`enemy`, `j`, `launch_recycle`),
-  `modules/dynamic_mission.py` (`addstr`), `modules/faceoff.py`,
-  `modules/launch.py`, `modules/plunder.py`, `modules/rescue.py`,
-  `modules/unit.py` and `modules/XGUI.py`.
+- pyflakes reports two undefined names left from Gemini Gold, both in code
+  that can't run: Gemini Gold's disabled random bar fixers
+  (`fixers.CreateMissionFixers`, `rndnum`) and an unreachable `return un` in
+  `launch.py`. The rest are star imports it can't see through.
 - No random encounters have been seen around Achilles despite the
   `random_encounters.py` fix (on hold). Encounters are rolled on entering
   range of a base, planet, nav or jump point; at the start the player is

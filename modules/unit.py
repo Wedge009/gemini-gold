@@ -110,7 +110,7 @@ def getPlanet (whichsignificant, sig):
     if sig:
         i.advanceNSignificant(whichsignificant)
     else:
-        i.advanceNPlanet(whichshignificant)   
+        i.advanceNPlanet(whichsignificant)   
     if i.isDone():
         return VS.Unit()
     else:
@@ -141,30 +141,6 @@ def getJumpPoint(whichsignificant):
         return un
     else:
         return i.current()
-
-def obsolete_getNearestEnemy(my_unit,range):
-    i = VS.getUnitList()
-    min_dist=9999999.0
-    min_enemy=VS.Unit()
-    while(not i.isDone()):
-        un=i.current()
-        unit_pos=un.Position()
-        dist=my_unit.getMinDis(unit_pos)
-        relation=my_unit.getRelation(unit)
-        if(relation<0.0):
-            if((my_unit==unit) and (dist<range) and (dist<min_dist)):
-                min_dist=dist
-                min_enemy=unit
-        i.advance()
-    if(min_enemy):
-        other_fgid=min_enemy.getFgID()
-    return min_enemy
-
-def obsolete_getThreatOrEnemyInRange(un,range):
-    threat=un.getThreat()
-    if(threat.isNull()):
-        threat=obsolete_getNearestEnemy(un,range)
-    return threat
 
 def setPreciseTargetShip (which_fgid, target_unit):
     if (target_unit):
@@ -210,9 +186,9 @@ def getUnitByFgIDFromNumber(fgid, ship_nr):
     found_unit = VS.Unit()
     while not i.isDone() and not found_unit:
         un = i.current()
-        unit_fgid=unit.getFgID()
+        unit_fgid=un.getFgID()
         if(unit_fgid==fgid):
-            found_unit=unit
+            found_unit=un
         i.advance()
     return found_unit
 
