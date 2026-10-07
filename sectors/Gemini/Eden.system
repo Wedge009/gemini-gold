@@ -27,6 +27,7 @@
 </Light>	
 
         <planet name="Jump_To_Valhalla" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-2900" y="14500" z="0" day="240" destination="Gemini/Valhalla"/>
+        <planet name="Jump_To_Rikel" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="6090" y="-580" z="2175" day="240" destination="Gemini/Rikel"/>
         <planet name="Gaea" file="planets/church_of_man.png" radius="1200" gravity="20" x="-10150" y="-10150" z="0" si="-3000" day="300">
 		<Atmosphere file="clouds.png" alpha="SRCALPHA INVSRCALPHA" radius="1211"/>
         </planet>

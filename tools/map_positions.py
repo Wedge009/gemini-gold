@@ -41,12 +41,24 @@ def key(name):
 
 
 def load_points(extract_dir, game, flip_z=False):
+    """Each system's points, and the destinations of its hidden jumps.
+
+    A hidden jump is listed in <game>_jumps.csv but appears in the nav points
+    only as a hidden point, with no destination.
+    """
     points = defaultdict(list)
     with open(extract_dir / f'{game}_navpoints.csv', newline='') as f:
         for row in csv.DictReader(f):
             row['pos'] = (int(row['x']), int(row['y']), -int(row['z']) if flip_z else int(row['z']))
             points[key(row['system'])].append(row)
-    return points
+    hidden = defaultdict(set)
+    with open(extract_dir / f'{game}_jumps.csv', newline='') as f:
+        for row in csv.DictReader(f):
+            k = key(row['system'])
+            visible = {key(r['ref_name']) for r in points[k] if r['kind'] == 'jump'}
+            if key(row['dest_system']) not in visible:
+                hidden[k].add(key(row['dest_system']))
+    return points, hidden
 
 
 def number(value):
@@ -157,10 +169,22 @@ def plan_system(name, text, original, scale, report):
     return tags, pairs
 
 
-def place_rest(name, tags, original, scale, kx, ky, report):
-    """Asteroid fields and objects with no original counterpart."""
+def place_rest(name, tags, original, hidden_dests, scale, kx, ky, report):
+    """Hidden jumps, asteroid fields and objects with no original counterpart."""
     def estimate(pos):
         return (pos[0] / kx, pos[1] / ky)
+
+    # A jump the visible jumps don't explain sits at the nearest hidden point.
+    hidden_points = [r for r in original if r['kind'] == 'hidden_trigger']
+    for t in tags:
+        if t.role == 'jump' and t.target is None and key(t.attrs['destination'].split('/')[-1]) in hidden_dests:
+            ex = estimate(t.pos) + (t.pos[2] / ((kx + ky) / 2),)
+            r = min(hidden_points, key=lambda h: math.dist(ex, h['pos']), default=None)
+            if r is not None:
+                t.target = tuple(scale * v for v in r['pos'])
+                t.orig = r
+                hidden_points.remove(r)
+                report.append(f'{t.attrs.get("name")} placed at hidden point {r["pos"]}')
 
     named = {}
     for t in tags:
@@ -251,8 +275,8 @@ def main():
     parser.add_argument('--write', action='store_true')
     args = parser.parse_args()
 
-    rf = load_points(args.extract_dir, 'rf', args.flip_z)
-    priv = load_points(args.extract_dir, 'priv', args.flip_z)
+    rf, rf_hidden = load_points(args.extract_dir, 'rf', args.flip_z)
+    priv, priv_hidden = load_points(args.extract_dir, 'priv', args.flip_z)
     files = sorted((GAME_ROOT / 'sectors/Gemini').glob('*.system'))
 
     planned = []
@@ -260,6 +284,7 @@ def main():
     for path in files:
         k = key(path.stem)
         original = rf.get(k) or priv.get(k)
+        hidden_dests = rf_hidden.get(k) if k in rf else priv_hidden.get(k, set())
         if not original:
             print(f'{path.stem}: not in the original; skipped')
             continue
@@ -267,14 +292,14 @@ def main():
             text = f.read()
         report = []
         tags, pairs = plan_system(path.stem, text, original, args.scale, report)
-        planned.append((path, text, original, tags, report))
+        planned.append((path, text, original, hidden_dests, tags, report))
         all_pairs += pairs
     kx = fit([(g[0], o[0]) for g, o in all_pairs])
     ky = fit([(g[1], o[1]) for g, o in all_pairs])
     print(f'Current scale: x {kx:.3f}, y {ky:.3f}; new scale {args.scale} on all three axes\n')
 
-    for path, text, original, tags, report in planned:
-        missing = place_rest(path.stem, tags, original, args.scale, kx, ky, report)
+    for path, text, original, hidden_dests, tags, report in planned:
+        missing = place_rest(path.stem, tags, original, hidden_dests, args.scale, kx, ky, report)
         moved = [t for t in tags if t.target is not None and any(abs(a - b) >= 1 for a, b in zip(t.target, t.pos))]
         unplaced = [t for t in tags if t.target is None and t.role != 'star']
         new = text

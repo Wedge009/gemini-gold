@@ -9,6 +9,9 @@ per game, prefixed priv_ or rf_; the default is rf, Righteous Fire):
                         kind is jump, base, nav or hidden_trigger; ref_name is the
                         jump destination or base name; asteroid_field is empty for none
   <game>_galaxy.csv     quadrant,quad_x,quad_y,system,sys_local_x,sys_local_y,...
+  <game>_jumps.csv      system,jump_seq,dest_system,dest_index
+                        a jump missing from the nav points' jumps is a hidden one,
+                        listed there as a hidden_trigger
 
 For every system in sectors/Gemini this reports jumps, bases, nav points and
 asteroid fields that differ, jump lists in universe/wcuniverse.xml that disagree
@@ -44,7 +47,13 @@ def load_original(extract_dir, game):
             points[key(row['system'])].append(row)
     with open(extract_dir / f'{game}_galaxy.csv', newline='') as f:
         names = {key(row['system']): row['system'] for row in csv.DictReader(f)}
-    return points, names
+    hidden = defaultdict(dict)
+    with open(extract_dir / f'{game}_jumps.csv', newline='') as f:
+        for row in csv.DictReader(f):
+            k = key(row['system'])
+            if key(row['dest_system']) not in {key(r['ref_name']) for r in points[k] if r['kind'] == 'jump'}:
+                hidden[k][key(row['dest_system'])] = row['dest_system']
+    return points, names, hidden
 
 
 def load_universe():
@@ -96,7 +105,7 @@ def number(value):
         return 0.0
 
 
-def audit_system(name, original, objects, universe, report, positions):
+def audit_system(name, original, objects, universe, hidden_jumps, report, positions):
     o_jumps = {key(r['ref_name']): r for r in original if r['kind'] == 'jump'}
     o_bases = {key(r['ref_name']): r for r in original if r['kind'] == 'base'}
     o_navs = [r for r in original if r['kind'] == 'nav']
@@ -114,6 +123,23 @@ def audit_system(name, original, objects, universe, report, positions):
             else:
                 report.append(f'unnamed base ({a.get("file")}) not matched')
 
+    # A hidden jump is only a hidden point in the nav points: pair each with the
+    # nearest one, at this system's scale (from the jumps and bases already matched).
+    ratios = sorted(math.hypot(number(a.get('x')), number(a.get('y'))) / math.hypot(int(r['x']), int(r['y']))
+                    for found, wanted in ((g_jumps, o_jumps), (g_bases, o_bases))
+                    for k, a in found.items() if k in wanted
+                    for r in [wanted[k]] if math.hypot(int(r['x']), int(r['y'])) >= 1000)
+    k_sys = ratios[len(ratios) // 2] if ratios else 1.0
+    spare = [r for r in o_hidden]
+    for d in sorted(set(g_jumps) - set(o_jumps)):
+        if d in hidden_jumps and spare:
+            a = g_jumps[d]
+            g = (number(a.get('x')) / k_sys, number(a.get('y')) / k_sys, number(a.get('z')) / k_sys)
+            r = min(spare, key=lambda h: math.dist(g, (int(h['x']), int(h['y']), int(h['z']))))
+            spare.remove(r)
+            o_jumps[d] = dict(r, ref_name=hidden_jumps[d])
+    for d in sorted(set(hidden_jumps) - set(g_jumps)):
+        report.append(f'hidden jump to {hidden_jumps[d]} missing')
     for d in sorted(set(o_jumps) - set(g_jumps)):
         report.append(f'jump to {o_jumps[d]["ref_name"]} missing')
     for d in sorted(set(g_jumps) - set(o_jumps)):
@@ -177,7 +203,7 @@ def main():
     parser.add_argument('--game', choices=('priv', 'rf'), default='rf')
     args = parser.parse_args()
 
-    points, names = load_original(args.extract_dir, args.game)
+    points, names, hidden = load_original(args.extract_dir, args.game)
     universe = load_universe()
     files = {key(p.stem): p for p in (GAME_ROOT / 'sectors/Gemini').glob('*.system')}
     reports = {}
@@ -191,7 +217,7 @@ def main():
         elif k not in files:
             report.append('no system file')
         else:
-            audit_system(name, points[k], load_system_file(files[k]), universe.get(k), report, positions)
+            audit_system(name, points[k], load_system_file(files[k]), universe.get(k), hidden.get(k, {}), report, positions)
         if report:
             reports[name] = report
 

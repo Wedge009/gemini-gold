@@ -111,7 +111,10 @@ Privateer's files:
   Righteous Fire's throughout, Eden included: Blockade Point Alpha has RF's
   redesigned layout (adding Nav 3 and Nav 4), which RF's story mission there
   (S13MA, "seal off the jump tunnel" at Nav 5) needs and no Privateer mission
-  depends on. `tools/map_positions.py` makes these
+  depends on. Rikel and Eden are linked by RF's jump pair, which Gemini Gold's
+  universe file listed but its system files never placed; in the original both
+  are hidden points, missing from the nav map but there in space.
+  `tools/map_positions.py` makes these
   changes from the decoded map data; running it again changes nothing.
 - The starting Tarsus has a missile launcher with 5 Dumbfires, as in the
   original game's new-game data (`initcfg.pak`).
@@ -185,6 +188,29 @@ the JSON files and any edits made to them since:
 [vegastrike/Assets-Production](https://github.com/vegastrike/Assets-Production)
 (Vega Strike's own game), used only for its `vegastrike.config` and starting
 JSON files.
+
+## Upstream engine work
+
+Engine changes some fixes here wait on, offered to
+[vegastrike/Vega-Strike-Engine-Source](https://github.com/vegastrike/Vega-Strike-Engine-Source)
+so the sub-module can stay unpatched:
+
+- **Python `Unit.downgrade()`** (#1817, submitted): lets the ship dealer undo a
+  sold upgrade; `bases/weapons_lib.py` already uses it when present.
+- **`system_damage_on_armor`** (#1816, submitted): `DamageRandomSystem` and
+  `DamageCargo` test the hull layer for both hull and armour hits, so the
+  setting has no effect.
+- **`launchJumppoint` and other planets launched from Python** (to do): since
+  2010 the engine ignores the type string ("radius texture name (blend)"); a
+  clean-up removed the `sscanf` that read it along with its unused result, so
+  such planets get radius 1, no texture and no name. Needed to add story-locked
+  jumps (see Known gaps) only once their mission opens them.
+- **Upgrades in the upgrade space** (to do): Python `addCargo` always uses the
+  cargo hold, so bought upgrades take cargo room; the old engine charged
+  `upgrades/...` items to the upgrade space. Needs care with saved games, which
+  reload items into a hold by their "installed" flag, and base inventories.
+- **Narrowing a mount** (to do): Python can widen a mount for a launcher but not
+  narrow it again, so launchers can't be sold.
 
 ## Known gaps
 
