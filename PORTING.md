@@ -456,7 +456,10 @@ See Upstream engine work above.
   to remove the item from the hold, then call `RecomputeUnitUpgrades()`, which
   the engine no longer has, so the sale failed part-way. It now uses
   `Unit.downgrade()` (#1817) when the engine has it and otherwise refuses the
-  sale. Guns and missiles sell as before.
+  sale. Guns and missiles sell as before. As each slot holds one item, this
+  also means shields, armour and radar can't be upgraded: the old one can't be
+  sold to make room. Reactor, ECM, repair droid and jump drive upgrades buy
+  fine.
 - **Armour hits damaging systems.** `config.json` sets `system_damage_on_armor`
   so that, as in the original, hits on the armour can damage ship systems; the
   engine ignores it until #1816.
@@ -594,21 +597,23 @@ These may come from independent work recreating the original engine.
 
 The 3D positions (including whether +z points the same way as the original's z;
 if not, `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it, then
-negate the z of the start position in `New_Game`), commodity prices and stock
-and their landing re-roll (RF's too), the Salthi's stats, the Talon's and
-Broadsword's masses (no original figures), the starting missiles, built-in
-equipment and bought upgrades, the Tachyon, the RF upgrade limits and Tarsus
-trade-in, the sell-back prices, the RF mission ships' speeds, the RF Kilrathi
-weapons, the de-duplicated asteroid fields, the starting reputations, the
-corrected ship statistics, the NPC load-outs (the Orion's restored turret
-especially), the galaxy map's positions, a new game's universe now that it's
-generated afresh for Gemini alone (start-up time, traffic, the faction table
-`New_Game` now loads), the dynamic battles' reinforcements, and the
-settings carried over from Gemini Gold's config.
+negate the z of the start position in `New_Game`; hard to judge from how bases
+face, so low priority), the galaxy map's positions, the de-duplicated asteroid
+fields, a new game's universe now that it's generated afresh for Gemini alone
+(start-up time, traffic, the faction table `New_Game` now loads), the dynamic
+battles' reinforcements, the Tachyon, the sell-back prices, the Tarsus
+trade-in, repairing slot upgrades, and the settings carried over from Gemini
+Gold's config.
 
-Buying and repairing slot upgrades now that the dealer no longer fails on
-`Cargo.SetMaxFunctionality`, the software booth's Next Item button, scrolling
-long lists. Launched ships (a Retro leaving Achilles, three Broadswords at Helen)
-sit still for a long time before moving erratically, and there are no collisions;
-a log is needed. The afterburner's energy drain (`energy_source`) can't be tested
+Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit still
+for a long time before moving erratically, and there are no collisions; a log
+is needed. The afterburner's energy drain (`energy_source`) can't be tested
 until a bought afterburner works (see Known gaps).
+
+Game balance, to judge once the controls feel right: the corrected ship
+statistics, the Salthi's stats, the Talon's and Broadsword's masses (no
+original figures), and the NPC load-outs (the Orion's restored turret
+especially; hard to notice without looking for it).
+
+Righteous Fire, later: commodity prices and stock, the upgrade limits, the
+mission ships' speeds and the Kilrathi weapons.
