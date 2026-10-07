@@ -187,6 +187,10 @@ Privateer's files:
   to pirates. Also removed: `modules/stubloader.py` (an offline test harness
   for stubs that aren't here), `modules/GUI.savegamenamechanger.py` (unused,
   still Python 2) and Privateer_Gold's stale installer manifest.
+- `dj_lib` no longer tries to play an `asteroids.m3u` playlist in asteroid
+  fields; the playlist never existed and the original has no asteroid music,
+  so the normal peace music plays.
+- `units/units.rf`, an unused older copy of `units.csv` kept since 2007, is gone.
 - S12MD: Menesch waits in Regallis, not Troy.
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle

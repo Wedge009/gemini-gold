@@ -16,7 +16,6 @@ battlelist={"AWACS":VS.musicAddList('AWACS.m3u'),
             }
 paniclist={None:PANICLIST,
             "AWACS":VS.musicAddList('AWACS.m3u')}
-asteroidmisic=VS.musicAddList('asteroids.m3u')
 
 def LookupTable(list,faction):
     if faction in list:
@@ -58,13 +57,9 @@ def PlayMusik(forcechange=1,hostile_dist=0):
         iter = VS.getUnitList()
         target = iter.current()
         unlist=[]
-        asteroid=0
         while (not iter.isDone()):
             if (target):
                 ftmp = 2*target.getRelation(un)
-                nam=target.getName().lower()
-                if un.getSignificantDistance(target)<=2*target.rSize() and ('afield'==nam[:6] or 'asteroid'==nam[:8]):
-                    asteroid=1
                 hdis = HOSTILE_AUTODIST
                 if (hostile_dist!=0):
                     hdis = hostile_dist
@@ -74,9 +69,6 @@ def PlayMusik(forcechange=1,hostile_dist=0):
             iter.advance()
             target=iter.current()
         if (perfect):
-            if asteroid and asteroidmisic!=-1 and vsrandom.random()<.7:
-                mpl(asteroidmisic,PEACELIST,forcechange)
-                return
             sys=VS.getSystemFile()
             fact=VS.GetGalaxyFaction(sys)
             if vsrandom.random()<.5:
