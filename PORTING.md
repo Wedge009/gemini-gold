@@ -399,8 +399,13 @@ See Upstream engine work above.
 - **Shields can't be switched off.** The original lets the player turn
   shields off to save energy for the guns and afterburner; the engine has no
   such control.
-- **Jumps are unlimited.** The original's fuel allows six jumps per flight;
-  the engine's jump drive spends nothing (`JumpDrive::Consume` returns 0).
+- **Jumps are unlimited.** The original allows six jumps per flight. Gemini
+  Gold did the same on its old engine: each ship's warp capacitor holds 6
+  (`Warp_Capacitor`), a jump costs 1 (`Outsystem_Jump_Cost`), the reactor
+  doesn't recharge it (`warp_energy_multiplier` 0), and docking refills it.
+  The current engine keeps the capacitor and the refill, but its jump drive
+  spends nothing (`JumpDrive::Consume` returns 0), and the reactor tops the
+  capacitor up with its surplus, with no setting to stop it.
 
 ### On hold, to revisit
 
