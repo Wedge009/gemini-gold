@@ -213,7 +213,10 @@ Privateer's files:
   Gemini Gold's side turrets, and its rear one is gone). The retros' Talon
   (`talon__retro`) follows the original's light Talon (`TALNWIMP.IFF`: two
   Lasers and a Mass Driver), and its Dumb Fire and the Kamekh's Image-Recognition
-  launchers now name real missiles.
+  launchers now name real missiles. The Gothri gets the original's fifth
+  launcher: three Image-Recognition, one Friend-or-Foe and one Dumb Fire, one
+  missile each (Gemini Gold had four launchers, with two Friend-or-Foe on the
+  last).
 - `units.csv` loses 58 rows nothing uses, mostly Vega Strike upgrades (beam
   weapons, cloaking device, mines, repair systems, shield levels 8 and 9,
   capacity boosts) and its generic turrets, plus three old asteroid-field
@@ -413,6 +416,10 @@ this work is deferred for now:
   do, so the engine is the likely cause; it may already be reported upstream.
   Without the art, the nav screen's buttons (Galaxy is button 4, "Up") are
   invisible, as `draw_nav_button_labels` is off.
+- **Wrong music after landing** (to check): after landing on Helen, the
+  landing jingle gave way to battle music, though the log shows `dj_lib`
+  choosing the peace list. Gemini Gold's play-lists sound right, so the
+  engine's music handling is the likely cause.
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
@@ -435,17 +442,6 @@ grouped by what's holding it up.
 - pyflakes reports one undefined name left from Gemini Gold, in code that
   can't run: its disabled random bar fixers (`fixers.CreateMissionFixers`,
   `rndnum`). The rest are star imports it can't see through.
-- No random encounters have been seen around Achilles despite the
-  `random_encounters.py` fix (on hold). Encounters are rolled on entering
-  range of a base, planet, nav or jump point; at the start the player is
-  already beside Achilles, the first 10 seconds launch nothing, and the
-  in-range state latches, so Achilles gets no roll until the player leaves
-  and returns. Untested beyond Achilles. Next step: a logged run
-  (`curmodechange`, `no flight group`, `Chance for`, `generating ships`) to see
-  whether rolls happen and the dynamic universe has flight groups.
-- A new game doesn't ask for the player's name and callsign, as the original
-  does (it keeps them in the save). Gemini Gold doesn't use them: its dialogue
-  calls the player Burrows.
 
 ### Waiting on engine work
 
@@ -558,6 +554,10 @@ See Upstream engine work above.
   mark their routes, and a sold map's systems stay known (the pilot keeps their
   own navigational record). A new game starts with the Humboldt map, as the
   original's (`NAVQ` in `InitCfg.pak`).
+- A new game doesn't ask for the player's name and callsign. The original
+  did because it was largely text-driven; once voiced, it hardly used them.
+  Gemini Gold's dialogue calls the player Burrows.
+- Capital ships keep Gemini Gold's load-outs, as they keep its armour.
 
 ### To do
 
@@ -565,18 +565,8 @@ See Upstream engine work above.
   the original. The engine divides thrust by mass, so acceleration, along with
   the other handling figures (turn acceleration, lateral thrust), needs
   calibrating rather than copying. The player's hulls also keep Privateer_Gold's
-  retuned turn rates (roll fastest), unlike the original's.
-- **NPC load-outs**: the Gothri carries two Friend-or-Foe where the original
-  has one and a Dumb Fire (it has no spare launcher). Capital ships keep
-  Gemini Gold's load-outs.
-- **Music**: the right music doesn't play for the situation. After landing on
-  Helen, the landing jingle gave way to battle music. The engine's music may
-  be working as designed; Gemini Gold's playlists and the scripts that pick
-  them need checking. The log shows `dj_lib` choosing the peace list at the
-  time. Every in-flight track is named `combat1` to `combat13`, and each list
-  in `.gemini-gold/` (peace 5 and 8, battle 6, 9 and 13, panic 7, victory 9,
-  loss 11) is a selection of them, so the lists need comparing with the
-  original's moods by ear.
+  retuned turn rates (roll fastest), unlike the original's. In play, turning
+  feels slow for the speeds the ships fly at.
 
 ### Awaiting research
 
@@ -601,9 +591,10 @@ negate the z of the start position in `New_Game`; hard to judge from how bases
 face, so low priority), the galaxy map's positions, the de-duplicated asteroid
 fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
-battles' reinforcements, the Tachyon, the sell-back prices, the Tarsus
-trade-in, repairing slot upgrades, and the settings carried over from Gemini
-Gold's config.
+battles' reinforcements, the sell-back prices (they come from the original's
+data; selling the starting Laser should pay 750 in the upgrade bay), the
+Tarsus trade-in, repairing slot upgrades, and the settings carried over from
+Gemini Gold's config.
 
 Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit still
 for a long time before moving erratically, and there are no collisions; a log
@@ -611,7 +602,8 @@ is needed. The afterburner's energy drain (`energy_source`) can't be tested
 until a bought afterburner works (see Known gaps).
 
 Game balance, to judge once the controls feel right: the corrected ship
-statistics, the Salthi's stats, the Talon's and Broadsword's masses (no
+statistics, the Salthi's stats, the Tachyon's damage (5, the game's figure,
+up from Gemini Gold's 3.7), the Talon's and Broadsword's masses (no
 original figures), and the NPC load-outs (the Orion's restored turret
 especially; hard to notice without looking for it).
 
