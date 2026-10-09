@@ -261,11 +261,15 @@ Privateer's files:
 - The player's communications menu offers Gemini Gold's lines again: the comm
   trees in `communications/` are renamed from `privto<faction>.xml` to the
   `privateerto<faction>.xml` the engine looks for, with copies for factions that
-  share one (Riordian, Kroiz and Garrovick use the hunters', Seelig, Miggs and
-  `pirate` the pirates', Toth the merchants', Reismann Confed's). The engine
-  had fallen back to `neutral.xml`, whose every option is "Nevermind".
-  `privtoagric`, `privtodetroit`, `privtopirate` and `privtosteltekderelict`
-  were unused before and still are.
+  share one (Riordian, Kroiz and Garrovick use the hunters', Seelig and Miggs
+  the pirates', Toth the merchants', Reismann Confed's). The engine had fallen
+  back to `neutral.xml`, whose every option is "Nevermind".
+- Pirate bases (faction `pirate`) use the pirate base's comm lines from the
+  original (`AIDS/BASE_PIR.IFF`, in Gemini Gold's unused `privtopirate.xml`)
+  rather than the pirate fighters' that Gemini Gold gave them.
+  `privtoagric`, `privtodetroit` and `privtosteltekderelict` hold the
+  agricultural, New Detroit and Derelict bases' lines but stay unused: the
+  engine picks comm lines by faction, and those bases are neutral.
 - `ai/events/default.suicide.xml` (the Retros' AI) closes its last element;
   the engine had rejected the whole file.
 - Python 3 truth tests on units work: `modules/engine_compat.py` (imported first
@@ -591,10 +595,8 @@ negate the z of the start position in `New_Game`; hard to judge from how bases
 face, so low priority), the galaxy map's positions, the de-duplicated asteroid
 fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
-battles' reinforcements, the sell-back prices (they come from the original's
-data; selling the starting Laser should pay 750 in the upgrade bay), the
-Tarsus trade-in, repairing slot upgrades, and the settings carried over from
-Gemini Gold's config.
+battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, and the
+settings carried over from Gemini Gold's config.
 
 Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit still
 for a long time before moving erratically, and there are no collisions; a log
@@ -602,8 +604,7 @@ is needed. The afterburner's energy drain (`energy_source`) can't be tested
 until a bought afterburner works (see Known gaps).
 
 Game balance, to judge once the controls feel right: the corrected ship
-statistics, the Salthi's stats, the Tachyon's damage (5, the game's figure,
-up from Gemini Gold's 3.7), the Talon's and Broadsword's masses (no
+statistics, the Salthi's stats, the Talon's and Broadsword's masses (no
 original figures), and the NPC load-outs (the Orion's restored turret
 especially; hard to notice without looking for it).
 
