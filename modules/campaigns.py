@@ -809,6 +809,21 @@ terrellsuccess=[("Terrell","Congratulations. That was some amazing flying. You t
                 ("Burrows","Hey, far be it for me to screw up a photo op. I'll take it."),
                 ("Terrell","Okay. I'm sure you're headed for trouble, and I'm sure you probably deserve it... but I wish you good luck anyway. And if you ever change your mind about serving..."),
                 ("Burrows","I'll have my head examined. Take care, Admiral.")]
+terrellcredits=[('Terrell','Oh, and one more thing, Burrows.','barspeech/campaign/terrelcredits.ogg'),
+                ('Burrows',"What's that?"),
+                ('Terrell','Privateer was developed at Origin Systems. The executive producer was Chris Roberts. The producer was R. Scott Russo. Erin Roberts stepped in as the associate producer.'),
+                ('Burrows','Yeah, yeah, great. But who programmed this baby?'),
+                ('Terrell','Well, Ed Maurer was the lead programmer. The other programmers were Charles Cafrelli, Reinaldo Castro, Arthur DiBianca, Edwin Herrell, Alex Jen, Richard Dean Johnson, and Jeff Wilson.'),
+                ('Burrows','And the design team?'),
+                ('Terrell','Joel Manners was the lead designer. The rest of the design team were Tom Kassebaum, Anthony Nichols, and Phil Wattenbarger. The original design was by Joel Manners and Chris Roberts, and the screenplay was by G. P. Austin.'),
+                ('Burrows','Who created the beautiful artwork?'),
+                ('Terrell','Chris Douglas, Bob Frye, Beverly Garland, Danny Garrett, Craig Halverson, Jake Rodgers, and Brian Smith.'),
+                ('Burrows','Who wrote all of the cool tunes and sound effects?'),
+                ('Terrell','Nenad Vugrinec composed the soundtrack. Laura Barrat did the percussion arrangements. Mark Schaefgen helped with the music conversion. Randy Buck and John Tipton did the digital effects.'),
+                ('Burrows','Who tested the game?'),
+                ('Terrell','The game was tested by Bill LaCoste, Starr Long, Dan Orzulak, Toby Shelton, Dee Starns, Perry Stokes, and Todd Wachhaus.'),
+                ('Burrows',"Wow. That's an awful lot of people."),
+                ('Terrell',"And that's not all. The team would like to give special thanks to Whitney Ayres, Bill Baldwin, Paul Isaac, David Lawell, Aaron Martin, John Miles, Alan Perez, Kevin Potter, Zack Simpson, Suzanne Taylor, Jeff Wand, and Jason Yenawine.")]
 def LoadTest():
 	CROSS_SPRITE     = ("taryn.spr", "Talk_To_Taryn_Cross")#,"bases/heads/cross.spr")
 	priv=Campaign("kiddie")
@@ -1373,7 +1388,16 @@ def LoadMainCampaign():
 			None,
 			TrueSubnode(AddCredits(30000,AddTechnology("confed"))),
 			None,
-			[CampaignEndNode(priv)])]) # YOU WIN!!!
+			[CampaignClickNode().Init(priv,
+				[InSystemCondition("Gemini/Perry","Perry")],
+				terrellcredits,
+				None,
+				# The original brings the credits music in after "What's that?", but nothing can be
+				# timed part-way through a conversation here (it's one block of text over one sound
+				# file, and base scripts have no timer), so the music starts with the conversation.
+				GoToSubnode(0,PlayMusic("../music/credits.ogg")),
+				None,
+				[CampaignEndNode(priv)])])]) # YOU WIN!!!
 	
 	return priv #return the newly created campaign back.
 
@@ -1493,6 +1517,17 @@ def LoadRFMurphyCampaign():
 
 
 INFORMANT_SPRITE=("informant.spr","Talk_To_Informant")
+rfterrellcredits=[('Terrell','Burrows, let me tell you a little about Righteous Fire. Righteous Fire was developed at Origin Systems. The producer was Warren Spector.','barspeech/campaign/rf/terrellcredits.ogg'),
+                  ('Burrows',"Haven't we had this conversation before?"),
+                  ('Terrell','Pay attention. Arthur DiBianca was the project leader, programmer, and conversation writer. Phil Wattenbarger came up with the game concept and wrote additional conversations. Phil Wattenbarger and Tom Kassebaum handled the design.'),
+                  ('Burrows','I see. Who did the new artwork?'),
+                  ('Terrell','Alan Perez, Brian Smith, and Melinda Bordelon.'),
+                  ('Burrows','What about those new tunes I noticed?'),
+                  ('Terrell',"Those are the work of Barry Leitch. He's from Scotland, you know."),
+                  ('Burrows','Who tested Righteous Fire?'),
+                  ('Terrell','Dan Orzulak along with Charles Angel, Jerrold Harrington and Kevin Kushner.'),
+                  ('Burrows','Ah. Anyone receive special thanks?'),
+                  ('Terrell','Sure. Special thanks go to Ed Maurer.')]
 def MakeDrakePirateNode(rf,creds,contingency=None):
 	IDIOT_SPRITE=("informant.spr","Talk_To_Faithful")
 	WinRF=CampaignClickNode()
@@ -1504,7 +1539,13 @@ def MakeDrakePirateNode(rf,creds,contingency=None):
 		None,
 		TrueSubnode(AddCredits(creds,ChangeSystemOwner("Gemini/Eden","unknown"))),
 		None,
-		[CampaignEndNode(rf)])
+		[CampaignClickNode().Init(rf,
+			[InSystemCondition("Gemini/Perry","Perry")],
+			rfterrellcredits,
+			None,
+			GoToSubnode(0,PlayMusic("../music/credits_rf.ogg")),
+			None,
+			[CampaignEndNode(rf)])])
 	WinInformant.Init(rf,
 		[InSystemCondition("Gemini/Capella"),SaveVariableCondition("jones_dead",1.0)],
 		[("Informant","Greetings. I thank you for your service. But I must also warn you that I am once again your mortal enemy. I am a man of my word, and will carry out my promise. All plans and copies of the Steltek gun will be destroyed. In return, you must refrain from revealing the location of Eden to the Confederation."),("Burrows","The Confederation would pay a lot for that information. What's to stop me?"),("Informant","Only the threat of vengeance. And your conscience, if you have one. Our acquaintance has been brief, and we will not meet again. Farewell, infidel.", "barspeech/campaign/rf/informant3.ogg")],

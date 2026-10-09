@@ -785,7 +785,19 @@ class Cutscene(AddPythonSprite):
         else:
             VS.musicPlaySong(self.music)
         return True
-    
+
+class PlayMusic(Script):
+    """Play one song. When it ends, the engine goes back to the base's own play-list."""
+    def __init__(self,song,nextscript=None):
+        Script.__init__(self,nextscript)
+        self.song=song
+    def __call__(self,room,subnodes):
+        Script.__call__(self,room,subnodes)
+        import VS
+        if not VS.isserver():
+            VS.musicPlaySong(self.song)
+        return True
+
 class GoToSubnodeIfTrue(Script):
     def __init__(self,script,iftrue=0,iffalse=-1):
         Script.__init__(self,script)

@@ -192,6 +192,18 @@ Privateer's files:
   so the normal peace music plays.
 - `units/units.rf`, an unused older copy of `units.csv` kept since 2007, is gone.
 - S12MD: Menesch waits in Regallis, not Troy.
+- Both games end with Terrell's credits conversation, as the originals do,
+  which Gemini Gold left out: the next click on him after his final
+  conversation gives them, with the credits music, after which the base's
+  own music returns. Privateer's plays `credits.ogg` whole, ending just after
+  his last line; in the original the music comes in after Burrows' "What's that?",
+  but here it starts with the conversation, as nothing can be timed part-way
+  through one. Righteous Fire's shorter credits use `credits_rf.ogg`, cut to
+  its length and faded out as his last line ends, as the original's music
+  does.
+  The text and voices come from the originals (`CONV/CREDINT`, `CREDITS` and
+  `TERREND2`); a run of lines by one speaker is shown as one, as in Gemini
+  Gold's other conversations. `campaign_lib.PlayMusic` starts the music.
 - Once Righteous Fire begins, Kilrathi fighters carry RF's weapons, as in the
   original (`TYPES/DRALTYPE.IFF`, `GOTHTYPE.IFF`): the Dralthi two Particle
   Cannons, a Fusion Cannon and Image-Recognition missiles instead of Lasers and
@@ -571,6 +583,10 @@ See Upstream engine work above.
   calibrating rather than copying. The player's hulls also keep Privateer_Gold's
   retuned turn rates (roll fastest), unlike the original's. In play, turning
   feels slow for the speeds the ships fly at.
+- **Speech quality** (final polish, if the project gets that far): Gemini
+  Gold's speech files are noticeably lower fidelity than a fresh conversion
+  from the original archives (as the credits conversations were made), so
+  all speech could be reconverted to preserve fidelity.
 
 ### Awaiting research
 
@@ -595,8 +611,10 @@ negate the z of the start position in `New_Game`; hard to judge from how bases
 face, so low priority), the galaxy map's positions, the de-duplicated asteroid
 fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
-battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, and the
-settings carried over from Gemini Gold's config.
+battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the
+settings carried over from Gemini Gold's config, and Terrell's credits
+conversations at the end of each game (the music taking over from Perry's,
+then Perry's music returning).
 
 Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit still
 for a long time before moving erratically, and there are no collisions; a log
