@@ -262,6 +262,15 @@ Privateer's files:
   (`components.afterburner.energy_source`, kept in `tools/overrides.json`).
   The engine's default draws it from fuel: about 15 seconds of afterburner
   emptied the tank, and an empty tank stops the reactor too.
+- Ships accelerate as Gemini Gold set them to (`physics.game_accel` 1, kept in
+  `tools/overrides.json`). Upstream's old config also had 1, so the conversion
+  saw nothing to carry over and took the new upstream default of 4.5: every
+  ship's thrust and afterburner, and every missile's, were 4.5 times Gemini
+  Gold's. Top speeds, turning and gun bolts aren't affected. Gemini Gold's
+  SVN version also had `game_speed` 0.1 (ships moving at a tenth of their
+  rated speed, with `gun_speed` 0.1 slowing bolts to match); Privateer_Gold
+  set `game_speed` to 1, and the current engine ignores `gun_speed`, so ships
+  and bolts both move at their rated speeds.
 - Planets can be landed on again. Gemini Gold scales its systems to 0.285
   (`star_system_scale`), so a planet's radius is about 340, and the engine only
   docks within half a radius of the surface (`dock.dock_planet_radius_percent`
@@ -631,8 +640,16 @@ These may come from independent work recreating the original engine.
   original stores a damaged resale price for each item.
 - **Hull trade-in**: Gemini Gold pays 50% of the hull's price; the original
   pays its index value less wear and tear.
-- **Engine levels**: what each level does in the original isn't in its data
-  files.
+- **Engine levels**: what each level does in the original isn't decoded yet
+  (`TYPES/ENERGY.IFF` holds the generators). In play, four Plasma shots take a
+  little over half a level 3 Centurion's capacitor (68 of 130), compared with
+  the original game in which they take a little under half.
+- **Ship toughness**: Gemini Gold keeps the original's proportions for gun
+  damage, shields and armour (each a tenth of the value in the original's data,
+  once the engine combines the eight old armour facets into four), yet four
+  Plasma shots destroy a stationary Talon (10 shields, about 9 armour, 5 hull).
+  The original's equivalent of hull (the ship's core) hasn't been found in its
+  data.
 
 ### Still to play-test
 
@@ -643,11 +660,11 @@ face, so low priority), the galaxy map's positions, the de-duplicated asteroid
 fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
 battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the
-settings carried over from Gemini Gold's config, buying an engine (the
-capacitor should grow with it, so a Centurion's four Plasma Guns all fire),
-buying a ship (credits should drop by the new hull's price less the old one's
-trade-in, and launching afterwards shouldn't crash; saving and loading with
-the old ship kept in the engine's fleet list),
+settings carried over from Gemini Gold's config, acceleration at
+`game_accel` 1 (ships, afterburners and missiles should take noticeably longer
+to reach speed; whether everything still feels too fast), buying a ship (credits
+should drop by the new hull's price less the old one's trade-in; saving and
+loading with the old ship kept in the engine's fleet list),
 and Terrell's credits conversations at the end of each game (the music taking
 over from Perry's, then Perry's music returning).
 

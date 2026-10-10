@@ -9,6 +9,7 @@
         }
     },
     "physics": {
+        "game_accel": 1.0,
         "auto_landing_exclude_list": "Sanctuary_Moon planets/rock.png Nav_1 Nav_2 Nav_3 Nav_4 Nav_5 Nav_6 Nav_7 Nav_8 Nav_9"
     },
     "dock": {
