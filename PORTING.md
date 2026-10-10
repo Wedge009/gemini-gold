@@ -551,8 +551,10 @@ See Upstream engine work above.
   Delta, Delta → Beta, Beta → Gamma and Gamma → Delta Prime with Cross's
   missions S5MA–S5MD, and Valhalla → Eden with S14MA. The return jumps and
   Rikel ↔ Eden are always open. Gemini Gold has all five open from the start.
-  Removing them until their mission needs `launchJumppoint` fixed; meanwhile a
-  script could instead switch off the jump drive near a locked jump.
+  The plan is to remove them from the system files and launch each one by
+  script when its mission opens it, once `launchJumppoint` is fixed. Reaching
+  Eden early through Rikel is fine, as in the original; the problem is Eden
+  through Valhalla and the Delta chain.
 - **Selling launchers** ("CANNOT SELL LAUNCHERS", as in Gemini Gold as
   released): buying one widens a mount with `upgrade()`, and Python can't
   narrow it again.
