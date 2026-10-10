@@ -262,6 +262,12 @@ Privateer's files:
   automatically; armour plating and the artefact in the hold can't be
   damaged; planets' docking range is Gemini Gold's; special guns don't fire
   with normal ones; and the AI's firing-angle minimum is Gemini Gold's.
+- HUD and radar colours that Gemini Gold's config defined by reference to
+  another colour (`ref="red"` and so on) are resolved (`tools/theme_to_json.py`).
+  They had all become white, so radar blips showed white whatever the radar:
+  enemies (red), neutrals, bases and planets (grey), jump points (light blue),
+  missiles (yellow), targeting colours, and the damage display's repaired,
+  damaged and half-damaged colours. Only friends, given as numbers, were right.
 - The afterburner draws on energy, as in the original
   (`components.afterburner.energy_source`, kept in `tools/overrides.json`).
   The engine's default draws it from fuel: about 15 seconds of afterburner
