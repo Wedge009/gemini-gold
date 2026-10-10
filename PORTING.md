@@ -272,6 +272,20 @@ Privateer's files:
   (`components.afterburner.energy_source`, kept in `tools/overrides.json`).
   The engine's default draws it from fuel: about 15 seconds of afterburner
   emptied the tank, and an empty tank stops the reactor too.
+- Engines and shields recharge at rates measured in the original
+  (`units.csv`, carried into each ship by `tools/fold_upgrades.py`). With a
+  level 3 engine and four Tachyons the original gives five full salvos from a
+  full capacitor; Gemini Gold gave fifteen or more, so every engine level's
+  `Reactor_Recharge` is 0.4 of Gemini Gold's (level 3: 90 to 36), capacitors
+  unchanged. Level 3 shields took about 120 seconds to refill all four sides
+  from nothing (39 for the last third), about 30 seconds a side if, as seems
+  likely, the original shares its recharge among the depleted sides; the
+  engine recharges every side at once, so each side gets 1 point a second (the
+  front alone refills in 30 seconds, all four too, where the original took
+  120). Gemini Gold had 0.39. Levels 1 and 2 get 0.34 and 0.66, following the
+  ratios of two so far unexplained per-level values in the original's
+  `TYPES/SHIELDS.IFF` (2, 3, 4 and 76, 58, 51); levels 3 and up share level
+  3's values there, and its rate.
 - Ships accelerate as Gemini Gold set them to (`physics.game_accel` 1, kept in
   `tools/overrides.json`). Upstream's old config also had 1, so the conversion
   saw nothing to carry over and took the new upstream default of 4.5: every
@@ -551,9 +565,12 @@ See Upstream engine work above.
   possible in data alone either; the engine's cargo-hold upgrade code is
   commented out.
 
-- **Shields can't be switched off.** The original lets the player turn
-  shields off to save energy for the guns and afterburner; the engine has no
-  such control.
+- **Lowering shields doesn't save energy.** The original lets the player
+  lower or switch off shields to leave more energy for the guns and
+  afterburner. The engine has the control (`s` for two-thirds, `S` for a third,
+  pressed again for full), but shields below their maximum cost upkeep (0.05 of
+  their total strength a second) while full ones cost nothing, so lowering them
+  costs energy instead of freeing it.
 - **Jumps are unlimited.** The original allows six jumps per flight. Gemini
   Gold did the same on its old engine: each ship's warp capacitor holds 6
   (`Warp_Capacitor`), a jump costs 1 (`Outsystem_Jump_Cost`), the reactor
@@ -660,7 +677,9 @@ These may come from independent work recreating the original engine.
 - **Hull trade-in**: Gemini Gold pays 50% of the hull's price; the original
   pays its index value less wear and tear.
 - **Engine levels**: what each level does in the original isn't decoded yet
-  (`TYPES/ENERGY.IFF` holds the generators). In play, four Plasma shots take a
+  (`TYPES/ENERGY.IFF` holds the generators). Recharge is calibrated at level 3
+  from play in the original and the other levels scaled with it; whether their
+  spacing matches the original isn't known. In play, four Plasma shots take a
   little over half a level 3 Centurion's capacitor (68 of 130), compared with
   the original game in which they take a little under half.
 - **Ship toughness**: Gemini Gold keeps the original's proportions for gun
@@ -679,7 +698,11 @@ face, so low priority), the galaxy map's positions, the de-duplicated asteroid
 fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
 battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the
-settings carried over from Gemini Gold's config, a B&S radar's colours (friend
+settings carried over from Gemini Gold's config, the energy and shield
+recharge rates (four Tachyons on a level 3 engine: about five salvos from full;
+level 3 shields: a side about 30 seconds from nothing; a Talon's passes against
+them; Tachyon hits to destroy a Talon, 8 to 12 in the original), a B&S radar's
+colours (friend
 and foe, plus jump points, planets, missiles and cargo), buying a ship (credits
 should drop by the new hull's price less the old one's trade-in; saving and
 loading with the old ship kept in the engine's fleet list),
