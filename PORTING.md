@@ -75,6 +75,10 @@ component's values; the ship dealer allows one item of each kind, as in the
 original. Armour plating is now the ship's whole armour, as in the original
 game (Gemini Gold added plating to each hull's own armour); the values keep
 Gemini Gold's totals: plasteel 20, tungsten 40 and isometal 80 per side.
+Radars' `Radar_Color` is converted too: the old engine read it as a level (0
+grey, 1 friend/foe colours, 2 also picking out jump points, planets, missiles
+and cargo), the current one as flags (1 friend/foe, 2 object recognition), so
+the B&S radars' 2 gave object recognition without friend/foe colours. It's 3.
 An upgrade changes only the one component its `Upgrade_Type` names, but an
 engine level sets both the reactor's recharge and the capacitor, so each
 `reactor_level_N` row gets a companion `reactor_level_N_capacitor` row that the
@@ -472,6 +476,11 @@ this work is deferred for now:
   been attacking the old ship, once the player launches). Killing it instead
   would let the references clear first. Gemini Gold no longer sells the old
   ship as a temporary work-around (see What changed).
+- **Radars don't bring lead indicators** (to do): ITTS comes from the ship's
+  own `ITTS` value, read when the ship loads; a radar upgrade (`CRadar`)
+  doesn't touch it and the computer component can't be upgraded, so buying an
+  ITTS radar (Iris Mk3, Hunter AW Infinity, B&S Omni) changes nothing. Every
+  player hull has `ITTS` FALSE, so the player never has lead indicators.
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
@@ -624,6 +633,10 @@ See Upstream engine work above.
   thrust, needs calibrating rather than copying. The Orion, Centurion and
   Galaxy keep Privateer_Gold's retuned turn rates (roll fastest), unlike the
   original's even ones; the Centurion's felt right in play.
+- **Speed**: with `game_accel` back at 1 everything still feels a little fast.
+  Lowering `game_speed` (Gemini Gold used 0.1) would also need the bolt speeds
+  in `weapons.json` scaling to match, as the engine ignores `gun_speed`; to
+  tune once manoeuvring feels better.
 - **Speech quality** (final polish, if the project gets that far): Gemini
   Gold's speech files are noticeably lower fidelity than a fresh conversion
   from the original archives (as the credits conversations were made), so
@@ -660,9 +673,8 @@ face, so low priority), the galaxy map's positions, the de-duplicated asteroid
 fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
 battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the
-settings carried over from Gemini Gold's config, acceleration at
-`game_accel` 1 (ships, afterburners and missiles should take noticeably longer
-to reach speed; whether everything still feels too fast), buying a ship (credits
+settings carried over from Gemini Gold's config, a B&S radar's colours (friend
+and foe, plus jump points, planets, missiles and cargo), buying a ship (credits
 should drop by the new hull's price less the old one's trade-in; saving and
 loading with the old ship kept in the engine's fleet list),
 and Terrell's credits conversations at the end of each game (the music taking

@@ -42,6 +42,9 @@ reactor_level_N row gets a companion reactor_level_N_capacitor row (Upgrade_Type
 Capacitor, the same Primary_Capacitor), which the ship dealer fits alongside the
 engine.
 
+Radar rows' Radar_Color is converted from the old engine's levels to the current
+engine's flags, so the B&S radars' level 2 (colours plus object recognition) is 3.
+
 Run units/parser.py afterwards to regenerate units.json.
 """
 import argparse
@@ -67,6 +70,10 @@ OLD_ARMOR = ['Armor_Front_Top_Left', 'Armor_Front_Top_Right', 'Armor_Front_Botto
 NEW_ARMOR = {'armor_front': (0, 1, 2, 3), 'armor_back': (4, 5, 6, 7), 'armor_left': (0, 2, 4, 6), 'armor_right': (1, 3, 5, 7)}
 RADAR = ['Can_Lock', 'Radar_Range', 'Tracking_Cone', 'Max_Cone', 'Lock_Cone']
 CAPACITOR_SUFFIX = '_capacitor'
+# Gemini Gold's old engine read Radar_Color as a level (0 grey, 1 friend/foe colours, 2 also
+# jump points, planets, missiles and cargo); the current engine reads a number as flags
+# (1 friend/foe, 2 object recognition, 4 threat), so level 2 is 1 + 2.
+RADAR_COLOR = {'2': '3'}
 
 
 def number(value):
@@ -144,7 +151,7 @@ def type_upgrade(item):
     if number(item.get('Reactor_Recharge')):
         return {'Upgrade_Type': 'Reactor'}
     if number(item.get('Radar_Range')):
-        return {'Upgrade_Type': 'Radar'}
+        return {'Upgrade_Type': 'Radar', 'Radar_Color': RADAR_COLOR.get(item['Radar_Color'], item['Radar_Color'])}
     if number(item.get('ECM_Rating')):
         return {'Upgrade_Type': 'ECM', 'ecm': item['ECM_Rating']}
     if number(item.get('Repair_Droid')):
