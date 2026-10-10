@@ -6,6 +6,9 @@
     "components": {
         "afterburner": {
             "energy_source": "energy"
+        },
+        "shield": {
+            "maintenance_factor": 1e-06
         }
     },
     "physics": {

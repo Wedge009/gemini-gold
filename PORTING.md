@@ -274,10 +274,12 @@ Privateer's files:
   emptied the tank, and an empty tank stops the reactor too.
 - Engines and shields recharge at rates measured in the original
   (`units.csv`, carried into each ship by `tools/fold_upgrades.py`). With a
-  level 3 engine and four Tachyons the original gives five full salvos from a
-  full capacitor; Gemini Gold gave fifteen or more, so every engine level's
-  `Reactor_Recharge` is 0.4 of Gemini Gold's (level 3: 90 to 36), capacitors
-  unchanged. Level 3 shields took about 120 seconds to refill all four sides
+  level 3 engine the original gives five full salvos of four Tachyons from a
+  full capacitor (the sixth partial) and refills an empty one in about 7
+  seconds; Gemini Gold gave fifteen salvos or more. Together those make level
+  3's capacitor about 138 and its recharge about 20 a second (Gemini Gold: 130
+  and 90), and the other levels are scaled to match (capacitors by 138/130,
+  recharge by 20/90). Level 3 shields took about 120 seconds to refill all four sides
   from nothing (39 for the last third), about 30 seconds a side if, as seems
   likely, the original shares its recharge among the depleted sides; the
   engine recharges every side at once, so each side gets 1 point a second (the
@@ -501,6 +503,10 @@ this work is deferred for now:
   doesn't touch it and the computer component can't be upgraded, so buying an
   ITTS radar (Iris Mk3, Hunter AW Infinity, B&S Omni) changes nothing. Every
   player hull has `ITTS` FALSE, so the player never has lead indicators.
+- **Shield upkeep** (to report): shields below their maximum, including ones
+  the player has lowered, pay upkeep, and shields drain rather than recharge
+  when the capacitor can't pay it; lowering shields should free energy. With
+  `maintenance_factor` 0, `EnergyContainer::Deplete` divides 0 by 0.
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
@@ -568,9 +574,15 @@ See Upstream engine work above.
 - **Lowering shields doesn't save energy.** The original lets the player
   lower or switch off shields to leave more energy for the guns and
   afterburner. The engine has the control (`s` for two-thirds, `S` for a third,
-  pressed again for full), but shields below their maximum cost upkeep (0.05 of
-  their total strength a second) while full ones cost nothing, so lowering them
-  costs energy instead of freeing it.
+  pressed again for full) but no saving: by default shields below their maximum
+  cost upkeep (0.05 of their total strength a second) while full ones cost
+  nothing, and when the capacitor can't pay it, the shields drain instead of
+  recharging, so in a fight with the guns emptying the capacitor, damaged
+  shields never recovered. Gemini Gold makes the upkeep negligible
+  (`components.shield.maintenance_factor` one millionth, in
+  `tools/overrides.json`), so shields recharge whenever any energy is left and
+  lowering them costs next to nothing. (Zero would divide zero by zero in the
+  engine's check.)
 - **Jumps are unlimited.** The original allows six jumps per flight. Gemini
   Gold did the same on its old engine: each ship's warp capacitor holds 6
   (`Warp_Capacitor`), a jump costs 1 (`Outsystem_Jump_Cost`), the reactor
@@ -699,7 +711,8 @@ fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
 battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the
 settings carried over from Gemini Gold's config, the energy and shield
-recharge rates (four Tachyons on a level 3 engine: about five salvos from full;
+recharge rates (four Tachyons on a level 3 engine: about five salvos from full,
+an empty capacitor refilling in about 7 seconds;
 level 3 shields: a side about 30 seconds from nothing; a Talon's passes against
 them; Tachyon hits to destroy a Talon, 8 to 12 in the original), a B&S radar's
 colours (friend
