@@ -321,6 +321,13 @@ Privateer's files:
   level 2 shields, and turns 8% faster than the Talon, as in the original
   (turn rates scaled from the Talon's, since which original rate is yaw, pitch
   or roll isn't known). Its weapons are unchanged. Not yet play-tested.
+- The Tarsus turns at the original's rate, 95°/s on each axis (its first turn
+  figure, as for the NPC fighters, since the original's three figures, 95, 105
+  and 97, aren't labelled by axis). Privateer_Gold had retuned it to 90/80/152
+  (yaw/pitch/roll), so it pitched, the axis used most for aiming, about 20%
+  slower than the original. Its turn thrust follows Privateer_Gold's formula
+  for the player's ships (twice the rate squared, times the moment of inertia),
+  so it still reaches full rate at once.
 - Commodities at the nine Gemini base types follow the original's table
   (`DATA/OPTIONS/COMODTYP.IFF`, base Privateer rule set): which goods are traded
   and sold, each price range, and each good's chance of being in stock. In each
@@ -584,11 +591,14 @@ See Upstream engine work above.
 ### To do
 
 - **Ship handling**: the player's ships out-accelerate fighters, the reverse of
-  the original. The engine divides thrust by mass, so acceleration, along with
-  the other handling figures (turn acceleration, lateral thrust), needs
-  calibrating rather than copying. The player's hulls also keep Privateer_Gold's
-  retuned turn rates (roll fastest), unlike the original's. In play, turning
-  feels slow for the speeds the ships fly at.
+  the original. Gemini Gold's fighters were about a tenth of the player's
+  ships' mass, so they accelerated about seven times harder than the Tarsus
+  (the original's ratio is about 2.2); Privateer_Gold multiplied most NPC
+  fighters' masses by ten in 2023, and the Talon and Broadsword followed here.
+  The engine divides thrust by mass, so acceleration, along with lateral
+  thrust, needs calibrating rather than copying. The Orion, Centurion and
+  Galaxy keep Privateer_Gold's retuned turn rates (roll fastest), unlike the
+  original's even ones; the Centurion's felt right in play.
 - **Speech quality** (final polish, if the project gets that far): Gemini
   Gold's speech files are noticeably lower fidelity than a fresh conversion
   from the original archives (as the credits conversations were made), so
@@ -627,10 +637,10 @@ for a long time before moving erratically, and there are no collisions; a log
 is needed. The afterburner's energy drain (`energy_source`) can't be tested
 until a bought afterburner works (see Known gaps).
 
-Game balance, to judge once the controls feel right: the corrected ship
-statistics, the Salthi's stats, the Talon's and Broadsword's masses (no
-original figures), and the NPC load-outs (the Orion's restored turret
-especially; hard to notice without looking for it).
+Game balance, to judge once the controls feel right: the Tarsus's turn rates,
+the corrected ship statistics, the Salthi's stats, the Talon's and
+Broadsword's masses (no original figures), and the NPC load-outs (the Orion's
+restored turret especially; hard to notice without looking for it).
 
 Righteous Fire, later: commodity prices and stock, the upgrade limits, the
 mission ships' speeds and the Kilrathi weapons.
