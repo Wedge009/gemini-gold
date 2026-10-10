@@ -3052,7 +3052,10 @@ def BuyShip(shipname):
 	VS.getPlayer().addCredits(value)
 	success=Base.BuyShip(shipname,False,True)
 	if (success!=False):
-		Base.SellShip(name)
+		# The trade-in is paid above. Base.SellShip(name) would pay the engine's own sell-back
+		# on top, and its PlayerShip::RemoveShip deletes the old ship outright while other units
+		# can still refer to it (an attacker's target, say), crashing the game later. Without it
+		# the old ship stays in the engine's fleet list, which Gemini Gold never shows.
 		#print VS.getPlayer().getCredits()
 		#VS.getPlayer().addCredits(-ShipValue(shipname,False))
 		#print VS.getPlayer().getCredits()
@@ -3072,11 +3075,13 @@ def BuyShip(shipname):
 		PlayerShip.RefreshPlayerShips()
 		return True
 	else:
+		# take back the trade-in paid above
+		VS.getPlayer().addCredits(-value)
 		where=shipname.find(".begin")
 		if (where!=-1):
 			shipname=shipname[0:where]
 		VS.StopAllSounds()
-		VS.playSound("sales/pitch"+shipname+"duplicate.wav",(0,0,0),(0,0,0))		
+		VS.playSound("sales/pitch"+shipname+"duplicate.wav",(0,0,0),(0,0,0))
 		return False
 
 

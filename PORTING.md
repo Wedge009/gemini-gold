@@ -198,6 +198,13 @@ Privateer's files:
   so the normal peace music plays.
 - `units/units.rf`, an unused older copy of `units.csv` kept since 2007, is gone.
 - S12MD: Menesch waits in Regallis, not Troy.
+- Buying a ship no longer sells the old one through the engine
+  (`Base.SellShip`). That paid the engine's own 50% sell-back on top of the
+  trade-in the ship dealer already pays, and deleted the old ship while other
+  units could still refer to it, which crashed the game on the next launch (see
+  Upstream engine work). The old ship stays in the engine's list of the
+  player's ships, which Gemini Gold never shows. A purchase that fails now
+  takes back the trade-in it paid out.
 - Both games end with Terrell's credits conversation, as the originals do,
   which Gemini Gold left out: the next click on him after his final
   conversation gives them, with the credits music, after which the base's
@@ -449,6 +456,13 @@ this work is deferred for now:
   landing jingle gave way to battle music, though the log shows `dj_lib`
   choosing the peace list. Gemini Gold's play-lists sound right, so the
   engine's music handling is the likely cause.
+- **Selling a ship deletes it outright** (to do): `PlayerShip::RemoveShip`
+  (`components/player_ship.cpp`) uses `delete` on the ship rather than killing
+  it, though other units may still refer to it, so the engine logs "DISASTER
+  AREA" and a later use of the stale pointer crashes the game (a unit that had
+  been attacking the old ship, once the player launches). Killing it instead
+  would let the references clear first. Gemini Gold no longer sells the old
+  ship as a temporary work-around (see What changed).
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
@@ -556,7 +570,9 @@ See Upstream engine work above.
   engine side is settled. Units for turrets with other guns already exist
   (`medium_turret_laser`, `…_tachyon` and so on); arming an empty turret
   depends on whether `upgrade()` can reach a turret's mounts, which is
-  untested.
+  untested. Buying even the armed turret fails ("Can't add
+  medium_turret_rear_meson" on a Centurion's empty rear turret) inside the
+  engine's turret-swapping code; the cause isn't known yet.
 
 ### Deliberate
 
@@ -629,6 +645,9 @@ fields, a new game's universe now that it's generated afresh for Gemini alone
 battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the
 settings carried over from Gemini Gold's config, buying an engine (the
 capacitor should grow with it, so a Centurion's four Plasma Guns all fire),
+buying a ship (credits should drop by the new hull's price less the old one's
+trade-in, and launching afterwards shouldn't crash; saving and loading with
+the old ship kept in the engine's fleet list),
 and Terrell's credits conversations at the end of each game (the music taking
 over from Perry's, then Perry's music returning).
 
