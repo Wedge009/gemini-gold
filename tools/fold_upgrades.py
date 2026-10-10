@@ -36,6 +36,12 @@ ecm and repair. Reactor, radar and jump drive rows already use the engine's
 names. Afterburners and add_/mult_ items are left alone: the engine's
 afterburner upgrade scales an existing afterburner rather than fitting one.
 
+An item changes only the one component its Upgrade_Type names, but Gemini
+Gold's engine levels set both the reactor's recharge and the capacitor. So each
+reactor_level_N row gets a companion reactor_level_N_capacitor row (Upgrade_Type
+Capacitor, the same Primary_Capacitor), which the ship dealer fits alongside the
+engine.
+
 Run units/parser.py afterwards to regenerate units.json.
 """
 import argparse
@@ -60,6 +66,7 @@ OLD_ARMOR = ['Armor_Front_Top_Left', 'Armor_Front_Top_Right', 'Armor_Front_Botto
              'Armor_Back_Top_Left', 'Armor_Back_Top_Right', 'Armor_Back_Bottom_Left', 'Armor_Back_Bottom_Right']
 NEW_ARMOR = {'armor_front': (0, 1, 2, 3), 'armor_back': (4, 5, 6, 7), 'armor_left': (0, 2, 4, 6), 'armor_right': (1, 3, 5, 7)}
 RADAR = ['Can_Lock', 'Radar_Range', 'Tracking_Cone', 'Max_Cone', 'Lock_Cone']
+CAPACITOR_SUFFIX = '_capacitor'
 
 
 def number(value):
@@ -124,6 +131,8 @@ def type_upgrade(item):
     name = item['Key'][:-len('__upgrades')]
     if name.startswith(('add_', 'mult_')):
         return {}
+    if name.endswith(CAPACITOR_SUFFIX):
+        return {'Upgrade_Type': 'Capacitor'}
     shields = [number(item.get(k)) for k in OLD_SHIELDS]
     facets = [s for s in shields if s]
     armor = [number(item.get(k)) for k in OLD_ARMOR]
@@ -145,6 +154,34 @@ def type_upgrade(item):
     return {}
 
 
+def capacitor_rows(header, data):
+    """Add or update the companion capacitor row after each reactor row; returns how many changed."""
+    col = {name: i for i, name in enumerate(header)}
+    keys = {row[0]: i for i, row in enumerate(data)}
+    changed = 0
+    for row in list(data):
+        key = row[0]
+        if not (key.endswith('__upgrades') and number(row[col['Reactor_Recharge']])) \
+                or key.startswith(('add_', 'mult_')) or CAPACITOR_SUFFIX + '__' in key:
+            continue
+        new = list(row)
+        new[0] = key[:-len('__upgrades')] + CAPACITOR_SUFFIX + '__upgrades'
+        new[col['Reactor_Recharge']] = '0'
+        new[col['Upgrade_Type']] = 'Capacitor'
+        if new[0] in keys:
+            old = data[keys[new[0]]]
+            if old != new:
+                data[keys[new[0]]] = new
+                changed += 1
+                print(f'{new[0]}: updated')
+        else:
+            data.insert(data.index(row) + 1, new)
+            keys = {r[0]: i for i, r in enumerate(data)}
+            changed += 1
+            print(f'{new[0]}: added (Primary_Capacitor {new[col["Primary_Capacitor"]]})')
+    return changed
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     parser.add_argument('--write', action='store_true')
@@ -163,7 +200,7 @@ def main():
     col = {name: i for i, name in enumerate(header)}
     upgrades = {row[0]: dict(zip(header, row)) for row in data if row[0].endswith('__upgrades')}
 
-    changed = 0
+    changed = capacitor_rows(header, data)
     for row in data:
         if not row[0].endswith('__upgrades'):
             continue
@@ -199,7 +236,7 @@ def main():
     print(f'\n{changed} units changed')
     if args.write:
         with open(path, 'w', newline='', encoding='utf-8') as f:
-            csv.writer(f, lineterminator='\n').writerows(rows)
+            csv.writer(f, lineterminator='\n').writerows([header, types] + data)
         print('Written; now run units/parser.py')
     else:
         print('Dry run; pass --write to change units.csv')

@@ -75,6 +75,12 @@ component's values; the ship dealer allows one item of each kind, as in the
 original. Armour plating is now the ship's whole armour, as in the original
 game (Gemini Gold added plating to each hull's own armour); the values keep
 Gemini Gold's totals: plasteel 20, tungsten 40 and isometal 80 per side.
+An upgrade changes only the one component its `Upgrade_Type` names, but an
+engine level sets both the reactor's recharge and the capacitor, so each
+`reactor_level_N` row gets a companion `reactor_level_N_capacitor` row that the
+ship dealer (and `ship_upgrades.py`, for NPCs) fits alongside it. Without it a
+bought engine left the capacitor at the hull's starting size: a Centurion with
+four Plasma Guns could fire only two.
 
 **Data fixes.** Pirate bases (`faction="pirate"`) look up `mining_base__pirate`,
 but the unit was keyed `mining_base__pirates`, so they traded as plain mining
@@ -600,8 +606,7 @@ These may come from independent work recreating the original engine.
 - **Hull trade-in**: Gemini Gold pays 50% of the hull's price; the original
   pays its index value less wear and tear.
 - **Engine levels**: what each level does in the original isn't in its data
-  files, and buying an engine doesn't change the capacitor size Gemini Gold
-  pairs with each level.
+  files.
 
 ### Still to play-test
 
@@ -612,9 +617,10 @@ face, so low priority), the galaxy map's positions, the de-duplicated asteroid
 fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
 battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the
-settings carried over from Gemini Gold's config, and Terrell's credits
-conversations at the end of each game (the music taking over from Perry's,
-then Perry's music returning).
+settings carried over from Gemini Gold's config, buying an engine (the
+capacitor should grow with it, so a Centurion's four Plasma Guns all fire),
+and Terrell's credits conversations at the end of each game (the music taking
+over from Perry's, then Perry's music returning).
 
 Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit still
 for a long time before moving erratically, and there are no collisions; a log

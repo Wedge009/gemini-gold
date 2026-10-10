@@ -114,6 +114,7 @@ def UpgradeEngine (un, diff):
     if (type!=0):
         temp=un.upgrade (cat,0,0,1,0)
         temp=un.upgrade (dog,0,0,1,0)
+        un.upgrade (dog+"_capacitor",0,0,1,0) # the engine level's capacitor is a separate item
         print ("Upgrading Engine %s percent %f" % (cat,temp))
         if (temp>0.0):
             cat = GetRandomShield (2,type)

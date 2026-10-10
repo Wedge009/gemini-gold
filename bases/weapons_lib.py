@@ -2697,12 +2697,21 @@ def add_item_cargo(player, item_name, price, count=1):
 	if rc: return True
 	return False
 
+def companion_upgrades(item_name):
+	# The engine applies an upgrade to one component only, so an engine level's capacitor
+	# is a separate item (tools/fold_upgrades.py makes the reactor_level_N_capacitor rows)
+	if item_name.startswith('reactor_level_'):
+		return [item_name + '_capacitor']
+	return []
+
 def add_item(player, item_name, price, count=1, force=0):
 	mount_num = 0 # player.getNumMounts()
 	subunit_num = 0
 	# calling Unit.upgrade with jump_drive, aftreburner etc returns 0.0, so add_upgrade returns False.
 	# just assume it worked, and call add_item_cargo
 	add_upgrade(player, item_name, mount_num, subunit_num, force, 0)
+	for companion in companion_upgrades(item_name):
+		add_upgrade(player, companion, mount_num, subunit_num, force, 0)
 	rc = add_item_cargo(player, item_name, price, count)
 	return rc
 
@@ -2721,6 +2730,8 @@ def remove_item(player, item_name, count=1, recompute=True):
 	rc = remove_item_cargo(player, item_name, count)
 	if recompute and rc and can_remove_upgrades(player):
 		player.downgrade(item_name)
+		for companion in companion_upgrades(item_name):
+			player.downgrade(companion)
 	return rc
 
 
