@@ -30,5 +30,5 @@
         <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="25000" y="-15000" z="0" day="240" />
         <unit name= "Remus"  file="refinery" faction="refinery" x="-50000" y="-40000" z="20000"/>
         
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="0" y="0" z="0" day="-14000"  ></unit>
+        <asteroid difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="0" y="0" z="0" day="-14000"  ></asteroid>
 </system>

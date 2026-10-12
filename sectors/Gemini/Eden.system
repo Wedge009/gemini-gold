@@ -36,8 +36,8 @@
         <unit name="Sanctuary_Moon" file="moon" radius="1340" x="42366" y="-35000" z="0" si="-3000" day="300"/>
         <jump name="Unknown" file="jump.ani" alpha="ONE ONE" radius="256"  x="21500" z="-1500" y="-7500" si="-3000" day="300" destination="Gemini/Rikel"/>
 
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-30000" y="7500" z="7500" day="-14000"  ></unit>
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-10000" y="7500" z="7500" day="-14000"  ></unit>
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-50000" y="7500" z="7500" day="-14000"  ></unit>
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="37000" y="-10500" z="8000" day="-14000"  ></unit>
+        <asteroid difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-30000" y="7500" z="7500" day="-14000"  ></asteroid>
+        <asteroid difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-10000" y="7500" z="7500" day="-14000"  ></asteroid>
+        <asteroid difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-50000" y="7500" z="7500" day="-14000"  ></asteroid>
+        <asteroid difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="37000" y="-10500" z="8000" day="-14000"  ></asteroid>
 </system>

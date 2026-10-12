@@ -36,5 +36,5 @@
         <planet name="Jump_To_Famine" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="10000" y="-50000" z="-10000" day="240" destination="Gemini/Famine"/>
         <planet name="Jump_To_Capella" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-50000" y="-40000" z="20000" day="240" destination="Gemini/Capella"/>
         
-        <unit difficulty=".03"  name=""  file="Asteroid_Field" faction="neutral"   x="35000" y="40000" z="0" day="-14000"  ></unit>
+        <asteroid difficulty=".03"  name=""  file="Asteroid_Field" faction="neutral"   x="35000" y="40000" z="0" day="-14000"  ></asteroid>
 </system>

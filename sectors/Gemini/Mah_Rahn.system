@@ -28,6 +28,6 @@
 
         <planet name="Jump_To_Blockade_Point_Tango" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="30000" z="0" day="240" destination="Gemini/Blockade_Point_Tango" />
 
-        <unit difficulty=".03" name= "Jump_To_Blockade_Point_Tango"  file="Asteroid_Field" faction="neutral"   x="0" y="30000" z="0" day="-14000"   ></unit>
+        <asteroid difficulty=".03" name= "Jump_To_Blockade_Point_Tango"  file="Asteroid_Field" faction="neutral"   x="0" y="30000" z="0" day="-14000"   ></asteroid>
 
 </system>

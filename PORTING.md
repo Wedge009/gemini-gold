@@ -96,9 +96,12 @@ loaded twice: each system file gave every field a low- and a high-detail
 variant in `<Condition expression="asteroid_detail ...">` blocks (some also
 used `VarName`/`VarValue` attributes), and the current engine ignores both
 (`system_factory.cpp` has the check commented out), so both variants were
-created on top of each other. Each field is now a single `Asteroid_Field` unit,
+created on top of each other. Each field is now a single `Asteroid_Field`,
 the variant Gemini Gold's default graphics setting chose (`asteroid_detail` 5);
-CM-N1054 keeps its thinner `AFieldBaseThin` field. `trading.py`
+CM-N1054 keeps its thinner `AFieldBaseThin` field. Gemini Gold declared that
+variant with a `<unit>` tag, which this engine loads as an ordinary
+invulnerable neutral unit, so the fields are now `<asteroid>` tags: only those
+make an asteroid field the autopilot treats as one (and spin its asteroids). `trading.py`
 iterated over `list[range(...)]` (another port slip), which broke cargo
 mission generation. Erewhon is a pleasure planet, as in the original game, not
 agricultural.

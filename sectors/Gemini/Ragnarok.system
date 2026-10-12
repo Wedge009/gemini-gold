@@ -33,6 +33,6 @@
         <atmosphere alpha="SRCALPHA INVSRCALPHA" file="clouds.png"  radius="1009" />
         </planet>
         
-        <unit difficulty=".03"  name= "Mjolnar"  file="Asteroid_Field" faction="neutral"   x="-45000" y="20000" z="0" day="-14000"   ></unit>
-        <unit difficulty=".03"  name= "Jump_To_Blockade_Point_Alpha"  file="Asteroid_Field" faction="neutral"   x="50000" y="0" z="-20000" day="-14000"   ></unit>
+        <asteroid difficulty=".03"  name= "Mjolnar"  file="Asteroid_Field" faction="neutral"   x="-45000" y="20000" z="0" day="-14000"   ></asteroid>
+        <asteroid difficulty=".03"  name= "Jump_To_Blockade_Point_Alpha"  file="Asteroid_Field" faction="neutral"   x="50000" y="0" z="-20000" day="-14000"   ></asteroid>
 </system>

@@ -32,5 +32,5 @@
         <planet name="Jump_To_Valhalla" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="50000" z="0"  day="240" destination="Gemini/Valhalla" />
         <planet name="Jump_To_J900" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-55000" y="0" z="0" day="240" destination="Gemini/J900"/>
         
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="45000" y="45000" z="-30000" day="-14000"  ></unit>
+        <asteroid difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="45000" y="45000" z="-30000" day="-14000"  ></asteroid>
 </system>

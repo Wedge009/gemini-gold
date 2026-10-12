@@ -34,5 +34,5 @@
         </planet>
         <unit name= "Basra"  file="refinery" faction="refinery" x="50000" y="10000" z="20000"/>
 
-        <unit difficulty=".03" name= "Nav_2"  file="Asteroid_Field" faction="neutral"   x="-7500" y="12000" z="10000" day="-14000"   ></unit>
+        <asteroid difficulty=".03" name= "Nav_2"  file="Asteroid_Field" faction="neutral"   x="-7500" y="12000" z="10000" day="-14000"   ></asteroid>
 </system>

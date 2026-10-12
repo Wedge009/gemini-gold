@@ -28,5 +28,5 @@
         <unit name=""  file="mining_base" faction="pirate" x="-45000" y="-30000" z="6000"/>
         <planet name="Jump_To_119CE" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="40000" y="25000" z="-18500" day="240" destination="Gemini/119ce"  />
         
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-45000" y="-30000" z="6000" day="-14000" ></unit>
+        <asteroid difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-45000" y="-30000" z="6000" day="-14000" ></asteroid>
 </system>

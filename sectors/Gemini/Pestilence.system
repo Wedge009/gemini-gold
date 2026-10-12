@@ -30,5 +30,5 @@
         <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="30000" y="30000" z="0" day="240" />
         <planet name="Jump_To_War" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="-60000" z="0"  day="240" destination="Gemini/War"/>
         
-        <unit difficulty=".03" name="Nav_2"  file="Asteroid_Field" faction="neutral"   x="30000" y="30000" z="0" day="-14000"   ></unit>
+        <asteroid difficulty=".03" name="Nav_2"  file="Asteroid_Field" faction="neutral"   x="30000" y="30000" z="0" day="-14000"   ></asteroid>
 </system>

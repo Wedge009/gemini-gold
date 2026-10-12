@@ -32,5 +32,5 @@
         <planet name="Jump_To_Capella" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="30000" y="-30000" z="13000" day="240" destination="Gemini/Capella"/>
         <planet name="Jump_To_KM-252" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-25000" y="-10000" z="10000" day="240" destination="Gemini/KM-252" />
 
-        <unit difficulty=".03" name= "Macabee"  file="Asteroid_Field" faction="neutral"   x="55000" y="0" z="0" day="-14000"   ></unit>
+        <asteroid difficulty=".03" name= "Macabee"  file="Asteroid_Field" faction="neutral"   x="55000" y="0" z="0" day="-14000"   ></asteroid>
 </system>

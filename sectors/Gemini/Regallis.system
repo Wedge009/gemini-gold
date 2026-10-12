@@ -32,5 +32,5 @@
         <planet name="Jump_To_Sherwood" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="-55000" z="0" day="240" destination="Gemini/Sherwood"/>
         <unit name= "Kronecker"  file="mining_base" faction="mining" x="-45000" y="-30000" z="30000"/>
         
-        <unit difficulty=".03" name= "Kronecker"  file="Asteroid_Field" faction="neutral"   x="-45000" y="-30000" z="30000" day="-14000"   ></unit>
+        <asteroid difficulty=".03" name= "Kronecker"  file="Asteroid_Field" faction="neutral"   x="-45000" y="-30000" z="30000" day="-14000"   ></asteroid>
 </system>

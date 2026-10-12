@@ -29,8 +29,8 @@
         <unit name= "Lisacc"  file="mining_base" faction="confed" x="-30000" y="-10000" z="-20000"/>
         <planet name="Jump_To_Blockade_Point_Tango" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="40000" y="20000" z="20000" day="240" destination="Gemini/Blockade_Point_Tango" />
 
-        <unit difficulty=".03" name= "Lisacc"  file="Asteroid_Field" faction="neutral"   x="-30000" y="-10000" z="-20000" day="-14000"   ></unit>
-        <unit difficulty=".03" name= "Jump_To_Blockade_Point_Tango"  file="Asteroid_Field" faction="neutral"   x="40000" y="20000" z="20000" day="-14000"   ></unit>
+        <asteroid difficulty=".03" name= "Lisacc"  file="Asteroid_Field" faction="neutral"   x="-30000" y="-10000" z="-20000" day="-14000"   ></asteroid>
+        <asteroid difficulty=".03" name= "Jump_To_Blockade_Point_Tango"  file="Asteroid_Field" faction="neutral"   x="40000" y="20000" z="20000" day="-14000"   ></asteroid>
 
 
 </system>

@@ -30,5 +30,5 @@
         <unit name= "Rygannon"  file="mining_base" faction="mining" x="10000" y="40000" z="-20000"/>
         <planet name="Jump_To_Delta" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-50000" y="30000" z="20000" day="240" destination="Gemini/Delta"/>
         
-        <unit difficulty=".03" name= "Jump_To_Delta"  file="Asteroid_Field" faction="neutral"   x="-50000" y="30000" z="20000" day="-14000"   ></unit>
+        <asteroid difficulty=".03" name= "Jump_To_Delta"  file="Asteroid_Field" faction="neutral"   x="-50000" y="30000" z="20000" day="-14000"   ></asteroid>
 </system>
