@@ -525,6 +525,21 @@ this work is deferred for now:
   included. Gemini Gold's old engine (`Unit::DamageRandSys`) scaled down one
   facet's maximum by the damage factor, clamped to 0.001–0.999, so nothing was
   ever destroyed and a repair restored it.
+- **Every hit lowers a facet's maximum** (to do, one line, the most important
+  item here): `DamageableLayer::DealDamageComponent` applies a hit with
+  `facet.DamageByValue()`, which lowers the facet's maximum as well as its
+  value, though its comment says "Damage the current health"; it should be
+  `facet -= adjusted_damage`. So each hit on a shield shrinks that facet until
+  it's repaired (shields only recharge to what's left), and a facet drained to
+  zero counts as destroyed, beyond any repair (seen in play: a Tarsus's
+  starboard shield stayed empty after docking). Armour and hull work the same
+  way. Introduced with the components rework (#1016, 2025). This, rather than
+  shield upkeep alone, is probably why shields never recovered in fights.
+- **Python can't read a component's condition** (to do):
+  `Unit.PercentOperational` isn't exported, so the repair bay's call fails and
+  every slot upgrade looks undamaged ("nothing to repair"). Gemini Gold works
+  around it for shields by reading each facet's charge after docking; armour
+  damage can't be seen from Python at all.
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 

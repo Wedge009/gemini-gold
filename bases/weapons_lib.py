@@ -1547,6 +1547,15 @@ def get_upgrade_sell_list():
 			damage = player.PercentOperational(name, category, False)
 		except:
 			damage = 1.0
+		# The engine doesn't give Python PercentOperational, but docking charges each shield
+		# facet to its damaged maximum, so a facet short of full is damaged. Repairing re-fits
+		# the shield, which restores every facet. Never 0, or the shield would be removed below.
+		if name.startswith('shield_'):
+			try:
+				facets = (player.FShieldData(), player.BShieldData(), player.LShieldData(), player.RShieldData())
+				damage = max(sum(facets)/len(facets), 0.01)
+			except:
+				pass
 
 		if damage > 0.0:
 			# item_name, damage, type, mount, quantity
