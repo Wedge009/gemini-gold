@@ -475,11 +475,14 @@ this work is deferred for now:
   planet. Nav points (`alpha="ONE ONE"`) should be atmospheric and so have no
   docking port; instead automatic landing tries to land on them, fails, pushes
   the ship back out, and the ship drifts in again.
-- **Autopilot ignores enemies** (to do): in `JumpCapable::AutoPilotToErrorMessage`
-  the check for enemies near the route runs only `if (... unit->cloak.Cloaked())`.
-  It was `CloakVisible() > .5` (the ship is visible) until the component
-  refactor in `adc62840b` (2023, #796) inverted it, so an uncloaked ship can
-  always autopilot. A one-character fix (`!unit->cloak.Cloaked()`).
+- **Autopilot ignores enemies and asteroids** (to do): in
+  `JumpCapable::AutoPilotToErrorMessage` the whole obstacle check (enemies near
+  the route, asteroid fields, anything in the way) runs only
+  `if (... unit->cloak.Cloaked())`. It was `CloakVisible() > .5` (the ship is
+  visible) until the component refactor in `adc62840b` (2023, #796) inverted
+  it, so an uncloaked ship can always autopilot, straight through asteroid
+  fields too (seen in play at Pender's Star). A one-character fix
+  (`!unit->cloak.Cloaked()`).
 - **Faction `conversation` attribute dropped** (to report): the factions.xml
   parser removed in `e47169c1f` (2021) read each relation's `conversation`
   file; its replacement only looks for `<faction>to<faction>.xml`. Gemini
@@ -552,6 +555,13 @@ this work is deferred for now:
   every slot upgrade looks undamaged ("nothing to repair"). Gemini Gold works
   around it for shields by reading each facet's charge after docking; armour
   damage can't be seen from Python at all.
+- **Energy time-step** (to report): the components (reactor, shields, ECM,
+  cloak and anything else built on `EnergyConsumer`) use their own static
+  `EnergyConsumer::simulation_atom_var`, set to 0.1 and never updated, rather
+  than the configured `simulation_atom` (0.06 here), so per-step energy is
+  worked out for the wrong step length. On its own that would make the reactor
+  recharge faster than rated, yet in play it's about a third of the rate, so
+  something else is involved too.
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
@@ -580,8 +590,10 @@ grouped by what's holding it up.
   flight without also stopping you autopiloting away from them (Gemini Gold
   gives neutrals a negative radius). Asteroid fields can, as in the original:
   `min_asteroid_distance` is now 0 (Gemini Gold had -2,500), so the autopilot
-  stops at the edge of a field on its route and won't engage until you've
-  cleared the field.
+  should stop at the edge of a field on its route and refuse to engage until
+  you've cleared the field, but the whole obstacle check sits behind the
+  inverted cloak test (see "Autopilot ignores enemies and asteroids" under Upstream engine
+  work), so neither asteroids nor hostiles have any effect until that's fixed.
 - Collision damage is the kinetic energy a collision loses, halved and divided
   by `constants.kj_per_unit_damage`. At the engine's 5,400, a Centurion (180
   tonnes in Gemini Gold's data) stopping dead from 500 takes about 2,100
@@ -590,7 +602,9 @@ grouped by what's holding it up.
   costs perhaps half the armour, about 50 points here, so it's now 225,000
   (Gemini Gold's own collision damage scale isn't read by the engine). Glancing
   blows lose less energy and do less.
-- Ships pass through each other, and through some asteroids, with no collision.
+- Ships pass through each other, and through some asteroids, with no collision,
+  yet ramming a neutral ship turned it hostile, so the engine does seem to
+  register the contact.
 - The engine's in-game settings screen has a "shaders" preset that writes
   `technique_set`, `default_full_technique` and `default_simple_technique`
   (for example `5_ps3.0` and `default_simple`). Gemini Gold ships only the
@@ -778,17 +792,18 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
-The galaxy map's positions (the nav screen's button labels are now drawn, as
-its background art isn't, so the Galaxy button can be found), collision damage
-(brushing an asteroid in a Centurion at speed should cost shields and some
-armour, not the ship), and the autopilot around asteroid fields (stopping at a
-field's edge, refusing to engage inside one).
+Nothing that can be tested without engine changes.
 
 Energy: four Tachyons empty a level 3 engine in five salvos, as in the
-original, but an empty capacitor took about 24 seconds to refill where the
-original takes about 7 (the data gives 20 a second, which would take 7); the
-cause isn't known yet, so it's worth timing again with `simulation_atom` at
-0.06, in case it was measured while the settings screen had it at 0.04. Shield recharge (a level 3 side in about 30 seconds) and
+original, but an empty capacitor takes about 25 seconds to refill (confirmed at
+`simulation_atom` 0.06) where the original takes about 7. The data gives 20 a
+second, which would take 7, and the engine's arithmetic should give even more
+(see "Energy time-step" under Upstream engine work); nothing in the data or
+config accounts for the slowdown (shield upkeep and recharge cost under 0.1 a
+second, the afterburner only draws while burning, the ECM only while on), so
+the cause is somewhere in the engine. Shields show no recharge at all in play, which the facet bug explains: each hit
+lowers the facet's maximum to what's left, so there's nothing to refill. Shield
+recharge (a level 3 side in about 30 seconds) and
 a Talon's passes against level 3 shields can't be judged until shield hits stop
 lowering the facets' maximum (see Upstream engine work).
 
