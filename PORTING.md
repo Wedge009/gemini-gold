@@ -118,7 +118,12 @@ Privateer's files:
   spawn point are scaled to match, and so are the distances at which random
   encounters trigger (10,000 m from a nav point, base or jump, where Gemini
   Gold used 3,000 at its 0.29 scale) and the autopilot's hostile radius
-  (15,000 m, as in the original). The asteroid fields the original
+  (15,000 m, as in the original). The autopilot now stops 12,000 m short of
+  its target (`auto_pilot_termination_distance`; Gemini Gold's 1,480 m was
+  about 5,100 of the original's units). The original stops at each point's own
+  trigger radius, usually 12,000 m for jumps, 17,000 m for bases and 10,000 to
+  12,000 m for nav points, but the engine has one distance for every target.
+  The asteroid fields the original
   has at hidden points are all present (Eden's four and one in Rikel were
   missing), and the Derelict spawns at its original position. Gemini Gold is
   one continuous game covering Privateer and Righteous Fire, so the map is
@@ -217,7 +222,8 @@ Privateer's files:
   base's own stock, and many bases with a ship dealer (agricultural and
   pleasure planets) don't stock the Centurion or Orion, so buying one there
   silently failed; the dealer now stocks the hull just before the purchase, as
-  every dealer offers all three.
+  every dealer offers all three. The engine also docks the new ship at the
+  base, charging the docking fee a second time; the dealer refunds it.
 - Both games end with Terrell's credits conversation, as the originals do,
   which Gemini Gold left out: the next click on him after his final
   conversation gives them, with the credits music, after which the base's
@@ -741,23 +747,23 @@ These may come from independent work recreating the original engine.
 The 3D positions (including whether +z points the same way as the original's z;
 if not, `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it, then
 negate the z of the start position in `New_Game`; hard to judge from how bases
-face, so low priority), the original's full-scale distances (random encounters
-triggering at 10,000 m, autopilot, the Derelict, and a saved game from before the
-change: does the ship launch beside its base?), the galaxy map's positions, the de-duplicated asteroid
-fields, a new game's universe now that it's generated afresh for Gemini alone
-(start-up time, traffic, the faction table `New_Game` now loads), the dynamic
-battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the
-settings carried over from Gemini Gold's config, the energy and shield
-recharge rates (four Tachyons on a level 3 engine: about five salvos from full,
-an empty capacitor refilling in about 7 seconds;
-level 3 shields: a side about 30 seconds from nothing; a Talon's passes against
-them; Tachyon hits to destroy a Talon, 8 to 12 in the original), a B&S radar's
-colours (friend
-and foe, plus jump points, planets, missiles and cargo), buying a ship (at Helen too, which doesn't stock it; credits
-should drop by the new hull's price less the old one's trade-in; saving and
-loading with the old ship kept in the engine's fleet list),
-and Terrell's credits conversations at the end of each game (the music taking
-over from Perry's, then Perry's music returning).
+face, so low priority), the Derelict at the original's full-scale position, the
+galaxy map's positions, the de-duplicated asteroid fields, a new game's universe
+now that it's generated afresh for Gemini alone (start-up time, traffic, the
+faction table `New_Game` now loads), the dynamic battles' reinforcements, the
+Tarsus trade-in, repairing slot upgrades other than shields, the settings
+carried over from Gemini Gold's config, buying a ship (credits should drop by
+the new hull's price less the old ship's trade-in and half the price of its
+upgrades, with no second docking fee: 2,049,950 becomes 1,875,700 for a
+Centurion bought straight away), the autopilot stopping 12,000 m short, and Terrell's credits conversations at the end of each game (the
+music taking over from Perry's, then Perry's music returning).
+
+Energy: four Tachyons empty a level 3 engine in five salvos, as in the
+original, but an empty capacitor took about 24 seconds to refill where the
+original takes about 7 (the data gives 20 a second, which would take 7); the
+cause isn't known yet. Shield recharge (a level 3 side in about 30 seconds) and
+a Talon's passes against level 3 shields can't be judged until shield hits stop
+lowering the facets' maximum (see Upstream engine work).
 
 Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit still
 for a long time before moving erratically, and there are no collisions; a log
