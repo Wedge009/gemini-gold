@@ -16,6 +16,7 @@
         "hostile_auto_radius": 15000.0,
         "auto_pilot_termination_distance": 12000.0,
         "auto_pilot_termination_distance_no_enemies": 12000.0,
+        "no_auto_light_below": 12000.0,
         "auto_landing_exclude_list": "Sanctuary_Moon planets/rock.png Nav_1 Nav_2 Nav_3 Nav_4 Nav_5 Nav_6 Nav_7 Nav_8 Nav_9"
     },
     "dock": {

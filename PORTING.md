@@ -123,6 +123,8 @@ Privateer's files:
   about 5,100 of the original's units). The original stops at each point's own
   trigger radius, usually 12,000 m for jumps, 17,000 m for bases and 10,000 to
   12,000 m for nav points, but the engine has one distance for every target.
+  The autopilot light goes out within the same distance of the target
+  (`no_auto_light_below`), as the original's does near a nav point.
   The asteroid fields the original
   has at hidden points are all present (Eden's four and one in Rikel were
   missing), and the Derelict spawns at its original position. Gemini Gold is
@@ -758,10 +760,8 @@ galaxy map's positions, the de-duplicated asteroid fields, a new game's universe
 now that it's generated afresh for Gemini alone (start-up time, traffic, the
 faction table `New_Game` now loads), the dynamic battles' reinforcements, the
 Tarsus trade-in, repairing slot upgrades other than shields, the settings
-carried over from Gemini Gold's config, buying a ship (credits should drop by
-the new hull's price less the old ship's trade-in and half the price of its
-upgrades, with no second docking fee: 2,049,950 becomes 1,875,700 for a
-Centurion bought straight away), the autopilot stopping 12,000 m short, and Terrell's credits conversations at the end of each game (the
+carried over from Gemini Gold's config, the autopilot light going out within 12,000 m of
+the target, and Terrell's credits conversations at the end of each game (the
 music taking over from Perry's, then Perry's music returning).
 
 Energy: four Tachyons empty a level 3 engine in five salvos, as in the

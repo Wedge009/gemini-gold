@@ -324,6 +324,7 @@
         "allow_mission_abort": false,
         "auto_pilot_termination_distance": 12000.0,
         "auto_pilot_termination_distance_no_enemies": 12000.0,
+        "no_auto_light_below": 12000.0,
         "damage_chance": 0.008,
         "damage_player_chance": 4.0,
         "debris_time": 1e-06,
