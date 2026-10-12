@@ -383,6 +383,10 @@ Privateer's files:
   level 2 shields, and turns 8% faster than the Talon, as in the original
   (turn rates scaled from the Talon's, since which original rate is yaw, pitch
   or roll isn't known). Its weapons are unchanged. Not yet play-tested.
+- No ship can cloak, as in the original. Gemini Gold's data gave 56 units
+  `Can_Cloak` (the Talon, Salthi, Paradigm, Steltek drone and others, and the
+  Vega Strike templates); only the drone had a cloak energy cost, and nothing in
+  the game ever cloaked a ship.
 - The Tarsus turns at the original's rate, 95°/s on each axis (its first turn
   figure, as for the NPC fighters, since the original's three figures, 95, 105
   and 97, aren't labelled by axis). Privateer_Gold had retuned it to 90/80/152
@@ -481,8 +485,8 @@ this work is deferred for now:
   `if (... unit->cloak.Cloaked())`. It was `CloakVisible() > .5` (the ship is
   visible) until the component refactor in `adc62840b` (2023, #796) inverted
   it, so an uncloaked ship can always autopilot, straight through asteroid
-  fields too (seen in play at Pender's Star). A one-character fix
-  (`!unit->cloak.Cloaked()`).
+  fields too (seen in play at Pender's Star). The fix restores the old test as
+  `unit->cloak.Visibility() > .5` (branch `autopilot-check`).
 - **Faction `conversation` attribute dropped** (to report): the factions.xml
   parser removed in `e47169c1f` (2021) read each relation's `conversation`
   file; its replacement only looks for `<faction>to<faction>.xml`. Gemini
