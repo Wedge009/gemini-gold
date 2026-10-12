@@ -3069,6 +3069,12 @@ def BuyShip(shipname):
 		base.forceAddCargo(hull)
 	success=Base.BuyShip(shipname,False,True)
 	if (success!=False):
+		# The engine docks the new ship at the base, which charges the docking fees again.
+		for fee in ("docking_fee","fuel_docking_fee"):
+			try:
+				VS.getPlayer().addCredits(float(VS.vsConfig("general",fee,"0")))
+			except:
+				pass
 		# The trade-in is paid above. Base.SellShip(name) would pay the engine's own sell-back
 		# on top, and its PlayerShip::RemoveShip deletes the old ship outright while other units
 		# can still refer to it (an attacker's target, say), crashing the game later. Without it
