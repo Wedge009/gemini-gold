@@ -446,19 +446,19 @@ JSON files.
 
 Engine changes some fixes here wait on, offered to
 [vegastrike/Vega-Strike-Engine-Source](https://github.com/vegastrike/Vega-Strike-Engine-Source)
-so the sub-module can stay unpatched. Apart from the two already submitted,
-this work is deferred for now:
+so the sub-module can stay unpatched. Items marked "submitted" have a pull
+request open; the rest are still to do.
 
 - **Python `Unit.downgrade()`** (#1817, submitted): lets the ship dealer undo a
   sold upgrade; `bases/weapons_lib.py` already uses it when present.
 - **`system_damage_on_armor`** (#1816, submitted): `DamageRandomSystem` and
   `DamageCargo` test the hull layer for both hull and armour hits, so the
   setting has no effect.
-- **`launchJumppoint` and other planets launched from Python** (to do): since
-  2010 the engine ignores the type string ("radius texture name (blend)"); a
-  clean-up removed the `sscanf` that read it along with its unused result, so
-  such planets get radius 1, no texture and no name. Needed to add story-locked
-  jumps (see Known gaps) only once their mission opens them.
+- **`launchJumppoint` and other planets launched from Python** (#1838,
+  submitted): since 2010 the engine ignores the type string ("radius texture
+  name (blend)"); a clean-up removed the `sscanf` that read it along with its
+  unused result, so such planets get radius 1, no texture and no name. Needed to
+  add story-locked jumps (see Known gaps) only once their mission opens them.
 - **Upgrades in the upgrade space** (to do): Python `addCargo` always uses the
   cargo hold, so bought upgrades take cargo room; the old engine charged
   `upgrades/...` items to the upgrade space. Needs care with saved games, which
@@ -470,23 +470,23 @@ this work is deferred for now:
   otherwise, and nothing flags hidden-hold items, so a smuggling compartment's
   contents would reappear as ordinary cargo (from reading the code). Needed
   before Gemini Gold can add the smuggling compartment from Tayla's missions.
-- **`VS.Unit` truth value** (to do): the Python wrapper defines `__nonzero__`,
-  which Python 3 ignores, so a null unit is true. `modules/engine_compat.py`
-  adds `__bool__` until the engine does (one line in
+- **`VS.Unit` truth value** (#1837, submitted): the Python wrapper defines
+  `__nonzero__`, which Python 3 ignores, so a null unit is true.
+  `modules/engine_compat.py` adds `__bool__` until the engine does (one line in
   `define_odd_unit_functions.h`).
 - **Planets' `alpha` ignored** (to do): `SystemFactory::initializeAlpha` takes
   the blend modes by value, so a system file's `alpha` never reaches the
   planet. Nav points (`alpha="ONE ONE"`) should be atmospheric and so have no
   docking port; instead automatic landing tries to land on them, fails, pushes
   the ship back out, and the ship drifts in again.
-- **Autopilot ignores enemies and asteroids** (to do): in
+- **Autopilot ignores enemies and asteroids** (#1834, submitted): in
   `JumpCapable::AutoPilotToErrorMessage` the whole obstacle check (enemies near
   the route, asteroid fields, anything in the way) runs only
   `if (... unit->cloak.Cloaked())`. It was `CloakVisible() > .5` (the ship is
   visible) until the component refactor in `adc62840b` (2023, #796) inverted
   it, so an uncloaked ship can always autopilot, straight through asteroid
   fields too (seen in play at Pender's Star). The fix restores the old test as
-  `unit->cloak.Visibility() > .5` (branch `autopilot-check`).
+  `unit->cloak.Visibility() > .5`.
 - **Faction `conversation` attribute dropped** (to report): the factions.xml
   parser removed in `e47169c1f` (2021) read each relation's `conversation`
   file; its replacement only looks for `<faction>to<faction>.xml`. Gemini
@@ -501,13 +501,16 @@ this work is deferred for now:
   set speed at half maximum and the speed keys only flicker. Vega Strike's own
   bindings bind a throttle axis, so its players without a joystick should see
   this too. Gemini Gold binds no throttle axis, as its old config didn't.
-- **`auto_landing_exclude_list` parsing** (to do): `GameCockpit::DoAutoLanding`
+- **`auto_landing_exclude_list` parsing** (#1836, submitted): `GameCockpit::DoAutoLanding`
   passes each name's end position to `substr` as its length, so only the first
   and last names in the list match.
-- **Afterburner energy cost not saved** (to do): `Afterburner::SaveToCSV`
-  writes thrust and speed but not `Afterburner_Usage_Cost`, so after loading a
-  saved game the afterburner costs 1, bought or not. Buying one also needs an
-  engine-side way to fit an afterburner (see Known gaps).
+- **Afterburner energy cost not saved** (#1839, submitted):
+  `Afterburner::SaveToCSV` writes thrust and speed but not
+  `Afterburner_Usage_Cost`, so after loading a saved game every afterburner
+  costs the engine's default of 1. Gemini Gold marks the player's unbought
+  afterburner with a cost of 32767, so a save and reload gives the starting
+  ship a free, almost costless afterburner. Saved games made before the fix
+  keep the cost of 1, as each later save writes it out again.
 - **No backdrop behind the cockpit or nav screen** (to check): both draw
   without their background art. Gemini Gold includes the nav screen's
   `cockpits/nav/navdata.xml` and `meshes/nav/default/` as Vega Strike's assets
@@ -544,8 +547,8 @@ this work is deferred for now:
   included. Gemini Gold's old engine (`Unit::DamageRandSys`) scaled down one
   facet's maximum by the damage factor, clamped to 0.001–0.999, so nothing was
   ever destroyed and a repair restored it.
-- **Every hit lowers a facet's maximum** (to do, one line, the most important
-  item here): `DamageableLayer::DealDamageComponent` applies a hit with
+- **Every hit lowers a facet's maximum** (#1835, submitted):
+  `DamageableLayer::DealDamageComponent` applied each hit with
   `facet.DamageByValue()`, which lowers the facet's maximum as well as its
   value, though its comment says "Damage the current health"; it should be
   `facet -= adjusted_damage`. So each hit on a shield shrinks that facet until
@@ -554,6 +557,7 @@ this work is deferred for now:
   starboard shield stayed empty after docking). Armour and hull work the same
   way. Introduced with the components rework (#1016, 2025). This, rather than
   shield upkeep alone, is probably why shields never recovered in fights.
+  The fix comes with a test.
 - **Python can't read a component's condition** (to do):
   `Unit.PercentOperational` isn't exported, so the repair bay's call fails and
   every slot upgrade looks undamaged ("nothing to repair"). Gemini Gold works
@@ -656,13 +660,15 @@ See Upstream engine work above.
   ship with a hidden hold whose contraband passes the scans in ordinary
   encounters. Gemini Gold has no hidden hold, and the engine doesn't yet keep
   a hidden hold's contents across a saved game.
-- **Buying an afterburner** doesn't fit one: the engine's afterburner upgrade
-  scales an afterburner the hull already has. And because the engine doesn't
-  save an afterburner's energy cost, after loading a saved game every ship's
-  afterburner works at almost no cost (confirmed in play). The `add_` and `mult_` upgrades
-  (cargo expansion, shield regenerator, speed and thrust enhancers) may not be
-  possible in data alone either; the engine's cargo-hold upgrade code is
-  commented out.
+- **Buying an afterburner** doesn't fit one. The player's hulls have the
+  afterburner's thrust and speed, but an energy cost of 32767, so it can't be
+  lit until one is bought; the engine's afterburner upgrade only multiplies
+  what the hull already has, and Gemini Gold's upgrade row isn't set up as one.
+  Separately, a saved game resets every afterburner's cost to 1, so after a
+  reload the starting ship's afterburner works at almost no cost (PR submitted,
+  see Upstream engine work). The `add_` and `mult_`  upgrades (cargo expansion,
+  shield regenerator, speed and thrust enhancers)  may not be possible in data
+  alone either; the engine's cargo-hold upgrade  code is commented out.
 
 - **Lowering shields doesn't save energy.** The original lets the player
   lower or switch off shields to leave more energy for the guns and
