@@ -85,6 +85,12 @@ engine level sets both the reactor's recharge and the capacitor, so each
 ship dealer (and `ship_upgrades.py`, for NPCs) fits alongside it. Without it a
 bought engine left the capacitor at the hull's starting size: a Centurion with
 four Plasma Guns could fire only two.
+The afterburner can't be fitted that way: the engine's afterburner upgrade
+multiplies the afterburner a hull already has. Hulls without one carry Gemini
+Gold's full afterburner thrust and speed but a cost of 32767, which can never
+be paid, so the afterburner row is now a multiplier (thrust and speed 1, cost
+40/32767) that turns it into the fitted cost of 40. Ships that come with an
+afterburner get the 40 directly.
 
 **Data fixes.** Pirate bases (`faction="pirate"`) look up `mining_base__pirate`,
 but the unit was keyed `mining_base__pirates`, so they traded as plain mining
@@ -511,6 +517,11 @@ request open; the rest are still to do.
   afterburner with a cost of 32767, so a save and reload gives the starting
   ship a free, almost costless afterburner. Saved games made before the fix
   keep the cost of 1, as each later save writes it out again.
+- **Afterburner upgrade not saved** (to do): `AfterburnerUpgrade::Load` and
+  `SaveToCSV` are deliberately empty (the afterburner's already-multiplied
+  values are saved instead), so after a reload the upgrade's multipliers are
+  back to 1 and selling it leaves the afterburner as it was. Gemini Gold's
+  bought afterburner then can't be sold after loading a saved game.
 - **No backdrop behind the cockpit or nav screen** (to check): both draw
   without their background art. Gemini Gold includes the nav screen's
   `cockpits/nav/navdata.xml` and `meshes/nav/default/` as Vega Strike's assets
@@ -660,15 +671,17 @@ See Upstream engine work above.
   ship with a hidden hold whose contraband passes the scans in ordinary
   encounters. Gemini Gold has no hidden hold, and the engine doesn't yet keep
   a hidden hold's contents across a saved game.
-- **Buying an afterburner** doesn't fit one. The player's hulls have the
-  afterburner's thrust and speed, but an energy cost of 32767, so it can't be
-  lit until one is bought; the engine's afterburner upgrade only multiplies
-  what the hull already has, and Gemini Gold's upgrade row isn't set up as one.
-  Separately, a saved game resets every afterburner's cost to 1, so after a
-  reload the starting ship's afterburner works at almost no cost (PR submitted,
-  see Upstream engine work). The `add_` and `mult_`  upgrades (cargo expansion,
-  shield regenerator, speed and thrust enhancers)  may not be possible in data
-  alone either; the engine's cargo-hold upgrade  code is commented out.
+- **Selling an afterburner after loading a saved game** leaves it working.
+  A bought afterburner is the engine's afterburner upgrade, which multiplies
+  the hull's cost of 32767 down to 40; selling divides by the same multiplier,
+  but the engine doesn't save it, so after a reload selling divides by 1 and
+  the cost stays at 40. Selling in the same session works (selling any fitted
+  item needs #1817). Until #1839, a saved game also resets every
+  afterburner's cost to 1, so after a reload the starting ship's afterburner
+  works at almost no cost, bought or not (confirmed in play).
+- **`add_` and `mult_` upgrades** (cargo expansion, shield regenerator, speed
+  and thrust enhancers) may not be possible in data alone; the engine's
+  cargo-hold upgrade code is commented out.
 
 - **Lowering shields doesn't save energy.** The original lets the player
   lower or switch off shields to leave more energy for the guns and
@@ -802,8 +815,6 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
-Nothing that can be tested without engine changes.
-
 Energy: four Tachyons empty a level 3 engine in five salvos, as in the
 original, but an empty capacitor takes about 25 seconds to refill (confirmed at
 `simulation_atom` 0.06) where the original takes about 7. The data gives 20 a
@@ -817,8 +828,9 @@ recharge (a level 3 side in about 30 seconds) and
 a Talon's passes against level 3 shields can't be judged until shield hits stop
 lowering the facets' maximum (see Upstream engine work).
 
-The afterburner's energy drain (`energy_source`) can't be tested until a bought
-afterburner works (see Known gaps).
+Buying an afterburner (new game, no reload): before buying, the starting
+ship's afterburner does nothing; after buying, it reaches the hull's
+afterburner speed and drains energy while burning (`energy_source`), not fuel.
 
 Not planned, as they need a saved game well into the story: the Derelict at
 the original's full-scale position, the dynamic battles' reinforcements,

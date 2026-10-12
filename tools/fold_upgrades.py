@@ -33,8 +33,14 @@ that component reads where Gemini Gold's name differs: shield and
 shield_facets, armor (armour plating replaces the ship's armour, as in the
 original game, at twice the old per-facet value, the engine's own conversion),
 ecm and repair. Reactor, radar and jump drive rows already use the engine's
-names. Afterburners and add_/mult_ items are left alone: the engine's
-afterburner upgrade scales an existing afterburner rather than fitting one.
+names. add_/mult_ items are left alone.
+
+The afterburner is different: the engine's afterburner upgrade multiplies the
+afterburner the hull already has rather than fitting one. Ships without one
+have Gemini Gold's full afterburner thrust and speed but a cost of 32767, so
+it can't be lit. The afterburner row becomes a multiplier: thrust and speed
+1, and a cost of 40/32767, which turns 32767 into the fitted cost of 40. Ships
+listing the afterburner in Upgrades get that cost of 40 directly.
 
 An item changes only the one component its Upgrade_Type names, but Gemini
 Gold's engine levels set both the reactor's recharge and the capacitor. So each
@@ -74,6 +80,9 @@ CAPACITOR_SUFFIX = '_capacitor'
 # jump points, planets, missiles and cargo); the current engine reads a number as flags
 # (1 friend/foe, 2 object recognition, 4 threat), so level 2 is 1 + 2.
 RADAR_COLOR = {'2': '3'}
+AFTERBURNER = 'afterburner'
+AFTERBURNER_COST = 40           # Gemini Gold's afterburner, fitted
+UNFITTED_AFTERBURNER_COST = 32767   # the cost hulls without one carry
 
 
 def number(value):
@@ -110,7 +119,11 @@ def fold(unit, item, changes):
             if item.get(k):
                 changes[k] = item[k]
         applied = True
-    if number(item.get('Afterburner_Usage_Cost')):
+    if item['Key'] == AFTERBURNER + '__upgrades':
+        # the row itself holds the upgrade's multiplier (see type_upgrade)
+        changes['Afterburner_Usage_Cost'] = fmt(AFTERBURNER_COST)
+        applied = True
+    elif number(item.get('Afterburner_Usage_Cost')):
         changes['Afterburner_Usage_Cost'] = item['Afterburner_Usage_Cost']
         applied = True
     if number(item.get('ECM_Rating')):
@@ -140,6 +153,9 @@ def type_upgrade(item):
         return {}
     if name.endswith(CAPACITOR_SUFFIX):
         return {'Upgrade_Type': 'Capacitor'}
+    if name == AFTERBURNER:
+        return {'Upgrade_Type': 'Afterburner_Upgrade', 'Afterburner_Accel': '1', 'Afterburner_Speed_Governor': '1',
+                'Afterburner_Usage_Cost': '%.6g' % (AFTERBURNER_COST / UNFITTED_AFTERBURNER_COST)}
     shields = [number(item.get(k)) for k in OLD_SHIELDS]
     facets = [s for s in shields if s]
     armor = [number(item.get(k)) for k in OLD_ARMOR]
