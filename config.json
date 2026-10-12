@@ -343,7 +343,7 @@
         "launch_speed": 15.0,
         "max_collide_trees": 1,
         "max_shield_lowers_capacitance": false,
-        "min_asteroid_distance": -2500.0,
+        "min_asteroid_distance": 0.0,
         "near_autotrack_cone": 0.9,
         "neutral_auto_radius": -16000.0,
         "tractor": {
@@ -500,5 +500,8 @@
         "dock_planet_radius_percent": 2.5,
         "planet_dock_port_min_size": 350.0,
         "planet_dock_port_size": 1.6
+    },
+    "constants": {
+        "kj_per_unit_damage": 225000
     }
 }

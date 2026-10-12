@@ -567,9 +567,27 @@ grouped by what's holding it up.
   such as Vega Strike's cruise mode (`combat_speed_boost`) and in-system jump
   costs. Radar range now comes from each ship's own radar.
 - Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit
-  still for a long time before moving erratically, and ships pass through each
-  other with no collision. Temporary logging in the engine found nothing; the
-  cause isn't known.
+  still for a long time before moving erratically. Temporary logging in the
+  engine found nothing on this or on ships passing through each other; the
+  causes aren't known.
+- The autopilot flies straight past points on its way (Pender's Star's Nav 3
+  to Nav 1 crosses Nav 2) where the original drops out on entering another
+  point's radius. The engine's only interruptions are its obstacle check, which
+  also refuses to engage within an obstacle's radius, so bases can't stop a
+  flight without also stopping you autopiloting away from them (Gemini Gold
+  gives neutrals a negative radius). Asteroid fields can, as in the original:
+  `min_asteroid_distance` is now 0 (Gemini Gold had -2,500), so the autopilot
+  stops at the edge of a field on its route and won't engage until you've
+  cleared the field.
+- Collision damage is the kinetic energy a collision loses, halved and divided
+  by `constants.kj_per_unit_damage`. At the engine's 5,400, a Centurion (180
+  tonnes in Gemini Gold's data) stopping dead from 500 takes about 2,100
+  points, against 30 of level 3 shields and 40 of tungsten armour a side, so
+  brushing an asteroid destroyed one outright. In the original, ramming at 500
+  costs perhaps half the armour, about 50 points here, so it's now 225,000
+  (Gemini Gold's own collision damage scale isn't read by the engine). Glancing
+  blows lose less energy and do less.
+- Ships pass through each other, and through some asteroids, with no collision.
 - The engine's in-game settings screen has a "shaders" preset that writes
   `technique_set`, `default_full_technique` and `default_simple_technique`
   (for example `5_ps3.0` and `default_simple`). Gemini Gold ships only the
@@ -757,18 +775,17 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
-The de-duplicated asteroid fields (Pender's Star's Nav 2 among them), the
-galaxy map's positions (the nav screen's button labels are now drawn, as its
-background art isn't, so the Galaxy button can be found), the 3D positions
-(including whether +z points the same way as the original's z; if not,
-`tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it, then negate the
-z of the start position in `New_Game`; hard to judge from how bases face, so
-low priority), and repairing slot upgrades other than shields.
+The galaxy map's positions (the nav screen's button labels are now drawn, as
+its background art isn't, so the Galaxy button can be found), collision damage
+(brushing an asteroid in a Centurion at speed should cost shields and some
+armour, not the ship), and the autopilot around asteroid fields (stopping at a
+field's edge, refusing to engage inside one).
 
 Energy: four Tachyons empty a level 3 engine in five salvos, as in the
 original, but an empty capacitor took about 24 seconds to refill where the
 original takes about 7 (the data gives 20 a second, which would take 7); the
-cause isn't known yet. Shield recharge (a level 3 side in about 30 seconds) and
+cause isn't known yet, so it's worth timing again with `simulation_atom` at
+0.06, in case it was measured while the settings screen had it at 0.04. Shield recharge (a level 3 side in about 30 seconds) and
 a Talon's passes against level 3 shields can't be judged until shield hits stop
 lowering the facets' maximum (see Upstream engine work).
 
