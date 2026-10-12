@@ -563,6 +563,12 @@ grouped by what's holding it up.
   charge when energy stayed near empty). The rest don't apply to Privateer,
   such as Vega Strike's cruise mode (`combat_speed_boost`) and in-system jump
   costs. Radar range now comes from each ship's own radar.
+- The engine's in-game settings screen has a "shaders" preset that writes
+  `technique_set`, `default_full_technique` and `default_simple_technique`
+  (for example `5_ps3.0` and `default_simple`). Gemini Gold ships only the
+  flat techniques in `techniques/` (`default`, `fixed_simple` and so on), so
+  any other choice leaves single-texture meshes, planets among them, with no
+  technique and they vanish. Keep `default` and `fixed_simple`.
 - The old Gemini Gold engine had Privateer-specific HUD behaviour the current
   engine lacks (see vegastrike/Vega-Strike-Engine-Source#1173).
 - pyflakes reports one undefined name left from Gemini Gold, in code that
