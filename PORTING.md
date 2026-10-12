@@ -512,6 +512,13 @@ this work is deferred for now:
   the player has lowered, pay upkeep, and shields drain rather than recharge
   when the capacitor can't pay it; lowering shields should free energy. With
   `maintenance_factor` 0, `EnergyContainer::Deplete` divides 0 by 0.
+- **Shield facets destroyed for good** (to do): a hull hit can call
+  `Shield::Damage`, which damages every facet by a random 0–100%, and
+  `Resource::DamageByPercent` destroys any facet hit for more than 95%. The
+  `Repair*` functions skip destroyed resources, yet `Shield::Repair` still
+  sets the shield to fully operational, so neither the repair droid nor the
+  repair bay can restore the facet: it stays at zero, docking and launching
+  included (seen in play: a Centurion's port shield after a fight).
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
