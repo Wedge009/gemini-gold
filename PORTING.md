@@ -213,7 +213,11 @@ Privateer's files:
   units could still refer to it, which crashed the game on the next launch (see
   Upstream engine work). The old ship stays in the engine's list of the
   player's ships, which Gemini Gold never shows. A purchase that fails now
-  takes back the trade-in it paid out.
+  takes back the trade-in it paid out. The engine sells a hull only from the
+  base's own stock, and many bases with a ship dealer (agricultural and
+  pleasure planets) don't stock the Centurion or Orion, so buying one there
+  silently failed; the dealer now stocks the hull just before the purchase, as
+  every dealer offers all three.
 - Both games end with Terrell's credits conversation, as the originals do,
   which Gemini Gold left out: the next click on him after his final
   conversation gives them, with the credits music, after which the base's
@@ -518,7 +522,9 @@ this work is deferred for now:
   `Repair*` functions skip destroyed resources, yet `Shield::Repair` still
   sets the shield to fully operational, so neither the repair droid nor the
   repair bay can restore the facet: it stays at zero, docking and launching
-  included (seen in play: a Centurion's port shield after a fight).
+  included. Gemini Gold's old engine (`Unit::DamageRandSys`) scaled down one
+  facet's maximum by the damage factor, clamped to 0.001–0.999, so nothing was
+  ever destroyed and a repair restored it.
 - **`RecomputeUnitUpgrades`** (optional tidy-up): declared in `unit_util.h` but
   defined nowhere.
 
@@ -732,7 +738,7 @@ an empty capacitor refilling in about 7 seconds;
 level 3 shields: a side about 30 seconds from nothing; a Talon's passes against
 them; Tachyon hits to destroy a Talon, 8 to 12 in the original), a B&S radar's
 colours (friend
-and foe, plus jump points, planets, missiles and cargo), buying a ship (credits
+and foe, plus jump points, planets, missiles and cargo), buying a ship (at Helen too, which doesn't stock it; credits
 should drop by the new hull's price less the old one's trade-in; saving and
 loading with the old ship kept in the engine's fleet list),
 and Terrell's credits conversations at the end of each game (the music taking

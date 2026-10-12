@@ -3050,6 +3050,14 @@ def BuyShip(shipname):
 	#print value
 	#print VS.getPlayer().getCredits()
 	VS.getPlayer().addCredits(value)
+	# The engine sells a hull only from the base's own stock, but every ship dealer
+	# offers all three hulls, and many bases (Helen, for one) don't stock them all.
+	import universe
+	base=universe.getDockedBase()
+	if base and base.GetCargo(shipname).GetQuantity()==0:
+		hull=VS.GetMasterPartList().GetCargo(shipname)
+		hull.SetQuantity(1)
+		base.forceAddCargo(hull)
 	success=Base.BuyShip(shipname,False,True)
 	if (success!=False):
 		# The trade-in is paid above. Base.SellShip(name) would pay the engine's own sell-back
