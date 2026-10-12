@@ -25,12 +25,12 @@
 <!--<attenuated red=".00000001" blue=".00000015"/>-->
 <attenuated red="0" blue=".0000001"/>
 </Light>	
-        <planet name="Jump_To_Lisacc" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="8700" z="-11600" day="240" destination="Gemini/Lisacc"/>
-        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="11600" y="-2900" z="-5800" day="240" />
-        <planet name="Jump_To_Nitir" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="17400" y="-11600" z="5800"  day="240" destination="Gemini/Nitir"/>
-        <planet name="Nav_4" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="-8700" y="0" z="5800" day="240"/>
-        <planet name="Jump_To_Mah'Rahn" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="-11600" z="0"  day="240" destination="Gemini/Mah_Rahn"/>
+        <planet name="Jump_To_Lisacc" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="30000" z="-40000" day="240" destination="Gemini/Lisacc"/>
+        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="40000" y="-10000" z="-20000" day="240" />
+        <planet name="Jump_To_Nitir" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="60000" y="-40000" z="20000"  day="240" destination="Gemini/Nitir"/>
+        <planet name="Nav_4" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="-30000" y="0" z="20000" day="240"/>
+        <planet name="Jump_To_Mah'Rahn" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-50000" y="-40000" z="0"  day="240" destination="Gemini/Mah_Rahn"/>
 
-        <unit difficulty=".03" name= "Nav_2"  file="Asteroid_Field" faction="neutral"   x="11600" y="-2900" z="-5800" day="-14000"   ></unit>
-        <unit difficulty=".03" name= "Nav_4"  file="Asteroid_Field" faction="neutral"   x="-8700" y="0" z="5800" day="-14000"   ></unit>
+        <unit difficulty=".03" name= "Nav_2"  file="Asteroid_Field" faction="neutral"   x="40000" y="-10000" z="-20000" day="-14000"   ></unit>
+        <unit difficulty=".03" name= "Nav_4"  file="Asteroid_Field" faction="neutral"   x="-30000" y="0" z="20000" day="-14000"   ></unit>
 </system>

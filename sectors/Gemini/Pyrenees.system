@@ -26,14 +26,14 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Freyja" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="14500" z="-2900" day="240" destination="Gemini/Freyja"/>
-        <planet name="Jump_To_Troy" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="7250" y="13050" z="4350" day="240" destination="Gemini/Troy"/>
-        <planet name="New_Iberia" file="planets/agricultural.png" radius="1200" gravity="20" x="10150" y="0" z="-5800" day="300">
+        <planet name="Jump_To_Freyja" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-50000" y="50000" z="-10000" day="240" destination="Gemini/Freyja"/>
+        <planet name="Jump_To_Troy" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="25000" y="45000" z="15000" day="240" destination="Gemini/Troy"/>
+        <planet name="New_Iberia" file="planets/agricultural.png" radius="1200" gravity="20" x="35000" y="0" z="-20000" day="300">
 <Atmosphere file="clouds.png" alpha="SRCALPHA INVSRCALPHA" radius="1211"/>
         </planet>
-        <planet name="Jump_To_CM-N1054" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="2900" y="-10150" z="-580" day="240" destination="Gemini/CM-N1054"/>
+        <planet name="Jump_To_CM-N1054" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="10000" y="-35000" z="-2000" day="240" destination="Gemini/CM-N1054"/>
         <planet name="Nav_5" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="0" y="0" z="0" day="240" />
-        <unit name= "Basque"  file="mining_base" faction="mining" x="-11600" y="0" z="5220"/>
-        <unit difficulty=".03"  name= "Basque"  file="Asteroid_Field" faction="neutral"   x="-11600" y="0" z="5220" day="-14000"   ></unit>
+        <unit name= "Basque"  file="mining_base" faction="mining" x="-40000" y="0" z="18000"/>
+        <unit difficulty=".03"  name= "Basque"  file="Asteroid_Field" faction="neutral"   x="-40000" y="0" z="18000" day="-14000"   ></unit>
         
 </system>

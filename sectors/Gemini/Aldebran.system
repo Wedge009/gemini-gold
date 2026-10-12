@@ -26,9 +26,9 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_New_Constantinople" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-11600" y="11600" z="-5800" destination="Gemini/New_Constantinople"/>
-        <planet name="Matahari" file="planets/pleasure.png" radius="1200" gravity="20" x="11600"  y="0" z="5800" day="300">
+        <planet name="Jump_To_New_Constantinople" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-40000" y="40000" z="-20000" destination="Gemini/New_Constantinople"/>
+        <planet name="Matahari" file="planets/pleasure.png" radius="1200" gravity="20" x="40000"  y="0" z="20000" day="300">
 		<Atmosphere file="clouds.png" alpha="SRCALPHA INVSRCALPHA" radius="1211"/>
         </planet> 
-        <planet name="Jump_To_Hind's_Variable_N" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-8700" y="-8700" z="11600" destination="Gemini/Hinds_Variable_N"  />
+        <planet name="Jump_To_Hind's_Variable_N" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-30000" y="-30000" z="40000" destination="Gemini/Hinds_Variable_N"  />
 </system>

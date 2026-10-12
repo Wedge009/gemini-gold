@@ -270,7 +270,7 @@ def newline_of(text):
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     parser.add_argument('extract_dir', type=Path)
-    parser.add_argument('--scale', type=float, default=0.29)
+    parser.add_argument('--scale', type=float, default=1.0)
     parser.add_argument('--flip-z', action='store_true', help="negate the original's z (if systems turn out mirrored)")
     parser.add_argument('--write', action='store_true')
     args = parser.parse_args()

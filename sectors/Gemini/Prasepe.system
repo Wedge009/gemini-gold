@@ -26,9 +26,9 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_New_Caledonia" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="8700" z="0" day="240" destination="Gemini/New_Caledonia"/>
-        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="5800" z="2900" day="240" />
-        <unit name= "Saratov"  file="mining_base" faction="mining" x="-2900" y="-14500" z="5800"/>
+        <planet name="Jump_To_New_Caledonia" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-50000" y="30000" z="0" day="240" destination="Gemini/New_Caledonia"/>
+        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="20000" y="20000" z="10000" day="240" />
+        <unit name= "Saratov"  file="mining_base" faction="mining" x="-10000" y="-50000" z="20000"/>
         
-        <unit difficulty=".03" name= "Saratov"  file="Asteroid_Field" faction="neutral"   x="-2900" y="-14500" z="5800" day="-14000"   ></unit>
+        <unit difficulty=".03" name= "Saratov"  file="Asteroid_Field" faction="neutral"   x="-10000" y="-50000" z="20000" day="-14000"   ></unit>
 </system>

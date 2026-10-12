@@ -7,7 +7,7 @@ drone=VS.Unit()
 derelict=VS.Unit()
 def generateBase ():
     global derelict
-    derelict=VS.launch("Base","derelict","neutral","unit","sitting_duck",1,1,(-2900,-3190,0),'')
+    derelict=VS.launch("Base","derelict","neutral","unit","sitting_duck",1,1,(-10000,-11000,0),'')
 
 class quest_drone (quest.quest):
     def setup(self):

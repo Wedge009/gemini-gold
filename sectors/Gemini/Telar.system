@@ -26,11 +26,11 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_17-AR" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="8700" y="-13050" z="0" day="240" destination="Gemini/17-ar"/>
-        <unit name=""  file="mining_base" faction="pirate" x="13050" y="13050" z="-8700"/>
+        <planet name="Jump_To_17-AR" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="30000" y="-45000" z="0" day="240" destination="Gemini/17-ar"/>
+        <unit name=""  file="mining_base" faction="pirate" x="45000" y="45000" z="-30000"/>
         
-        <planet name="Jump_To_Valhalla" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="14500" z="0"  day="240" destination="Gemini/Valhalla" />
-        <planet name="Jump_To_J900" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-15950" y="0" z="0" day="240" destination="Gemini/J900"/>
+        <planet name="Jump_To_Valhalla" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="0" y="50000" z="0"  day="240" destination="Gemini/Valhalla" />
+        <planet name="Jump_To_J900" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-55000" y="0" z="0" day="240" destination="Gemini/J900"/>
         
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="13050" y="13050" z="-8700" day="-14000"  ></unit>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="45000" y="45000" z="-30000" day="-14000"  ></unit>
 </system>

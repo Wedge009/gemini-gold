@@ -112,8 +112,13 @@ Privateer's files:
 - In-system positions are the original's, in three dimensions. Gemini Gold
   had laid every system flat, using the original's x and y at different
   scales (0.276 and 0.356) and dropping z. Every jump point, base, nav point
-  and asteroid field is now 0.29 times its original (x, y, z), which keeps
-  typical distances about where they were. The asteroid fields the original
+  and asteroid field is now at its original (x, y, z), so distances match the
+  ships' speeds and weapon ranges, which were already the original's (Achilles
+  to Helen is about 116 km). The new game's start position and the Derelict's
+  spawn point are scaled to match, and so are the distances at which random
+  encounters trigger (10,000 m from a nav point, base or jump, where Gemini
+  Gold used 3,000 at its 0.29 scale) and the autopilot's hostile radius
+  (15,000 m, as in the original). The asteroid fields the original
   has at hidden points are all present (Eden's four and one in Rikel were
   missing), and the Derelict spawns at its original position. Gemini Gold is
   one continuous game covering Privateer and Righteous Fire, so the map is
@@ -708,7 +713,9 @@ These may come from independent work recreating the original engine.
 The 3D positions (including whether +z points the same way as the original's z;
 if not, `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it, then
 negate the z of the start position in `New_Game`; hard to judge from how bases
-face, so low priority), the galaxy map's positions, the de-duplicated asteroid
+face, so low priority), the original's full-scale distances (random encounters
+triggering at 10,000 m, autopilot, the Derelict, and a saved game from before the
+change: does the ship launch beside its base?), the galaxy map's positions, the de-duplicated asteroid
 fields, a new game's universe now that it's generated afresh for Gemini alone
 (start-up time, traffic, the faction table `New_Game` now loads), the dynamic
 battles' reinforcements, the Tarsus trade-in, repairing slot upgrades, the

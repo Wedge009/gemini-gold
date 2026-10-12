@@ -26,8 +26,8 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Oxford" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="11600" z="2900" destination="Gemini/Oxford"  />
-        <planet name="Erewhon" file="planets/pleasure.png" radius="1200" gravity="20" x="-8700"  y="-8700" z="-5800" day="300">
+        <planet name="Jump_To_Oxford" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="20000" y="40000" z="10000" destination="Gemini/Oxford"  />
+        <planet name="Erewhon" file="planets/pleasure.png" radius="1200" gravity="20" x="-30000"  y="-30000" z="-20000" day="300">
 		<atmosphere alpha="SRCALPHA INVSRCALPHA" file="clouds.png"  radius="1009" />
         </planet> 
 

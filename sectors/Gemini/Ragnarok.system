@@ -26,13 +26,13 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Blockade_Point_Alpha" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="14500" y="0" z="-5800" day="240" destination="Gemini/Blockade_Point_Alpha"/>
+        <planet name="Jump_To_Blockade_Point_Alpha" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="50000" y="0" z="-20000" day="240" destination="Gemini/Blockade_Point_Alpha"/>
         
-        <planet name="Jump_To_Perry" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-8700" y="-17400" z="5800" day="240" destination="Gemini/Perry" />
-        <planet name="Mjolnar" file="planets/agricultural.png" radius="1200" gravity="20" x="-13050" y="5800" z="0" day="300">
+        <planet name="Jump_To_Perry" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-30000" y="-60000" z="20000" day="240" destination="Gemini/Perry" />
+        <planet name="Mjolnar" file="planets/agricultural.png" radius="1200" gravity="20" x="-45000" y="20000" z="0" day="300">
         <atmosphere alpha="SRCALPHA INVSRCALPHA" file="clouds.png"  radius="1009" />
         </planet>
         
-        <unit difficulty=".03"  name= "Mjolnar"  file="Asteroid_Field" faction="neutral"   x="-13050" y="5800" z="0" day="-14000"   ></unit>
-        <unit difficulty=".03"  name= "Jump_To_Blockade_Point_Alpha"  file="Asteroid_Field" faction="neutral"   x="14500" y="0" z="-5800" day="-14000"   ></unit>
+        <unit difficulty=".03"  name= "Mjolnar"  file="Asteroid_Field" faction="neutral"   x="-45000" y="20000" z="0" day="-14000"   ></unit>
+        <unit difficulty=".03"  name= "Jump_To_Blockade_Point_Alpha"  file="Asteroid_Field" faction="neutral"   x="50000" y="0" z="-20000" day="-14000"   ></unit>
 </system>

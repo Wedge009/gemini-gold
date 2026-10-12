@@ -336,7 +336,7 @@
         "game_speed_lying": true,
         "gun_speed": 0.1,
         "gun_speed_adjusted_game_speed": false,
-        "hostile_auto_radius": 10000.0,
+        "hostile_auto_radius": 15000.0,
         "inelastic_scale": 0.5,
         "jump_disables_shields": false,
         "launch_speed": 15.0,

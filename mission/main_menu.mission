@@ -35,7 +35,7 @@ Base.LoadBaseInterface("main_menu")
 #my_obj=NullMission()
 
 from privateer import privateer
-my_obj=privateer(3000,5000,500,3,2,.6,.25,.1,850000,2000)
+my_obj=privateer(10000,17000,500,3,2,.6,.25,.1,850000,2000)
 
 	</python>
 

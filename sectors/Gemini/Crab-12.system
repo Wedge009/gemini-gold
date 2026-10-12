@@ -26,9 +26,9 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_New_Caledonia" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-2900" y="8700" z="5800" day="240" destination="Gemini/New_Caledonia"/>
-        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="-4350" z="0" day="240" />
-        <planet name="Jump_To_Capella" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-5800" y="-14500" z="-5800"  day="240" destination="Gemini/Capella"/>
+        <planet name="Jump_To_New_Caledonia" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-10000" y="30000" z="20000" day="240" destination="Gemini/New_Caledonia"/>
+        <planet name="Nav_2" file="invisible.png" alpha="ONE ONE" radius="256" gravity="0" x="20000" y="-15000" z="0" day="240" />
+        <planet name="Jump_To_Capella" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-20000" y="-50000" z="-20000"  day="240" destination="Gemini/Capella"/>
 
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-4350" y="-2900" z="0" day="-14000"  ></unit>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-15000" y="-10000" z="0" day="-14000"  ></unit>
 </system>

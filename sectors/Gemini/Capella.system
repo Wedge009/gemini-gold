@@ -26,11 +26,11 @@
 <attenuated red="0" blue=".0000001"/>
 </Light>	
 
-        <planet name="Jump_To_Crab-12" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-11600" y="11600" z="5800" day="240" destination="Gemini/Crab-12"/>
+        <planet name="Jump_To_Crab-12" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-40000" y="40000" z="20000" day="240" destination="Gemini/Crab-12"/>
         <unit name=""  file="mining_base" faction="pirate" x="0" y="0" z="0"/>
-        <planet name="Jump_To_Sherwood" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="17400" y="0" z="14500"  day="240" destination="Gemini/Sherwood"/>
-        <planet name="Jump_To_Famine" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="5800" y="-17400" z="-5800" day="240" destination="Gemini/Famine" />
-        <planet name="Jump_To_Nexus" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-14500" y="-11600" z="8700" day="240" destination="Gemini/Nexus"/>
+        <planet name="Jump_To_Sherwood" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="60000" y="0" z="50000"  day="240" destination="Gemini/Sherwood"/>
+        <planet name="Jump_To_Famine" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="20000" y="-60000" z="-20000" day="240" destination="Gemini/Famine" />
+        <planet name="Jump_To_Nexus" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="-50000" y="-40000" z="30000" day="240" destination="Gemini/Nexus"/>
 
         <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="0" y="0" z="0" day="-14000" ></unit>
 </system>

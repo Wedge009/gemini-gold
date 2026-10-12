@@ -25,8 +25,8 @@
 <!--<attenuated red=".00000001" blue=".00000015"/>-->
 <attenuated red="0" blue=".0000001"/>
 </Light>	
-        <unit name=""  file="mining_base" faction="pirate" x="-13050" y="-8700" z="1740"/>
-        <planet name="Jump_To_119CE" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="11600" y="7250" z="-5365" day="240" destination="Gemini/119ce"  />
+        <unit name=""  file="mining_base" faction="pirate" x="-45000" y="-30000" z="6000"/>
+        <planet name="Jump_To_119CE" file="jump.ani" alpha="ONE ONE" radius="256" gravity="0" x="40000" y="25000" z="-18500" day="240" destination="Gemini/119ce"  />
         
-        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-13050" y="-8700" z="1740" day="-14000" ></unit>
+        <unit difficulty=".03" name=""  file="Asteroid_Field" faction="neutral"   x="-45000" y="-30000" z="6000" day="-14000" ></unit>
 </system>
