@@ -337,7 +337,7 @@ class NewsManager:
             elif success == self.SUCCESS_DRAW:
                 return self.POV_BAD
         else:
-            debug.error("ERROR:  VS is returning -0 for relationship relatagg number")
+            # equal relations to both sides: report neutrally
             return self.POV_NEUTRAL
 
     def sTovarlist(self, s):
