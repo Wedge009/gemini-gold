@@ -25,6 +25,7 @@
     "graphics": {
         "hud": {
             "message_prefix": "COMMUNICATION\n"
-        }
+        },
+        "draw_nav_button_labels": true
     }
 }

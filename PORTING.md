@@ -502,8 +502,9 @@ this work is deferred for now:
   without their background art. Gemini Gold includes the nav screen's
   `cockpits/nav/navdata.xml` and `meshes/nav/default/` as Vega Strike's assets
   do, so the engine is the likely cause; it may already be reported upstream.
-  Without the art, the nav screen's buttons (Galaxy is button 4, "Up") are
-  invisible, as `draw_nav_button_labels` is off.
+  Without the art, the nav screen's buttons (Galaxy is button 4, "Up") were
+  invisible, so `draw_nav_button_labels` is now on (Gemini Gold had it off, as
+  its art carries the labels).
 - **Wrong music after landing** (to check): after landing on Helen, the
   landing jingle gave way to battle music, though the log shows `dj_lib`
   choosing the peace list. Gemini Gold's play-lists sound right, so the
@@ -565,6 +566,10 @@ grouped by what's holding it up.
   charge when energy stayed near empty). The rest don't apply to Privateer,
   such as Vega Strike's cruise mode (`combat_speed_boost`) and in-system jump
   costs. Radar range now comes from each ship's own radar.
+- Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit
+  still for a long time before moving erratically, and ships pass through each
+  other with no collision. Temporary logging in the engine found nothing; the
+  cause isn't known.
 - The engine's in-game settings screen has a "shaders" preset that writes
   `technique_set`, `default_full_technique` and `default_simple_technique`
   (for example `5_ps3.0` and `default_simple`). Gemini Gold ships only the
@@ -752,17 +757,13 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
-The 3D positions (including whether +z points the same way as the original's z;
-if not, `tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it, then
-negate the z of the start position in `New_Game`; hard to judge from how bases
-face, so low priority), the Derelict at the original's full-scale position, the
-galaxy map's positions, the de-duplicated asteroid fields, a new game's universe
-now that it's generated afresh for Gemini alone (start-up time, traffic, the
-faction table `New_Game` now loads), the dynamic battles' reinforcements, the
-Tarsus trade-in, repairing slot upgrades other than shields, the settings
-carried over from Gemini Gold's config, the autopilot light going out within 12,000 m of
-the target, and Terrell's credits conversations at the end of each game (the
-music taking over from Perry's, then Perry's music returning).
+The de-duplicated asteroid fields (Pender's Star's Nav 2 among them), the
+galaxy map's positions (the nav screen's button labels are now drawn, as its
+background art isn't, so the Galaxy button can be found), the 3D positions
+(including whether +z points the same way as the original's z; if not,
+`tools/map_positions.py EXTRACT_DIR --flip-z --write` fixes it, then negate the
+z of the start position in `New_Game`; hard to judge from how bases face, so
+low priority), and repairing slot upgrades other than shields.
 
 Energy: four Tachyons empty a level 3 engine in five salvos, as in the
 original, but an empty capacitor took about 24 seconds to refill where the
@@ -771,15 +772,11 @@ cause isn't known yet. Shield recharge (a level 3 side in about 30 seconds) and
 a Talon's passes against level 3 shields can't be judged until shield hits stop
 lowering the facets' maximum (see Upstream engine work).
 
-Launched ships (a Retro leaving Achilles, three Broadswords at Helen) sit still
-for a long time before moving erratically, and there are no collisions; a log
-is needed. The afterburner's energy drain (`energy_source`) can't be tested
-until a bought afterburner works (see Known gaps).
+The afterburner's energy drain (`energy_source`) can't be tested until a bought
+afterburner works (see Known gaps).
 
-Game balance, to judge once the controls feel right: the Tarsus's turn rates,
-the corrected ship statistics, the Salthi's stats, the Talon's and
-Broadsword's masses (no original figures), and the NPC load-outs (the Orion's
-restored turret especially; hard to notice without looking for it).
-
-Righteous Fire, later: commodity prices and stock, the upgrade limits, the
-mission ships' speeds and the Kilrathi weapons.
+Not planned, as they need a saved game well into the story: the Derelict at
+the original's full-scale position, the dynamic battles' reinforcements,
+Terrell's credits conversations at the end of each game (the music taking over
+from Perry's, then Perry's music returning), and Righteous Fire's commodity
+prices and stock, upgrade limits, mission ships' speeds and Kilrathi weapons.

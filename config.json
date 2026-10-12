@@ -130,7 +130,7 @@
         "disabled_cockpit_allowed": false,
         "displaylists": true,
         "draw_jump_target_nav_symbol": false,
-        "draw_nav_button_labels": false,
+        "draw_nav_button_labels": true,
         "draw_weapons": true,
         "eject_rotation_speed": 0.0,
         "explosion_size": 3.0,
