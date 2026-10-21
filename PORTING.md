@@ -152,11 +152,16 @@ Privateer's files:
     point, the distance at which random encounters trigger (10,000 m from a
     nav point, base or jump, where Gemini Gold used 3,000 at its 0.29 scale)
     and the autopilot's hostile radius (15,000 m, as in the original).
-  - The autopilot now stops 12,000 m short of its target
-    (`auto_pilot_termination_distance`; Gemini Gold's 1,480 m was about 5,100
-    of the original's units). The original stops at each point's own trigger
-    radius, usually 12,000 m for jumps, 17,000 m for bases and 10,000 to
-    12,000 m for nav points, but the engine has one distance for every target.
+  - The autopilot stops 5,000 m short of its target. The original stops at
+    each point's own trigger radius, usually 12,000 m for jumps, 17,000 m for
+    bases and 10,000 to 12,000 m for nav points.
+    - `config.json` sets `auto_pilot_termination_distance` to 12,000 m
+      (Gemini Gold's 1,480 m was about 5,100 of the original's units), but
+      since #1822 the engine stops at the docking distance instead
+      (`dock.simple_dock_range`, 5,000 m), so the setting does nothing (see
+      Upstream engine work).
+    - Raising `simple_dock_range` to match would also let ships dock from
+      12 km out.
   - The autopilot light goes out within the same distance of the target
     (`no_auto_light_below`), as the original's does near a nav point.
   - The asteroid fields the original has at hidden points are all present
@@ -392,6 +397,12 @@ Privateer's files:
     radius of the surface (`dock.dock_planet_radius_percent` 1.5), nearer than
     automatic landing ever puts the ship. It's now 2.5 (in
     `tools/overrides.json`).
+  - Since #1822 the engine docks with a planet within
+    `dock.simple_dock_range` (5,000) of its surface, or the zone above if
+    that's larger, so the 2.5 no longer decides the range.
+  - The same setting now also sizes a planet's docking port, replacing
+    `dock.planet_dock_port_size` (Gemini Gold's 1.6, removed from
+    `config.json`).
   - Nav points are listed in `auto_landing_exclude_list` (see Upstream engine
     work for why they count as eligible for docking), and Valhalla's "Nav 2"
     is now `Nav_2` like the rest.
@@ -546,7 +557,7 @@ JSON files.
 Engine changes some fixes here wait on, offered to
 [vegastrike/Vega-Strike-Engine-Source](https://github.com/vegastrike/Vega-Strike-Engine-Source)
 so the sub-module can stay unpatched. Items marked "submitted" have a pull
-request open; the rest are still to do.
+request open, "reported" ones an issue; the rest are still to do.
 
 - **Python `Unit.downgrade()`** (#1817, submitted): lets the ship dealer undo a
   sold upgrade; `bases/weapons_lib.py` already uses it when present.
@@ -677,8 +688,9 @@ request open; the rest are still to do.
   - #1843 only makes the shield report its real condition; whether destroyed
     parts should be repairable is Vega Strike's design to decide.
   - Gemini Gold's repair bay re-fits the shield, which restores it, so it
-    needs to see the damage: keep its shield-facet workaround (see "Python
-    can't read a component's condition") until #1841 and #1843 are both in.
+    needs to see the damage: it reads each facet's charge after docking
+    instead of `Unit.PercentOperational`. Keep that workaround until #1843 is
+    in.
 - **Shield damage spread unevenly** (to discuss):
   - System damage (`Shield::Damage`) damages each facet and the regeneration
     by its own random amount, ignoring the severity `Unit::DamageRandSys`
@@ -705,15 +717,17 @@ request open; the rest are still to do.
   - Introduced with the components rework (#1016, 2025). This, rather than
     shield upkeep alone, is probably why shields never recovered in fights.
   - The fix comes with a test.
-- **Python can't read a component's condition** (#1841, submitted):
-  - `Unit.PercentOperational` isn't exported, so the repair bay's call fails
-    and every slot upgrade looks undamaged ("nothing to repair").
-  - Gemini Gold works around it for shields by reading each facet's charge
-    after docking.
-  - Armour damage can't be seen from Python at all, so the repair bay can't
-    repair armour.
-  - The same function also reported the FTL drive's condition for the ECM and
-    the cloak's for the repair droid.
+- **Autopilot stop distance can't be set** (#1854, reported):
+  - Since #1822 the autopilot stops at the target's docking distance
+    (`DockingDistance`, from `dock.simple_dock_range` or a planet's docking
+    zone), and `physics.auto_pilot_termination_distance` is read but used
+    nowhere.
+  - `auto_pilot_termination_distance_no_enemies` is now added to the docking
+    distance, not used on its own.
+  - So a game can only move the stop by moving the docking range too.
+  - Stopping at whichever is larger, the setting or the docking distance,
+    would give the setting back. With Vega Strike's defaults (2,500 against
+    5,000) the autopilot still arrives able to dock, as #1822 intends.
 - **Energy time-step** (to report):
   - The components (reactor, shields, ECM, cloak and anything else built on
     `EnergyConsumer`) use their own static
@@ -1011,6 +1025,15 @@ These may come from independent work recreating the original engine.
   ship's afterburner does nothing; after buying, it reaches the hull's
   afterburner speed and drains energy while burning (`energy_source`), not
   fuel.
+- **Repair bay** (needs #1841, now in the engine): after a fight, damaged
+  slot upgrades (armour, engine, radar, ECM, repair droid) are listed with
+  their damage instead of "nothing to repair", and repairing one restores it.
+  Armour couldn't be repaired at all before.
+- **Planet landing** (engine #1822): "Docking: Ready" within about 5 km of a
+  planet's surface, and automatic landing still works.
+- **SPEC and autopilot** (engine #1813 reworked the SPEC model): journey times
+  between nav points, and the autopilot stopping about 5 km short of the
+  destination (engine #1822).
 
 Not planned, as they need a saved game well into the story:
 

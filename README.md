@@ -31,7 +31,7 @@ parts of the original game can't yet be reproduced on the current engine.
     original, with Righteous Fire's prices once it begins);
   - equipment sell-back prices and upgrade limits;
   - in-system positions (three-dimensional again and at the original's full
-    scale, with the autopilot stopping 12 km out);
+    scale);
   - hidden asteroid fields and jumps, and place names;
   - the starting ship, some story missions, and ship stats and weapons;
   - Righteous Fire's changes to the Kilrathi and its mission ships.

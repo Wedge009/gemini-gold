@@ -43,7 +43,7 @@ KEY_MAP = {
     'physics/indestructable_cargo_items': 'physics.indestructible_cargo_items',
     'physics/insystem_jump_or_timeless_auto-pilot': 'physics.in_system_jump_or_timeless_auto_pilot',
     'physics/planet_port_min_size': 'dock.planet_dock_port_min_size',
-    'physics/planet_port_size': 'dock.planet_dock_port_size',
+    'physics/planet_port_size': None,  # replaced by dock.dock_planet_radius_percent (#1822)
     'physics/player_autoeject': 'physics.ejection.player_auto_eject',
     'physics/refire_difficutly_scaling': 'physics.refire_difficulty_scaling',
     'physics/special_and_normal_gun_combo': 'physics.allow_special_and_normal_gun_combo',
