@@ -846,6 +846,9 @@ See Upstream engine work above.
   - Until #1839, a saved game also resets every afterburner's cost to 1, so
     after a reload the starting ship's afterburner works at almost no cost,
     bought or not (confirmed in play).
+  - So far a bought afterburner has only worked after a reload. Whether it
+    works without one (cost 40, drawing energy, not fuel, while burning) can
+    only be checked once #1839 is in.
 - **`add_` and `mult_` upgrades** (cargo expansion, shield regenerator, speed
   and thrust enhancers) may not be possible in data alone; the engine's
   cargo-hold upgrade code is commented out.
@@ -1003,6 +1006,10 @@ These may come from independent work recreating the original engine.
     original's code, not its data.
   - Gemini Gold's repair bay re-fits a damaged shield, which restores it either
     way.
+  - Any other component destroyed outright (0%) is dropped from the hold when
+    the repair bay opens, so it has to be bought again. The script always did
+    this, but nothing could read as 0% before #1841. Untested, as a component
+    is rarely destroyed without the ship going with it.
 
 ### Still to play-test
 
@@ -1021,19 +1028,6 @@ These may come from independent work recreating the original engine.
   nothing to refill. Shield recharge (a level 3 side in about 30 seconds) and
   a Talon's passes against level 3 shields can't be judged until shield hits
   stop lowering the facets' maximum (see Upstream engine work).
-- **Buying an afterburner** (new game, no reload): before buying, the starting
-  ship's afterburner does nothing; after buying, it reaches the hull's
-  afterburner speed and drains energy while burning (`energy_source`), not
-  fuel.
-- **Repair bay** (needs #1841, now in the engine): after a fight, damaged
-  slot upgrades (armour, engine, radar, ECM, repair droid) are listed with
-  their damage instead of "nothing to repair", and repairing one restores it.
-  Armour couldn't be repaired at all before.
-- **Planet landing** (engine #1822): "Docking: Ready" within about 5 km of a
-  planet's surface, and automatic landing still works.
-- **SPEC and autopilot** (engine #1813 reworked the SPEC model): journey times
-  between nav points, and the autopilot stopping about 5 km short of the
-  destination (engine #1822).
 
 Not planned, as they need a saved game well into the story:
 
