@@ -1004,10 +1004,6 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
-- **Nav points and jump points** (#1844):
-  - Autopilot to a nav point (for example Nav 8 in Troy) stops there without
-    starting an automatic landing.
-  - Jump points draw additively (glowing, not opaque).
 - **Energy:** four Tachyons empty a level 3 engine in five salvos, as in the
   original, but an empty capacitor takes about 25 seconds to refill (confirmed
   at `simulation_atom` 0.06) where the original takes about 7.
