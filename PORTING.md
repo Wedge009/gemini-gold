@@ -403,13 +403,12 @@ Privateer's files:
   - The same setting now also sizes a planet's docking port, replacing
     `dock.planet_dock_port_size` (Gemini Gold's 1.6, removed from
     `config.json`).
-  - Nav points are listed in `auto_landing_exclude_list` (see Upstream engine
-    work for why they count as eligible for docking), and Valhalla's "Nav 2"
-    is now `Nav_2` like the rest.
-  - The engine only honours the list's first and last names, so automatic
-    landing still loops at most nav points until #1836.
-  - Once #1844 is in, nav points aren't eligible at all and the list's `Nav_`
-    entries can go.
+  - Nav points aren't eligible for automatic landing: since #1844 the engine
+    reads their `alpha="ONE ONE"`, which makes them atmospheric, so they have
+    no docking port.
+    - Before that they were listed in `auto_landing_exclude_list`; those
+      entries are gone.
+    - Valhalla's "Nav 2" is now `Nav_2` like the rest.
 - `bindings.json` has only the x and y axes Gemini Gold's config bound.
   `tools/bindings_to_json.py` had also copied Vega Strike's throttle and z
   axes, and the throttle pinned the set speed at half maximum (see Upstream
@@ -591,15 +590,6 @@ request open, "reported" ones an issue; the rest are still to do.
   `__nonzero__`, which Python 3 ignores, so a null unit is true.
   `modules/engine_compat.py` adds `__bool__` until the engine does (one line in
   `define_odd_unit_functions.h`).
-- **Planets' `alpha` ignored** (#1844, submitted):
-  - `SystemFactory::initializeAlpha` takes the blend modes by value, so a
-    system file's `alpha` never reaches the planet.
-  - Nav points (`alpha="ONE ONE"`) should be atmospheric and so have no
-    docking port. Instead automatic landing tries to land on them, fails,
-    pushes the ship back out, and the ship drifts in again.
-  - Jump points draw opaque rather than additive for the same reason.
-  - Once the fix is in, the `Nav_` entries in `auto_landing_exclude_list` can
-    go.
 - **Autopilot ignores enemies and asteroids** (#1834, submitted):
   - In `JumpCapable::AutoPilotToErrorMessage` the whole obstacle check
     (enemies near the route, asteroid fields, anything in the way) runs only
@@ -628,6 +618,7 @@ request open, "reported" ones an issue; the rest are still to do.
 - **`auto_landing_exclude_list` parsing** (#1836, submitted):
   `GameCockpit::DoAutoLanding` passes each name's end position to `substr` as
   its length, so only the first and last names in the list match.
+  - Gemini Gold's list now has only two names, so it isn't affected.
 - **Afterburner energy cost not saved** (#1839, submitted):
   - `Afterburner::SaveToCSV` writes thrust and speed but not
     `Afterburner_Usage_Cost`, so after loading a saved game every afterburner
@@ -1013,6 +1004,10 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
+- **Nav points and jump points** (#1844):
+  - Autopilot to a nav point (for example Nav 8 in Troy) stops there without
+    starting an automatic landing.
+  - Jump points draw additively (glowing, not opaque).
 - **Energy:** four Tachyons empty a level 3 engine in five salvos, as in the
   original, but an empty capacitor takes about 25 seconds to refill (confirmed
   at `simulation_atom` 0.06) where the original takes about 7.
