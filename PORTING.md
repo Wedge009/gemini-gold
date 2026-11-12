@@ -152,16 +152,18 @@ Privateer's files:
     point, the distance at which random encounters trigger (10,000 m from a
     nav point, base or jump, where Gemini Gold used 3,000 at its 0.29 scale)
     and the autopilot's hostile radius (15,000 m, as in the original).
-  - The autopilot stops 5,000 m short of its target. The original stops at
+  - The autopilot stops 12,000 m short of its target. The original stops at
     each point's own trigger radius, usually 12,000 m for jumps, 17,000 m for
-    bases and 10,000 to 12,000 m for nav points.
-    - `config.json` sets `auto_pilot_termination_distance` to 12,000 m
-      (Gemini Gold's 1,480 m was about 5,100 of the original's units), but
-      since #1822 the engine stops at the docking distance instead
-      (`dock.simple_dock_range`, 5,000 m), so the setting does nothing (see
-      Upstream engine work).
-    - Raising `simple_dock_range` to match would also let ships dock from
-      12 km out.
+    bases and 10,000 to 12,000 m for nav points; the engine has one value.
+    - `config.json` sets `auto_pilot_termination_distance` and
+      `auto_pilot_termination_distance_no_enemies` to 12,000 m (Gemini Gold's
+      1,480 m was about 5,100 of the original's units).
+    - Since #1833 the engine stops at whichever is larger, this setting or the
+      target's docking distance (`dock.simple_dock_range`, 5,000 m). Between
+      #1822 and #1833 it stopped at the docking distance and ignored the
+      setting.
+    - For planets, the autopilot also counts a share of the planet's radius
+      (`auto_pilot_planet_radius_percent`, 0.6), as before.
   - The autopilot light goes out within the same distance of the target
     (`no_auto_light_below`), as the original's does near a nav point.
   - The asteroid fields the original has at hidden points are all present
@@ -708,17 +710,6 @@ request open, "reported" ones an issue; the rest are still to do.
   - Introduced with the components rework (#1016, 2025). This, rather than
     shield upkeep alone, is probably why shields never recovered in fights.
   - The fix comes with a test.
-- **Autopilot stop distance can't be set** (#1854, reported):
-  - Since #1822 the autopilot stops at the target's docking distance
-    (`DockingDistance`, from `dock.simple_dock_range` or a planet's docking
-    zone), and `physics.auto_pilot_termination_distance` is read but used
-    nowhere.
-  - `auto_pilot_termination_distance_no_enemies` is now added to the docking
-    distance, not used on its own.
-  - So a game can only move the stop by moving the docking range too.
-  - Stopping at whichever is larger, the setting or the docking distance,
-    would give the setting back. With Vega Strike's defaults (2,500 against
-    5,000) the autopilot still arrives able to dock, as #1822 intends.
 - **Energy time-step** (to report):
   - The components (reactor, shields, ECM, cloak and anything else built on
     `EnergyConsumer`) use their own static
@@ -1004,6 +995,9 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
+- **Autopilot stop:** since #1833 it should stop 12 km short again, at a base,
+  a jump point, a nav point and a planet (where it adds 0.6 of the planet's
+  radius), with or without enemies near.
 - **Energy:** four Tachyons empty a level 3 engine in five salvos, as in the
   original, but an empty capacitor takes about 25 seconds to refill (confirmed
   at `simulation_atom` 0.06) where the original takes about 7.
