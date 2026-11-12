@@ -995,9 +995,6 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
-- **Autopilot stop:** since #1833 it should stop 12 km short again, at a base,
-  a jump point, a nav point and a planet (where it adds 0.6 of the planet's
-  radius), with or without enemies near.
 - **Energy:** four Tachyons empty a level 3 engine in five salvos, as in the
   original, but an empty capacitor takes about 25 seconds to refill (confirmed
   at `simulation_atom` 0.06) where the original takes about 7.
