@@ -3000,6 +3000,11 @@ class MasterPartList:
 #	this shows the ship dealer, checks if you can afford the ship model chosen, makes an offer, 
 #	and completes the transaction if accepted
 #
+def PlayerHull():
+	import VS
+	# The hull the player is flying, such as "centurion". getName() won't do: a ship the
+	# engine re-creates from a saved game is named player_ship_<n>, but keeps its full name.
+	return VS.getPlayer().getFullname()
 def ShipPurchase(shipname):
 	import Base
 	import VS
@@ -3007,7 +3012,7 @@ def ShipPurchase(shipname):
 	import campaign_lib
 	campaign_lib.AddConversationStoppingSprite("Ship_Dealer","bases/heads/shipdealer.spr",(.582,-.2716),(3.104,2.4832),"Return_To_Showroom").__call__(Base.GetCurRoom(),None)
 	VS.StopAllSounds()
-	if (VS.getPlayer().getName()==shipname or VS.getPlayer().getName()+".begin"==shipname or VS.getPlayer().getName()==shipname+".begin"):
+	if (PlayerHull()==shipname or PlayerHull()+".begin"==shipname or PlayerHull()==shipname+".begin"):
 		VS.playSound("sales/pitch"+shipname+"duplicate.wav",(0,0,0),(0,0,0))
 	elif CanBuyShip(shipname+".begin"):
 		fixers.CreateChoiceButtons(Base.GetCurRoom(),[
@@ -3041,7 +3046,7 @@ def CargoValue(un):
 def CanBuyShip(shipname):
 	import VS
 	creds=VS.getPlayer().getCredits()
-	return creds+ShipValue(VS.getPlayer().getName(),True)+CargoValue(VS.getPlayer())>=ShipValue(shipname,False)
+	return creds+ShipValue(PlayerHull(),True)+CargoValue(VS.getPlayer())>=ShipValue(shipname,False)
 def BuyShip(shipname):
 	# set the basic_repair_cost to 0
 #	global basic_repair_cost
@@ -3049,7 +3054,7 @@ def BuyShip(shipname):
 	# sell off the old ship and buy a new one
 	import VS
 	import Base
-	name=VS.getPlayer().getName()
+	name=PlayerHull()
 	value=CargoValue(VS.getPlayer())+ShipValue(name,True)
 	oldcargo=[]
 	oldun=VS.getPlayer()
@@ -3076,10 +3081,17 @@ def BuyShip(shipname):
 		extra=before-VS.GetMasterPartList().GetCargo(shipname).GetPrice()-VS.getPlayer().getCredits()
 		if extra>0:
 			VS.getPlayer().addCredits(extra)
-		# The trade-in is paid above. Base.SellShip(name) would pay the engine's own sell-back
-		# on top, and its PlayerShip::RemoveShip deletes the old ship outright while other units
-		# can still refer to it (an attacker's target, say), crashing the game later. Without it
-		# the old ship stays in the engine's fleet list, which Gemini Gold never shows.
+		# Hand the old ship to the dealer so it leaves the engine's fleet list (and the saved
+		# game). The trade-in is paid above, so take back whatever the engine pays for it.
+		# The fleet lists the starting ship and dealer hulls under their .begin names.
+		before=VS.getPlayer().getCredits()
+		for fleetname in (name+".begin",name):
+			try:
+				if Base.SellShip(fleetname):
+					break
+			except RuntimeError:
+				pass
+		VS.getPlayer().addCredits(before-VS.getPlayer().getCredits())
 		#print VS.getPlayer().getCredits()
 		#VS.getPlayer().addCredits(-ShipValue(shipname,False))
 		#print VS.getPlayer().getCredits()

@@ -273,12 +273,17 @@ Privateer's files:
   gone.
 - S12MD: Menesch waits in Regallis, not Troy.
 - Buying a ship:
-  - No longer sells the old one through the engine (`Base.SellShip`). That
-    paid the engine's own 50% sell-back on top of the trade-in the ship dealer
-    already pays, and deleted the old ship while other units could still refer
-    to it, which crashed the game on the next launch (#1840; see Upstream
-    engine work). The old ship stays in the engine's list of the player's
-    ships, which Gemini Gold never shows.
+  - Hands the old ship to the dealer through the engine (`Base.SellShip`),
+    so it leaves the engine's list of the player's ships and the saved game.
+    - Before #1840 the engine deleted the sold ship while other units could
+      still refer to it, which crashed the game on the next launch, so the
+      old ship was kept.
+    - The engine pays its own sell-back for it; the ship dealer already pays
+      the trade-in, so it takes that back.
+  - The dealer recognises the player's hull by its full name, not
+    `getName()`: a ship the engine re-creates from a saved game is named
+    `player_ship_<n>`, so after a reload the dealer would have offered the
+    ship the player was flying and valued the trade-in at 0.
   - A purchase that fails now takes back the trade-in it paid out.
   - The engine sells a hull only from the base's own stock, and many bases
     with a ship dealer (agricultural and pleasure planets) don't stock the
@@ -649,16 +654,6 @@ request open, "reported" ones an issue; the rest are still to do.
   landing jingle gave way to battle music, though the log shows `dj_lib`
   choosing the peace list. Gemini Gold's play-lists sound right, so the
   engine's music handling is the likely cause.
-- **Selling a ship deletes it outright** (#1840, submitted):
-  - `PlayerShip::RemoveShip` (`components/player_ship.cpp`) uses `delete` on
-    the ship rather than killing it, though other units may still refer to it.
-  - The engine logs "DISASTER AREA", and a later use of the stale pointer
-    crashes the game (a unit that had been attacking the old ship, once the
-    player launches).
-  - Killing it instead lets the references clear first.
-  - Gemini Gold no longer sells the old ship as a temporary work-around (see
-    What changed). Once the fix is in, it can call `Base.SellShip` again,
-    deducting the engine's own sell-back.
 - **Radars don't bring lead indicators** (to do):
   - ITTS comes from the ship's own `ITTS` value, read when the ship loads.
   - A radar upgrade (`CRadar`) doesn't touch it, and the computer component
@@ -995,6 +990,16 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
+- **Buying a ship** (after #1840):
+  - In a new game, trade the Tarsus in for a Centurion: the credits should
+    change by the trade-in minus the price, with nothing extra from the
+    engine, and the game shouldn't crash on launch, even with a ship
+    attacking.
+  - After a save and reload in the Centurion:
+    - its own dealer should give the "you already own one" line;
+    - an Orion or Galaxy dealer should still count the Centurion as a
+      trade-in;
+    - a second trade-in should work the same way.
 - **Energy:** four Tachyons empty a level 3 engine in five salvos, as in the
   original, but an empty capacitor takes about 25 seconds to refill (confirmed
   at `simulation_atom` 0.06) where the original takes about 7.
