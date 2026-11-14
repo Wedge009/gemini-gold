@@ -994,13 +994,6 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
-- **Buying a ship** (after #1840), after a save and reload in a Centurion:
-    - its own dealer should give the "you already own one" line;
-    - an Orion or Galaxy dealer should still count the Centurion as a
-      trade-in;
-    - a second trade-in should work the same way;
-    - the commodity exchange and base computer should show the same hold
-      size as before saving.
 - **Energy:** four Tachyons empty a level 3 engine in five salvos, as in the
   original, but an empty capacitor takes about 25 seconds to refill (confirmed
   at `simulation_atom` 0.06) where the original takes about 7.
