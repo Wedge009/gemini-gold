@@ -307,7 +307,7 @@ class CommodityComputer:
         # determine how much cargo capacity player has
         # this needs to be modified by cargo expansions & secret stash
         player = VS.getPlayer()
-        self.player_hold_volume = int( VS.LookupUnitStat( player.getName(), player.getFactionName(), "Hold_Volume" ) )
+        self.player_hold_volume = int( float( VS.LookupUnitStat( player.getName(), player.getFactionName(), "Hold_Volume" ) ) )
         # capacity increases by 25 per cargo expansion
         # NOTE: this is NOT like original game; that increased size by 50% if they have the cargo expansion
         numaddcargo=player.hasCargo("add_cargo_expansion")

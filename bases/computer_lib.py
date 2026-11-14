@@ -397,7 +397,7 @@ def get_manifest_text(player):
     cargo_dict = {}
 
     # get the hold volume
-    int_hold_volume = int( VS.LookupUnitStat( player.getName(), player.getFactionName(), "Hold_Volume" ) )
+    int_hold_volume = int( float( VS.LookupUnitStat( player.getName(), player.getFactionName(), "Hold_Volume" ) ) )
     if (player.hasCargo("add_cargo_volume")):
         # capacity increases by 50% if they have the cargo expansion
         int_hold_volume = int( int_hold_volume * 1.5 )

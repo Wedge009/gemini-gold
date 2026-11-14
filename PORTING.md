@@ -292,6 +292,10 @@ Privateer's files:
     three.
   - The engine also docks the new ship at the base, charging the docking fee
     a second time; the dealer refunds it.
+- Loading a saved game no longer stops at the first base: the commodity
+  exchange, the base computer's manifest and cargo missions read the hold size
+  with `int()`, but after a reload the engine returns the saved value, such as
+  `50.000000`. They now read it as a number first.
 - Both games end with Terrell's credits conversation, as the originals do,
   which Gemini Gold left out.
   - The next click on him after his final conversation gives them, with the
@@ -990,16 +994,13 @@ These may come from independent work recreating the original engine.
 
 ### Still to play-test
 
-- **Buying a ship** (after #1840):
-  - In a new game, trade the Tarsus in for a Centurion: the credits should
-    change by the trade-in minus the price, with nothing extra from the
-    engine, and the game shouldn't crash on launch, even with a ship
-    attacking.
-  - After a save and reload in the Centurion:
+- **Buying a ship** (after #1840), after a save and reload in a Centurion:
     - its own dealer should give the "you already own one" line;
     - an Orion or Galaxy dealer should still count the Centurion as a
       trade-in;
-    - a second trade-in should work the same way.
+    - a second trade-in should work the same way;
+    - the commodity exchange and base computer should show the same hold
+      size as before saving.
 - **Energy:** four Tachyons empty a level 3 engine in five salvos, as in the
   original, but an empty capacitor takes about 25 seconds to refill (confirmed
   at `simulation_atom` 0.06) where the original takes about 7.
